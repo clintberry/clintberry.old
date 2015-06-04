@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    Getting Started With Plivo // Clint Berry
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="Clint Berry">
+
+  <meta property="og:title" content="Getting Started With Plivo" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://clintberry.github.io/2011/getting-started-with-plivo/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://clintberry.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Clint Berry" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+    <h1 class="brand-title">Clint Berry</h1>
+    <h2 class="brand-tagline">Full Stack Developer. Wannabe Entrepreneur.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/posts/">Blog</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        
+      
+        
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        
+      
+        
+        <a href="http://www.twitter.com/clinton_berry" target="_blank"><i class='fa fa-twitter-square'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#enter-plivo:b4be1d989226d795e9bafa0012e0620b">Enter Plivo</a></li>
+<li><a href="#getting-started:b4be1d989226d795e9bafa0012e0620b">Getting Started</a>
+<ul>
+<li>
+<ul>
+<li><a href="#step-1-8211-prepare-your-box:b4be1d989226d795e9bafa0012e0620b">Step 1 &#8211; Prepare your Box</a></li>
+<li><a href="#step-2-8211-install-freeswitch:b4be1d989226d795e9bafa0012e0620b">Step 2 &#8211; Install FreeSWITCH</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#enter-plivo-1:b4be1d989226d795e9bafa0012e0620b">Enter Plivo</a></li>
+<li><a href="#getting-started-1:b4be1d989226d795e9bafa0012e0620b">Getting Started</a>
+<ul>
+<li>
+<ul>
+<li><a href="#step-1-8211-prepare-your-box-1:b4be1d989226d795e9bafa0012e0620b">Step 1 &#8211; Prepare your Box</a></li>
+<li><a href="#step-2-8211-install-freeswitch-1:b4be1d989226d795e9bafa0012e0620b">Step 2 &#8211; Install FreeSWITCH</a></li>
+<li><a href="#step-3-8211-install-plivo:b4be1d989226d795e9bafa0012e0620b">Step 3 &#8211; Install Plivo</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#enter-plivo-2:b4be1d989226d795e9bafa0012e0620b">Enter Plivo</a></li>
+<li><a href="#getting-started-2:b4be1d989226d795e9bafa0012e0620b">Getting Started</a>
+<ul>
+<li>
+<ul>
+<li><a href="#step-1-8211-prepare-your-box-2:b4be1d989226d795e9bafa0012e0620b">Step 1 &#8211; Prepare your Box</a></li>
+<li><a href="#step-2-8211-install-freeswitch-2:b4be1d989226d795e9bafa0012e0620b">Step 2 &#8211; Install FreeSWITCH</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#enter-plivo-3:b4be1d989226d795e9bafa0012e0620b">Enter Plivo</a></li>
+<li><a href="#getting-started-3:b4be1d989226d795e9bafa0012e0620b">Getting Started</a>
+<ul>
+<li>
+<ul>
+<li><a href="#step-1-8211-prepare-your-box-3:b4be1d989226d795e9bafa0012e0620b">Step 1 &#8211; Prepare your Box</a></li>
+<li><a href="#step-2-8211-install-freeswitch-3:b4be1d989226d795e9bafa0012e0620b">Step 2 &#8211; Install FreeSWITCH</a></li>
+<li><a href="#step-3-8211-install-plivo-1:b4be1d989226d795e9bafa0012e0620b">Step 3 &#8211; Install Plivo</a></li>
+<li><a href="#step-4-8211-configure-your-dialplans:b4be1d989226d795e9bafa0012e0620b">Step 4 &#8211; Configure Your Dialplans</a>
+<ul>
+<li>
+<ul>
+<li><a href="#dialplan-basics:b4be1d989226d795e9bafa0012e0620b">Dialplan Basics</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#step-5-8211-get-a-free-softphone-for-testing:b4be1d989226d795e9bafa0012e0620b">Step 5 &#8211; Get a Free SoftPhone For Testing</a></li>
+<li><a href="#step-6-8211-configure-plivo:b4be1d989226d795e9bafa0012e0620b">Step 6 &#8211; Configure Plivo</a></li>
+<li><a href="#step-7-8211-hello-world:b4be1d989226d795e9bafa0012e0620b">Step 7 &#8211; Hello World</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+		    </div>
+		    
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/2011/getting-started-with-plivo/">Getting Started With Plivo</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>24</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Aug</span> <span class="post-date-year">2011</span>
+            	</span>
+            	
+            
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">Clint Berry</a></span>
+            		
+
+
+
+
+            	
+            
+
+			
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-plivo" href="http://clintberry.github.io/categories/plivo">Plivo</a>
+				
+					<a class="post-category post-category-telephony" href="http://clintberry.github.io/categories/telephony">Telephony</a>
+				
+				</div>
+			
+
+			
+
+			
+
+            
+
+<p>The open-source telephony development world has been changing drastically over the last 2 years. Projects like FreeSWITCH allow you to create simple phone applications with XML files, but until recently, advanced applications required a solid knowledge of the Erlang language. Then enters <a title="Twilio" href="http://www.twilio.com/" target="_blank">Twilio</a>&#8212; which allows any web developer to make advanced telephony apps in the web language of their choice. But with Twilio&#8217;s pricing structure, you are looking at anywhere from 2 to 4 cents per minute <strong>IN ADDITION</strong> to your VOIP service while also being locked-in to their cloud. <strong>Must I learn Erlang if I want to make cool telephony apps for free?</strong></p>
+
+<h2 id="enter-plivo:b4be1d989226d795e9bafa0012e0620b">Enter Plivo</h2>
+
+<p>Then on May 26, 2011, the <a href="http://www.plivo.org/2011/05/26/launch-of-plivo-an-open-source-alternative-to-twilio/" title="Plivo Project">Plivo project was announced</a>. Plivo is essentially an open source Twilio extension that works with FreeSWITCH. What does it mean? It means you can build advanced telephony apps using whatever web programming language you want via the Plivo Framework&#8230; FOR FREE! Yes, that is right, you can build a simple PBX system for your company&#8217;s phone system with PHP. You can create a skill-based routing server in python. And my personal favorite, you can create real-time web-phones with NodeJS. It truly is amazing. <a title="Plivo Website" href="http://plivo.org" target="_blank">Read more about Plivo.</a> But enough of my babbling. Let&#8217;s get to the good stuff.</p>
+
+<h2 id="getting-started:b4be1d989226d795e9bafa0012e0620b">Getting Started</h2>
+
+<p>I have encountered a few people on the #plivo IRC chat having trouble getting Plivo going. They usually are web developers, new to FreeSWITCH like me. The beautiful part about Plivo is you don&#8217;t need to be a FreeSWITCH expert (although it doesn&#8217;t hurt).</p>
+
+<h4 id="step-1-8211-prepare-your-box:b4be1d989226d795e9bafa0012e0620b">Step 1 &#8211; Prepare your Box</h4>
+
+<p>You need a place to install FreeSWITCH and Plivo. If you don&#8217;t have an extra box lying around I recommend using a virtual Ubuntu Linux machine for development. I prefer to use the free program <a title="Virtual Box" href="http://www.virtualbox.org/" target="_blank">Virtual Box</a> to power my virtual machines. I also suggest grabbing the <a title="Turnkey Linux" href="http://www.turnkeylinux.org/core" target="_blank">Turnkey linux ISO</a> which is a basic Ubuntu ISO image ready to go. If you need extra help getting your virtual machine setup, follow these instructions: <a title="Turnkey Linux on VirtualBox" href="http://www.turnkeylinux.org/docs/installation-appliances-virtualbox" target="_blank">How to Setup Turnkey Linux on Virtual Box</a>.</p>
+
+<p>If you are planning to give public access to your app then I recommend using <a href="http://manage.aff.biz/z/146/CD15515/&amp;dp=40017">VPS.net</a> for a cheaper entry into cloud hosting.</p>
+
+<h4 id="step-2-8211-install-freeswitch:b4be1d989226d795e9bafa0012e0620b">Step 2 &#8211; Install FreeSWITCH</h4>
+
+<p>A big thanks to the <a title="Guys at Plivo" href="http://www.plivo.org/about-2/" target="_blank">guys at Plivo</a> for providing a simple shell script for installing FreeSWITCH. Switch to your home directory and enter these commands into your shell (taken directly from Plivo website):</p>
+
+<p>`The open-source telephony development world has been changing drastically over the last 2 years. Projects like FreeSWITCH allow you to create simple phone applications with XML files, but until recently, advanced applications required a solid knowledge of the Erlang language. Then enters <a title="Twilio" href="http://www.twilio.com/" target="_blank">Twilio</a>&#8212; which allows any web developer to make advanced telephony apps in the web language of their choice. But with Twilio&#8217;s pricing structure, you are looking at anywhere from 2 to 4 cents per minute <strong>IN ADDITION</strong> to your VOIP service while also being locked-in to their cloud. <strong>Must I learn Erlang if I want to make cool telephony apps for free?</strong></p>
+
+<h2 id="enter-plivo-1:b4be1d989226d795e9bafa0012e0620b">Enter Plivo</h2>
+
+<p>Then on May 26, 2011, the <a href="http://www.plivo.org/2011/05/26/launch-of-plivo-an-open-source-alternative-to-twilio/" title="Plivo Project">Plivo project was announced</a>. Plivo is essentially an open source Twilio extension that works with FreeSWITCH. What does it mean? It means you can build advanced telephony apps using whatever web programming language you want via the Plivo Framework&#8230; FOR FREE! Yes, that is right, you can build a simple PBX system for your company&#8217;s phone system with PHP. You can create a skill-based routing server in python. And my personal favorite, you can create real-time web-phones with NodeJS. It truly is amazing. <a title="Plivo Website" href="http://plivo.org" target="_blank">Read more about Plivo.</a> But enough of my babbling. Let&#8217;s get to the good stuff.</p>
+
+<h2 id="getting-started-1:b4be1d989226d795e9bafa0012e0620b">Getting Started</h2>
+
+<p>I have encountered a few people on the #plivo IRC chat having trouble getting Plivo going. They usually are web developers, new to FreeSWITCH like me. The beautiful part about Plivo is you don&#8217;t need to be a FreeSWITCH expert (although it doesn&#8217;t hurt).</p>
+
+<h4 id="step-1-8211-prepare-your-box-1:b4be1d989226d795e9bafa0012e0620b">Step 1 &#8211; Prepare your Box</h4>
+
+<p>You need a place to install FreeSWITCH and Plivo. If you don&#8217;t have an extra box lying around I recommend using a virtual Ubuntu Linux machine for development. I prefer to use the free program <a title="Virtual Box" href="http://www.virtualbox.org/" target="_blank">Virtual Box</a> to power my virtual machines. I also suggest grabbing the <a title="Turnkey Linux" href="http://www.turnkeylinux.org/core" target="_blank">Turnkey linux ISO</a> which is a basic Ubuntu ISO image ready to go. If you need extra help getting your virtual machine setup, follow these instructions: <a title="Turnkey Linux on VirtualBox" href="http://www.turnkeylinux.org/docs/installation-appliances-virtualbox" target="_blank">How to Setup Turnkey Linux on Virtual Box</a>.</p>
+
+<p>If you are planning to give public access to your app then I recommend using <a href="http://manage.aff.biz/z/146/CD15515/&amp;dp=40017">VPS.net</a> for a cheaper entry into cloud hosting.</p>
+
+<h4 id="step-2-8211-install-freeswitch-1:b4be1d989226d795e9bafa0012e0620b">Step 2 &#8211; Install FreeSWITCH</h4>
+
+<p>A big thanks to the <a title="Guys at Plivo" href="http://www.plivo.org/about-2/" target="_blank">guys at Plivo</a> for providing a simple shell script for installing FreeSWITCH. Switch to your home directory and enter these commands into your shell (taken directly from Plivo website):</p>
+
+<p>`</p>
+
+<p>Let it run for a few minutes and you will have a working copy of FreeSWITCH ready to go.</p>
+
+<p>[box type=&#8221;note&#8221; style=&#8221;rounded&#8221; border=&#8221;full&#8221;]Keep in mind that this install script will only work for CentOS 5.5+ and Debian-based Distros (Ubuntu)[/box]</p>
+
+<h4 id="step-3-8211-install-plivo:b4be1d989226d795e9bafa0012e0620b">Step 3 &#8211; Install Plivo</h4>
+
+<p>Yet another easy installation thanks to the Plivo guys&#8230;</p>
+
+<p>``The open-source telephony development world has been changing drastically over the last 2 years. Projects like FreeSWITCH allow you to create simple phone applications with XML files, but until recently, advanced applications required a solid knowledge of the Erlang language. Then enters <a title="Twilio" href="http://www.twilio.com/" target="_blank">Twilio</a>&#8212; which allows any web developer to make advanced telephony apps in the web language of their choice. But with Twilio&#8217;s pricing structure, you are looking at anywhere from 2 to 4 cents per minute <strong>IN ADDITION</strong> to your VOIP service while also being locked-in to their cloud. <strong>Must I learn Erlang if I want to make cool telephony apps for free?</strong></p>
+
+<h2 id="enter-plivo-2:b4be1d989226d795e9bafa0012e0620b">Enter Plivo</h2>
+
+<p>Then on May 26, 2011, the <a href="http://www.plivo.org/2011/05/26/launch-of-plivo-an-open-source-alternative-to-twilio/" title="Plivo Project">Plivo project was announced</a>. Plivo is essentially an open source Twilio extension that works with FreeSWITCH. What does it mean? It means you can build advanced telephony apps using whatever web programming language you want via the Plivo Framework&#8230; FOR FREE! Yes, that is right, you can build a simple PBX system for your company&#8217;s phone system with PHP. You can create a skill-based routing server in python. And my personal favorite, you can create real-time web-phones with NodeJS. It truly is amazing. <a title="Plivo Website" href="http://plivo.org" target="_blank">Read more about Plivo.</a> But enough of my babbling. Let&#8217;s get to the good stuff.</p>
+
+<h2 id="getting-started-2:b4be1d989226d795e9bafa0012e0620b">Getting Started</h2>
+
+<p>I have encountered a few people on the #plivo IRC chat having trouble getting Plivo going. They usually are web developers, new to FreeSWITCH like me. The beautiful part about Plivo is you don&#8217;t need to be a FreeSWITCH expert (although it doesn&#8217;t hurt).</p>
+
+<h4 id="step-1-8211-prepare-your-box-2:b4be1d989226d795e9bafa0012e0620b">Step 1 &#8211; Prepare your Box</h4>
+
+<p>You need a place to install FreeSWITCH and Plivo. If you don&#8217;t have an extra box lying around I recommend using a virtual Ubuntu Linux machine for development. I prefer to use the free program <a title="Virtual Box" href="http://www.virtualbox.org/" target="_blank">Virtual Box</a> to power my virtual machines. I also suggest grabbing the <a title="Turnkey Linux" href="http://www.turnkeylinux.org/core" target="_blank">Turnkey linux ISO</a> which is a basic Ubuntu ISO image ready to go. If you need extra help getting your virtual machine setup, follow these instructions: <a title="Turnkey Linux on VirtualBox" href="http://www.turnkeylinux.org/docs/installation-appliances-virtualbox" target="_blank">How to Setup Turnkey Linux on Virtual Box</a>.</p>
+
+<p>If you are planning to give public access to your app then I recommend using <a href="http://manage.aff.biz/z/146/CD15515/&amp;dp=40017">VPS.net</a> for a cheaper entry into cloud hosting.</p>
+
+<h4 id="step-2-8211-install-freeswitch-2:b4be1d989226d795e9bafa0012e0620b">Step 2 &#8211; Install FreeSWITCH</h4>
+
+<p>A big thanks to the <a title="Guys at Plivo" href="http://www.plivo.org/about-2/" target="_blank">guys at Plivo</a> for providing a simple shell script for installing FreeSWITCH. Switch to your home directory and enter these commands into your shell (taken directly from Plivo website):</p>
+
+<p>`The open-source telephony development world has been changing drastically over the last 2 years. Projects like FreeSWITCH allow you to create simple phone applications with XML files, but until recently, advanced applications required a solid knowledge of the Erlang language. Then enters <a title="Twilio" href="http://www.twilio.com/" target="_blank">Twilio</a>&#8212; which allows any web developer to make advanced telephony apps in the web language of their choice. But with Twilio&#8217;s pricing structure, you are looking at anywhere from 2 to 4 cents per minute <strong>IN ADDITION</strong> to your VOIP service while also being locked-in to their cloud. <strong>Must I learn Erlang if I want to make cool telephony apps for free?</strong></p>
+
+<h2 id="enter-plivo-3:b4be1d989226d795e9bafa0012e0620b">Enter Plivo</h2>
+
+<p>Then on May 26, 2011, the <a href="http://www.plivo.org/2011/05/26/launch-of-plivo-an-open-source-alternative-to-twilio/" title="Plivo Project">Plivo project was announced</a>. Plivo is essentially an open source Twilio extension that works with FreeSWITCH. What does it mean? It means you can build advanced telephony apps using whatever web programming language you want via the Plivo Framework&#8230; FOR FREE! Yes, that is right, you can build a simple PBX system for your company&#8217;s phone system with PHP. You can create a skill-based routing server in python. And my personal favorite, you can create real-time web-phones with NodeJS. It truly is amazing. <a title="Plivo Website" href="http://plivo.org" target="_blank">Read more about Plivo.</a> But enough of my babbling. Let&#8217;s get to the good stuff.</p>
+
+<h2 id="getting-started-3:b4be1d989226d795e9bafa0012e0620b">Getting Started</h2>
+
+<p>I have encountered a few people on the #plivo IRC chat having trouble getting Plivo going. They usually are web developers, new to FreeSWITCH like me. The beautiful part about Plivo is you don&#8217;t need to be a FreeSWITCH expert (although it doesn&#8217;t hurt).</p>
+
+<h4 id="step-1-8211-prepare-your-box-3:b4be1d989226d795e9bafa0012e0620b">Step 1 &#8211; Prepare your Box</h4>
+
+<p>You need a place to install FreeSWITCH and Plivo. If you don&#8217;t have an extra box lying around I recommend using a virtual Ubuntu Linux machine for development. I prefer to use the free program <a title="Virtual Box" href="http://www.virtualbox.org/" target="_blank">Virtual Box</a> to power my virtual machines. I also suggest grabbing the <a title="Turnkey Linux" href="http://www.turnkeylinux.org/core" target="_blank">Turnkey linux ISO</a> which is a basic Ubuntu ISO image ready to go. If you need extra help getting your virtual machine setup, follow these instructions: <a title="Turnkey Linux on VirtualBox" href="http://www.turnkeylinux.org/docs/installation-appliances-virtualbox" target="_blank">How to Setup Turnkey Linux on Virtual Box</a>.</p>
+
+<p>If you are planning to give public access to your app then I recommend using <a href="http://manage.aff.biz/z/146/CD15515/&amp;dp=40017">VPS.net</a> for a cheaper entry into cloud hosting.</p>
+
+<h4 id="step-2-8211-install-freeswitch-3:b4be1d989226d795e9bafa0012e0620b">Step 2 &#8211; Install FreeSWITCH</h4>
+
+<p>A big thanks to the <a title="Guys at Plivo" href="http://www.plivo.org/about-2/" target="_blank">guys at Plivo</a> for providing a simple shell script for installing FreeSWITCH. Switch to your home directory and enter these commands into your shell (taken directly from Plivo website):</p>
+
+<p>`</p>
+
+<p>Let it run for a few minutes and you will have a working copy of FreeSWITCH ready to go.</p>
+
+<p>[box type=&#8221;note&#8221; style=&#8221;rounded&#8221; border=&#8221;full&#8221;]Keep in mind that this install script will only work for CentOS 5.5+ and Debian-based Distros (Ubuntu)[/box]</p>
+
+<h4 id="step-3-8211-install-plivo-1:b4be1d989226d795e9bafa0012e0620b">Step 3 &#8211; Install Plivo</h4>
+
+<p>Yet another easy installation thanks to the Plivo guys&#8230;</p>
+
+<p>``</p>
+
+<p>Again, it should run for a bit and when it is done it should be ready to go.</p>
+
+<h4 id="step-4-8211-configure-your-dialplans:b4be1d989226d795e9bafa0012e0620b">Step 4 &#8211; Configure Your Dialplans</h4>
+
+<p>Since most web developers don&#8217;t come from a Telephony background, the whole FreeSWITCH thing is new. On the #plivo IRC channel, I see new people, usually web developers like me, getting stuck at this spot all the time.</p>
+
+<h6 id="dialplan-basics:b4be1d989226d795e9bafa0012e0620b">Dialplan Basics</h6>
+
+<p>The dialplan in freeswitch essentially tells freeswitch how to route calls when they come in. An out-of-the box freeswitch setup installs 20 extensions (just like an office phone system) with passwords to login. The extensions are 1000-1020 and all have the same password &#8211; 1234. With the Plivo FreeSWITCH installer, the default dialplan is overwritten to intercept all calls and those extensions don&#8217;t work very well anymore. If you are just getting started with the whole freeswitch thing, I have provided an alternate version of the dialplan file to allow you to do testing of your freeswitch install as well as develop Plivo apps.</p>
+
+<p><a href="http://clintberry.com/download/default.xml">Download Dialplan Here &#8211; default.xml</a></p>
+
+<p>Copy that dialplan into the freeswitch/conf/dialplan directory. This dialplan is the same as the out of the box FreeSWITCH dialplan, except I added the plivo config and restricted it to extension 1005. This means the rest of your extensions will work like normal so you can see how awesome freeswitch is. Restart freeswitch by typing &#8216;shutdown&#8217; in the freeswitch terminal.</p>
+
+<h4 id="step-5-8211-get-a-free-softphone-for-testing:b4be1d989226d795e9bafa0012e0620b">Step 5 &#8211; Get a Free SoftPhone For Testing</h4>
+
+<p>Now things start to get fun. Get a free soft phone. For osx I got <a href="http://itunes.apple.com/us/app/blink-lite/id431473881?mt=12">Blink Lite</a>. Once you get a free soft phone you can login to your FreeSWITCH install by extension and IP address. If you installed freeswitch on 192.168.1.5 then for your credentials on your softphone you would use 1000@192.168.1.5 as the user, and 1234 as the password. You should get logged right in and now you can call any other extension. Try dialing 1001 and you should get taken to voicemail. Pretty sweet right? Try dialing 1005 and right now you should get nothing but a disconnected call, since 1005 is now connected to plivo.</p>
+
+<h4 id="step-6-8211-configure-plivo:b4be1d989226d795e9bafa0012e0620b">Step 6 &#8211; Configure Plivo</h4>
+
+<p>The last step before you take over the world with your new telephony app is configuring plivo. This is extremely easy. Go to your plivo install directory (typically /usr/local/plivo) and go to the etc/plivo directory. Open the default.conf file and look for these directives:</p>
+
+<pre class="wp-code-highlight prettyprint">DEFAULT_ANSWER_URL = http://127.0.0.1:3000/answer/
+DEFAULT_HANGUP_URL = http://127.0.0.1:3000/hangup/</pre>
+
+<p>Typically your web server won&#8217;t be tied to port 3000. You need to change these values to point to your web server IP address and port (typically 80). Also, change the URL to point wherever your app will be. I will leave mine pointing to /answer. Then make sure FreeSWITCH is started and go ahead and start plivo:</p>
+
+<pre class="wp-code-highlight prettyprint">/usr/local/plivo/bin/plivo start</pre>
+
+<h4 id="step-7-8211-hello-world:b4be1d989226d795e9bafa0012e0620b">Step 7 &#8211; Hello World</h4>
+
+<p>FINALLY, TIME FOR AN AWESOME PHONE APP! Your system is all setup, and plivo will be answering all calls on extension 1005. Let&#8217;s write our first app. I will make this first app in PHP, but I won&#8217;t be doing anything special, it will work on any web language that can serve an xml file. Since plivo is pointing to answer/ I will create answer/index.php and inside that file I will put plivo response xml code:</p>
+
+<pre class="wp-code-highlight prettyprint">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;Response&gt;
+     &lt;Speak&gt;Hello World&lt;/Speak&gt;
+&lt;/Response&gt;</pre>
+
+<p>Now open your soft phone and dial 1005. You should hear a pleasant voice, saying &#8220;hello world&#8221;. It should be an exciting moment for you.</p>
+
+<p>Now your limits are endless. Write some amazing telephony apps in a web language and let me know some of the cool projects you are building. I&#8217;ve got several more posts planned about building plivo apps coming in the next few weeks, so be ready for some exciting developments.</p>
+
+	
+			
+
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/2011/siege-testing-site-login/">Siege Testing Your Site Behind a Login</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/2011/speed-up-your-wordpress-development-cycle-with-git/">Speed Up Your WordPress Development Cycle With Git</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2015. All rights reserved. </p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>

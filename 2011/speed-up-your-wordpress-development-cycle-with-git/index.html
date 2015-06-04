@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    Speed Up Your WordPress Development Cycle With Git // Clint Berry
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="Clint Berry">
+
+  <meta property="og:title" content="Speed Up Your WordPress Development Cycle With Git" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://clintberry.github.io/2011/speed-up-your-wordpress-development-cycle-with-git/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://clintberry.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Clint Berry" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+    <h1 class="brand-title">Clint Berry</h1>
+    <h2 class="brand-tagline">Full Stack Developer. Wannabe Entrepreneur.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/posts/">Blog</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        
+      
+        
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        
+      
+        
+        <a href="http://www.twitter.com/clinton_berry" target="_blank"><i class='fa fa-twitter-square'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-get-the-most-current-wordpress:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</a></li>
+<li><a href="#2-starting-with-a-quality-blank-theme:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</a></li>
+<li><a href="#3-adding-your-custom-design-wordpress-child-theme:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</a></li>
+<li><a href="#1-get-the-most-current-wordpress-1:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</a></li>
+<li><a href="#2-starting-with-a-quality-blank-theme-1:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</a></li>
+<li><a href="#3-adding-your-custom-design-wordpress-child-theme-1:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</a></li>
+<li><a href="#1-get-the-most-current-wordpress-2:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</a></li>
+<li><a href="#2-starting-with-a-quality-blank-theme-2:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</a></li>
+<li><a href="#3-adding-your-custom-design-wordpress-child-theme-2:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</a></li>
+<li><a href="#1-get-the-most-current-wordpress-3:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</a></li>
+<li><a href="#2-starting-with-a-quality-blank-theme-3:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</a></li>
+<li><a href="#3-adding-your-custom-design-wordpress-child-theme-3:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</a></li>
+<li><a href="#1-get-the-most-current-wordpress-4:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</a></li>
+<li><a href="#2-starting-with-a-quality-blank-theme-4:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</a></li>
+<li><a href="#3-adding-your-custom-design-wordpress-child-theme-4:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</a></li>
+<li><a href="#1-get-the-most-current-wordpress-5:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</a></li>
+<li><a href="#2-starting-with-a-quality-blank-theme-5:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</a></li>
+<li><a href="#3-adding-your-custom-design-wordpress-child-theme-5:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</a></li>
+<li><a href="#1-get-the-most-current-wordpress-6:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</a></li>
+<li><a href="#2-starting-with-a-quality-blank-theme-6:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</a></li>
+<li><a href="#3-adding-your-custom-design-wordpress-child-theme-6:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</a></li>
+<li><a href="#1-get-the-most-current-wordpress-7:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</a></li>
+<li><a href="#2-starting-with-a-quality-blank-theme-7:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</a></li>
+<li><a href="#3-adding-your-custom-design-wordpress-child-theme-7:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</a></li>
+</ul></li>
+</ul>
+</nav>
+		    </div>
+		    
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/2011/speed-up-your-wordpress-development-cycle-with-git/">Speed Up Your WordPress Development Cycle With Git</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>30</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Jul</span> <span class="post-date-year">2011</span>
+            	</span>
+            	
+            
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">Clint Berry</a></span>
+            		
+
+
+
+
+            	
+            
+
+			
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-git" href="http://clintberry.github.io/categories/git">Git</a>
+				
+					<a class="post-category post-category-php" href="http://clintberry.github.io/categories/php">PHP</a>
+				
+					<a class="post-category post-category-wordpress" href="http://clintberry.github.io/categories/wordpress">Wordpress</a>
+				
+				</div>
+			
+
+			
+
+			
+
+            
+
+<p>If you have developed WordPress sites for clients this process might sound familiar to you:</p>
+
+<ul>
+<li>Get a new client that wants a wordpress site</li>
+<li>Download the most recent wordpress</li>
+<li>Find a good current blank wordpress theme to start implementing the design</li>
+<li>Upload to a staging server to for client to see</li>
+<li>Client requests changes</li>
+<li>You make changes on local server, then upload to staging server</li>
+<li>Repeat last three steps until finished and then you deploy the site to live</li>
+</ul>
+
+<p>After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a <a href="http://en.wikipedia.org/wiki/Revision_control" target="_blank">revision control </a>system like <a href="http://git-scm.com/" target="_blank">Git</a> or <a href="http://subversion.tigris.org/" target="_blank">SVN</a> for development, then check out <del datetime="2012-04-22T20:33:39+00:00"><a href="http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" target="_blank">this funny question and answer session on Stack Overflow</a></del> <strong>Update:</strong> Stack Overflow moderators removed the question&#8230; bummer. Check out the funny-ness in the <a href="http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" title="Why to use version control" target="_blank">wayback machine internet archiver</a> instead)</p>
+
+<p>For this rapid WordPress development cycle, you will need to have Git installed.</p>
+
+<h2 id="1-get-the-most-current-wordpress:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</h2>
+
+<p>The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a <a href="https://github.com/WordPress/WordPress" target="_blank">great WordPress git clone</a> that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.</p>
+
+<pre class="wp-code-highlight prettyprint">mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch</pre>
+
+<p>Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.</p>
+
+<h2 id="2-starting-with-a-quality-blank-theme:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</h2>
+
+<p>To help get your new WordPress project off the ground, let&#8217;s get a quality blank theme that updates regularly. I usually use the <a title="Roots WordPress Theme" href="http://www.rootstheme.com/" target="_blank">Roots theme</a>, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:</p>
+
+<pre class="wp-code-highlight prettyprint">cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update</pre>
+
+<p><i class="icon-warning-sign"></i><strong>Update:</strong> I have now forked mark&#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: <a title="Clint Berry's Github Account" href="https://github.com/clintberry/WordPress" target="_blank"><a href="https://github.com/clintberry/WordPress">https://github.com/clintberry/WordPress</a></a> Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.</p>
+
+<p>Now you have a quality blank theme installed into your git repo as a sub-module.</p>
+
+<h2 id="3-adding-your-custom-design-wordpress-child-theme:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</h2>
+
+<p>Since we have added the new blank theme as a git submodule, we don&#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &#8220;inherit&#8221; all the functionality of a &#8220;base&#8221; theme. In this case, we will create a child theme &#8220;MyTheme&#8221; that will have access to all the functionality of our base theme &#8220;Roots&#8221;.</p>
+
+<p>Creating child themes in wordpress is simple:</p>
+
+<ol>
+<li>Add a new folder to your wordpress themes directory called &#8220;MyTheme&#8221;</li>
+<li>Create a file called &#8220;style.css&#8221; with the following text: <pre class="wp-code-highlight prettyprint">/*
+Theme Name:     MyProject
+Theme URI:      <a href="http://clintberry.com/">http://clintberry.com/</a>
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     <a href="http://clintberry.com">http://clintberry.com</a>
+Template:       roots
+Version:        0.1.0
+*/</li>
+</ol>
+
+<p>@import url(&ldquo;../twentyten/style.css&rdquo;);
+</pre></p>
+
+<pre><code>Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+
+  * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+  * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+
+Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+
+## Update WordPress Like A Pro
+
+Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+
+`If you have developed WordPress sites for clients this process might sound familiar to you:
+</code></pre>
+
+<ul>
+<li>Get a new client that wants a wordpress site</li>
+<li>Download the most recent wordpress</li>
+<li>Find a good current blank wordpress theme to start implementing the design</li>
+<li>Upload to a staging server to for client to see</li>
+<li>Client requests changes</li>
+<li>You make changes on local server, then upload to staging server</li>
+<li>Repeat last three steps until finished and then you deploy the site to live</li>
+</ul>
+
+<p>After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a <a href="http://en.wikipedia.org/wiki/Revision_control" target="_blank">revision control </a>system like <a href="http://git-scm.com/" target="_blank">Git</a> or <a href="http://subversion.tigris.org/" target="_blank">SVN</a> for development, then check out <del datetime="2012-04-22T20:33:39+00:00"><a href="http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" target="_blank">this funny question and answer session on Stack Overflow</a></del> <strong>Update:</strong> Stack Overflow moderators removed the question&#8230; bummer. Check out the funny-ness in the <a href="http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" title="Why to use version control" target="_blank">wayback machine internet archiver</a> instead)</p>
+
+<p>For this rapid WordPress development cycle, you will need to have Git installed.</p>
+
+<h2 id="1-get-the-most-current-wordpress-1:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</h2>
+
+<p>The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a <a href="https://github.com/WordPress/WordPress" target="_blank">great WordPress git clone</a> that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.</p>
+
+<pre class="wp-code-highlight prettyprint">mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch</pre>
+
+<p>Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.</p>
+
+<h2 id="2-starting-with-a-quality-blank-theme-1:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</h2>
+
+<p>To help get your new WordPress project off the ground, let&#8217;s get a quality blank theme that updates regularly. I usually use the <a title="Roots WordPress Theme" href="http://www.rootstheme.com/" target="_blank">Roots theme</a>, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:</p>
+
+<pre class="wp-code-highlight prettyprint">cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update</pre>
+
+<p><i class="icon-warning-sign"></i><strong>Update:</strong> I have now forked mark&#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: <a title="Clint Berry's Github Account" href="https://github.com/clintberry/WordPress" target="_blank"><a href="https://github.com/clintberry/WordPress">https://github.com/clintberry/WordPress</a></a> Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.</p>
+
+<p>Now you have a quality blank theme installed into your git repo as a sub-module.</p>
+
+<h2 id="3-adding-your-custom-design-wordpress-child-theme-1:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</h2>
+
+<p>Since we have added the new blank theme as a git submodule, we don&#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &#8220;inherit&#8221; all the functionality of a &#8220;base&#8221; theme. In this case, we will create a child theme &#8220;MyTheme&#8221; that will have access to all the functionality of our base theme &#8220;Roots&#8221;.</p>
+
+<p>Creating child themes in wordpress is simple:</p>
+
+<ol>
+<li>Add a new folder to your wordpress themes directory called &#8220;MyTheme&#8221;</li>
+<li>Create a file called &#8220;style.css&#8221; with the following text: <pre class="wp-code-highlight prettyprint">/*
+Theme Name:     MyProject
+Theme URI:      <a href="http://clintberry.com/">http://clintberry.com/</a>
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     <a href="http://clintberry.com">http://clintberry.com</a>
+Template:       roots
+Version:        0.1.0
+*/</li>
+</ol>
+
+<p>@import url(&ldquo;../twentyten/style.css&rdquo;);
+</pre></p>
+
+<pre><code>Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+
+  * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+  * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+
+Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+
+## Update WordPress Like A Pro
+
+Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+</code></pre>
+
+<p>`</p>
+
+<pre><code>Now merge in any updates from your current branch, or merge in a new branch altogether. This command merges the latest update from the 3.2 branch into your WordPress install:
+
+``If you have developed WordPress sites for clients this process might sound familiar to you:
+</code></pre>
+
+<ul>
+<li>Get a new client that wants a wordpress site</li>
+<li>Download the most recent wordpress</li>
+<li>Find a good current blank wordpress theme to start implementing the design</li>
+<li>Upload to a staging server to for client to see</li>
+<li>Client requests changes</li>
+<li>You make changes on local server, then upload to staging server</li>
+<li>Repeat last three steps until finished and then you deploy the site to live</li>
+</ul>
+
+<p>After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a <a href="http://en.wikipedia.org/wiki/Revision_control" target="_blank">revision control </a>system like <a href="http://git-scm.com/" target="_blank">Git</a> or <a href="http://subversion.tigris.org/" target="_blank">SVN</a> for development, then check out <del datetime="2012-04-22T20:33:39+00:00"><a href="http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" target="_blank">this funny question and answer session on Stack Overflow</a></del> <strong>Update:</strong> Stack Overflow moderators removed the question&#8230; bummer. Check out the funny-ness in the <a href="http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" title="Why to use version control" target="_blank">wayback machine internet archiver</a> instead)</p>
+
+<p>For this rapid WordPress development cycle, you will need to have Git installed.</p>
+
+<h2 id="1-get-the-most-current-wordpress-2:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</h2>
+
+<p>The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a <a href="https://github.com/WordPress/WordPress" target="_blank">great WordPress git clone</a> that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.</p>
+
+<pre class="wp-code-highlight prettyprint">mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch</pre>
+
+<p>Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.</p>
+
+<h2 id="2-starting-with-a-quality-blank-theme-2:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</h2>
+
+<p>To help get your new WordPress project off the ground, let&#8217;s get a quality blank theme that updates regularly. I usually use the <a title="Roots WordPress Theme" href="http://www.rootstheme.com/" target="_blank">Roots theme</a>, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:</p>
+
+<pre class="wp-code-highlight prettyprint">cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update</pre>
+
+<p><i class="icon-warning-sign"></i><strong>Update:</strong> I have now forked mark&#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: <a title="Clint Berry's Github Account" href="https://github.com/clintberry/WordPress" target="_blank"><a href="https://github.com/clintberry/WordPress">https://github.com/clintberry/WordPress</a></a> Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.</p>
+
+<p>Now you have a quality blank theme installed into your git repo as a sub-module.</p>
+
+<h2 id="3-adding-your-custom-design-wordpress-child-theme-2:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</h2>
+
+<p>Since we have added the new blank theme as a git submodule, we don&#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &#8220;inherit&#8221; all the functionality of a &#8220;base&#8221; theme. In this case, we will create a child theme &#8220;MyTheme&#8221; that will have access to all the functionality of our base theme &#8220;Roots&#8221;.</p>
+
+<p>Creating child themes in wordpress is simple:</p>
+
+<ol>
+<li>Add a new folder to your wordpress themes directory called &#8220;MyTheme&#8221;</li>
+<li>Create a file called &#8220;style.css&#8221; with the following text: <pre class="wp-code-highlight prettyprint">/*
+Theme Name:     MyProject
+Theme URI:      <a href="http://clintberry.com/">http://clintberry.com/</a>
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     <a href="http://clintberry.com">http://clintberry.com</a>
+Template:       roots
+Version:        0.1.0
+*/</li>
+</ol>
+
+<p>@import url(&ldquo;../twentyten/style.css&rdquo;);
+</pre></p>
+
+<pre><code>Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+
+  * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+  * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+
+Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+
+## Update WordPress Like A Pro
+
+Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+
+`If you have developed WordPress sites for clients this process might sound familiar to you:
+</code></pre>
+
+<ul>
+<li>Get a new client that wants a wordpress site</li>
+<li>Download the most recent wordpress</li>
+<li>Find a good current blank wordpress theme to start implementing the design</li>
+<li>Upload to a staging server to for client to see</li>
+<li>Client requests changes</li>
+<li>You make changes on local server, then upload to staging server</li>
+<li>Repeat last three steps until finished and then you deploy the site to live</li>
+</ul>
+
+<p>After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a <a href="http://en.wikipedia.org/wiki/Revision_control" target="_blank">revision control </a>system like <a href="http://git-scm.com/" target="_blank">Git</a> or <a href="http://subversion.tigris.org/" target="_blank">SVN</a> for development, then check out <del datetime="2012-04-22T20:33:39+00:00"><a href="http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" target="_blank">this funny question and answer session on Stack Overflow</a></del> <strong>Update:</strong> Stack Overflow moderators removed the question&#8230; bummer. Check out the funny-ness in the <a href="http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" title="Why to use version control" target="_blank">wayback machine internet archiver</a> instead)</p>
+
+<p>For this rapid WordPress development cycle, you will need to have Git installed.</p>
+
+<h2 id="1-get-the-most-current-wordpress-3:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</h2>
+
+<p>The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a <a href="https://github.com/WordPress/WordPress" target="_blank">great WordPress git clone</a> that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.</p>
+
+<pre class="wp-code-highlight prettyprint">mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch</pre>
+
+<p>Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.</p>
+
+<h2 id="2-starting-with-a-quality-blank-theme-3:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</h2>
+
+<p>To help get your new WordPress project off the ground, let&#8217;s get a quality blank theme that updates regularly. I usually use the <a title="Roots WordPress Theme" href="http://www.rootstheme.com/" target="_blank">Roots theme</a>, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:</p>
+
+<pre class="wp-code-highlight prettyprint">cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update</pre>
+
+<p><i class="icon-warning-sign"></i><strong>Update:</strong> I have now forked mark&#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: <a title="Clint Berry's Github Account" href="https://github.com/clintberry/WordPress" target="_blank"><a href="https://github.com/clintberry/WordPress">https://github.com/clintberry/WordPress</a></a> Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.</p>
+
+<p>Now you have a quality blank theme installed into your git repo as a sub-module.</p>
+
+<h2 id="3-adding-your-custom-design-wordpress-child-theme-3:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</h2>
+
+<p>Since we have added the new blank theme as a git submodule, we don&#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &#8220;inherit&#8221; all the functionality of a &#8220;base&#8221; theme. In this case, we will create a child theme &#8220;MyTheme&#8221; that will have access to all the functionality of our base theme &#8220;Roots&#8221;.</p>
+
+<p>Creating child themes in wordpress is simple:</p>
+
+<ol>
+<li>Add a new folder to your wordpress themes directory called &#8220;MyTheme&#8221;</li>
+<li>Create a file called &#8220;style.css&#8221; with the following text: <pre class="wp-code-highlight prettyprint">/*
+Theme Name:     MyProject
+Theme URI:      <a href="http://clintberry.com/">http://clintberry.com/</a>
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     <a href="http://clintberry.com">http://clintberry.com</a>
+Template:       roots
+Version:        0.1.0
+*/</li>
+</ol>
+
+<p>@import url(&ldquo;../twentyten/style.css&rdquo;);
+</pre></p>
+
+<pre><code>Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+
+  * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+  * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+
+Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+
+## Update WordPress Like A Pro
+
+Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+</code></pre>
+
+<p>`</p>
+
+<pre><code>Now merge in any updates from your current branch, or merge in a new branch altogether. This command merges the latest update from the 3.2 branch into your WordPress install:
+</code></pre>
+
+<p>``</p>
+
+<pre><code>Now you have the most recent version of WordPress. It is a beautiful thing.
+
+Don&amp;#8217;t worry! If it breaks something, it is easy to go back. First enter:
+
+```If you have developed WordPress sites for clients this process might sound familiar to you:
+</code></pre>
+
+<ul>
+<li>Get a new client that wants a wordpress site</li>
+<li>Download the most recent wordpress</li>
+<li>Find a good current blank wordpress theme to start implementing the design</li>
+<li>Upload to a staging server to for client to see</li>
+<li>Client requests changes</li>
+<li>You make changes on local server, then upload to staging server</li>
+<li>Repeat last three steps until finished and then you deploy the site to live</li>
+</ul>
+
+<p>After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a <a href="http://en.wikipedia.org/wiki/Revision_control" target="_blank">revision control </a>system like <a href="http://git-scm.com/" target="_blank">Git</a> or <a href="http://subversion.tigris.org/" target="_blank">SVN</a> for development, then check out <del datetime="2012-04-22T20:33:39+00:00"><a href="http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" target="_blank">this funny question and answer session on Stack Overflow</a></del> <strong>Update:</strong> Stack Overflow moderators removed the question&#8230; bummer. Check out the funny-ness in the <a href="http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" title="Why to use version control" target="_blank">wayback machine internet archiver</a> instead)</p>
+
+<p>For this rapid WordPress development cycle, you will need to have Git installed.</p>
+
+<h2 id="1-get-the-most-current-wordpress-4:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</h2>
+
+<p>The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a <a href="https://github.com/WordPress/WordPress" target="_blank">great WordPress git clone</a> that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.</p>
+
+<pre class="wp-code-highlight prettyprint">mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch</pre>
+
+<p>Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.</p>
+
+<h2 id="2-starting-with-a-quality-blank-theme-4:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</h2>
+
+<p>To help get your new WordPress project off the ground, let&#8217;s get a quality blank theme that updates regularly. I usually use the <a title="Roots WordPress Theme" href="http://www.rootstheme.com/" target="_blank">Roots theme</a>, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:</p>
+
+<pre class="wp-code-highlight prettyprint">cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update</pre>
+
+<p><i class="icon-warning-sign"></i><strong>Update:</strong> I have now forked mark&#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: <a title="Clint Berry's Github Account" href="https://github.com/clintberry/WordPress" target="_blank"><a href="https://github.com/clintberry/WordPress">https://github.com/clintberry/WordPress</a></a> Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.</p>
+
+<p>Now you have a quality blank theme installed into your git repo as a sub-module.</p>
+
+<h2 id="3-adding-your-custom-design-wordpress-child-theme-4:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</h2>
+
+<p>Since we have added the new blank theme as a git submodule, we don&#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &#8220;inherit&#8221; all the functionality of a &#8220;base&#8221; theme. In this case, we will create a child theme &#8220;MyTheme&#8221; that will have access to all the functionality of our base theme &#8220;Roots&#8221;.</p>
+
+<p>Creating child themes in wordpress is simple:</p>
+
+<ol>
+<li>Add a new folder to your wordpress themes directory called &#8220;MyTheme&#8221;</li>
+<li>Create a file called &#8220;style.css&#8221; with the following text: <pre class="wp-code-highlight prettyprint">/*
+Theme Name:     MyProject
+Theme URI:      <a href="http://clintberry.com/">http://clintberry.com/</a>
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     <a href="http://clintberry.com">http://clintberry.com</a>
+Template:       roots
+Version:        0.1.0
+*/</li>
+</ol>
+
+<p>@import url(&ldquo;../twentyten/style.css&rdquo;);
+</pre></p>
+
+<pre><code>Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+
+  * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+  * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+
+Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+
+## Update WordPress Like A Pro
+
+Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+
+`If you have developed WordPress sites for clients this process might sound familiar to you:
+</code></pre>
+
+<ul>
+<li>Get a new client that wants a wordpress site</li>
+<li>Download the most recent wordpress</li>
+<li>Find a good current blank wordpress theme to start implementing the design</li>
+<li>Upload to a staging server to for client to see</li>
+<li>Client requests changes</li>
+<li>You make changes on local server, then upload to staging server</li>
+<li>Repeat last three steps until finished and then you deploy the site to live</li>
+</ul>
+
+<p>After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a <a href="http://en.wikipedia.org/wiki/Revision_control" target="_blank">revision control </a>system like <a href="http://git-scm.com/" target="_blank">Git</a> or <a href="http://subversion.tigris.org/" target="_blank">SVN</a> for development, then check out <del datetime="2012-04-22T20:33:39+00:00"><a href="http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" target="_blank">this funny question and answer session on Stack Overflow</a></del> <strong>Update:</strong> Stack Overflow moderators removed the question&#8230; bummer. Check out the funny-ness in the <a href="http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" title="Why to use version control" target="_blank">wayback machine internet archiver</a> instead)</p>
+
+<p>For this rapid WordPress development cycle, you will need to have Git installed.</p>
+
+<h2 id="1-get-the-most-current-wordpress-5:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</h2>
+
+<p>The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a <a href="https://github.com/WordPress/WordPress" target="_blank">great WordPress git clone</a> that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.</p>
+
+<pre class="wp-code-highlight prettyprint">mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch</pre>
+
+<p>Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.</p>
+
+<h2 id="2-starting-with-a-quality-blank-theme-5:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</h2>
+
+<p>To help get your new WordPress project off the ground, let&#8217;s get a quality blank theme that updates regularly. I usually use the <a title="Roots WordPress Theme" href="http://www.rootstheme.com/" target="_blank">Roots theme</a>, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:</p>
+
+<pre class="wp-code-highlight prettyprint">cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update</pre>
+
+<p><i class="icon-warning-sign"></i><strong>Update:</strong> I have now forked mark&#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: <a title="Clint Berry's Github Account" href="https://github.com/clintberry/WordPress" target="_blank"><a href="https://github.com/clintberry/WordPress">https://github.com/clintberry/WordPress</a></a> Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.</p>
+
+<p>Now you have a quality blank theme installed into your git repo as a sub-module.</p>
+
+<h2 id="3-adding-your-custom-design-wordpress-child-theme-5:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</h2>
+
+<p>Since we have added the new blank theme as a git submodule, we don&#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &#8220;inherit&#8221; all the functionality of a &#8220;base&#8221; theme. In this case, we will create a child theme &#8220;MyTheme&#8221; that will have access to all the functionality of our base theme &#8220;Roots&#8221;.</p>
+
+<p>Creating child themes in wordpress is simple:</p>
+
+<ol>
+<li>Add a new folder to your wordpress themes directory called &#8220;MyTheme&#8221;</li>
+<li>Create a file called &#8220;style.css&#8221; with the following text: <pre class="wp-code-highlight prettyprint">/*
+Theme Name:     MyProject
+Theme URI:      <a href="http://clintberry.com/">http://clintberry.com/</a>
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     <a href="http://clintberry.com">http://clintberry.com</a>
+Template:       roots
+Version:        0.1.0
+*/</li>
+</ol>
+
+<p>@import url(&ldquo;../twentyten/style.css&rdquo;);
+</pre></p>
+
+<pre><code>Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+
+  * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+  * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+
+Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+
+## Update WordPress Like A Pro
+
+Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+</code></pre>
+
+<p>`</p>
+
+<pre><code>Now merge in any updates from your current branch, or merge in a new branch altogether. This command merges the latest update from the 3.2 branch into your WordPress install:
+
+``If you have developed WordPress sites for clients this process might sound familiar to you:
+</code></pre>
+
+<ul>
+<li>Get a new client that wants a wordpress site</li>
+<li>Download the most recent wordpress</li>
+<li>Find a good current blank wordpress theme to start implementing the design</li>
+<li>Upload to a staging server to for client to see</li>
+<li>Client requests changes</li>
+<li>You make changes on local server, then upload to staging server</li>
+<li>Repeat last three steps until finished and then you deploy the site to live</li>
+</ul>
+
+<p>After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a <a href="http://en.wikipedia.org/wiki/Revision_control" target="_blank">revision control </a>system like <a href="http://git-scm.com/" target="_blank">Git</a> or <a href="http://subversion.tigris.org/" target="_blank">SVN</a> for development, then check out <del datetime="2012-04-22T20:33:39+00:00"><a href="http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" target="_blank">this funny question and answer session on Stack Overflow</a></del> <strong>Update:</strong> Stack Overflow moderators removed the question&#8230; bummer. Check out the funny-ness in the <a href="http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" title="Why to use version control" target="_blank">wayback machine internet archiver</a> instead)</p>
+
+<p>For this rapid WordPress development cycle, you will need to have Git installed.</p>
+
+<h2 id="1-get-the-most-current-wordpress-6:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</h2>
+
+<p>The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a <a href="https://github.com/WordPress/WordPress" target="_blank">great WordPress git clone</a> that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.</p>
+
+<pre class="wp-code-highlight prettyprint">mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch</pre>
+
+<p>Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.</p>
+
+<h2 id="2-starting-with-a-quality-blank-theme-6:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</h2>
+
+<p>To help get your new WordPress project off the ground, let&#8217;s get a quality blank theme that updates regularly. I usually use the <a title="Roots WordPress Theme" href="http://www.rootstheme.com/" target="_blank">Roots theme</a>, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:</p>
+
+<pre class="wp-code-highlight prettyprint">cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update</pre>
+
+<p><i class="icon-warning-sign"></i><strong>Update:</strong> I have now forked mark&#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: <a title="Clint Berry's Github Account" href="https://github.com/clintberry/WordPress" target="_blank"><a href="https://github.com/clintberry/WordPress">https://github.com/clintberry/WordPress</a></a> Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.</p>
+
+<p>Now you have a quality blank theme installed into your git repo as a sub-module.</p>
+
+<h2 id="3-adding-your-custom-design-wordpress-child-theme-6:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</h2>
+
+<p>Since we have added the new blank theme as a git submodule, we don&#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &#8220;inherit&#8221; all the functionality of a &#8220;base&#8221; theme. In this case, we will create a child theme &#8220;MyTheme&#8221; that will have access to all the functionality of our base theme &#8220;Roots&#8221;.</p>
+
+<p>Creating child themes in wordpress is simple:</p>
+
+<ol>
+<li>Add a new folder to your wordpress themes directory called &#8220;MyTheme&#8221;</li>
+<li>Create a file called &#8220;style.css&#8221; with the following text: <pre class="wp-code-highlight prettyprint">/*
+Theme Name:     MyProject
+Theme URI:      <a href="http://clintberry.com/">http://clintberry.com/</a>
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     <a href="http://clintberry.com">http://clintberry.com</a>
+Template:       roots
+Version:        0.1.0
+*/</li>
+</ol>
+
+<p>@import url(&ldquo;../twentyten/style.css&rdquo;);
+</pre></p>
+
+<pre><code>Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+
+  * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+  * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+
+Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+
+## Update WordPress Like A Pro
+
+Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+
+`If you have developed WordPress sites for clients this process might sound familiar to you:
+</code></pre>
+
+<ul>
+<li>Get a new client that wants a wordpress site</li>
+<li>Download the most recent wordpress</li>
+<li>Find a good current blank wordpress theme to start implementing the design</li>
+<li>Upload to a staging server to for client to see</li>
+<li>Client requests changes</li>
+<li>You make changes on local server, then upload to staging server</li>
+<li>Repeat last three steps until finished and then you deploy the site to live</li>
+</ul>
+
+<p>After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a <a href="http://en.wikipedia.org/wiki/Revision_control" target="_blank">revision control </a>system like <a href="http://git-scm.com/" target="_blank">Git</a> or <a href="http://subversion.tigris.org/" target="_blank">SVN</a> for development, then check out <del datetime="2012-04-22T20:33:39+00:00"><a href="http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" target="_blank">this funny question and answer session on Stack Overflow</a></del> <strong>Update:</strong> Stack Overflow moderators removed the question&#8230; bummer. Check out the funny-ness in the <a href="http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control" title="Why to use version control" target="_blank">wayback machine internet archiver</a> instead)</p>
+
+<p>For this rapid WordPress development cycle, you will need to have Git installed.</p>
+
+<h2 id="1-get-the-most-current-wordpress-7:ec46d592ccce457d292aec0b82cf84d7">1. Get the Most Current WordPress</h2>
+
+<p>The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a <a href="https://github.com/WordPress/WordPress" target="_blank">great WordPress git clone</a> that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.</p>
+
+<pre class="wp-code-highlight prettyprint">mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch</pre>
+
+<p>Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.</p>
+
+<h2 id="2-starting-with-a-quality-blank-theme-7:ec46d592ccce457d292aec0b82cf84d7">2. Starting with a Quality Blank Theme</h2>
+
+<p>To help get your new WordPress project off the ground, let&#8217;s get a quality blank theme that updates regularly. I usually use the <a title="Roots WordPress Theme" href="http://www.rootstheme.com/" target="_blank">Roots theme</a>, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:</p>
+
+<pre class="wp-code-highlight prettyprint">cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update</pre>
+
+<p><i class="icon-warning-sign"></i><strong>Update:</strong> I have now forked mark&#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: <a title="Clint Berry's Github Account" href="https://github.com/clintberry/WordPress" target="_blank"><a href="https://github.com/clintberry/WordPress">https://github.com/clintberry/WordPress</a></a> Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.</p>
+
+<p>Now you have a quality blank theme installed into your git repo as a sub-module.</p>
+
+<h2 id="3-adding-your-custom-design-wordpress-child-theme-7:ec46d592ccce457d292aec0b82cf84d7">3. Adding Your Custom Design (WordPress Child Theme)</h2>
+
+<p>Since we have added the new blank theme as a git submodule, we don&#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &#8220;inherit&#8221; all the functionality of a &#8220;base&#8221; theme. In this case, we will create a child theme &#8220;MyTheme&#8221; that will have access to all the functionality of our base theme &#8220;Roots&#8221;.</p>
+
+<p>Creating child themes in wordpress is simple:</p>
+
+<ol>
+<li>Add a new folder to your wordpress themes directory called &#8220;MyTheme&#8221;</li>
+<li>Create a file called &#8220;style.css&#8221; with the following text: <pre class="wp-code-highlight prettyprint">/*
+Theme Name:     MyProject
+Theme URI:      <a href="http://clintberry.com/">http://clintberry.com/</a>
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     <a href="http://clintberry.com">http://clintberry.com</a>
+Template:       roots
+Version:        0.1.0
+*/</li>
+</ol>
+
+<p>@import url(&ldquo;../twentyten/style.css&rdquo;);
+</pre></p>
+
+<pre><code>Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+
+  * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+  * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+
+Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+
+## Update WordPress Like A Pro
+
+Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+</code></pre>
+
+<p>`</p>
+
+<pre><code>Now merge in any updates from your current branch, or merge in a new branch altogether. This command merges the latest update from the 3.2 branch into your WordPress install:
+</code></pre>
+
+<p>``</p>
+
+<pre><code>Now you have the most recent version of WordPress. It is a beautiful thing.
+
+Don&amp;#8217;t worry! If it breaks something, it is easy to go back. First enter:
+</code></pre>
+
+<pre><code>  
+    This will output the most recent changes to your repo. Look for your last change which was merging. It will have a line like this:
+    
+    &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;Merge remote branch &amp;#039;upstream/master&amp;#039;
+&lt;/pre&gt;
+    
+    Take the commit sha (the long number right after the word commit) that is located on the commit before the Merge line. Take that sha and enter the command:
+  
+    ````If you have developed WordPress sites for clients this process might sound familiar to you:
+
+  * Get a new client that wants a wordpress site
+  * Download the most recent wordpress
+  * Find a good current blank wordpress theme to start implementing the design
+  * Upload to a staging server to for client to see
+  * Client requests changes
+  * You make changes on local server, then upload to staging server
+  * Repeat last three steps until finished and then you deploy the site to live
+
+After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Revision_control&quot; target=&quot;_blank&quot;&gt;revision control &lt;/a&gt;system like &lt;a href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://subversion.tigris.org/&quot; target=&quot;_blank&quot;&gt;SVN&lt;/a&gt; for development, then check out &lt;del datetime=&quot;2012-04-22T20:33:39+00:00&quot;&gt;&lt;a href=&quot;http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; target=&quot;_blank&quot;&gt;this funny question and answer session on Stack Overflow&lt;/a&gt;&lt;/del&gt; **Update:** Stack Overflow moderators removed the question&amp;#8230; bummer. Check out the funny-ness in the &lt;a href=&quot;http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; title=&quot;Why to use version control&quot; target=&quot;_blank&quot;&gt;wayback machine internet archiver&lt;/a&gt; instead)
+  
+
+
+
+  
+For this rapid WordPress development cycle, you will need to have Git installed.
+
+## 1. Get the Most Current WordPress
+
+The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&quot;https://github.com/WordPress/WordPress&quot; target=&quot;_blank&quot;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch&lt;/pre&gt;
+
+Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.
+
+## 2. Starting with a Quality Blank Theme
+
+To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&quot;Roots WordPress Theme&quot; href=&quot;http://www.rootstheme.com/&quot; target=&quot;_blank&quot;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update&lt;/pre&gt;
+
+&lt;i class=&quot;icon-warning-sign&quot;&gt;&lt;/i&gt;**Update:** I have now forked mark&amp;#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: &lt;a title=&quot;Clint Berry's Github Account&quot; href=&quot;https://github.com/clintberry/WordPress&quot; target=&quot;_blank&quot;&gt;https://github.com/clintberry/WordPress&lt;/a&gt; Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.
+
+Now you have a quality blank theme installed into your git repo as a sub-module.
+
+## 3. Adding Your Custom Design (WordPress Child Theme)
+
+Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.
+
+Creating child themes in wordpress is simple:
+
+  1. Add a new folder to your wordpress themes directory called &amp;#8220;MyTheme&amp;#8221;
+  2. Create a file called &amp;#8220;style.css&amp;#8221; with the following text: &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;/*
+Theme Name:     MyProject
+Theme URI:      http://clintberry.com/
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     http://clintberry.com
+Template:       roots
+Version:        0.1.0
+*/
+
+@import url(&quot;../twentyten/style.css&quot;);
+&lt;/pre&gt;
+    
+    Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+    
+      * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+      * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+    
+    Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+    
+    ## Update WordPress Like A Pro
+    
+    Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+  
+    `If you have developed WordPress sites for clients this process might sound familiar to you:
+
+  * Get a new client that wants a wordpress site
+  * Download the most recent wordpress
+  * Find a good current blank wordpress theme to start implementing the design
+  * Upload to a staging server to for client to see
+  * Client requests changes
+  * You make changes on local server, then upload to staging server
+  * Repeat last three steps until finished and then you deploy the site to live
+
+After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Revision_control&quot; target=&quot;_blank&quot;&gt;revision control &lt;/a&gt;system like &lt;a href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://subversion.tigris.org/&quot; target=&quot;_blank&quot;&gt;SVN&lt;/a&gt; for development, then check out &lt;del datetime=&quot;2012-04-22T20:33:39+00:00&quot;&gt;&lt;a href=&quot;http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; target=&quot;_blank&quot;&gt;this funny question and answer session on Stack Overflow&lt;/a&gt;&lt;/del&gt; **Update:** Stack Overflow moderators removed the question&amp;#8230; bummer. Check out the funny-ness in the &lt;a href=&quot;http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; title=&quot;Why to use version control&quot; target=&quot;_blank&quot;&gt;wayback machine internet archiver&lt;/a&gt; instead)
+  
+
+
+
+  
+For this rapid WordPress development cycle, you will need to have Git installed.
+
+## 1. Get the Most Current WordPress
+
+The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&quot;https://github.com/WordPress/WordPress&quot; target=&quot;_blank&quot;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch&lt;/pre&gt;
+
+Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.
+
+## 2. Starting with a Quality Blank Theme
+
+To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&quot;Roots WordPress Theme&quot; href=&quot;http://www.rootstheme.com/&quot; target=&quot;_blank&quot;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update&lt;/pre&gt;
+
+&lt;i class=&quot;icon-warning-sign&quot;&gt;&lt;/i&gt;**Update:** I have now forked mark&amp;#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: &lt;a title=&quot;Clint Berry's Github Account&quot; href=&quot;https://github.com/clintberry/WordPress&quot; target=&quot;_blank&quot;&gt;https://github.com/clintberry/WordPress&lt;/a&gt; Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.
+
+Now you have a quality blank theme installed into your git repo as a sub-module.
+
+## 3. Adding Your Custom Design (WordPress Child Theme)
+
+Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.
+
+Creating child themes in wordpress is simple:
+
+  1. Add a new folder to your wordpress themes directory called &amp;#8220;MyTheme&amp;#8221;
+  2. Create a file called &amp;#8220;style.css&amp;#8221; with the following text: &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;/*
+Theme Name:     MyProject
+Theme URI:      http://clintberry.com/
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     http://clintberry.com
+Template:       roots
+Version:        0.1.0
+*/
+
+@import url(&quot;../twentyten/style.css&quot;);
+&lt;/pre&gt;
+    
+    Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+    
+      * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+      * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+    
+    Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+    
+    ## Update WordPress Like A Pro
+    
+    Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+  
+` 
+  
+    Now merge in any updates from your current branch, or merge in a new branch altogether. This command merges the latest update from the 3.2 branch into your WordPress install:
+  
+    ``If you have developed WordPress sites for clients this process might sound familiar to you:
+
+  * Get a new client that wants a wordpress site
+  * Download the most recent wordpress
+  * Find a good current blank wordpress theme to start implementing the design
+  * Upload to a staging server to for client to see
+  * Client requests changes
+  * You make changes on local server, then upload to staging server
+  * Repeat last three steps until finished and then you deploy the site to live
+
+After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Revision_control&quot; target=&quot;_blank&quot;&gt;revision control &lt;/a&gt;system like &lt;a href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://subversion.tigris.org/&quot; target=&quot;_blank&quot;&gt;SVN&lt;/a&gt; for development, then check out &lt;del datetime=&quot;2012-04-22T20:33:39+00:00&quot;&gt;&lt;a href=&quot;http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; target=&quot;_blank&quot;&gt;this funny question and answer session on Stack Overflow&lt;/a&gt;&lt;/del&gt; **Update:** Stack Overflow moderators removed the question&amp;#8230; bummer. Check out the funny-ness in the &lt;a href=&quot;http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; title=&quot;Why to use version control&quot; target=&quot;_blank&quot;&gt;wayback machine internet archiver&lt;/a&gt; instead)
+  
+
+
+
+  
+For this rapid WordPress development cycle, you will need to have Git installed.
+
+## 1. Get the Most Current WordPress
+
+The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&quot;https://github.com/WordPress/WordPress&quot; target=&quot;_blank&quot;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch&lt;/pre&gt;
+
+Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.
+
+## 2. Starting with a Quality Blank Theme
+
+To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&quot;Roots WordPress Theme&quot; href=&quot;http://www.rootstheme.com/&quot; target=&quot;_blank&quot;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update&lt;/pre&gt;
+
+&lt;i class=&quot;icon-warning-sign&quot;&gt;&lt;/i&gt;**Update:** I have now forked mark&amp;#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: &lt;a title=&quot;Clint Berry's Github Account&quot; href=&quot;https://github.com/clintberry/WordPress&quot; target=&quot;_blank&quot;&gt;https://github.com/clintberry/WordPress&lt;/a&gt; Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.
+
+Now you have a quality blank theme installed into your git repo as a sub-module.
+
+## 3. Adding Your Custom Design (WordPress Child Theme)
+
+Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.
+
+Creating child themes in wordpress is simple:
+
+  1. Add a new folder to your wordpress themes directory called &amp;#8220;MyTheme&amp;#8221;
+  2. Create a file called &amp;#8220;style.css&amp;#8221; with the following text: &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;/*
+Theme Name:     MyProject
+Theme URI:      http://clintberry.com/
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     http://clintberry.com
+Template:       roots
+Version:        0.1.0
+*/
+
+@import url(&quot;../twentyten/style.css&quot;);
+&lt;/pre&gt;
+    
+    Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+    
+      * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+      * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+    
+    Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+    
+    ## Update WordPress Like A Pro
+    
+    Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+  
+    `If you have developed WordPress sites for clients this process might sound familiar to you:
+
+  * Get a new client that wants a wordpress site
+  * Download the most recent wordpress
+  * Find a good current blank wordpress theme to start implementing the design
+  * Upload to a staging server to for client to see
+  * Client requests changes
+  * You make changes on local server, then upload to staging server
+  * Repeat last three steps until finished and then you deploy the site to live
+
+After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Revision_control&quot; target=&quot;_blank&quot;&gt;revision control &lt;/a&gt;system like &lt;a href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://subversion.tigris.org/&quot; target=&quot;_blank&quot;&gt;SVN&lt;/a&gt; for development, then check out &lt;del datetime=&quot;2012-04-22T20:33:39+00:00&quot;&gt;&lt;a href=&quot;http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; target=&quot;_blank&quot;&gt;this funny question and answer session on Stack Overflow&lt;/a&gt;&lt;/del&gt; **Update:** Stack Overflow moderators removed the question&amp;#8230; bummer. Check out the funny-ness in the &lt;a href=&quot;http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; title=&quot;Why to use version control&quot; target=&quot;_blank&quot;&gt;wayback machine internet archiver&lt;/a&gt; instead)
+  
+
+
+
+  
+For this rapid WordPress development cycle, you will need to have Git installed.
+
+## 1. Get the Most Current WordPress
+
+The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&quot;https://github.com/WordPress/WordPress&quot; target=&quot;_blank&quot;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch&lt;/pre&gt;
+
+Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.
+
+## 2. Starting with a Quality Blank Theme
+
+To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&quot;Roots WordPress Theme&quot; href=&quot;http://www.rootstheme.com/&quot; target=&quot;_blank&quot;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update&lt;/pre&gt;
+
+&lt;i class=&quot;icon-warning-sign&quot;&gt;&lt;/i&gt;**Update:** I have now forked mark&amp;#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: &lt;a title=&quot;Clint Berry's Github Account&quot; href=&quot;https://github.com/clintberry/WordPress&quot; target=&quot;_blank&quot;&gt;https://github.com/clintberry/WordPress&lt;/a&gt; Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.
+
+Now you have a quality blank theme installed into your git repo as a sub-module.
+
+## 3. Adding Your Custom Design (WordPress Child Theme)
+
+Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.
+
+Creating child themes in wordpress is simple:
+
+  1. Add a new folder to your wordpress themes directory called &amp;#8220;MyTheme&amp;#8221;
+  2. Create a file called &amp;#8220;style.css&amp;#8221; with the following text: &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;/*
+Theme Name:     MyProject
+Theme URI:      http://clintberry.com/
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     http://clintberry.com
+Template:       roots
+Version:        0.1.0
+*/
+
+@import url(&quot;../twentyten/style.css&quot;);
+&lt;/pre&gt;
+    
+    Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+    
+      * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+      * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+    
+    Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+    
+    ## Update WordPress Like A Pro
+    
+    Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+  
+` 
+  
+    Now merge in any updates from your current branch, or merge in a new branch altogether. This command merges the latest update from the 3.2 branch into your WordPress install:
+  
+`` 
+  
+    Now you have the most recent version of WordPress. It is a beautiful thing.
+  
+    Don&amp;#8217;t worry! If it breaks something, it is easy to go back. First enter:
+  
+    ```If you have developed WordPress sites for clients this process might sound familiar to you:
+
+  * Get a new client that wants a wordpress site
+  * Download the most recent wordpress
+  * Find a good current blank wordpress theme to start implementing the design
+  * Upload to a staging server to for client to see
+  * Client requests changes
+  * You make changes on local server, then upload to staging server
+  * Repeat last three steps until finished and then you deploy the site to live
+
+After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Revision_control&quot; target=&quot;_blank&quot;&gt;revision control &lt;/a&gt;system like &lt;a href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://subversion.tigris.org/&quot; target=&quot;_blank&quot;&gt;SVN&lt;/a&gt; for development, then check out &lt;del datetime=&quot;2012-04-22T20:33:39+00:00&quot;&gt;&lt;a href=&quot;http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; target=&quot;_blank&quot;&gt;this funny question and answer session on Stack Overflow&lt;/a&gt;&lt;/del&gt; **Update:** Stack Overflow moderators removed the question&amp;#8230; bummer. Check out the funny-ness in the &lt;a href=&quot;http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; title=&quot;Why to use version control&quot; target=&quot;_blank&quot;&gt;wayback machine internet archiver&lt;/a&gt; instead)
+  
+
+
+
+  
+For this rapid WordPress development cycle, you will need to have Git installed.
+
+## 1. Get the Most Current WordPress
+
+The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&quot;https://github.com/WordPress/WordPress&quot; target=&quot;_blank&quot;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch&lt;/pre&gt;
+
+Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.
+
+## 2. Starting with a Quality Blank Theme
+
+To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&quot;Roots WordPress Theme&quot; href=&quot;http://www.rootstheme.com/&quot; target=&quot;_blank&quot;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update&lt;/pre&gt;
+
+&lt;i class=&quot;icon-warning-sign&quot;&gt;&lt;/i&gt;**Update:** I have now forked mark&amp;#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: &lt;a title=&quot;Clint Berry's Github Account&quot; href=&quot;https://github.com/clintberry/WordPress&quot; target=&quot;_blank&quot;&gt;https://github.com/clintberry/WordPress&lt;/a&gt; Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.
+
+Now you have a quality blank theme installed into your git repo as a sub-module.
+
+## 3. Adding Your Custom Design (WordPress Child Theme)
+
+Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.
+
+Creating child themes in wordpress is simple:
+
+  1. Add a new folder to your wordpress themes directory called &amp;#8220;MyTheme&amp;#8221;
+  2. Create a file called &amp;#8220;style.css&amp;#8221; with the following text: &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;/*
+Theme Name:     MyProject
+Theme URI:      http://clintberry.com/
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     http://clintberry.com
+Template:       roots
+Version:        0.1.0
+*/
+
+@import url(&quot;../twentyten/style.css&quot;);
+&lt;/pre&gt;
+    
+    Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+    
+      * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+      * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+    
+    Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+    
+    ## Update WordPress Like A Pro
+    
+    Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+  
+    `If you have developed WordPress sites for clients this process might sound familiar to you:
+
+  * Get a new client that wants a wordpress site
+  * Download the most recent wordpress
+  * Find a good current blank wordpress theme to start implementing the design
+  * Upload to a staging server to for client to see
+  * Client requests changes
+  * You make changes on local server, then upload to staging server
+  * Repeat last three steps until finished and then you deploy the site to live
+
+After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Revision_control&quot; target=&quot;_blank&quot;&gt;revision control &lt;/a&gt;system like &lt;a href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://subversion.tigris.org/&quot; target=&quot;_blank&quot;&gt;SVN&lt;/a&gt; for development, then check out &lt;del datetime=&quot;2012-04-22T20:33:39+00:00&quot;&gt;&lt;a href=&quot;http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; target=&quot;_blank&quot;&gt;this funny question and answer session on Stack Overflow&lt;/a&gt;&lt;/del&gt; **Update:** Stack Overflow moderators removed the question&amp;#8230; bummer. Check out the funny-ness in the &lt;a href=&quot;http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; title=&quot;Why to use version control&quot; target=&quot;_blank&quot;&gt;wayback machine internet archiver&lt;/a&gt; instead)
+  
+
+
+
+  
+For this rapid WordPress development cycle, you will need to have Git installed.
+
+## 1. Get the Most Current WordPress
+
+The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&quot;https://github.com/WordPress/WordPress&quot; target=&quot;_blank&quot;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch&lt;/pre&gt;
+
+Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.
+
+## 2. Starting with a Quality Blank Theme
+
+To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&quot;Roots WordPress Theme&quot; href=&quot;http://www.rootstheme.com/&quot; target=&quot;_blank&quot;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update&lt;/pre&gt;
+
+&lt;i class=&quot;icon-warning-sign&quot;&gt;&lt;/i&gt;**Update:** I have now forked mark&amp;#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: &lt;a title=&quot;Clint Berry's Github Account&quot; href=&quot;https://github.com/clintberry/WordPress&quot; target=&quot;_blank&quot;&gt;https://github.com/clintberry/WordPress&lt;/a&gt; Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.
+
+Now you have a quality blank theme installed into your git repo as a sub-module.
+
+## 3. Adding Your Custom Design (WordPress Child Theme)
+
+Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.
+
+Creating child themes in wordpress is simple:
+
+  1. Add a new folder to your wordpress themes directory called &amp;#8220;MyTheme&amp;#8221;
+  2. Create a file called &amp;#8220;style.css&amp;#8221; with the following text: &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;/*
+Theme Name:     MyProject
+Theme URI:      http://clintberry.com/
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     http://clintberry.com
+Template:       roots
+Version:        0.1.0
+*/
+
+@import url(&quot;../twentyten/style.css&quot;);
+&lt;/pre&gt;
+    
+    Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+    
+      * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+      * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+    
+    Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+    
+    ## Update WordPress Like A Pro
+    
+    Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+  
+` 
+  
+    Now merge in any updates from your current branch, or merge in a new branch altogether. This command merges the latest update from the 3.2 branch into your WordPress install:
+  
+    ``If you have developed WordPress sites for clients this process might sound familiar to you:
+
+  * Get a new client that wants a wordpress site
+  * Download the most recent wordpress
+  * Find a good current blank wordpress theme to start implementing the design
+  * Upload to a staging server to for client to see
+  * Client requests changes
+  * You make changes on local server, then upload to staging server
+  * Repeat last three steps until finished and then you deploy the site to live
+
+After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Revision_control&quot; target=&quot;_blank&quot;&gt;revision control &lt;/a&gt;system like &lt;a href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://subversion.tigris.org/&quot; target=&quot;_blank&quot;&gt;SVN&lt;/a&gt; for development, then check out &lt;del datetime=&quot;2012-04-22T20:33:39+00:00&quot;&gt;&lt;a href=&quot;http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; target=&quot;_blank&quot;&gt;this funny question and answer session on Stack Overflow&lt;/a&gt;&lt;/del&gt; **Update:** Stack Overflow moderators removed the question&amp;#8230; bummer. Check out the funny-ness in the &lt;a href=&quot;http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; title=&quot;Why to use version control&quot; target=&quot;_blank&quot;&gt;wayback machine internet archiver&lt;/a&gt; instead)
+  
+
+
+
+  
+For this rapid WordPress development cycle, you will need to have Git installed.
+
+## 1. Get the Most Current WordPress
+
+The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&quot;https://github.com/WordPress/WordPress&quot; target=&quot;_blank&quot;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch&lt;/pre&gt;
+
+Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.
+
+## 2. Starting with a Quality Blank Theme
+
+To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&quot;Roots WordPress Theme&quot; href=&quot;http://www.rootstheme.com/&quot; target=&quot;_blank&quot;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update&lt;/pre&gt;
+
+&lt;i class=&quot;icon-warning-sign&quot;&gt;&lt;/i&gt;**Update:** I have now forked mark&amp;#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: &lt;a title=&quot;Clint Berry's Github Account&quot; href=&quot;https://github.com/clintberry/WordPress&quot; target=&quot;_blank&quot;&gt;https://github.com/clintberry/WordPress&lt;/a&gt; Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.
+
+Now you have a quality blank theme installed into your git repo as a sub-module.
+
+## 3. Adding Your Custom Design (WordPress Child Theme)
+
+Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.
+
+Creating child themes in wordpress is simple:
+
+  1. Add a new folder to your wordpress themes directory called &amp;#8220;MyTheme&amp;#8221;
+  2. Create a file called &amp;#8220;style.css&amp;#8221; with the following text: &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;/*
+Theme Name:     MyProject
+Theme URI:      http://clintberry.com/
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     http://clintberry.com
+Template:       roots
+Version:        0.1.0
+*/
+
+@import url(&quot;../twentyten/style.css&quot;);
+&lt;/pre&gt;
+    
+    Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+    
+      * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+      * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+    
+    Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+    
+    ## Update WordPress Like A Pro
+    
+    Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+  
+    `If you have developed WordPress sites for clients this process might sound familiar to you:
+
+  * Get a new client that wants a wordpress site
+  * Download the most recent wordpress
+  * Find a good current blank wordpress theme to start implementing the design
+  * Upload to a staging server to for client to see
+  * Client requests changes
+  * You make changes on local server, then upload to staging server
+  * Repeat last three steps until finished and then you deploy the site to live
+
+After lots of trial and error, I have come up with a process that is more efficient, and allows rapid development of wordpress sites. I use Git, Git Submodules, and WordPress child themes to get going quicker and keep code up to date with minimal effort. (If your not using a &lt;a href=&quot;http://en.wikipedia.org/wiki/Revision_control&quot; target=&quot;_blank&quot;&gt;revision control &lt;/a&gt;system like &lt;a href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://subversion.tigris.org/&quot; target=&quot;_blank&quot;&gt;SVN&lt;/a&gt; for development, then check out &lt;del datetime=&quot;2012-04-22T20:33:39+00:00&quot;&gt;&lt;a href=&quot;http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; target=&quot;_blank&quot;&gt;this funny question and answer session on Stack Overflow&lt;/a&gt;&lt;/del&gt; **Update:** Stack Overflow moderators removed the question&amp;#8230; bummer. Check out the funny-ness in the &lt;a href=&quot;http://web.archive.org/web/20100722082534/http://stackoverflow.com/questions/132520/good-excuses-not-to-use-version-control&quot; title=&quot;Why to use version control&quot; target=&quot;_blank&quot;&gt;wayback machine internet archiver&lt;/a&gt; instead)
+  
+
+
+
+  
+For this rapid WordPress development cycle, you will need to have Git installed.
+
+## 1. Get the Most Current WordPress
+
+The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&quot;https://github.com/WordPress/WordPress&quot; target=&quot;_blank&quot;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;mkdir projectA
+git clone https://github.com/markjaquith/WordPress.git ./projectA
+cd projectA
+git checkout origin/3.2-branch&lt;/pre&gt;
+
+Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.
+
+## 2. Starting with a Quality Blank Theme
+
+To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&quot;Roots WordPress Theme&quot; href=&quot;http://www.rootstheme.com/&quot; target=&quot;_blank&quot;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;cd projectA
+git submodule add https://github.com/retlehs/roots.git ./wp-content/themes/roots
+git submodule init
+git submodule update&lt;/pre&gt;
+
+&lt;i class=&quot;icon-warning-sign&quot;&gt;&lt;/i&gt;**Update:** I have now forked mark&amp;#8217;s wordpress git and added roots as a submodule. You can simply clone or fork my repo to save a step. Get it here: &lt;a title=&quot;Clint Berry's Github Account&quot; href=&quot;https://github.com/clintberry/WordPress&quot; target=&quot;_blank&quot;&gt;https://github.com/clintberry/WordPress&lt;/a&gt; Make sure to clone recursive to get the roots theme. This repo updates nightly to the latest wordpress and roots release.
+
+Now you have a quality blank theme installed into your git repo as a sub-module.
+
+## 3. Adding Your Custom Design (WordPress Child Theme)
+
+Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.
+
+Creating child themes in wordpress is simple:
+
+  1. Add a new folder to your wordpress themes directory called &amp;#8220;MyTheme&amp;#8221;
+  2. Create a file called &amp;#8220;style.css&amp;#8221; with the following text: &lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;/*
+Theme Name:     MyProject
+Theme URI:      http://clintberry.com/
+Description:    Roots Child Theme
+Author:         Clint Berry
+Author URI:     http://clintberry.com
+Template:       roots
+Version:        0.1.0
+*/
+
+@import url(&quot;../twentyten/style.css&quot;);
+&lt;/pre&gt;
+    
+    Take notice of the &amp;#8220;Template: roots&amp;#8221; field. That is what lets WordPress know that this is a child theme and to inherit all of the roots functionality. Also since this style.css file overwrites the roots css file, we import the css file from roots. &lt;/li&gt; 
+    
+      * Create a functions.php file to add any custom WordPress functions. WordPress will load your new functions.php file along with the Roots functions.php file, so all is well.
+      * Copy any template file you want to change from the Roots theme to your new child theme directory. Any template file found in your new directory will overwrite the template in Roots.&lt;/ol&gt; 
+    
+    Now you can start your theme development with an HTML5 bang! Child themes make it much easier to get started and even keep your file structure a big cleaner. 
+    
+    ## Update WordPress Like A Pro
+    
+    Yes, you could update WordPress in the admin panel, but you want to do it in a much cooler, easier-to-revert way. With Git, now you can. First, backup your database. Then in the root wordpress directory, update your Git repo by using git fetch:
+  
+` 
+  
+    Now merge in any updates from your current branch, or merge in a new branch altogether. This command merges the latest update from the 3.2 branch into your WordPress install:
+  
+`` 
+  
+    Now you have the most recent version of WordPress. It is a beautiful thing.
+  
+    Don&amp;#8217;t worry! If it breaks something, it is easy to go back. First enter:
+  
+</code></pre>
+
+<pre><code>This will output the most recent changes to your repo. Look for your last change which was merging. It will have a line like this:
+
+&lt;pre class=&quot;wp-code-highlight prettyprint&quot;&gt;Merge remote branch &amp;#039;upstream/master&amp;#039;
+</code></pre>
+
+<p></pre></p>
+
+<pre><code>Take the commit sha (the long number right after the word commit) that is located on the commit before the Merge line. Take that sha and enter the command:
+</code></pre>
+
+<p>````</p>
+
+<pre><code>Now restore your database and you are back in action.
+
+## Easier WordPress Deployment
+
+Deploying a WordPress site has always been a thorn in my side. Currently, I am developing a plugin for much easier deployment, but for now things are a bit hairy. The nice thing about git is keeping your code base up to date is much easier. Unfortunately, Git doesn&amp;#8217;t help much with the database side of things, so we will focus on just the code base for now. 
+
+#### Deploy Using Git Clone
+
+Deploying with Git Clone is the easiest way to get your code installed on a different server. All you have to do is push your repo to a remote repository (like github) and then clone it directly on the live server. This allows easy updating in the future as well since a simple git pull is all that is required to get the most recent code base. If you don&amp;#8217;t have SSH access or if the server you are deploying to doesn&amp;#8217;t have Git, then this method won&amp;#8217;t work.
+
+#### Old School FTP
+
+For a good guide on deploying the old fashioned way, as well as deploying the database, see &lt;a href=&quot;http://www.codemyownroad.com/13-steps-to-deploy-wordpress-from-your-localhost-to-a-live-web-server/&quot; target=&quot;_blank&quot;&gt;This Post&lt;/a&gt;
+
+I hope this helps getting your WordPress sites off the ground quicker and easier! As always, any comments or suggestions are welcome.
+</code></pre>
+
+	
+			
+
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/2011/getting-started-with-plivo/">Getting Started With Plivo</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/">Wildcard Sub-Domains on OSX, Web Development on Localhost</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2015. All rights reserved. </p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>

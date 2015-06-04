@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contacts on Clint Berry</title>
+    <link>http://clintberry.github.io/contact/</link>
+    <description>Recent content in Contacts on Clint Berry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Aug 2010 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://clintberry.github.io/contact/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Contact</title>
+      <link>http://clintberry.github.io/contact/</link>
+      <pubDate>Thu, 05 Aug 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/contact/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/clinton_berry&#34; class=&#34;twitter-follow-button&#34; data-show-count=&#34;false&#34; data-size=&#34;large&#34; data-dnt=&#34;true&#34;&gt;Follow @clinton_berry&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;#8211; or &amp;#8211;&lt;/p&gt;
+
+&lt;h3 id=&#34;contact-form:d680e8a854a7cbad6d490c445cba2eba&#34;&gt;Contact Form&lt;/h3&gt;
+
+&lt;p&gt;[contact-form-7 id=&amp;#8221;310&amp;#8243; title=&amp;#8221;Contact Form&amp;#8221;]&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Angular on Clint Berry</title>
+    <link>http://clintberry.github.io/categories/angular/</link>
+    <description>Recent content in Angular on Clint Berry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Apr 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://clintberry.github.io/categories/angular/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Modular AngularJS App Design</title>
+      <link>http://clintberry.github.io/2013/modular-angularjs-application-design/</link>
+      <pubDate>Mon, 29 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2013/modular-angularjs-application-design/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/angular-module1.png&#34; alt=&#34;angular module&#34; width=&#34;225&#34; height=&#34;200&#34; class=&#34;alignleft size-full wp-image-836&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I am a sucker for modules. Something about bundling a set of functionality and display logic into a module that can be easily redistributed for many apps makes my skin tingle. So when I saw that &amp;#8220;modules&amp;#8221; were a big part of the AngularJS methodology, I was super excited to try it out. I quickly realized however, that most of the examples online used one module for the entire application, which didn&amp;#8217;t seem all that modular to me.&lt;/p&gt;
+
+&lt;p&gt;At my current company we are developing an app that is ideal for the modular approach. We essentially have separate &amp;#8220;apps&amp;#8221; within our application, each of which we have bundled into full angular modules. This methodology could be used for many other applications as well so I thought I would share our approach.&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-info&#34;&gt;
+  Note: Credit for this structure design goes to my coworker and friend &lt;a href=&#34;https://twitter.com/tphalp&#34; title=&#34;Tyson&#34; target=&#34;_blank&#34;&gt;@tphalp&lt;/a&gt; who is rapidly becoming an angular expert and teaching me his ways.
+&lt;/div&gt;
+
+&lt;h4 id=&#34;directory-structure:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;Directory Structure&lt;/h4&gt;
+
+&lt;p&gt;Here is the way we setup our directory structure:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-04-23-at-7.23.24-PM.png&#34; alt=&#34;App Structure&#34; width=&#34;315&#34; height=&#34;363&#34; class=&#34;alignnone size-full wp-image-807&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can see we have the standard app directory similar to angular seed or a yeoman generated project. But we add a modules directory within the app directory. Each module then has its own sub-directory and a file for directives, controllers, filters and services and a directory for views.&lt;/p&gt;
+
+&lt;p&gt;I am still somewhat conflicted on wether I should be creating a new file for each directive/controller/filter/service or if the current way is fine. Sometimes the files get to be too large an unwieldy and I want them broken up.&lt;/p&gt;
+
+&lt;p&gt;here is a shot further down the tree:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-04-23-at-7.23.56-PM.png&#34; alt=&#34;More app structure&#34; width=&#34;220&#34; height=&#34;170&#34; class=&#34;alignnone size-full wp-image-817&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We still maintain the scripts folder which houses app.js and our routes.js file for handling the routing.&lt;/p&gt;
+
+&lt;h4 id=&#34;defining-the-modules:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;Defining the Modules&lt;/h4&gt;
+
+&lt;p&gt;Let&amp;#8217;s have a look at the app.js file where we setup our modules and define dependencies.&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// Define all your modules with no dependencies
+angular.module(&amp;#039;BirthdayApp&amp;#039;, []);
+angular.module(&amp;#039;CollectionApp&amp;#039;, []);
+angular.module(&amp;#039;DashboardApp&amp;#039;, []);
+angular.module(&amp;#039;LoginApp&amp;#039;, []);
+angular.module(&amp;#039;MessageApp&amp;#039;, []);
+angular.module(&amp;#039;PatientApp&amp;#039;, []);
+angular.module(&amp;#039;PhoneApp&amp;#039;, []);
+angular.module(&amp;#039;ReportsApp&amp;#039;, []);
+
+// Lastly, define your &#34;main&#34; module and inject all other modules as dependencies
+angular.module(&amp;#039;MainApp&amp;#039;,
+  [
+    &amp;#039;BirthdayApp&amp;#039;,
+    &amp;#039;CollectionApp&amp;#039;,
+    &amp;#039;DashboardApp&amp;#039;,
+    &amp;#039;LoginApp&amp;#039;,
+    &amp;#039;MessageApp&amp;#039;,
+    &amp;#039;PatientApp&amp;#039;,
+    &amp;#039;PhoneApp&amp;#039;,
+    &amp;#039;ReportsApp&amp;#039;,
+    &amp;#039;templates-main&amp;#039;,
+  ]
+);
+
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Creating a &amp;#8220;MainAppModule&amp;#8221; allows us to inject all our other modules which in turn allows each of our other modules to access each other. So if the Reports module needs to access something from the Patient module, it will be able to with this method without having to inject the Patient module directly into the Reports module.&lt;/p&gt;
+
+&lt;p&gt;The MainApp also allows us to do routing and use ng-view in our index.html file:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;&amp;lt;html&amp;gt;
+// ...
+&amp;lt;body ng-app=&#34;MainApp&#34;&amp;gt;
+    &amp;lt;div ng-view&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-1:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Then you define your routes on the MainApp module&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// scripts/routes.js
+angular.module(&amp;#039;MainApp&amp;#039;)
+  .config(
+    [&amp;#039;$routeProvider&amp;#039;,
+      function($routeProvider) {
+        $routeProvider
+          .when(&amp;#039;/&amp;#039;, {
+            templateUrl: &amp;#039;modules/dashboard/views/index.html&amp;#039;,
+            action: &amp;#039;DashboardApp.DashboardCtrl&amp;#039;
+          })
+   // ...
+
+&lt;/pre&gt;
+
+&lt;h4 id=&#34;implementing-your-modules:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;Implementing Your Modules&lt;/h4&gt;
+
+&lt;p&gt;Now when we go to add a directive/service/filter/controller to a module, we open up the appropriate file within that module and simply use the appropriate module name when we define it.&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// app/modules/patient/controllers.js
+angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&amp;#039;, function($scope) {
+ $scope.patients = &#34;something&#34;;
+});
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-2:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Since we inject all modules into a &amp;#8220;global&amp;#8221; module you will need to take care to namespace your angular elements appropriately so you don&amp;#8217;t run into name conflicts. Take a look at &lt;a href=&#34;https://github.com/angular-ui/bootstrap&#34; title=&#34;Angular Bootstrap Github&#34; target=&#34;_blank&#34;&gt;angular bootstrap code&lt;/a&gt; too see how they use multiple modules and namespace them.&lt;/p&gt;
+
+&lt;p&gt;And that is it! Now you can make reusable modules for angular that you can use in different apps, or even &lt;a href=&#34;http://briantford.com/blog/angular-bower.html&#34; title=&#34;angular modules in bower&#34; target=&#34;_blank&#34;&gt;contribute your module to Bower&lt;/a&gt; if it is something that will benefit the community.&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AngularJS WebSocket Service Example</title>
+      <link>http://clintberry.github.io/2013/angular-js-websocket-service/</link>
+      <pubDate>Tue, 23 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2013/angular-js-websocket-service/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/angular_logofull.png&#34; alt=&#34;angular_logofull&#34; title=&#34;angular_logofull&#34; width=&#34;382&#34; height=&#34;99&#34; class=&#34;alignnone size-full wp-image-787&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At my curent company we are using Angular.js for a new desktop application (yes, a desktop application, but I won&amp;#8217;t get into that). Our app gets its data and events from a web service via a WebSocket connection. Angular comes bundled with some great tools to connect to REST servers, but it doesn&amp;#8217;t come with anything to help you with real-time data (and it probably shouldn&amp;#8217;t).&lt;/p&gt;
+
+&lt;p&gt;Here is an example of an Angular service (factory) that uses WebSockets to get data:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;angular.module(&amp;#039;MyApp&amp;#039;).factory(&amp;#039;MyService&amp;#039;, [&amp;#039;$q&amp;#039;, &amp;#039;$rootScope&amp;#039;, function($q, $rootScope) {
+    // We return this object to anything injecting our service
+    var Service = {};
+    // Keep all pending requests here until they get responses
+    var callbacks = {};
+    // Create a unique callback ID to map requests to responses
+    var currentCallbackId = 0;
+    // Create our websocket object with the address to the websocket
+    var ws = new WebSocket(&#34;ws://localhost:8000/socket/&#34;);
+    
+    ws.onopen = function(){  
+        console.log(&#34;Socket has been opened!&#34;);  
+    };
+    
+    ws.onmessage = function(message) {
+        listener(JSON.parse(message.data));
+    };
+
+    function sendRequest(request) {
+      var defer = $q.defer();
+      var callbackId = getCallbackId();
+      callbacks[callbackId] = {
+        time: new Date(),
+        cb:defer
+      };
+      request.callback_id = callbackId;
+      console.log(&amp;#039;Sending request&amp;#039;, request);
+      ws.send(JSON.stringify(request));
+      return defer.promise;
+    }
+
+    function listener(data) {
+      var messageObj = data;
+      console.log(&#34;Received data from websocket: &#34;, messageObj);
+      // If an object exists with callback_id in our callbacks object, resolve it
+      if(callbacks.hasOwnProperty(messageObj.callback_id)) {
+        console.log(callbacks[messageObj.callback_id]);
+        $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
+        delete callbacks[messageObj.callbackID];
+      }
+    }
+    // This creates a new callback ID for a request
+    function getCallbackId() {
+      currentCallbackId += 1;
+      if(currentCallbackId &amp;gt; 10000) {
+        currentCallbackId = 0;
+      }
+      return currentCallbackId;
+    }
+
+    // Define a &#34;getter&#34; for getting customer data
+    Service.getCustomers = function() {
+      var request = {
+        type: &#34;get_customers&#34;
+      }
+      // Storing in a variable for clarity on what sendRequest returns
+      var promise = sendRequest(request); 
+      return promise;
+    }
+
+    return Service;
+}])
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;h4 id=&#34;the-details:52a8cb3531d70648da771569c58d3924&#34;&gt;The Details&lt;/h4&gt;
+
+&lt;p&gt;To explain this code in detail I will walk you through a usage scenario and step through each function and talk about what it does. Assume we have an angular controller called &amp;#8220;customerList&amp;#8221;. We need to access customer data in our new controller and our customer data comes from a websocket service somewhere in Canada. So you inject your new websocket service into the scope of your controller and you are able to call getCustomers(). Quick and dirty example for illustration purposes:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;angular.module(&amp;#039;MyApp&amp;#039;)
+  .controller(&amp;#039;customerList&amp;#039;, [&amp;#039;MyService&amp;#039;, function(MyService){
+    $scope.customers = MyService.getCustomers();
+  }]);
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-1:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;So the getCustomers function is called and we see that the getCustomers function creates a request object literal and passes that to the sendRequest() function:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// Define a &#34;getter&#34; for getting customer data
+    Service.getCustomers = function() {
+      var request = {
+        type: &#34;get_customers&#34;
+      }
+      // Storing in a variable for clarity on what sendRequest returns
+      var promise = sendRequest(request); 
+      return promise;
+    }
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-2:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;You can see I am storing the response from sendRequest() in a variable called promise. I then return that promise. Let&amp;#8217;s look at what sendRequest() actually does:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;function sendRequest(request) {
+      var defer = $q.defer();
+      var callbackId = getCallbackId();
+      callbacks[callbackId] = {
+        time: new Date(),
+        cb:defer
+      };
+      request.callback_id = callbackId;
+      console.log(&amp;#039;Sending request&amp;#039;, request);
+      ws.send(JSON.stringify(request));
+      return defer.promise;
+    }
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-3:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;The sendRequest function first creates a defer object from the &lt;a href=&#34;https://github.com/kriskowal/q&#34; title=&#34;Q Library&#34; target=&#34;_blank&#34;&gt;Q library&lt;/a&gt; that is bundled with Angular. (For more information on deferred objects and promises in angular I highly recommend the &lt;a href=&#34;http://www.egghead.io/video/o84ryzNp36Q&#34; title=&#34;Promises in Angularjs&#34; target=&#34;_blank&#34;&gt;egghead.io video on promises&lt;/a&gt;) After that it creates a new callbackId variable and then adds an object literal to the callbacks object using the new callbackId as the index.&lt;/p&gt;
+
+&lt;h4 id=&#34;so-why-have-a-callback-id-and-a-callbacks-object:52a8cb3531d70648da771569c58d3924&#34;&gt;So why have a callback ID and a callbacks object?&lt;/h4&gt;
+
+&lt;p&gt;The callbacks variable is where I will store all requests that haven&amp;#8217;t received a response yet. Because services implemented on the websocket side can be asynchronous, you could potentially send several requests to the websocket and the websocket could return responses in a different order than it received requests. This is where callback Ids come into play. Usually websocket servers will have a way for you to map responses from the websocket server to requests that you sent to it. Sending a user-generated callback_id to the websocket is one way to do this. In my case, I start at 0 and work my way up to 10000 then start over. You can see this in my getCallback() function:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// This creates a new callback ID for a request
+    function getCallbackId() {
+      currentCallbackId += 1;
+      if(currentCallbackId &amp;gt; 10000) {
+        currentCallbackId = 0;
+      }
+      return currentCallbackId;
+    }
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-4:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Now back to sendRequest. After the callbackId is generated, and the deferred is stored in the callbacks variable, we add the new callbackId to the request message:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;request.callback_id = callbackId;
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-5:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Then we send the request object to the websocket and return a promise:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;ws.send(JSON.stringify(request));
+    return defer.promise;
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-6:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Now out in Canada somewhere, our websocket server processes the request and sends back a list of customers to us through the websocket. When data comes in from the websocket we call the listener function:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;ws.onmessage = function(message) {
+        listener(message);
+    };
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-7:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;The listener looks at the message coming in and sees that it looks something like this:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;{
+  &#34;result&#34;: true,
+  &#34;callback_id&#34;: 1,
+  &#34;data&#34;: [
+    {
+      first_name: Danny,
+      last_name: Ocean
+    },
+    {
+      first_name: Rusty,
+      last_name: Ryan
+    }
+  ]
+}
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-8:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;The listener() function sees the callback_id property and looks in our callbacks variable to see if we have a pending request waiting to be resolved. If there is one, it resolves the deferred object and deletes the callback object from the callbacks object-literal/dictionary/named-array:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;if(callbacks.hasOwnProperty(messageObj.callback_id)) {
+      console.log(callbacks[messageObj.callback_id]);
+      $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
+      delete callbacks[messageObj.callbackID];
+    }
+&lt;/pre&gt;
+
+&lt;p&gt;And then, lo and behold, our scope variable, $scope.customers, is populated with our new customer list! And now you have a functioning websocket service. &lt;img src=&#34;http://clintberry.com/wp-includes/images/smilies/simple-smile.png&#34; alt=&#34;:-)&#34; class=&#34;wp-smiley&#34; style=&#34;height: 1em; max-height: 1em;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I know this all can seem like a lot if you are new to angular or haven&amp;#8217;t heard of promises before. Feel free to ask any questions in the comments or email me on my contact form if you need help. I am usually pretty good about getting back to you.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

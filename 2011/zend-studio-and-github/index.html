@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    Zend Studio and Git(Hub) // Clint Berry
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="Clint Berry">
+
+  <meta property="og:title" content="Zend Studio and Git(Hub)" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://clintberry.github.io/2011/zend-studio-and-github/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://clintberry.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Clint Berry" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+    <h1 class="brand-title">Clint Berry</h1>
+    <h2 class="brand-tagline">Full Stack Developer. Wannabe Entrepreneur.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/posts/">Blog</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        
+      
+        
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        
+      
+        
+        <a href="http://www.twitter.com/clinton_berry" target="_blank"><i class='fa fa-twitter-square'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#how-to-set-it-up:9633d36280c46f0b4eedc032928427fc">How to set it up</a></li>
+<li><a href="#adding-keys:9633d36280c46f0b4eedc032928427fc">Adding Keys</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+		    </div>
+		    
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/2011/zend-studio-and-github/">Zend Studio and Git(Hub)</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>26</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Feb</span> <span class="post-date-year">2011</span>
+            	</span>
+            	
+            
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">Clint Berry</a></span>
+            		
+
+
+
+
+            	
+            
+
+			
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-git" href="http://clintberry.github.io/categories/git">Git</a>
+				
+					<a class="post-category post-category-zend-studio" href="http://clintberry.github.io/categories/zend-studio">Zend Studio</a>
+				
+				</div>
+			
+
+			
+
+			
+
+            
+
+<p>I have been using Zend Studio as my IDE for years, and for version control I have always used SVN. Zend Studio Eclipse plays very nicely with SVN out of the box, but lately it seems Git has gained a lot of momentum so I thought I would look into it. It turns out Git is awesome and is much better suited for many of the things I do. (See: <a href="http://stackoverflow.com/questions/871/why-is-git-better-than-subversion">Why Git?</a>)</p>
+
+<p><strong>But will Git play nicely with Zend Studio 8?</strong></p>
+
+<p>Thanks to eclipse plugins, you bet it will!</p>
+
+<h4 id="how-to-set-it-up:9633d36280c46f0b4eedc032928427fc">How to set it up</h4>
+
+<p>First you will need to install <a href="http://www.eclipse.org/egit/">EGit</a>, the Git plugin for eclipse. The easiest way to do this is to add the EGit repository to Zend Studio. Open up Zend Studio and do the following:</p>
+
+<ul>
+<li>Navigate to Help -&gt; Install New Software</li>
+<li>Click the &#8220;Add..&#8221; button to add the EGit repository (<a href="http://download.eclipse.org/egit/updates)![Adding">http://download.eclipse.org/egit/updates)![Adding</a> the EGit Repository]<a href="http://clintberry.com/images/egit-repo.png">3</a></li>
+<li>Agree to everything you see (of course read it first)</li>
+<li>Zend Studio will restart and you will have git support</li>
+</ul>
+
+<h4 id="adding-keys:9633d36280c46f0b4eedc032928427fc">Adding Keys</h4>
+
+<p>To access git hub you need to use public and private SSH keys. If you have never done that before, here is how to create a key using Zend Studio:</p>
+
+<ul>
+<li>Open up Zend Studio&#8217;s preferences window</li>
+<li>Navigate to General-&gt;Network Connections-&gt;SSH2</li>
+<li>Select the key management tab and click &#8220;Generate RSA key&#8221;</li>
+<li>You will see that the text box is now filled with &#8220;ssh-rsa&#8221; and then a bunch of giberish. That is your new public key<img src="http://clintberry.com/wp-content/assets/images/zend-git-key.png" alt="Creating SSH Key" /></li>
+<li>Click the &#8220;Save Private Key&#8221; Function and confirm that you want to save it without a passphrase</li>
+<li>Login to your GitHub account and go to Account Settings-&gt;SSH Public Keys</li>
+<li>Click add a public key and enter the name (e.g. my laptop) and paste the public key text generated by Zend Studio into the box</li>
+</ul>
+
+<p><strong>Now you will have access to github from Zend Studio</strong></p>
+
+<p>My next post will be on how to clone projects in github and add them as Zend Studio projects.</p>
+
+	
+			
+
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/">Wildcard Sub-Domains on OSX, Web Development on Localhost</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/2010/mongodb-base-model-for-zend-framework/">MongoDB Base Model for Zend Framework</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2015. All rights reserved. </p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>

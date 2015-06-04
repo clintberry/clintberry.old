@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slides on Clint Berry</title>
+    <link>http://clintberry.github.io/categories/slides/</link>
+    <description>Recent content in Slides on Clint Berry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Apr 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://clintberry.github.io/categories/slides/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Phing For PHP Deployment</title>
+      <link>http://clintberry.github.io/2012/phing-php-deployment/</link>
+      <pubDate>Tue, 10 Apr 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2012/phing-php-deployment/</guid>
+      <description>&lt;p&gt;I recently did a presentation at the Utah PHP Users group on Phing for deploying PHP applications. Here are the slides:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://clintberry.com/slides/phing&#34; title=&#34;Phing Slides&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://clintberry.com/slides/phing&#34;&gt;http://clintberry.com/slides/phing&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

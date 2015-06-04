@@ -1,0 +1,1805 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clint Berry</title>
+    <link>http://clintberry.github.io/</link>
+    <description>Recent content on Clint Berry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Jul 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://clintberry.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>JavaScript and the Brackets Shell Environment</title>
+      <link>http://clintberry.github.io/2013/native-desktop-javascript/</link>
+      <pubDate>Mon, 22 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2013/native-desktop-javascript/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/brackets-js.png&#34; alt=&#34;brackets-js&#34; width=&#34;300&#34; height=&#34;120&#34; class=&#34;alignleft size-full wp-image-1058&#34; /&gt;This is the second post in my series on using the amazing &lt;a href=&#34;https://github.com/adobe/brackets-shell/&#34; title=&#34;Brackets Shell&#34; target=&#34;_blank&#34;&gt;bracket-shell&lt;/a&gt; project for building native desktop applications with HTML and JavaScript.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://clintberry.com/2013/html5-desktop-apps-with-brackets-shell/&#34; title=&#34;Native Desktop Apps with HTML&#34;&gt;Post 1 &amp;#8211; Build Native Desktop Apps with Brackets Shell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Post 2 &amp;#8211; JavaScript and the Brackets Shell Environment&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At this point you should have brackets-shell compiling/building with your own HTML app bundled inside of it. In this post I want to teach you how to interact with the shell via JavaScript.&lt;/p&gt;
+
+&lt;p&gt;Brackets shell has two ways to interact with the native environment via JavaScript. The first is via a set of functions created in native C++/Objective-C and then exposed in &lt;a href=&#34;Chromium Embedded Framework&#34; title=&#34;CEF&#34; target=&#34;_blank&#34;&gt;Chromium Embedded Framework&lt;/a&gt;. The second method is to communicate with the Node.js process via websocket protocol and tell it to run commands on the native environment. This post will take a look at the first method.&lt;/p&gt;
+
+&lt;h4 id=&#34;the-brackets-javascript-object:2fe2dff6358944c81f4c24b8c22cec27&#34;&gt;The Brackets JavaScript Object&lt;/h4&gt;
+
+&lt;p&gt;The brackets-shell team has already built several native functions and exposed them via JavaScript to your HTML application. To take a look, run your newly built brackets shell app and open the Chrome DevTools by right clicking anywhere in your app and selecting `Show DevTools`.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-07-17-at-10.27.26-PM.png&#34; alt=&#34;Show dev tools&#34; width=&#34;554&#34; height=&#34;308&#34; class=&#34;alignnone size-full wp-image-1024&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once in DevTools, click on the console tab furthest to the right. Inside the console type `brackets` and hit enter. The console will echo the contents of that variable, but it will be minimized. Click on the little triangle arrow to the left of the response to expand the contents and you will see an `app` object and a `fs` object. Expand either of those objects to see an entire list of functions that brackets-shell gives you for free to use in your app. The `brackets` variable is injected into the browser via C++ and is available to your code when running in the shell. So cool.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-07-17-at-10.24.19-PM.png&#34; alt=&#34;brackets.app contents&#34; width=&#34;727&#34; height=&#34;560&#34; class=&#34;alignnone size-full wp-image-1021&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can see there are some handy functions in there. To test one out, type in `brackets.app.quit()` into the console and your app should quit! Pretty neat that you did it from JavaScript, eh? Now let&amp;#8217;s look at another function that doesn&amp;#8217;t close your app. Run your app again and show devtools. In brackets.app there is a function called addMenu(). This adds a menu into the toolbar for you to use. Enter this string into the devtools console:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;brackets.app.addMenu(&amp;#039;Parent&amp;#039;, &amp;#039;parent&amp;#039;, &amp;#039;&amp;#039;, &amp;#039;&amp;#039;, function(){});
+&lt;/pre&gt;
+
+&lt;p&gt;The first argument is the string you want displayed for your new parent menu. The second is the ID. You should immediately see a new menu item appear for your app called &amp;#8220;Parent&amp;#8221;. (in OSX it appears at the top, on windows it appears right in the app itself)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-07-17-at-11.03.58-PM.png&#34; alt=&#34;New menu item&#34; width=&#34;762&#34; height=&#34;216&#34; class=&#34;alignnone size-full wp-image-1032&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;#8217;s add a menu item into that parent menu called &amp;#8216;My Action&amp;#8217;. Enter in the following code in the console:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;brackets.app.addMenuItem(&amp;#039;parent&amp;#039;, &amp;#039;My Action&amp;#039;, &amp;#039;myaction&amp;#039;, &amp;#039;&amp;#039;, &amp;#039;&amp;#039;, &amp;#039;&amp;#039;, &amp;#039;&amp;#039;, function(){})
+&lt;/pre&gt;
+
+&lt;p&gt;The first argument is the ID of the parent menu you want to put this item in, the second argument is the string you want to display for your item, and the third argument is the ID of the menu item. The other blank strings are for positioning, but aren&amp;#8217;t important for this demo.&lt;/p&gt;
+
+&lt;p&gt;You should now see your new menu item when you click on `Parent`. Now all we have to do is assign an action handler to the menu item when it is clicked. To catch events as they come in from the shell, you will need to define another object on the brackets variable called `shellAPI`, and within that object you must define a property called `executeCommand` as a function that accepts a string (commandId). The shell looks to see if that function exists and sends all commands to it so you can handle them in your code. For example, if you clicked on your new menu item with the ID `myaction`, the shell would call brackets.shellAPI.executeCommand(&amp;#8216;myaction&amp;#8217;)&lt;/p&gt;
+
+&lt;p&gt;Instead of doing this in the console, let&amp;#8217;s go ahead and add this script right into our index.html file (along with some jQuery for cheating later):&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;title&amp;gt;Awesome&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+
+&amp;lt;h2&amp;gt;My Awesome App&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;Brackets-shell allows me to make this amazing native app with HTML. WOW!&amp;lt;/p&amp;gt;
+&amp;lt;script src=&#34;http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&#34; &amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+$(function(){
+    brackets.app.addMenu(&amp;#039;Parent&amp;#039;, &amp;#039;parent&amp;#039;, &amp;#039;&amp;#039;, &amp;#039;&amp;#039;, function(){});
+    brackets.app.addMenuItem(&amp;#039;parent&amp;#039;, &amp;#039;My Action&amp;#039;, &amp;#039;myaction&amp;#039;, &amp;#039;&amp;#039;, &amp;#039;&amp;#039;, &amp;#039;&amp;#039;, &amp;#039;&amp;#039;, function(){})
+    brackets.shellAPI = {}
+    brackets.shellAPI.executeCommand = function(command) {
+        if(command == &amp;#039;myaction&amp;#039;) {
+            alert(&amp;#039;You definitely clicked on your new menu item!&amp;#039;);
+        }
+    }
+})
+
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Now re-open your index.html file in the brackets-shell (if you have DevTools open, and in focus, hit Command-R on mac, or Ctrl-R on windows and your app will refresh with your updated index.html file) Go ahead and click on your new menu item &amp;#8216;My Action&amp;#8217; and you should see the following alert box pop up:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-07-18-at-12.31.31-AM.png&#34; alt=&#34;clicked-alert&#34; width=&#34;437&#34; height=&#34;166&#34; class=&#34;alignnone size-full wp-image-1039&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Awesome!&lt;/p&gt;
+
+&lt;p&gt;Go ahead and play around with the other functions that brackets makes available to you. Especially the file system commands which really allow you to do some cool stuff. If you have trouble, make sure to check out the &lt;a href=&#34;https://github.com/adobe/brackets-shell/blob/master/appshell/appshell_extensions.js&#34; title=&#34;JavaScript functions for shell&#34; target=&#34;_blank&#34;&gt;detailed comments for each function in the source code&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;adding-custom-native-javascript-functions:2fe2dff6358944c81f4c24b8c22cec27&#34;&gt;Adding Custom Native JavaScript Functions&lt;/h4&gt;
+
+&lt;p&gt;So you want to add your own native functions, eh? If you are brave enough to venture into the dark realms of C++/Objective-C then the world is your oyster with brackets-shell. You can do pretty much anything you want to do. To illustrate, let&amp;#8217;s add a function that minimizes the window (overly simple, but a good starting point).&lt;/p&gt;
+
+&lt;p&gt;There are three files we will need to change to add custom functions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;appshell/appshell_extensions_platform.h&lt;/strong&gt; &amp;#8211; This is where we define our new C++ function&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;appshell/appshell_extensions_win.cpp (or _mac.mm if you are working with OSX)&lt;/strong&gt; &amp;#8211; Where the actual C++ function is written&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;appshell/appshell_extensions.js&lt;/strong&gt; &amp;#8211; This file bridges the C++ function to the JavaScript one&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;First let&amp;#8217;s define our function in appshell_extensions_platform.h&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;#if defined(OS_WIN)
+
+void MinimizeWindow(CefRefPtr&amp;lt;CefBrowser&amp;gt; browser);
+
+#endif
+&lt;/pre&gt;
+
+&lt;p&gt;First we add the #if statement to make sure this function only get&amp;#8217;s defined on windows. If we were implementing on both systems, we could remove the if statement completely.&lt;/p&gt;
+
+&lt;p&gt;Then we define our function called MinimizeWindow and pass it the main browser object as a parameter.&lt;/p&gt;
+
+&lt;p&gt;Now we implement our new function in the appshell_extensions_win.cpp file:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;void MinimizeWindow(CefRefPtr&amp;lt;CefBrowser&amp;gt; browser, std::string value){
+    CefWindowHandle hWnd = browser-&amp;gt;GetHost()-&amp;gt;GetWindowHandle();
+    ShowWindow(hWnd, &#34;SW_MINIMIZE&#34;);
+}
+&lt;/pre&gt;
+
+&lt;p&gt;Obviously you need some Windows programming experience for this function. Thankfully, I have my co-worker, &lt;a href=&#34;http://bigdevblog.com&#34; title=&#34;Jordan C&#39;s Blog&#34; target=&#34;_blank&#34;&gt;Jordan&lt;/a&gt;, who is excellent at figuring out this stuff, and so I &amp;#8220;borrowed&amp;#8221; some of his code. &lt;img src=&#34;http://clintberry.com/wp-includes/images/smilies/simple-smile.png&#34; alt=&#34;:-)&#34; class=&#34;wp-smiley&#34; style=&#34;height: 1em; max-height: 1em;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Lastly, we need to add the function in appshell_extensions.js. We add it right after the DragWindow function (contributed by me and Jordan&amp;#8230; yes, shameless, but I love that I got a C++ pull request accepted)&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;/**
+     * Minimize the window
+     *
+     * @return None. This is an asynchronous call that sends all return information to the callback.
+     */
+    native function MinimizeWindow();
+    appshell.app.minimizeWindow = function () {
+        MinimizeWindow();
+    };
+&lt;/pre&gt;
+
+&lt;p&gt;Save your progress and run your build on Windows. Run your new build and open up DevTools and enter `brackets.app.minimizeWindow()` in the console and your window should minimize! With JavaScript!!! Excellent.&lt;/p&gt;
+
+&lt;p&gt;Some other things we have added to brackets-shell at my company are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&amp;#8211; Removing the window frame&lt;/li&gt;
+&lt;li&gt;&amp;#8211; Adding transparency and rounded corners&lt;/li&gt;
+&lt;li&gt;&amp;#8211; Adding tray icons&lt;/li&gt;
+&lt;li&gt;&amp;#8211; Customizing popup windows&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We will get these pieces cleaned up and added to a forked repo for all to enjoy soon.&lt;/p&gt;
+
+&lt;p&gt;Good luck with your native app adventures! Hit me up with any questions or comments you might have. There are more posts to come!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Build Desktop Apps With HTML Using Brackets Shell</title>
+      <link>http://clintberry.github.io/2013/html5-desktop-apps-with-brackets-shell/</link>
+      <pubDate>Tue, 25 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2013/html5-desktop-apps-with-brackets-shell/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/branding_256.png&#34; alt=&#34;branding_256&#34; width=&#34;256&#34; height=&#34;256&#34; class=&#34;alignleft wp-image-959&#34; /&gt;I recently posted on the &lt;a href=&#34;http://clintberry.com/2013/html5-apps-desktop-2013/&#34; title=&#34;html5 apps on the desktop&#34;&gt;state of native desktop apps in HTML5&lt;/a&gt; and mentioned that at my company we chose to use &lt;a href=&#34;https://github.com/adobe/brackets-shell/&#34; title=&#34;Brackets Shell&#34; target=&#34;_blank&#34;&gt;Brackets-Shell&lt;/a&gt; as our native app solution. I want to go more in-depth into what brackets is and why we chose it as our solution. This will be the first of a series of posts dedicated to brackets-shell and customizing it for your native HTML desktop applications.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I Posted part 2 of the series: &lt;a href=&#34;http://clintberry.com/2013/native-desktop-javascript/&#34; title=&#34;JavaScript and the Brackets Shell Environment&#34;&gt;JavaScript and the Brackets Shell Environment&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;what-is-brackets:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;What is Brackets?&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://brackets.io/&#34; title=&#34;Brackets&#34; target=&#34;_blank&#34;&gt;Brackets&lt;/a&gt; is an open-source code editor created by Adobe. What makes brackets so cool, though, is that the entire editor is written in HTML and JavaScript. This puts Brackets in a unique opportunity that allows pretty much any developer that would use the editor (HTML and JavaScript guys) to add to and improve the editor with the very languages they use on a regular basis. And while I don&amp;#8217;t use brackets myself just yet (hard to leave Sublime Text) it is definitely on my radar and I may make that switch soon.&lt;/p&gt;
+
+&lt;h4 id=&#34;what-is-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;What is Brackets Shell?&lt;/h4&gt;
+
+&lt;p&gt;Brackets Shell is what allows Brackets to be run as a desktop application. It takes &lt;a href=&#34;https://code.google.com/p/chromiumembedded/&#34; title=&#34;Chromium Embedded Framework&#34; target=&#34;_blank&#34;&gt;Chromium Embedded Framework (CEF)&lt;/a&gt; and adds some extras along with an excellent build tool. The brackets-shell app is so well done, it made it easy for a web-developer like me to get my first ever &lt;a href=&#34;https://github.com/adobe/brackets-shell/commit/5e52d8647444d20838a2b01bfff92f463109f014&#34; title=&#34;My first c++ pull request&#34; target=&#34;_blank&#34;&gt;C++ pull request accepted&lt;/a&gt; (I took credit for that whole pull request, but the windows portion was done by my good friend, &lt;a href=&#34;http://bigdevblog.com&#34; title=&#34;Jordan C&#39;s Blog&#34; target=&#34;_blank&#34;&gt;Jordan&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h4 id=&#34;why-use-brackets-shell-instead-of-other-solutions:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Why Use Brackets Shell Instead of Other Solutions?&lt;/h4&gt;
+
+&lt;p&gt;I&amp;#8217;m glad you asked:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Very active development&lt;/strong&gt; &amp;#8211; Of all the HTML shells for the desktop, this one was the most active in terms of code being committed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backed by Adobe&lt;/strong&gt; &amp;#8211; A corporate sponsor doesn&amp;#8217;t guarantee that the project will be around forever, but it is more promising than not having one&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NodeJS Integration&lt;/strong&gt; &amp;#8211; The brackets team recently integrated NodeJS into the brackets shell which allows for some really awesome plugin capabilities without learning C++&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The Build Process&lt;/strong&gt; &amp;#8211; Building cross platform desktop applications can be a pain. Unless someone went through all the pain for you and automated the whole thing, including the creation of the installer. And on top of that, did it in Grunt, which most JavaScript developers are already familiar with. But who would do that for you? The Brackets team did. Amazing.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now on to the good stuff.&lt;/p&gt;
+
+&lt;h4 id=&#34;test-your-application-in-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Test Your Application in Brackets Shell&lt;/h4&gt;
+
+&lt;p&gt;The first thing you will want to do is test the shell to see if your HTML application runs in it. The quickest route to doing this is to &lt;a href=&#34;http://download.brackets.io/&#34; title=&#34;Download Brackets&#34; target=&#34;_blank&#34;&gt;download the latest Brackets editor&lt;/a&gt; and install it. The installer installs the brackets-shell along with the brackets HTML application. If you remove the HTML app then the when you run the brackets shell it will ask you for the location of your index.html file. If you choose your own index.html file from your own application, brackets shell will open that.&lt;/p&gt;
+
+&lt;p&gt;To remove the brackets HTML app on Windows, browse to the Brackets folder in your Program Files directory. Inside the Brackets folder there is a folder named &amp;#8216;www&amp;#8217;. Rename or delete that folder, then run Brackets. The file dialog will open prompting you to select your own index.html file.&lt;/p&gt;
+
+&lt;p&gt;On OSX, open the terminal and browse to your application directory. Applications in OSX are actually folders, and in terminal you can view their content. CD into the Brackets Sprint [sprint number].app folder and continue to the Contents directory. Inside there you will see the www folder. Delete or rename it and then run brackets. You will see the file dialog prompting you to select your own index.html file.&lt;/p&gt;
+
+&lt;h4 id=&#34;building-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Building Brackets Shell&lt;/h4&gt;
+
+&lt;p&gt;If your app runs well in brackets-shell your next step is to setup your computer to build brackets-shell. This is where the shell really shines. They have an amazing Grunt setup that allows you to run the build in one command. Brackets provides some great instructions on &lt;a href=&#34;https://github.com/adobe/brackets-shell/wiki/Building-brackets-shell&#34; title=&#34;Brackets shell build instructions&#34; target=&#34;_blank&#34;&gt;setting up your box here&lt;/a&gt;. Once you are setup, run `grunt build` from the command line and it should create a full build of brackets shell for you. So awesome.&lt;/p&gt;
+
+&lt;h4 id=&#34;setup-for-your-app:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Setup for Your App&lt;/h4&gt;
+
+&lt;p&gt;This is where things get fun. Let&amp;#8217;s make the shell be a full-on desktop app for our own software. Make sure you have followed the instructions for getting setup to build brackets-shell and then take these next steps:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fork the Repo&lt;/strong&gt; &amp;#8211; I recommend you fork the bracket-shell repo on github so you have a place to persist your own changes. Once you do that, then check out your forked repo.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Make your app folder a sibling of the shell folder&lt;/strong&gt; &amp;#8211; The build scripts from brackets are setup to expect your HTML app source code to be in a sibling folder to the brackets-shell folder&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use Git for your HTML app&lt;/strong&gt; &amp;#8211; To use the build scripts provided by brackets, you need to be using Git with your source code. If you aren&amp;#8217;t using git for your project, cd into your project folder and type `git init` and commit your project to the repo by doing `git add .` and then `git commit -m &amp;#8220;Initial commit&amp;#8221;`&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Update grunt file&lt;/strong&gt; &amp;#8211; If your html application folder is called my-app, then you need to tell Grunt where it is. Edit Gruntfile.js in the root of the brackets-shell folder and change the config section git-&amp;gt;www-&amp;gt;repo from &amp;#8220;../brackets&amp;#8221; to &amp;#8220;../my-app&amp;#8221;, and also change www-&amp;gt;files-&amp;gt;cwd value by removing &amp;#8216;src&amp;#8217; from the end of the file (assuming your index.html file is in the root of your project) then save the file.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-06-21-at-4.59.21-PM.png&#34; alt=&#34;Screen Shot 2013-06-21 at 4.59.21 PM&#34; width=&#34;739&#34; height=&#34;286&#34; class=&#34;alignnone size-full wp-image-967&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-06-21-at-6.08.39-PM.png&#34; alt=&#34;Screen Shot 2013-06-21 at 6.08.39 PM&#34; width=&#34;620&#34; height=&#34;194&#34; class=&#34;alignnone size-full wp-image-980&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you are all setup. To see what grunt commands you have available type in `grunt &amp;#8211;help` at your terminal&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;&amp;gt; grunt --help
+Available tasks
+          full-build  Alias for &#34;git&#34;, &#34;create-project&#34;, &#34;build&#34;,
+                      &#34;build-branch&#34;, &#34;build-num&#34;, &#34;build-sha&#34;, &#34;stage&#34;,
+                      &#34;package&#34; tasks.
+           installer  Alias for &#34;full-build&#34;, &#34;build-installer&#34; tasks.
+               build  Build shell executable. Run &amp;#039;grunt full-build&amp;#039; to update
+                      repositories, build the shell and package www files.
+           build-mac  Build mac shell
+           build-win  Build windows shell
+                 git  Pull specified repo branch from origin *
+        build-branch  Write www repo branch to config property
+                      build.build-branch
+           build-num  Compute www repo build number and set config property
+                      build.build-number
+           build-sha  Write www repo SHA to config property build.build-sha
+               stage  Stage release files
+           stage-mac  Stage mac executable files
+           stage-win  Stage win executable files
+             package  Package www files
+        write-config  Update version data in www config.json payload
+     build-installer  Build installer
+ build-installer-mac  Build mac installer
+ build-installer-win  Build windows installer
+          set-sprint  Update occurrences of sprint number for all native
+                      installers and binaries
+                 cef  Download and setup CEF
+           cef-clean  Removes CEF binaries and linked folders
+        cef-download  Download CEF, see curl-dir config in Gruntfile.js
+         cef-extract  Extract CEF zip
+        cef-symlinks  Create symlinks for CEF
+                node  Download Node.js binaries and setup dependencies
+            node-win  Setup Node.js for Windows
+            node-mac  Setup Node.js for Mac OSX and extract
+          node-clean  Removes Node.js binaries
+      create-project  Create Xcode/VisualStudio project
+               setup  Alias for &#34;cef&#34;, &#34;node&#34;, &#34;create-project&#34; tasks.
+              jshint  Validate files with JSHint. *
+                copy  Copy files. *
+               clean  Clean files and folders. *
+                curl  Download files from the internet via grunt. *
+            curl-dir  Download collections of files from the internet via
+                      grunt. *
+             default  Alias for &#34;setup&#34;, &#34;build&#34; tasks.
+&lt;/pre&gt;
+
+&lt;p&gt;Look at all that goodness! So many Grunt commands at your disposal all ready to go.&lt;/p&gt;
+
+&lt;p&gt;The first thing you need to do is run the cef command, which will download Chromium Embedded Framework and prep it for your build. Type `grunt cef` in your terminal and you should see something like this:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;$ grunt cef
+Running &#34;cef&#34; task
+
+Running &#34;cef-download&#34; task
+Downloading http://dev.brackets.io/cef/cef_binary_3.1453.1255_macosx.zip. This may take a while...
+
+Running &#34;curl-dir:cef-mac&#34; (curl-dir) task
+Files &#34;downloads/cef_binary_3.1453.1255_macosx.zip&#34; created.
+
+Running &#34;cef-clean&#34; task
+
+Running &#34;cef-extract&#34; task
+
+Running &#34;cef-symlinks&#34; task
+
+Done, without errors.
+
+&lt;/pre&gt;
+
+&lt;p&gt;Now do the same thing for node.js by typeing `grunt node` in the terminal:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;$ grunt node
+Running &#34;node&#34; task
+Downloading node-v0.8.20-darwin-x86.tar.gz. This may take a while...
+
+Running &#34;curl-dir:node-mac&#34; (curl-dir) task
+Files &#34;downloads/node-v0.8.20-darwin-x86.tar.gz&#34; created.
+
+Running &#34;node-clean&#34; task
+
+Running &#34;node-mac&#34; task
+
+Done, without errors.
+&lt;/pre&gt;
+
+&lt;p&gt;Now you are ready to do a full-build. To do that (yup, you guessed it) type `grunt full-build`. It will take a bit of time, and will end with a warning:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;Warning: Unable to read &#34;installer/mac/staging/Brackets.app/Contents/www/config.json&#34; file (Error code: ENOENT). Use --force to continue.
+&lt;/pre&gt;
+
+&lt;p&gt;Don&amp;#8217;t worry about the warning, if you made it that far you made a full build! You can check out your newly-built app in the brackets-shell/installer/(mac or win, depending on your OS)/staging folder. Run it and make sure it loads your index.html file by default now. (it shouldn&amp;#8217;t prompt you to locate an index.html file, it should just open and run the one from your html application)&lt;/p&gt;
+
+&lt;h4 id=&#34;let-8217-s-customize:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Let&amp;#8217;s customize!&lt;/h4&gt;
+
+&lt;p&gt;You probably noticed your new application&amp;#8217;s name was &amp;#8220;brackets&amp;#8221; and that your icon for the app was the brackets logo. You don&amp;#8217;t want that, so let&amp;#8217;s change the name of your app to &amp;#8220;Awesome&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;There are a couple of places you will need to change to get your app name changed:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Gruntfile.js &amp;#8211; change the build name&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-06-24-at-3.07.07-PM.png&#34; alt=&#34;Screen Shot 2013-06-24 at 3.07.07 PM&#34; width=&#34;452&#34; height=&#34;100&#34; class=&#34;alignnone size-full wp-image-996&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;appshell/config.h &amp;#8211; Change the app-name for windows and osx&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-06-24-at-3.06.13-PM.png&#34; alt=&#34;Screen Shot 2013-06-24 at 3.06.13 PM&#34; width=&#34;486&#34; height=&#34;324&#34; class=&#34;alignnone size-full wp-image-995&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;appshell_config.gypi &amp;#8211; Change the app-name as well&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-08-01-at-12.46.32-PM.png&#34; alt=&#34;Screen Shot 2013-08-01 at 12.46.32 PM&#34; width=&#34;354&#34; height=&#34;107&#34; class=&#34;alignnone size-full wp-image-1076&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now just type `grunt full-build` at the terminal and it will create a build with your app and name the app &amp;#8220;awesome&amp;#8221;&lt;/p&gt;
+
+&lt;h4 id=&#34;what-8217-s-next:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;What&amp;#8217;s Next?&lt;/h4&gt;
+
+&lt;p&gt;For basic HTML apps that you just need a shell for, this might be all you need. But this is only the beginning of what you can do with brackets-shell. Over the next few weeks I will be posting new tutorials showing how you can:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use built-in JavaScript functions that map to window functions (Drag, Quit, Create popups)&lt;/li&gt;
+&lt;li&gt;Map custom JavaScript functions to C++ functions that alter the window in other ways&lt;/li&gt;
+&lt;li&gt;Add features like Tray icons in windows, and stay on top of all other windows all the time&lt;/li&gt;
+&lt;li&gt;Use node for advanced tasks and call those tasks from JavaScript in the browser window&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As always, let me know if you have any comments or questions!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>HTML5 Apps on the Desktop in 2013</title>
+      <link>http://clintberry.github.io/2013/html5-apps-desktop-2013/</link>
+      <pubDate>Sat, 11 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2013/html5-apps-desktop-2013/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://clintberry.com/images/html-apps-on-desktop.jpg&#34;&gt;&lt;img src=&#34;http://clintberry.com/images/html-apps-on-desktop.jpg&#34; alt=&#34;html-apps-on-desktop&#34; width=&#34;379&#34; height=&#34;286&#34; class=&#34;alignleft size-full wp-image-923&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;No doubt we are in the middle of the mobile revolution. The mobile-first mentality is prevalent. I feel like I see these types of posts every day lately:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-04-22-at-10.34.21-PM.png&#34; alt=&#34;Screen Shot 2013-04-22 at 10.34.21 PM&#34; title=&#34;Screen Shot 2013-04-22 at 10.34.21 PM&#34; width=&#34;520&#34; height=&#34;91&#34; class=&#34;alignnone size-full wp-image-793&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-04-22-at-10.35.34-PM.png&#34; alt=&#34;Screen Shot 2013-04-22 at 10.35.34 PM&#34; title=&#34;Screen Shot 2013-04-22 at 10.35.34 PM&#34; width=&#34;521&#34; height=&#34;84&#34; class=&#34;alignnone size-full wp-image-795&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;While there is an obvious trent towards mobile in the consumer world, there is one place desktop is king: &lt;strong&gt;Business.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We are a long way off from getting our work done on mobile devices. Accountants, day traders, developers, and a whole litany of other careers require desktop computing of some sort. I know I sure don&amp;#8217;t want to develop apps on my 4&amp;#8243; phone screen. On an ipad maybe if I was traveling, but desktop size increases my productivity and I don&amp;#8217;t see many developers dumping their desktops/laptops for ipad only development.&lt;/p&gt;
+
+&lt;p&gt;At my current company we develop &lt;a href=&#34;http://getweave.com&#34; title=&#34;Dental Phone Systems&#34; target=&#34;_blank&#34;&gt;phone systems for dental offices&lt;/a&gt;. I can tell you that desktop computers will be in the dental industry for years to come.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But why run HTML apps on the desktop?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Control the browser&lt;/strong&gt; &amp;#8211; Bundling your app into an executable allows you to dictate what rendering engine (webkit) will be used for your app.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Cross Platform&lt;/strong&gt; &amp;#8211; HTML runs on all operating systems, so it can be much easier to create a cross platform desktop application.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Build once, run everywhere&amp;#8230;&lt;/strong&gt; &amp;#8211; I am a huge fan of the build-once-run-everywhere methodology. While it won&amp;#8217;t work for some projects, many applications can see a huge benefit to sharing code between the desktop, web, and mobile space.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Window sizing and control&lt;/strong&gt; &amp;#8211; If you want your app to run at a certain size, or do some more advanced things with popups, you get that control on the desktop. Most solutions also provide a way to access the file system and allow other more advanced controls you wouldn&amp;#8217;t get with a regular web app.&lt;/p&gt;
+
+&lt;p&gt;Here are all the different options I have researched for creating HTML/JS applications on the desktop, with their pros and cons. Please leave comments if you know of other solutions I should look at.&lt;/p&gt;
+
+&lt;h3 id=&#34;tidesdk:522579eb282b622ded22bcc5d66b8011&#34;&gt;TideSDK&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.tidesdk.org/&#34; title=&#34;TideSDK&#34; target=&#34;_blank&#34;&gt;TideSDK&lt;/a&gt; has so much potential. They have a great looking website and a good set of tools. Of all the solutions I looked at, TideSDK has the easiest method for packaging your app. You open up the TideSDK builder and choose your HTML files, and click the package button. It runs basic web applications with ease. But then I tried running my first AngularJS app and&amp;#8230; FAIL. So I checked the web inspector and saw a litany of errors that I knew didn&amp;#8217;t exist when I ran my app in chrome. Turns out the webkit version used in TideSDK is over 3 years old and Angular doesn&amp;#8217;t like it. They haven&amp;#8217;t had a solid update for a while as well and are &lt;a href=&#34;http://www.tidesdk.org/blog/2013/04/11/tidesdk-in-numbers/&#34; title=&#34;TideSDK needs money&#34; target=&#34;_blank&#34;&gt;pleading for money&lt;/a&gt; from the community.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Good&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul class=&#34;list bullet&#34;&gt;
+  &lt;/p&gt; 
+  
+  &lt;li&gt;
+    Great Packaging Tools
+  &lt;/li&gt;
+  &lt;li&gt;
+    Run PHP, Python, or Ruby code on the &amp;#8220;backend&amp;#8221; of your app (Awesome!)
+  &lt;/li&gt;
+  &lt;li&gt;
+    Documentation is thorough with good getting started guides
+  &lt;/li&gt;
+  &lt;p&gt;
+    &lt;/ul&gt; 
+    
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;p&amp;gt;
+  &amp;lt;strong&amp;gt;The Bad&amp;lt;/strong&amp;gt;
+&amp;lt;/p&amp;gt;
+
+&amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+  &amp;lt;/p&amp;gt; 
+
+  &amp;lt;li&amp;gt;
+    No version bumps in a long time
+  &amp;lt;/li&amp;gt;
+  &amp;lt;li&amp;gt;
+    The webkit version is OLD
+  &amp;lt;/li&amp;gt;
+  &amp;lt;li&amp;gt;
+    They need more money to keep going
+  &amp;lt;/li&amp;gt;
+  &amp;lt;p&amp;gt;
+    &amp;lt;/ul&amp;gt; 
+
+    &amp;lt;h3&amp;gt;
+      AppJS
+    &amp;lt;/h3&amp;gt;
+
+    &amp;lt;p&amp;gt;
+      If you are a nodeJS fan, &amp;lt;a href=&amp;quot;http://appjs.com/&amp;quot; title=&amp;quot;Desktop Apps with HTML&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;AppJS&amp;lt;/a&amp;gt; is the start of something awesome. It runs allows you to interact with desktop windows via JavaScript in a nodeJS application. Great idea, but it has some bugs and debugging issues can be a pain. Also, the issue list keeps piling up in github and it seems no progress is being made.
+    &amp;lt;/p&amp;gt;
+
+    &amp;lt;p&amp;gt;
+      &amp;lt;strong&amp;gt;The Good&amp;lt;/strong&amp;gt;
+    &amp;lt;/p&amp;gt;
+
+    &amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+      &amp;lt;/p&amp;gt; 
+
+      &amp;lt;li&amp;gt;
+        NodeJS-based makes this pretty simple to get going
+      &amp;lt;/li&amp;gt;
+      &amp;lt;li&amp;gt;
+        Thousands of cool NodeJS libraries now available to run on the desktop
+      &amp;lt;/li&amp;gt;
+      &amp;lt;li&amp;gt;
+        Cool features like transparent windows, window dragging, and popups all built in
+      &amp;lt;/li&amp;gt;
+      &amp;lt;p&amp;gt;
+        &amp;lt;/ul&amp;gt; 
+
+        &amp;lt;p&amp;gt;
+          &amp;lt;strong&amp;gt;The Bad&amp;lt;/strong&amp;gt;
+        &amp;lt;/p&amp;gt;
+
+        &amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+          &amp;lt;/p&amp;gt; 
+
+          &amp;lt;li&amp;gt;
+            No recent updates and appears abandoned
+          &amp;lt;/li&amp;gt;
+          &amp;lt;li&amp;gt;
+            Enough bugs to make this not production worthy
+          &amp;lt;/li&amp;gt;
+          &amp;lt;p&amp;gt;
+            &amp;lt;/ul&amp;gt; 
+
+            &amp;lt;h3&amp;gt;
+              &amp;lt;a href=&amp;quot;https://github.com/rogerwang/node-webkit&amp;quot; title=&amp;quot;node-webkit&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;Node-webkit&amp;lt;/a&amp;gt;
+            &amp;lt;/h3&amp;gt;
+
+            &amp;lt;p&amp;gt;
+              Along the same lines as appjs, &amp;lt;a href=&amp;quot;https://github.com/rogerwang/node-webkit&amp;quot; title=&amp;quot;html apps on the desktop with node-webkit&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;node-webkit&amp;lt;/a&amp;gt; is a desktop runtime that combines chromium with NodeJS. This project is also backed by Intel and has regular updates. Packaging apps into Exes is not trivial, however and we had some problems running our more advanced apps on windows (popup windows in particular).
+            &amp;lt;/p&amp;gt;
+
+            &amp;lt;p&amp;gt;
+              &amp;lt;strong&amp;gt;The Good&amp;lt;/strong&amp;gt;
+            &amp;lt;/p&amp;gt;
+
+            &amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+              &amp;lt;/p&amp;gt; 
+
+              &amp;lt;li&amp;gt;
+                NodeJS based is awesome
+              &amp;lt;/li&amp;gt;
+              &amp;lt;li&amp;gt;
+                Backed by Intel, with regular updates
+              &amp;lt;/li&amp;gt;
+              &amp;lt;li&amp;gt;
+                Webkit and Node run in the same memory space which allows for some cool tricks
+              &amp;lt;/li&amp;gt;
+              &amp;lt;p&amp;gt;
+                &amp;lt;/ul&amp;gt; 
+
+                &amp;lt;p&amp;gt;
+                  &amp;lt;strong&amp;gt;The Bad&amp;lt;/strong&amp;gt;
+                &amp;lt;/p&amp;gt;
+
+                &amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+                  &amp;lt;/p&amp;gt; 
+
+                  &amp;lt;li&amp;gt;
+                    Packaging apps isn&amp;amp;#8217;t simple
+                  &amp;lt;/li&amp;gt;
+                  &amp;lt;li&amp;gt;
+                    Had trouble with popup windows on Windows
+                  &amp;lt;/li&amp;gt;
+                  &amp;lt;p&amp;gt;
+                    &amp;lt;/ul&amp;gt; 
+
+                    &amp;lt;h3&amp;gt;
+                      Sencha Desktop
+                    &amp;lt;/h3&amp;gt;
+
+                    &amp;lt;p&amp;gt;
+                      Sencha&amp;amp;#8217;s solution is not free at almsot $700. It&amp;amp;#8217;s webkit version is outdated and it has a very limited feature set for controlling the windows (no transparency, no removing the chrome frame, etc).
+                    &amp;lt;/p&amp;gt;
+
+                    &amp;lt;p&amp;gt;
+                      No breakdown. This baby isn&amp;amp;#8217;t worth the price, hands down.
+                    &amp;lt;/p&amp;gt;
+
+                    &amp;lt;h3&amp;gt;
+                      Brackets Shell
+                    &amp;lt;/h3&amp;gt;
+
+                    &amp;lt;p&amp;gt;
+                      The &amp;lt;a href=&amp;quot;https://github.com/adobe/brackets-shell&amp;quot; title=&amp;quot;Brackets Shell&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;Brackets Shell&amp;lt;/a&amp;gt; is a customized version of Chromium Embedded Framework (CEF) that was created to run the &amp;lt;a href=&amp;quot;http://brackets.io/&amp;quot; title=&amp;quot;HTML JavaScript Editor&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;Brackets IDE&amp;lt;/a&amp;gt; on the desktop. But this shell has some great features and is general enough to allow you to modify it and use it for your own project. Brackets Shell is backed by Adobe and is updated regularly, and they &amp;lt;a href=&amp;quot;https://github.com/adobe/brackets-shell/pull/231&amp;quot; title=&amp;quot;Pull Request for Drag capabilities&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;accept pull requests&amp;lt;/a&amp;gt; for features that the Brackets IDE might not even use. Building the shell is easy thanks to the bundled Grunt file, and it is using CEF3 so the webkit version is up to date. We went with this solution at my current company and have been loving it. I intend to write a whole post on customizing and using the brackets shell soon.
+                    &amp;lt;/p&amp;gt;
+
+                    &amp;lt;p&amp;gt;
+                      &amp;lt;strong&amp;gt;UPDATE:&amp;lt;/strong&amp;gt; I wrote a full post on &amp;lt;a href=&amp;quot;http://clintberry.com/2013/html5-desktop-apps-with-brackets-shell/&amp;quot; title=&amp;quot;Native desktop apps in HTML with Brackets Shell&amp;quot;&amp;gt;getting started with brackets-shell&amp;lt;/a&amp;gt;
+                    &amp;lt;/p&amp;gt;
+
+                    &amp;lt;p&amp;gt;
+                      &amp;lt;strong&amp;gt;The Good&amp;lt;/strong&amp;gt;
+                    &amp;lt;/p&amp;gt;
+
+                    &amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+                      &amp;lt;/p&amp;gt; 
+
+                      &amp;lt;li&amp;gt;
+                        Backed by Adobe, with regular updates and an updated webkit version
+                      &amp;lt;/li&amp;gt;
+                      &amp;lt;li&amp;gt;
+                        NodeJS was recently integrated into the shell for some awesome new capabilities
+                      &amp;lt;/li&amp;gt;
+                      &amp;lt;li&amp;gt;
+                        Building and packaging apps is amazingly easy using GruntJS and runs on Windows and Mac
+                      &amp;lt;/li&amp;gt;
+                      &amp;lt;p&amp;gt;
+                        &amp;lt;/ul&amp;gt; 
+
+                        &amp;lt;p&amp;gt;
+                          &amp;lt;strong&amp;gt;The Bad&amp;lt;/strong&amp;gt;
+                        &amp;lt;/p&amp;gt;
+
+                        &amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+                          &amp;lt;/p&amp;gt; 
+
+                          &amp;lt;li&amp;gt;
+                            Lacking some features for customizing the main window, like transparency
+                          &amp;lt;/li&amp;gt;
+                          &amp;lt;li&amp;gt;
+                            No linux support (yet)
+                          &amp;lt;/li&amp;gt;
+                          &amp;lt;li&amp;gt;
+                            &amp;lt;a href=&amp;quot;https://github.com/adobe/brackets/issues/2389 &amp;quot; title=&amp;quot;no html5 audio in brackets shell&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;No HTML5 audio? (sad)&amp;lt;/a&amp;gt;
+                          &amp;lt;/li&amp;gt;
+                          &amp;lt;p&amp;gt;
+                            &amp;lt;/ul&amp;gt; 
+
+                            &amp;lt;h3&amp;gt;
+                              Other Solutions
+                            &amp;lt;/h3&amp;gt;
+
+                            &amp;lt;p&amp;gt;
+                              Other solutions I haven&amp;amp;#8217;t looked into are Windows 8 which runs &amp;lt;a href=&amp;quot;http://msdn.microsoft.com/en-us/library/windows/apps/br211385.aspx&amp;quot; title=&amp;quot;Windows 8 web apps&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;HTML apps as first class citizens&amp;lt;/a&amp;gt; directly on the desktop. Ubuntu desktop has a similar solution with &amp;lt;a href=&amp;quot;http://developer.ubuntu.com/resources/technologies/webapps/&amp;quot; title=&amp;quot;Ubuntu Web Apps&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;Ubuntu Web Apps&amp;lt;/a&amp;gt;.
+                            &amp;lt;/p&amp;gt;
+
+                            &amp;lt;p&amp;gt;
+                              As I see Windows and Ubuntu embracing HTML on the desktop, I can&amp;amp;#8217;t help but think the future is bright for desktop apps, even in a mobile first economy.
+                            &amp;lt;/p&amp;gt;
+
+                            &amp;lt;p&amp;gt;
+                              As always, let me know if you have any comments, corrections, or criticisms.
+                            &amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Modular AngularJS App Design</title>
+      <link>http://clintberry.github.io/2013/modular-angularjs-application-design/</link>
+      <pubDate>Mon, 29 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2013/modular-angularjs-application-design/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/angular-module1.png&#34; alt=&#34;angular module&#34; width=&#34;225&#34; height=&#34;200&#34; class=&#34;alignleft size-full wp-image-836&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I am a sucker for modules. Something about bundling a set of functionality and display logic into a module that can be easily redistributed for many apps makes my skin tingle. So when I saw that &amp;#8220;modules&amp;#8221; were a big part of the AngularJS methodology, I was super excited to try it out. I quickly realized however, that most of the examples online used one module for the entire application, which didn&amp;#8217;t seem all that modular to me.&lt;/p&gt;
+
+&lt;p&gt;At my current company we are developing an app that is ideal for the modular approach. We essentially have separate &amp;#8220;apps&amp;#8221; within our application, each of which we have bundled into full angular modules. This methodology could be used for many other applications as well so I thought I would share our approach.&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-info&#34;&gt;
+  Note: Credit for this structure design goes to my coworker and friend &lt;a href=&#34;https://twitter.com/tphalp&#34; title=&#34;Tyson&#34; target=&#34;_blank&#34;&gt;@tphalp&lt;/a&gt; who is rapidly becoming an angular expert and teaching me his ways.
+&lt;/div&gt;
+
+&lt;h4 id=&#34;directory-structure:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;Directory Structure&lt;/h4&gt;
+
+&lt;p&gt;Here is the way we setup our directory structure:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-04-23-at-7.23.24-PM.png&#34; alt=&#34;App Structure&#34; width=&#34;315&#34; height=&#34;363&#34; class=&#34;alignnone size-full wp-image-807&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can see we have the standard app directory similar to angular seed or a yeoman generated project. But we add a modules directory within the app directory. Each module then has its own sub-directory and a file for directives, controllers, filters and services and a directory for views.&lt;/p&gt;
+
+&lt;p&gt;I am still somewhat conflicted on wether I should be creating a new file for each directive/controller/filter/service or if the current way is fine. Sometimes the files get to be too large an unwieldy and I want them broken up.&lt;/p&gt;
+
+&lt;p&gt;here is a shot further down the tree:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/Screen-Shot-2013-04-23-at-7.23.56-PM.png&#34; alt=&#34;More app structure&#34; width=&#34;220&#34; height=&#34;170&#34; class=&#34;alignnone size-full wp-image-817&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We still maintain the scripts folder which houses app.js and our routes.js file for handling the routing.&lt;/p&gt;
+
+&lt;h4 id=&#34;defining-the-modules:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;Defining the Modules&lt;/h4&gt;
+
+&lt;p&gt;Let&amp;#8217;s have a look at the app.js file where we setup our modules and define dependencies.&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// Define all your modules with no dependencies
+angular.module(&amp;#039;BirthdayApp&amp;#039;, []);
+angular.module(&amp;#039;CollectionApp&amp;#039;, []);
+angular.module(&amp;#039;DashboardApp&amp;#039;, []);
+angular.module(&amp;#039;LoginApp&amp;#039;, []);
+angular.module(&amp;#039;MessageApp&amp;#039;, []);
+angular.module(&amp;#039;PatientApp&amp;#039;, []);
+angular.module(&amp;#039;PhoneApp&amp;#039;, []);
+angular.module(&amp;#039;ReportsApp&amp;#039;, []);
+
+// Lastly, define your &#34;main&#34; module and inject all other modules as dependencies
+angular.module(&amp;#039;MainApp&amp;#039;,
+  [
+    &amp;#039;BirthdayApp&amp;#039;,
+    &amp;#039;CollectionApp&amp;#039;,
+    &amp;#039;DashboardApp&amp;#039;,
+    &amp;#039;LoginApp&amp;#039;,
+    &amp;#039;MessageApp&amp;#039;,
+    &amp;#039;PatientApp&amp;#039;,
+    &amp;#039;PhoneApp&amp;#039;,
+    &amp;#039;ReportsApp&amp;#039;,
+    &amp;#039;templates-main&amp;#039;,
+  ]
+);
+
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Creating a &amp;#8220;MainAppModule&amp;#8221; allows us to inject all our other modules which in turn allows each of our other modules to access each other. So if the Reports module needs to access something from the Patient module, it will be able to with this method without having to inject the Patient module directly into the Reports module.&lt;/p&gt;
+
+&lt;p&gt;The MainApp also allows us to do routing and use ng-view in our index.html file:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;&amp;lt;html&amp;gt;
+// ...
+&amp;lt;body ng-app=&#34;MainApp&#34;&amp;gt;
+    &amp;lt;div ng-view&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-1:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Then you define your routes on the MainApp module&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// scripts/routes.js
+angular.module(&amp;#039;MainApp&amp;#039;)
+  .config(
+    [&amp;#039;$routeProvider&amp;#039;,
+      function($routeProvider) {
+        $routeProvider
+          .when(&amp;#039;/&amp;#039;, {
+            templateUrl: &amp;#039;modules/dashboard/views/index.html&amp;#039;,
+            action: &amp;#039;DashboardApp.DashboardCtrl&amp;#039;
+          })
+   // ...
+
+&lt;/pre&gt;
+
+&lt;h4 id=&#34;implementing-your-modules:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;Implementing Your Modules&lt;/h4&gt;
+
+&lt;p&gt;Now when we go to add a directive/service/filter/controller to a module, we open up the appropriate file within that module and simply use the appropriate module name when we define it.&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// app/modules/patient/controllers.js
+angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&amp;#039;, function($scope) {
+ $scope.patients = &#34;something&#34;;
+});
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-2:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Since we inject all modules into a &amp;#8220;global&amp;#8221; module you will need to take care to namespace your angular elements appropriately so you don&amp;#8217;t run into name conflicts. Take a look at &lt;a href=&#34;https://github.com/angular-ui/bootstrap&#34; title=&#34;Angular Bootstrap Github&#34; target=&#34;_blank&#34;&gt;angular bootstrap code&lt;/a&gt; too see how they use multiple modules and namespace them.&lt;/p&gt;
+
+&lt;p&gt;And that is it! Now you can make reusable modules for angular that you can use in different apps, or even &lt;a href=&#34;http://briantford.com/blog/angular-bower.html&#34; title=&#34;angular modules in bower&#34; target=&#34;_blank&#34;&gt;contribute your module to Bower&lt;/a&gt; if it is something that will benefit the community.&lt;/p&gt;
+
+&lt;p&gt;Hope this helps!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://clintberry.github.io/about/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/about/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/profile_photo.jpg&#34; alt=&#34;profile_photo&#34; width=&#34;128&#34; height=&#34;132&#34; class=&#34;alignleft size-full wp-image-656&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I am a full-stack web developer and wannabe entrepreneur. I am passionate about start-up companies and want to build my own successful business.&lt;/p&gt;
+
+&lt;p&gt;Some of the things I love (in no particular order, except the first):&lt;/p&gt;
+
+&lt;p&gt;I love my wife&lt;/p&gt;
+
+&lt;p&gt;I love wakeboarding&lt;/p&gt;
+
+&lt;p&gt;I love snow skiing&lt;/p&gt;
+
+&lt;p&gt;I love reading&lt;/p&gt;
+
+&lt;p&gt;I love ping-pong (if I don&amp;#8217;t call it table tennis it doesn&amp;#8217;t mean I suck)&lt;/p&gt;
+
+&lt;p&gt;I love start-up companies&lt;/p&gt;
+
+&lt;p&gt;I love e-commerce&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Experience</title>
+      <link>http://clintberry.github.io/experience/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/experience/</guid>
+      <description>&lt;div class=&#34;four columns &#34;&gt;
+  &lt;h4&gt;
+    Server Side
+  &lt;/h4&gt;
+  
+  &lt;ul class=&#34;list bullet&#34;&gt;
+    &lt;li&gt;
+      NodeJS
+    &lt;/li&gt;
+    &lt;li&gt;
+      PHP
+    &lt;/li&gt;
+    &lt;li&gt;
+      Python
+    &lt;/li&gt;
+    &lt;li&gt;
+      Zend Framework
+    &lt;/li&gt;
+    &lt;p&gt;
+      &lt;/ul&gt; &lt;/div&gt;
+      
+
+&lt;pre&gt;&lt;code&gt;  &amp;lt;div class=&amp;quot;four columns &amp;quot;&amp;gt;
+    &amp;lt;/p&amp;gt; 
+
+    &amp;lt;h4&amp;gt;
+      Front-end
+    &amp;lt;/h4&amp;gt;
+
+    &amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+      &amp;lt;li&amp;gt;
+        AngularJS
+      &amp;lt;/li&amp;gt;
+      &amp;lt;li&amp;gt;
+        Backbone
+      &amp;lt;/li&amp;gt;
+      &amp;lt;li&amp;gt;
+        &amp;lt;a href=&amp;quot;http://ender.jit.su/&amp;quot;&amp;gt;EnderJS&amp;lt;/a&amp;gt;
+      &amp;lt;/li&amp;gt;
+      &amp;lt;li&amp;gt;
+        HTML5
+      &amp;lt;/li&amp;gt;
+      &amp;lt;li&amp;gt;
+        Jquery
+      &amp;lt;/li&amp;gt;
+      &amp;lt;p&amp;gt;
+        &amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt;
+
+        &amp;lt;div class=&amp;quot;four columns &amp;quot;&amp;gt;
+          &amp;lt;/p&amp;gt; 
+
+          &amp;lt;h4&amp;gt;
+            Sysadmin/DB
+          &amp;lt;/h4&amp;gt;
+
+          &amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+            &amp;lt;li&amp;gt;
+              MySQL
+            &amp;lt;/li&amp;gt;
+            &amp;lt;li&amp;gt;
+              MongoDB
+            &amp;lt;/li&amp;gt;
+            &amp;lt;li&amp;gt;
+              Ubuntu
+            &amp;lt;/li&amp;gt;
+            &amp;lt;li&amp;gt;
+              CentOS
+            &amp;lt;/li&amp;gt;
+            &amp;lt;p&amp;gt;
+              &amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt;
+
+              &amp;lt;div class=&amp;quot;four columns &amp;quot;&amp;gt;
+                &amp;lt;/p&amp;gt; 
+
+                &amp;lt;h4&amp;gt;
+                  Other
+                &amp;lt;/h4&amp;gt;
+
+                &amp;lt;ul class=&amp;quot;list bullet&amp;quot;&amp;gt;
+                  &amp;lt;li&amp;gt;
+                    WordPress
+                  &amp;lt;/li&amp;gt;
+                  &amp;lt;li&amp;gt;
+                    Magento
+                  &amp;lt;/li&amp;gt;
+                  &amp;lt;li&amp;gt;
+                    FreeSWITCH
+                  &amp;lt;/li&amp;gt;
+                  &amp;lt;li&amp;gt;
+                    &amp;lt;a href=&amp;quot;http://appjs.org&amp;quot; title=&amp;quot;Dekstop apps in html5&amp;quot; target=&amp;quot;_blank&amp;quot;&amp;gt;AppJS&amp;lt;/a&amp;gt;
+                  &amp;lt;/li&amp;gt;
+                  &amp;lt;li&amp;gt;
+                    PhoneGap
+                  &amp;lt;/li&amp;gt;
+                  &amp;lt;p&amp;gt;
+                    &amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt;
+                  &amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AngularJS WebSocket Service Example</title>
+      <link>http://clintberry.github.io/2013/angular-js-websocket-service/</link>
+      <pubDate>Tue, 23 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2013/angular-js-websocket-service/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/angular_logofull.png&#34; alt=&#34;angular_logofull&#34; title=&#34;angular_logofull&#34; width=&#34;382&#34; height=&#34;99&#34; class=&#34;alignnone size-full wp-image-787&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At my curent company we are using Angular.js for a new desktop application (yes, a desktop application, but I won&amp;#8217;t get into that). Our app gets its data and events from a web service via a WebSocket connection. Angular comes bundled with some great tools to connect to REST servers, but it doesn&amp;#8217;t come with anything to help you with real-time data (and it probably shouldn&amp;#8217;t).&lt;/p&gt;
+
+&lt;p&gt;Here is an example of an Angular service (factory) that uses WebSockets to get data:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;angular.module(&amp;#039;MyApp&amp;#039;).factory(&amp;#039;MyService&amp;#039;, [&amp;#039;$q&amp;#039;, &amp;#039;$rootScope&amp;#039;, function($q, $rootScope) {
+    // We return this object to anything injecting our service
+    var Service = {};
+    // Keep all pending requests here until they get responses
+    var callbacks = {};
+    // Create a unique callback ID to map requests to responses
+    var currentCallbackId = 0;
+    // Create our websocket object with the address to the websocket
+    var ws = new WebSocket(&#34;ws://localhost:8000/socket/&#34;);
+    
+    ws.onopen = function(){  
+        console.log(&#34;Socket has been opened!&#34;);  
+    };
+    
+    ws.onmessage = function(message) {
+        listener(JSON.parse(message.data));
+    };
+
+    function sendRequest(request) {
+      var defer = $q.defer();
+      var callbackId = getCallbackId();
+      callbacks[callbackId] = {
+        time: new Date(),
+        cb:defer
+      };
+      request.callback_id = callbackId;
+      console.log(&amp;#039;Sending request&amp;#039;, request);
+      ws.send(JSON.stringify(request));
+      return defer.promise;
+    }
+
+    function listener(data) {
+      var messageObj = data;
+      console.log(&#34;Received data from websocket: &#34;, messageObj);
+      // If an object exists with callback_id in our callbacks object, resolve it
+      if(callbacks.hasOwnProperty(messageObj.callback_id)) {
+        console.log(callbacks[messageObj.callback_id]);
+        $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
+        delete callbacks[messageObj.callbackID];
+      }
+    }
+    // This creates a new callback ID for a request
+    function getCallbackId() {
+      currentCallbackId += 1;
+      if(currentCallbackId &amp;gt; 10000) {
+        currentCallbackId = 0;
+      }
+      return currentCallbackId;
+    }
+
+    // Define a &#34;getter&#34; for getting customer data
+    Service.getCustomers = function() {
+      var request = {
+        type: &#34;get_customers&#34;
+      }
+      // Storing in a variable for clarity on what sendRequest returns
+      var promise = sendRequest(request); 
+      return promise;
+    }
+
+    return Service;
+}])
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;h4 id=&#34;the-details:52a8cb3531d70648da771569c58d3924&#34;&gt;The Details&lt;/h4&gt;
+
+&lt;p&gt;To explain this code in detail I will walk you through a usage scenario and step through each function and talk about what it does. Assume we have an angular controller called &amp;#8220;customerList&amp;#8221;. We need to access customer data in our new controller and our customer data comes from a websocket service somewhere in Canada. So you inject your new websocket service into the scope of your controller and you are able to call getCustomers(). Quick and dirty example for illustration purposes:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;angular.module(&amp;#039;MyApp&amp;#039;)
+  .controller(&amp;#039;customerList&amp;#039;, [&amp;#039;MyService&amp;#039;, function(MyService){
+    $scope.customers = MyService.getCustomers();
+  }]);
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-1:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;So the getCustomers function is called and we see that the getCustomers function creates a request object literal and passes that to the sendRequest() function:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// Define a &#34;getter&#34; for getting customer data
+    Service.getCustomers = function() {
+      var request = {
+        type: &#34;get_customers&#34;
+      }
+      // Storing in a variable for clarity on what sendRequest returns
+      var promise = sendRequest(request); 
+      return promise;
+    }
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-2:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;You can see I am storing the response from sendRequest() in a variable called promise. I then return that promise. Let&amp;#8217;s look at what sendRequest() actually does:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;function sendRequest(request) {
+      var defer = $q.defer();
+      var callbackId = getCallbackId();
+      callbacks[callbackId] = {
+        time: new Date(),
+        cb:defer
+      };
+      request.callback_id = callbackId;
+      console.log(&amp;#039;Sending request&amp;#039;, request);
+      ws.send(JSON.stringify(request));
+      return defer.promise;
+    }
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-3:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;The sendRequest function first creates a defer object from the &lt;a href=&#34;https://github.com/kriskowal/q&#34; title=&#34;Q Library&#34; target=&#34;_blank&#34;&gt;Q library&lt;/a&gt; that is bundled with Angular. (For more information on deferred objects and promises in angular I highly recommend the &lt;a href=&#34;http://www.egghead.io/video/o84ryzNp36Q&#34; title=&#34;Promises in Angularjs&#34; target=&#34;_blank&#34;&gt;egghead.io video on promises&lt;/a&gt;) After that it creates a new callbackId variable and then adds an object literal to the callbacks object using the new callbackId as the index.&lt;/p&gt;
+
+&lt;h4 id=&#34;so-why-have-a-callback-id-and-a-callbacks-object:52a8cb3531d70648da771569c58d3924&#34;&gt;So why have a callback ID and a callbacks object?&lt;/h4&gt;
+
+&lt;p&gt;The callbacks variable is where I will store all requests that haven&amp;#8217;t received a response yet. Because services implemented on the websocket side can be asynchronous, you could potentially send several requests to the websocket and the websocket could return responses in a different order than it received requests. This is where callback Ids come into play. Usually websocket servers will have a way for you to map responses from the websocket server to requests that you sent to it. Sending a user-generated callback_id to the websocket is one way to do this. In my case, I start at 0 and work my way up to 10000 then start over. You can see this in my getCallback() function:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// This creates a new callback ID for a request
+    function getCallbackId() {
+      currentCallbackId += 1;
+      if(currentCallbackId &amp;gt; 10000) {
+        currentCallbackId = 0;
+      }
+      return currentCallbackId;
+    }
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-4:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Now back to sendRequest. After the callbackId is generated, and the deferred is stored in the callbacks variable, we add the new callbackId to the request message:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;request.callback_id = callbackId;
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-5:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Then we send the request object to the websocket and return a promise:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;ws.send(JSON.stringify(request));
+    return defer.promise;
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-6:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;Now out in Canada somewhere, our websocket server processes the request and sends back a list of customers to us through the websocket. When data comes in from the websocket we call the listener function:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;ws.onmessage = function(message) {
+        listener(message);
+    };
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-7:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;The listener looks at the message coming in and sees that it looks something like this:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;{
+  &#34;result&#34;: true,
+  &#34;callback_id&#34;: 1,
+  &#34;data&#34;: [
+    {
+      first_name: Danny,
+      last_name: Ocean
+    },
+    {
+      first_name: Rusty,
+      last_name: Ryan
+    }
+  ]
+}
+&lt;/pre&gt;
+
+&lt;h5 id=&#34;nbsp-8:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+
+&lt;p&gt;The listener() function sees the callback_id property and looks in our callbacks variable to see if we have a pending request waiting to be resolved. If there is one, it resolves the deferred object and deletes the callback object from the callbacks object-literal/dictionary/named-array:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;if(callbacks.hasOwnProperty(messageObj.callback_id)) {
+      console.log(callbacks[messageObj.callback_id]);
+      $rootScope.$apply(callbacks[messageObj.callback_id].cb.resolve(messageObj.data));
+      delete callbacks[messageObj.callbackID];
+    }
+&lt;/pre&gt;
+
+&lt;p&gt;And then, lo and behold, our scope variable, $scope.customers, is populated with our new customer list! And now you have a functioning websocket service. &lt;img src=&#34;http://clintberry.com/wp-includes/images/smilies/simple-smile.png&#34; alt=&#34;:-)&#34; class=&#34;wp-smiley&#34; style=&#34;height: 1em; max-height: 1em;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I know this all can seem like a lot if you are new to angular or haven&amp;#8217;t heard of promises before. Feel free to ask any questions in the comments or email me on my contact form if you need help. I am usually pretty good about getting back to you.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Backbone.js apps with Authentication Tutorial</title>
+      <link>http://clintberry.github.io/2012/backbone-js-apps-authentication-tutorial/</link>
+      <pubDate>Sat, 01 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2012/backbone-js-apps-authentication-tutorial/</guid>
+      <description>
+
+&lt;p&gt;&lt;img src=&#34;http://clintberry.github.io/images/backbonelocked.png&#34; alt=&#34;backbonelocked&#34; title=&#34;backbonelocked&#34; width=&#34;568&#34; height=&#34;111&#34; class=&#34;alignnone size-full wp-image-670&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;At my current company I am working on my first large-scale production backbone.js app and I couldn&amp;#8217;t be happier. After using backbone.js for a few months I have caught the vision and I am becoming more and more proficient. But every once and a while I still run into problems I would consider basic, but I can&amp;#8217;t seem to find much help on the interwebs. Authentication with backbone.js apps was one of those problems. So I am posting the solution I came up with in hopes it will benefit someone else, and hopefully will garner some feedback or potentially better ways to solve authentication with Backbone.js.&lt;/p&gt;
+
+&lt;h4 id=&#34;starting-code-base:73b85921beb05e353da557a09d786139&#34;&gt;Starting Code Base&lt;/h4&gt;
+
+&lt;p&gt;To start this tutorial, I will be using an already created backbone.js application called &lt;a href=&#34;https://github.com/ccoenraets/backbone-directory&#34; title=&#34;Backbone Directory&#34; target=&#34;_blank&#34;&gt;Backbone Directory&lt;/a&gt;, created by &lt;a href=&#34;http://coenraets.org/blog/2012/02/sample-app-with-backbone-js-and-twitter-bootstrap/&#34; title=&#34;Sample Backbone Bootstrap app&#34; target=&#34;_blank&#34;&gt;Christophe Coenraets&lt;/a&gt; who has some great tutorials and information about backbone on his blog. He has some mobile versions of the app in the code base as well, but we will be working in the &amp;#8220;web&amp;#8221; directory.&lt;/p&gt;
+
+&lt;h4 id=&#34;project-overview:73b85921beb05e353da557a09d786139&#34;&gt;Project Overview&lt;/h4&gt;
+
+&lt;p&gt;Backbone Directory uses the Slim PHP framework on the server to communicate with backbone, but the principles we will be going over are language agnostic. In addition, Slim is based on the Sinatra (Ruby) methodology which in turn translates to Express.js framework for Node.js (JavaScript), and Tornado (Python).&lt;/p&gt;
+
+&lt;h4 id=&#34;setting-up-very-basic-server-side-authentication:73b85921beb05e353da557a09d786139&#34;&gt;Setting Up (Very) Basic Server Side Authentication&lt;/h4&gt;
+
+&lt;p&gt;To get this started, we need to setup the server side login functions, and also a way to protect API requests so no data goes to anyone that isn&amp;#8217;t authenticated. First, let&amp;#8217;s add a login function to the api/index.php in the web directory:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// file: api/index.php
+session_start(); // Add this to the top of the file
+
+/**
+ * Quick and dirty login function with hard coded credentials (admin/admin)
+ * This is just an example. Do not use this in a production environment
+ */
+function login() {
+    if(!empty($_POST[&amp;#039;email&amp;#039;]) &amp;&amp; !empty($_POST[&amp;#039;password&amp;#039;])) {
+        // normally you would load credentials from a database. 
+        // This is just an example and is certainly not secure
+        if($_POST[&amp;#039;email&amp;#039;] == &amp;#039;admin&amp;#039; &amp;&amp; $_POST[&amp;#039;password&amp;#039;] == &amp;#039;admin&amp;#039;) {
+            $user = array(&#34;email&#34;=&amp;gt;&#34;admin&#34;, &#34;firstName&#34;=&amp;gt;&#34;Clint&#34;, &#34;lastName&#34;=&amp;gt;&#34;Berry&#34;, &#34;role&#34;=&amp;gt;&#34;user&#34;);
+            $_SESSION[&amp;#039;user&amp;#039;] = $user;
+            echo json_encode($user);
+        }
+        else {
+            echo &amp;#039;{&#34;error&#34;:{&#34;text&#34;:&#34;You shall not pass...&#34;}}&amp;#039;;
+        }
+    }
+    else {
+        echo &amp;#039;{&#34;error&#34;:{&#34;text&#34;:&#34;Username and Password are required.&#34;}}&amp;#039;;
+    }
+}
+&lt;/pre&gt;
+
+&lt;p&gt;This is a very basic login function that is obviously not secure, but will do the job for us, since our focus is really on the backbone side of things. The key thing to note here, is that since we are using backbone, even the login function works as a JSON api request. We don&amp;#8217;t generate any HTML, we simply send back JSON data with a user identity, or an error if something went wrong. Now we need to associate this function with a route in Slim, so add the following code under the other defined routes in index.php:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// file: api/index.php
+// I add the login route as a post, since we will be posting the login form info
+$app-&amp;gt;post(&amp;#039;/login&amp;#039;, &amp;#039;login&amp;#039;);
+
+&lt;/pre&gt;
+
+&lt;p&gt;Now we also need to make sure no data gets sent to anyone that isn&amp;#8217;t authorized. So now we define an authorize function to check that a user has the right permissions to get the data:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// File: api/index.php
+/**
+ * Authorise function, used as Slim Route Middlewear
+ */
+function authorize($role = &#34;user&#34;) {
+    return function () use ( $role ) {
+        // Get the Slim framework object
+        $app = Slim::getInstance();
+        // First, check to see if the user is logged in at all
+        if(!empty($_SESSION[&amp;#039;user&amp;#039;])) {
+            // Next, validate the role to make sure they can access the route
+            // We will assume admin role can access everything
+            if($_SESSION[&amp;#039;user&amp;#039;][&amp;#039;role&amp;#039;] == $role || 
+                $_SESSION[&amp;#039;user&amp;#039;][&amp;#039;role&amp;#039;] == &amp;#039;admin&amp;#039;) {
+                //User is logged in and has the correct permissions... Nice!
+                return true;
+            }
+            else {
+                // If a user is logged in, but doesn&amp;#039;t have permissions, return 403
+                $app-&amp;gt;halt(403, &amp;#039;You shall not pass!&amp;#039;);
+            }
+        }
+        else {
+            // If a user is not logged in at all, return a 401
+            $app-&amp;gt;halt(401, &amp;#039;You shall not pass!&amp;#039;);
+        }
+    };
+}
+&lt;/pre&gt;
+
+&lt;p&gt;The authorize function uses some PHP closure Kung Fu, but the key is to return HTTP error codes to backbone. In our case we are going to return a 401 error (unauthorized) if a user is trying to access something they need to be logged in for, and a 403 (forbidden) if the user is logged in but doesn&amp;#8217;t have enough privs to get the data he wants.&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-info&#34;&gt;
+  &lt;strong&gt;More Info:&lt;/strong&gt; Check out &lt;a href=&#34;http://www.slimframework.com/documentation/stable#routing-middleware&#34; title=&#34;Slim Route Middlewear&#34; target=&#34;_blank&#34;&gt;Slim Route Middleware&lt;/a&gt; and &lt;a href=&#34;http://php.net/manual/en/functions.anonymous.php&#34; title=&#34;PHP Closures&#34; target=&#34;_blank&#34;&gt;PHP Closures&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The last thing we need to do in our server-side code is add the middleware to the routes we want to protect:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// File: api/index.php
+$app-&amp;gt;get(&amp;#039;/employees&amp;#039;, authorize(&amp;#039;user&amp;#039;), &amp;#039;getEmployees&amp;#039;);
+$app-&amp;gt;get(&amp;#039;/employees/:id&amp;#039;,    authorize(&amp;#039;user&amp;#039;),&amp;#039;getEmployee&amp;#039;);
+$app-&amp;gt;get(&amp;#039;/employees/:id/reports&amp;#039;,    authorize(&amp;#039;admin&amp;#039;),&amp;#039;getReports&amp;#039;);
+$app-&amp;gt;get(&amp;#039;/employees/search/:query&amp;#039;, authorize(&amp;#039;user&amp;#039;),&amp;#039;getEmployeesByName&amp;#039;);
+$app-&amp;gt;get(&amp;#039;/employees/modifiedsince/:timestamp&amp;#039;, authorize(&amp;#039;user&amp;#039;), &amp;#039;findByModifiedDate&amp;#039;);
+&lt;/pre&gt;
+
+&lt;h4 id=&#34;setting-up-backbone-views:73b85921beb05e353da557a09d786139&#34;&gt;Setting Up Backbone Views&lt;/h4&gt;
+
+&lt;p&gt;Now let&amp;#8217;s get to the good stuff: Setting up our backbone views. For authentication we will of course need a login view:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// File: web/js/views/login.js
+window.LoginView = Backbone.View.extend({
+
+    initialize:function () {
+        console.log(&amp;#039;Initializing Login View&amp;#039;);
+    },
+
+    events: {
+        &#34;click #loginButton&#34;: &#34;login&#34;
+    },
+
+    render:function () {
+        $(this.el).html(this.template());
+        return this;
+    },
+
+    login:function (event) {
+        event.preventDefault(); // Don&amp;#039;t let this button submit the form
+        $(&amp;#039;.alert-error&amp;#039;).hide(); // Hide any errors on a new submit
+        var url = &amp;#039;../api/login&amp;#039;;
+        console.log(&amp;#039;Loggin in... &amp;#039;);
+        var formValues = {
+            email: $(&amp;#039;#inputEmail&amp;#039;).val(),
+            password: $(&amp;#039;#inputPassword&amp;#039;).val()
+        };
+
+        $.ajax({
+            url:url,
+            type:&amp;#039;POST&amp;#039;,
+            dataType:&#34;json&#34;,
+            data: formValues,
+            success:function (data) {
+                console.log([&#34;Login request details: &#34;, data]);
+               
+                if(data.error) {  // If there is an error, show the error messages
+                    $(&amp;#039;.alert-error&amp;#039;).text(data.error.text).show();
+                }
+                else { // If not, send them back to the home page
+                    window.location.replace(&amp;#039;#&amp;#039;);
+                }
+            }
+        });
+    }
+});
+
+&lt;/pre&gt;
+
+&lt;p&gt;This view is pretty straight forward. It renders the login template, and put a click event handler on the login button. The event handler fires the login function when the button is clicked and sends an ajax request to our php login function. If an error comes back, we put it in the error div and show that div.&lt;/p&gt;
+
+&lt;p&gt;Here is the login template code:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;&amp;lt;!-- File: web/tpl/Login.html --&amp;gt;
+&amp;lt;h1&amp;gt;Login&amp;lt;/h1&amp;gt;
+&amp;lt;div class=&#34;alert alert-error&#34; style=&#34;display:none;&#34;&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;form class=&#34;form-horizontal&#34;&amp;gt;
+  &amp;lt;div class=&#34;control-group&#34;&amp;gt;
+    &amp;lt;label class=&#34;control-label&#34; for=&#34;inputEmail&#34;&amp;gt;Email&amp;lt;/label&amp;gt;
+    &amp;lt;div class=&#34;controls&#34;&amp;gt;
+      &amp;lt;input type=&#34;text&#34; id=&#34;inputEmail&#34; placeholder=&#34;Email&#34;&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+  &amp;lt;div class=&#34;control-group&#34;&amp;gt;
+    &amp;lt;label class=&#34;control-label&#34; for=&#34;inputPassword&#34;&amp;gt;Password&amp;lt;/label&amp;gt;
+    &amp;lt;div class=&#34;controls&#34;&amp;gt;
+      &amp;lt;input type=&#34;password&#34; id=&#34;inputPassword&#34; placeholder=&#34;Password&#34;&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+  &amp;lt;div class=&#34;control-group&#34;&amp;gt;
+    &amp;lt;div class=&#34;controls&#34;&amp;gt;
+      &amp;lt;button type=&#34;submit&#34; class=&#34;btn&#34; id=&#34;loginButton&#34;&amp;gt;Sign in&amp;lt;/button&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/pre&gt;
+
+&lt;h4 id=&#34;telling-backbone-how-to-handle-401-038-403-errors-ajaxsetup:73b85921beb05e353da557a09d786139&#34;&gt;Telling Backbone How to Handle 401 &amp;#038; 403 Errors (ajaxSetup)&lt;/h4&gt;
+
+&lt;p&gt;Now here comes the kicker. We need backbone/jquery to catch any requests that return a 401 or 403 error and handle those requests appropriately. The method I have used to do this is to call the jquery function ajaxSetup which allows us to watch for certain status codes and to handle them appropriately.&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// File: web/js/main.js
+// Tell jQuery to watch for any 401 or 403 errors and handle them appropriately
+$.ajaxSetup({
+    statusCode: {
+        401: function(){
+            // Redirec the to the login page.
+            window.location.replace(&amp;#039;/#login&amp;#039;);
+         
+        },
+        403: function() {
+            // 403 -- Access denied
+            window.location.replace(&amp;#039;/#denied&amp;#039;);
+        }
+    }
+});
+&lt;/pre&gt;
+
+&lt;p&gt;Now all 401s and 403s will be redirected to appropriate place. (I haven&amp;#8217;t implemented the &amp;#8220;denied&amp;#8221; view yet, but you get the idea)&lt;/p&gt;
+
+&lt;p&gt;Lastly we update the backbone routing to include the login url and login view:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;// File: web/js/main.js
+window.Router = Backbone.Router.extend({
+
+    routes: {
+        &#34;&#34;: &#34;home&#34;,
+        &#34;contact&#34;: &#34;contact&#34;,
+        &#34;employees/:id&#34;: &#34;employeeDetails&#34;,
+        &#34;login&#34; : &#34;login&#34;
+    },
+
+// ...
+
+    login: function() {
+        $(&amp;#039;#content&amp;#039;).html(new LoginView().render().el);
+    }
+}
+&lt;/pre&gt;
+
+&lt;h4 id=&#34;the-final-word-and-source-code:73b85921beb05e353da557a09d786139&#34;&gt;The Final Word (and source code)&lt;/h4&gt;
+
+&lt;p&gt;That is it! You should now have a password protected REST API for BackboneJS. I have posted the &lt;a href=&#34;https://github.com/clintberry/backbone-directory-auth&#34; title=&#34;Backbone Authentication&#34; target=&#34;_blank&#34;&gt;project to github (here)&lt;/a&gt;, so feel free to check out the code and see it in action. Currently, you will need PHP/Apache with MySQL setup and the database imported. I am working on a Vagrant file for the project so you will be able to see it in action without setting up your own server.&lt;/p&gt;
+
+&lt;p&gt;As always, let me know if you have any questions or suggestions.&lt;/p&gt;
+
+&lt;p&gt;Source Code: &lt;a href=&#34;https://github.com/clintberry/backbone-directory-auth&#34; title=&#34;Backbone Authentication&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;https://github.com/clintberry/backbone-directory-auth&#34;&gt;https://github.com/clintberry/backbone-directory-auth&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Why Plivo Cloud Is Better Than Twilio</title>
+      <link>http://clintberry.github.io/2012/why-plivo-cloud-is-better-than-twilio/</link>
+      <pubDate>Thu, 19 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2012/why-plivo-cloud-is-better-than-twilio/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://plivo.com&#34; title=&#34;Plivo Cloud&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://clintberry.github.io/images/plivologo.png&#34; alt=&#34;&#34; title=&#34;plivo&#34; class=&#34;alignleft size-full wp-image-603&#34; style=&#34;margin:15px 10px 10px 10px&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Last year around this time Plivo.org was announced to the public, allowing anyone to develop telephony applications with the web language of their choice on top of their &lt;em&gt;OWN&lt;/em&gt; FreeSWITCH based phone system. Plivo.org is an amazing project, and if you aren&amp;#8217;t familiar with it I suggest you read &lt;a href=&#34;http://clintberry.github.io/2011/getting-started-with-plivo/&#34; title=&#34;Getting started with Plivo&#34;&gt;my getting started post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now the founders of Plivo.org have built on that technology to create a new telephony platform, &lt;a href=&#34;http://plivo.com&#34; title=&#34;Plivo Cloud&#34; target=&#34;_blank&#34;&gt;Plivo Cloud&lt;/a&gt;. I know what you are thinking&amp;#8211; another Twilio. And while the general idea (building awesome telephony apps in any web language) is still the same, there are a few things that make Plivo Cloud much different, and much better.&lt;/p&gt;
+
+&lt;div class=&#34;alert alert-info&#34;&gt;
+  &lt;strong&gt;Disclaimer:&lt;/strong&gt; I know the founders of Plivo and I am big fan of the open source version, so much so that I wrote the NodeJS helper library. I am hardly un-biased, but that is simply because I think the idea is awesome.
+&lt;/div&gt;
+
+&lt;p&gt;When I first learned about Twilio I was blown away. &amp;#8220;You mean I can create awesome telephone applications in PHP? Sweet!&amp;#8221; Having ties to entrepreneurs in the call center industry, I immediately pitched to them how easy it would be to create amazing call center applications with phone functions built right in. They were impressed, but I couldn&amp;#8217;t get any of them to bite the bullet. The same issues came up again and again. Plivo Cloud is a game-changer because it addresses some of these issues. Here are some of the biggest differences:&lt;/p&gt;
+
+&lt;h3 id=&#34;direct-endpoint-integration:4ac98f6e5b67b5286ef325464c8518bb&#34;&gt;Direct Endpoint Integration&lt;/h3&gt;
+
+&lt;p&gt;One of the biggest pain points for companies thinking about switching to a Twilio-based solution is cost. Conversations with customers would go something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Customer:&lt;/strong&gt; &amp;#8220;So you mean I pay 2 cents per minute on top of my internal VOIP system costs?&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Me:&lt;/strong&gt; &amp;#8220;Well, yes&amp;#8230;&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Customer:&lt;/strong&gt; &amp;#8220;No thanks&amp;#8230;&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;Plivo Cloud allows you to connect SIP-based phones directly to the cloud, meaning you can use Plivo as your phone system! This means you don&amp;#8217;t pay for VOIP in your office on top of platform costs. You simply pay per minute for the platform, and it acts as your VOIP service as well. Amazing!&lt;/p&gt;
+
+&lt;p&gt;This also means getting a new office setup with a phone system is relatively painless. Buy SIP phones, point them to your Plivo account, and you are off to the races.&lt;/p&gt;
+
+&lt;h3 id=&#34;carrier-choice:4ac98f6e5b67b5286ef325464c8518bb&#34;&gt;Carrier Choice&lt;/h3&gt;
+
+&lt;p&gt;Another pain point of services like Twilio/Voxeo is that you are locked-in to whatever carriers they are using for their cloud. If your business is under contract with a different carrier, it can be a pain to migrate. But what if you could tie your new, shiny platform with your current carrier? That would be awesome. Well, Plivo Cloud is awesome. They will help you tie in your current carrier to their FreeSWITCH based system and then charge a flat rate of 0.4 cents per minute for platform usage. This provides a level of freedom unheard of for this type of company.&lt;/p&gt;
+
+&lt;h3 id=&#34;self-hosted-cloud:4ac98f6e5b67b5286ef325464c8518bb&#34;&gt;Self-Hosted Cloud&lt;/h3&gt;
+
+&lt;p&gt;The last key difference with Plivo Cloud is the ability to host your own cloud. While this hasn&amp;#8217;t been announced or priced yet, I have spoken to Venky about it and this is a key part of the Plivo strategy. Imagine not being held hostage by a third party platform with all their Amazon Cloud outages and anything else they choose to inflict on your application. For mission critical telephony applications, it is crucial to have redundancy, and Plivo Cloud will offer a level of control that competitors won&amp;#8217;t.&lt;/p&gt;
+
+&lt;h3 id=&#34;i-8217-m-not-a-hater:4ac98f6e5b67b5286ef325464c8518bb&#34;&gt;I&amp;#8217;m Not a Hater&lt;/h3&gt;
+
+&lt;p&gt;To be clear, I love Twilio. I think it has changed the web by making phone system integration into web apps easier than ever. But Plivo Cloud offers many freedoms and pricing advantages that separate it from the competition.&lt;/p&gt;
+
+&lt;p&gt;In an upcoming post I will give tips and tricks on how to migrate your app to Plivo Cloud.&lt;/p&gt;
+
+&lt;p&gt;Also, read more about Plivo on the &lt;a href=&#34;http://techcrunch.com/2012/07/09/yc-backed-plivo-launches-its-scalable-api-platform-for-voice-sms-apps/&#34; title=&#34;Plivo Cloud Rocks!&#34;&gt;TechCrunch announcement&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Search Results</title>
+      <link>http://clintberry.github.io/search-results/</link>
+      <pubDate>Thu, 19 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/search-results/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Phing For PHP Deployment</title>
+      <link>http://clintberry.github.io/2012/phing-php-deployment/</link>
+      <pubDate>Tue, 10 Apr 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2012/phing-php-deployment/</guid>
+      <description>&lt;p&gt;I recently did a presentation at the Utah PHP Users group on Phing for deploying PHP applications. Here are the slides:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://clintberry.com/slides/phing&#34; title=&#34;Phing Slides&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://clintberry.com/slides/phing&#34;&gt;http://clintberry.com/slides/phing&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sublime Text 2 for PHP &amp; WordPress Development</title>
+      <link>http://clintberry.github.io/2012/sublime-text-2-php-symfony-development/</link>
+      <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2012/sublime-text-2-php-symfony-development/</guid>
+      <description>
+
+&lt;p&gt;Sublime Text 2 is an amazing code editor that I started using on the recommendation of a friend. I fell in love and haven&amp;#8217;t looked back. Here are some recomendations for setting up Sublime Text 2 for PHP and WordPress development.&lt;/p&gt;
+
+&lt;h3 id=&#34;why-is-sublime-text-2-awesome:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Why is Sublime Text 2 Awesome?&lt;/h3&gt;
+
+&lt;p&gt;Where do I start&amp;#8230; Here are some of my favorite features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It is light weight. The download size is under 10 megs and it runs fast&lt;/li&gt;
+&lt;li&gt;It is VERY customizable. Every key binding and setting imaginable is available to customize&lt;/li&gt;
+&lt;li&gt;Plugins, plugins, plugins. ST2 has a built in python interpreter which allows web developers to create custom plugins. (The only thing that would make it better is if it had node.js bundled in for plugins, but I&amp;#8217;ll take Python)&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;vim key bindings. Yes, if you love vim, or want to love vim, then you will love sublime text 2, which comes bundled with &amp;#8220;vintage mode&amp;#8221;, which allows you to use vim keybindings.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;It runs on Windows, OSX, and Linux, so I can use ST2 on almost any computer. &lt;/ul&gt;
+There are &lt;strong&gt;MANY&lt;/strong&gt; more reasons. Check out this link for some good ones: &lt;a href=&#34;http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/&#34; title=&#34;Sublime Text Tips and Tricks&#34; target=&#34;_blank&#34;&gt;Sublime Text Tips and Tricks&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you should be fully convinced that Sublime Text is the greatest thing since sliced bread  &lt;img src=&#34;http://clintberry.com/wp-includes/images/smilies/simple-smile.png&#34; alt=&#34;:-)&#34; class=&#34;wp-smiley&#34; style=&#34;height: 1em; max-height: 1em;&#34; /&gt;Let&amp;#8217;s get it setup for developing PHP applications.&lt;/p&gt;
+
+&lt;h3 id=&#34;setting-up-package-management:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Setting Up Package Management&lt;/h3&gt;
+
+&lt;p&gt;One of the coolest plugins for ST2 is the package manager. This should be the first plugin you install because it is the gateway to a big list of other great plugins for you. Installation is easy, simply open ST2 and press command+` (on windows ctrl+`) and it will open up the ST2 console. Copy and paste this code into the terminal:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;import urllib2,os; pf=&amp;#039;Package Control.sublime-package&amp;#039;; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),&amp;#039;wb&amp;#039;).write(urllib2.urlopen(&amp;#039;http://sublime.wbond.net/&amp;#039;+pf.replace(&amp;#039; &amp;#039;,&amp;#039;%20&amp;#039;)).read()); print &amp;#039;Please restart Sublime Text to finish installation&amp;#039;
+&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;That&amp;#8217;s it, you now have package control built into your editor. To access package control, press shift+command+p and start typing &amp;#8220;package&amp;#8221;. (shift+command+p opens the window of all commands in sublime text 2). You will see a list of commands related to package control. Sweet.&lt;/p&gt;
+
+&lt;h3 id=&#34;packages-you-need:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Packages you need&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;#8217;s get this puppy setup for some PHP development!&lt;/p&gt;
+
+&lt;p&gt;To install a package, type shift+command+p and start typing &amp;#8220;package install&amp;#8221; and hit enter when it is highlighted. Wait a few seconds and it will bring up a list of available packages. Select the package you want to install and then hit enter. That&amp;#8217;s it! Now follow those steps for the following packages:&lt;/p&gt;
+
+&lt;h5 id=&#34;sublime-code-intel-1:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;&lt;a href=&#34;https://github.com/Kronuz/SublimeCodeIntel&#34; title=&#34;Sublime Code Intel&#34;&gt;Sublime Code Intel&lt;/a&gt;&lt;/h5&gt;
+
+&lt;p&gt;What use would editing code be without some good autocompletion? CodeIntel provides a better code completion by parsing all the files in your project and creating a nice index of autocomplete options. It also provides click-to-definition functionality by clicking alt-click on a function or variable name. I have found that this plugin isn&amp;#8217;t as consistent or as fast as full IDEs such as Eclipse, but in general is pretty good.&lt;/p&gt;
+
+&lt;h5 id=&#34;sublime-linter-2:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;[Sublime Linter][2]&lt;/h5&gt;
+
+&lt;p&gt;This plugin gives you real-time error checking in your php code which is standard in most IDEs. Now it is standard in Sublime Text &lt;img src=&#34;http://clintberry.com/wp-includes/images/smilies/simple-smile.png&#34; alt=&#34;:-)&#34; class=&#34;wp-smiley&#34; style=&#34;height: 1em; max-height: 1em;&#34; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&#34;zen-coding-3:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;&lt;a href=&#34;https://bitbucket.org/sublimator/sublime-2-zencoding&#34; title=&#34;Zen Coding&#34;&gt;Zen Coding&lt;/a&gt;&lt;/h5&gt;
+
+&lt;p&gt;If you aren&amp;#8217;t using Zen Coding to create your HTML, then you are missing out. This adds zen coding features into sublime text 2.&lt;/p&gt;
+
+&lt;h5 id=&#34;sublime-jsdocs-4:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;&lt;a href=&#34;https://github.com/spadgos/sublime-jsdocs&#34; title=&#34;PHP Doc Blocks&#34;&gt;Sublime JsDocs&lt;/a&gt;&lt;/h5&gt;
+
+&lt;p&gt;Don&amp;#8217;t let the name fool you, this plugin is a smart Doc Block generator for PHP as well as JavaScript. It is the best one of any I have tried. To use it, simply type /** in front of the function/variable you want to generate the docs for and hit tab. You will get a nice block generated for you.&lt;/p&gt;
+
+&lt;h5 id=&#34;wordpress-plugin-5:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;[WordPress Plugin][5]&lt;/h5&gt;
+
+&lt;p&gt;This plugin adds a bunch of good snippets to have in your snippet/auto-complete library for WordPress. This helps speed up development significantly if you do a lot of wordpress sites.&lt;/p&gt;
+
+&lt;h5 id=&#34;git-6-038-also-git-sidebar-7:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;[Git][6] &amp;#038; also [Git Sidebar][7]&lt;/h5&gt;
+
+&lt;p&gt;Git commands integrated into git hub for your favorite version control. As an added bonus, add git functionality to the sidebar context menu as well.&lt;/p&gt;
+
+&lt;h3 id=&#34;syntax-specific-settings:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Syntax Specific Settings&lt;/h3&gt;
+
+&lt;p&gt;One of the greatest things about ST2 is how easy it is to customize. All the settings are simply JSON documents that you can change to meet your needs. Go ahead and open up Preferences-&amp;gt;Global Preferences and you will see all settings that are available. But don&amp;#8217;t change this file, since it gets overwritten during upgrades. Open up the User preferences file and put in any changes that you need.&lt;/p&gt;
+
+&lt;p&gt;But if you want to customize setting for only certain syntaxes (like PHP) you can do so by opening a PHP file in the editor and then going to Preferences-&amp;gt;Syntax Specific and you will be able to change settings for only the PHP syntax. For instance I like it when I double click a variable in php for it to select the $ symbol as well, but by default ST2 doesn&amp;#8217;t do this, so I change the PHP settings to not include $ in word separators.&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;{
+&#34;extensions&#34;:
+[
+&#34;php&#34;
+],
+&#34;word_separators&#34;: &#34;./\\()\&#34;&amp;#039;-:,.;&amp;lt;&amp;gt;~!@#%^&amp;*|+=[]{}`~?&#34;
+}&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;h3 id=&#34;important-shortcut-keys:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Important Shortcut Keys&lt;/h3&gt;
+
+&lt;p&gt;Lastly, I want to include a short list of some short cut keys you will likely enjoy:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Alt+[1-9]&lt;/strong&gt; &amp;#8211; Switch to a certain tab&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Command+P&lt;/strong&gt; &amp;#8211; Fast file switching, Line Number, Jump to definition (within file)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Alt+.&lt;/strong&gt; &amp;#8211; Close a started HTML tag (although I suggest Zen Coding Plugin)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Esc&lt;/strong&gt; &amp;#8211; Enter Vintage Mode (if enabled)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Command+D&lt;/strong&gt; &amp;#8211; Multi-select same word. This is VERY COOL.&lt;/p&gt;
+
+&lt;p&gt;Here are some other good &lt;a href=&#34;http://www.sublimetext.com/forum/viewtopic.php?f=2&amp;#038;t=4198&#34; title=&#34;Sublime Text 2 Shortcut Keys&#34; target=&#34;_blank&#34;&gt;shortcut&lt;/a&gt; &lt;a href=&#34;http://www.sublimetext.com/docs/selection&#34; title=&#34;Sublime Text 2 Shortcut Keys&#34; target=&#34;_blank&#34;&gt;keys&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I hope you enjoy Sublime Text as much as I have!&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;[2]: &lt;a href=&#34;https://github.com/Kronuz/SublimeLinter&#34;&gt;https://github.com/Kronuz/SublimeLinter&lt;/a&gt; &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;[5]: &lt;a href=&#34;https://github.com/purplefish32/sublime-text-2-wordpress&#34;&gt;https://github.com/purplefish32/sublime-text-2-wordpress&lt;/a&gt; &amp;ldquo;&amp;rdquo;
+ [6]: &lt;a href=&#34;https://github.com/kemayo/sublime-text-2-git&#34;&gt;https://github.com/kemayo/sublime-text-2-git&lt;/a&gt; &amp;ldquo;&amp;rdquo;
+ [7]: &lt;a href=&#34;https://github.com/SublimeText/SideBarGit&#34;&gt;https://github.com/SublimeText/SideBarGit&lt;/a&gt; &amp;ldquo;&amp;rdquo;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Custom User Providers in Symfony2</title>
+      <link>http://clintberry.github.io/2011/custom-user-providers-symfony2/</link>
+      <pubDate>Wed, 21 Dec 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2011/custom-user-providers-symfony2/</guid>
+      <description>
+
+&lt;h4 id=&#34;why-custom-user-providers:0062a4ae26007760914834b2b096356a&#34;&gt;Why Custom User Providers?&lt;/h4&gt;
+
+&lt;p&gt;At my current job all the database systems are managed by DB admins and the developers have to connect to the database via web services. We do not connect to the databases directly. This allows for better &lt;a title=&#34;Separation of Concerns&#34; href=&#34;http://en.wikipedia.org/wiki/Separation_of_concerns&#34; target=&#34;_blank&#34;&gt;separation of concerns&lt;/a&gt; and allows experts to focus on their respective specialties. But if you are programming a Symfony2 app, that means you don&amp;#8217;t get to use Doctrine or any other ORM, which in turn means you create your own models/entities.&lt;/p&gt;
+
+&lt;p&gt;When you want to develop the authentication parts of your new app you will quickly find that there is plenty of documentation for Doctrine/ORM based apps, but if you are using your own custom models then you run into pages &lt;del datetime=&#34;2012-01-20T21:30:13+00:00&#34;&gt;&lt;a href=&#34;http://symfony.com/doc/current/cookbook/security/custom_provider.html&#34; target=&#34;_blank&#34;&gt;like this one&lt;/a&gt;&lt;/del&gt;.  &lt;del datetime=&#34;2012-01-20T21:30:13+00:00&#34;&gt;(when I finish this post I will submit an article to the docs and see if they approve it)&lt;/del&gt; &lt;strong&gt;UPDATE: Someone beat me to it, there is now a good tutorial in the Symfony docs for custom user providers.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;So, after a few hours of googling-reading-tinkering I figured out how to use the Symfony authentication system  with my own custom models. Keep in mind I am still new to Symfony2, so many of these concepts will be beginner level.&lt;/p&gt;
+
+&lt;h4 id=&#34;your-user-entity:0062a4ae26007760914834b2b096356a&#34;&gt;Your User Entity&lt;/h4&gt;
+
+&lt;p&gt;For this example, I am assuming you are using custom entities for your project. I have created a custom User entity to manage users in my application. It extends a base class that handles most of the getting, setting and the calls to my database REST service, but that is optional depending on how you setup your own entities.&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;namespace CB\WebsiteBundle\Entity;
+
+use Clint\Model\Base;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+class User extends Base
+implements UserInterface
+{
+
+    public static $modelName = &amp;#039;User&amp;#039;;
+    public static $modelUrl = &amp;#039;/user&amp;#039;;
+
+    /**
+     * Returns the roles granted to the user.
+     *
+     * @return Role[] The user roles
+     */
+    public function getRoles(){
+        return array(&amp;#039;ROLE_USER&amp;#039;);
+    }
+
+    /**
+     * Returns the password used to authenticate the user.
+     *
+     * @return string The password
+     */
+    public function getPassword(){
+        return $this-&amp;gt;password;
+    }
+
+    /**
+     * Returns the salt.
+     *
+     * @return string The salt
+     */
+    public function getSalt(){
+        return null;
+    }
+
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername(){
+        return $this-&amp;gt;username;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * @return void
+     */
+    public function eraseCredentials(){
+        $this-&amp;gt;password = null;
+    }
+
+    /**
+     * The equality comparison should neither be done by referential equality
+     * nor by comparing identities (i.e. getId() === getId()).
+     *
+     * However, you do not need to compare every attribute, but only those that
+     * are relevant for assessing whether re-authentication is required.
+     *
+     * @param UserInterface $user
+     * @return Boolean
+     */
+    public function equals(UserInterface $user){
+        return ($this-&amp;gt;getUsername() === $user-&amp;gt;getUsername());
+    }
+}&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The key to making your User entity compatible with Symfony2 authentication, is to implement the User Interface as you can see in above class. These are the functions required by that interface:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;getRoles() &amp;#8211; for now I am simply returning a hard-coded role, but you could implement to get from the user object&lt;/li&gt;
+&lt;li&gt;getPassword() &amp;#8211; Retrieve the password from the user object&lt;/li&gt;
+&lt;li&gt;getSalt() returns the &lt;a title=&#34;Salt&#34; href=&#34;http://en.wikipedia.org/wiki/Salt_(cryptography)&#34; target=&#34;_blank&#34;&gt;salt for your password encryption&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;getUsername()&lt;/li&gt;
+&lt;li&gt;eraseCredentials() which is used to erase sensitive data from the session object&lt;/li&gt;
+&lt;li&gt;equals(UserInterface $user) which is used to make sure the right user is authenticated&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You will need to define all of these functions to correctly load your users from your web-service (or however you are doing it). Once you have all the required function defined, you are ready to move on to the User Provider Service.&lt;/p&gt;
+
+&lt;h4 id=&#34;the-user-provider:0062a4ae26007760914834b2b096356a&#34;&gt;The User Provider&lt;/h4&gt;
+
+&lt;p&gt;To use your own custom entities in Symfony2 authentication, you will need to have a basic understanding of &lt;a href=&#34;http://symfony.com/doc/current/book/service_container.html&#34; title=&#34;Symfony Services&#34; target=&#34;_blank&#34;&gt;Symfony services&lt;/a&gt; and the &lt;a href=&#34;http://symfony.com/doc/current/book/security.html&#34; title=&#34;Symfony Authentication&#34; target=&#34;_blank&#34;&gt;Symfony authentication&lt;/a&gt; system. Read those links if you haven&amp;#8217;t yet. To reiterate what the user provider is, from the docs:&lt;/p&gt;
+
+&lt;blockquote cite=&#34;http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers&#34;&gt;
+  &lt;p&gt;
+    In Symfony2, users can come from anywhere &amp;#8211; a configuration file, a database table, a web service, or anything else you can dream up. Anything that provides one or more users to the authentication system is known as a &amp;#8220;user provider&amp;#8221;. Symfony2 comes standard with the two most common user providers: one that loads users from a configuration file and one that loads users from a database table.
+  &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Again, since we are NOT using doctrine, we will create our own User Provider as a service in Symfony. Based on the documentation, it seems that the best place to put this is in YourBundle/Security folder.&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;namespace CB\WebsiteBundle\Security;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+
+use CB\WebsiteBundle\Entity\User;
+
+class Provider implements UserProviderInterface {
+
+    protected $user;
+    public function __contsruct (UserInterface $user) {
+        $this-&amp;gt;user = $user;
+    }
+
+    /**
+     * Loads the user for the given username.
+     *
+     * This method must throw UsernameNotFoundException if the user is not
+     * found.
+     *
+     * @throws UsernameNotFoundException if the user is not found
+     * @param string $username The username
+     *
+     * @return UserInterface
+     */
+    function loadUserByUsername($username) {
+        $user = User::find(array(&amp;#039;username&amp;#039;=&amp;gt;$username));
+        if(empty($user)){
+            throw new UsernameNotFoundException(&amp;#039;Could not find user. Sorry!&amp;#039;);
+        }
+        $this-&amp;gt;user = $user;
+        return $user;
+    }
+
+    /**
+     * Refreshes the user for the account interface.
+     *
+     * It is up to the implementation if it decides to reload the user data
+     * from the database, or if it simply merges the passed User into the
+     * identity map of an entity manager.
+     *
+     * @throws UnsupportedUserException if the account is not supported
+     * @param UserInterface $user
+     *
+     * @return UserInterface
+     */
+    function refreshUser(UserInterface $user) {
+        return $user;
+    }
+
+    /**
+     * Whether this provider supports the given user class
+     *
+     * @param string $class
+     *
+     * @return Boolean
+     */
+    function supportsClass($class) {
+        return $class === &amp;#039;CB\WebsiteBundle\Entity\User&amp;#039;;
+    }
+}&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The important thing to note about this class is that it implements the Symfony User Provider Interface. Note the three functions I implemented from the interface definition:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;loadUserByUsername() &amp;#8211; Make sure to implement this with however your custom user entity loads users by username&lt;/li&gt;
+&lt;li&gt;refreshUser() &amp;#8211; I don&amp;#8217;t completely understand the purpose of this function yet. I will update when I do.&lt;/li&gt;
+&lt;li&gt;supportsClass() &amp;#8211; A check to see if a certain type of user class is supported, in our case we use our custom user class definition&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I also added a constructor that takes a UserInterface object and stores it in a property when initialized. This will be done as a symfony service.&lt;/p&gt;
+
+&lt;h4 id=&#34;configuration:0062a4ae26007760914834b2b096356a&#34;&gt;Configuration&lt;/h4&gt;
+
+&lt;p&gt;The final step is to create the configuration for your newly build User Provider and User Entity. First, we must add our new entity and provider as a symfony service in our bundle&amp;#8217;s service configuration in YourBundle/Resources/config/services.xml :&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;&amp;lt;container xmlns=&#34;http://symfony.com/schema/dic/services&#34;
+    xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
+    xsi:schemaLocation=&#34;http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd&#34;&amp;gt;
+
+    
+    &amp;lt;parameters&amp;gt;
+        &amp;lt;parameter key=&#34;cb_security_user.class&#34;&amp;gt;CB\WebsiteBundle\Entity\User&amp;lt;/parameter&amp;gt;
+        &amp;lt;parameter key=&#34;cb_security_provider.class&#34;&amp;gt;CB\WebsiteBundle\Security\Provider&amp;lt;/parameter&amp;gt;
+    &amp;lt;/parameters&amp;gt;
+
+    &amp;lt;services&amp;gt;
+        &amp;lt;service id=&#34;cb_security_user&#34; class=&#34;%cb_security_user.class%&#34; /&amp;gt;
+        &amp;lt;service id=&#34;cb_security_provider&#34; class=&#34;%cb_security_provider.class%&#34;&amp;gt;
+            &amp;lt;argument type=&#34;service&#34; id=&#34;cb_security_user&#34; /&amp;gt;
+        &amp;lt;/service&amp;gt;
+    &amp;lt;/services&amp;gt;
+    
+&amp;lt;/container&amp;gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;I define two parameters with the name of my custom user class and my custom provider class. I then add two services, one for the user entity, and the other for the user provider class. One thing to note is that I actually pass the user entity service as an argument to the provider service when initialized.&lt;/p&gt;
+
+&lt;p&gt;And lastly, you need to update your security configuration for your application. Here is my configuration with form-based validation:&lt;/p&gt;
+
+&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;security:
+    encoders:
+        CB\WebsiteBundle\Entity\User:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+            id: cb_security_provider
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/login$
+            security: false
+
+        secured_area:
+            pattern:    ^/secure/
+            form_login: ~
+            logout: ~
+            #anonymous: ~
+            #http_basic:
+            #    realm: &#34;Secured Demo Area&#34;
+
+    access_control:
+        - { path: ^/secure, roles: ROLE_USER }
+        #- { path: ^/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }&lt;/pre&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Key things to note are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The encoders section is configured to use your custom user entity&lt;/li&gt;
+&lt;li&gt;The providers section is configured to use your user provider service (we used the ID from the services xml)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now you just need to make sure your login routes and forms are all setup and you have a newly created User Provider using custom entities!&lt;/p&gt;
+
+&lt;p&gt;Let me know if you have any questions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Why I Switched to Symfony 2 Framework</title>
+      <link>http://clintberry.github.io/2011/switched-symfony-2-framework/</link>
+      <pubDate>Thu, 10 Nov 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/2011/switched-symfony-2-framework/</guid>
+      <description>
+
+&lt;p&gt;I have been working with the Zend Framework for the last 3 years. I like it. It is flexible, heavily object oriented, and organized. However, one thing that has always bothered me is that modules in ZF have been &lt;a title=&#34;Zend Framework Modules&#34; href=&#34;http://weierophinney.net/matthew/archives/234-Module-Bootstraps-in-Zend-Framework-Dos-and-Donts.html&#34; target=&#34;_blank&#34;&gt;second-class citizens&lt;/a&gt;. Granted, in Zend Framework 2 this is not the case, but I needed to start a project right away, and since ZF2 is still in beta, I decided to go checkout some other frameworks again.&lt;/p&gt;
+
+&lt;p&gt;It has been a while since I looked at different PHP frameworks and I was plesently surprised by the maturity of many of them. Ultimately, though, I was most impressed with &lt;a href=&#34;http://symfony.com/&#34; target=&#34;_blank&#34;&gt;Symfony 2&lt;/a&gt; (SF2). Here are some reasons why:&lt;/p&gt;
+
+&lt;h2 id=&#34;1-modules-bundles:8734792f84911970211704f8ad232296&#34;&gt;1. Modules (Bundles)&lt;/h2&gt;
+
+&lt;p&gt;I am a sucker for modules. For some reason I like the idea of being able to create a small library of code, with all the corresponding models/views/controllers, and then being able to drop it any application and have it work (some say I should switch to Python, which inherently works this way). It would mean all sorts of portability for my code. Symfony2 has this ability in the form of &lt;a href=&#34;http://symfony.com/doc/current/book/page_creation.html#the-bundle-system&#34; target=&#34;_blank&#34;&gt;Bundles&lt;/a&gt;. I started using them this week, and I fell in love. Did I mention there is already a &lt;a href=&#34;http://symfony2bundles.org/&#34; target=&#34;_blank&#34;&gt;big library of bundles&lt;/a&gt; that you can drop in your application? This is the future of PHP development.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-defining-routing-using-annotations:8734792f84911970211704f8ad232296&#34;&gt;2. Defining Routing Using Annotations&lt;/h2&gt;
+
+&lt;p&gt;Symfony2 allows you to add &lt;a href=&#34;http://symfony.com/doc/2.0/bundles/SensioFrameworkExtraBundle/annotations/routing.html&#34; target=&#34;_blank&#34;&gt;Annotations&lt;/a&gt; (doc blocks) to controller actions that tell the application when to route to this action. You can put any regular expression pattern to match the URL. For some reason this seems so much more elegant than creating a separate routing file.&lt;/p&gt;
+
+&lt;h2 id=&#34;3-community:8734792f84911970211704f8ad232296&#34;&gt;3. Community&lt;/h2&gt;
+
+&lt;p&gt;Some of my &lt;a title=&#34;SPF13&#34; href=&#34;http://spf13.com/post/symfony2&#34; target=&#34;_blank&#34;&gt;favorite developers&lt;/a&gt; are big contributors to the symfony project. Also, it is the number 1 watched PHP project on &lt;a href=&#34;http://github.com/languages/PHP/most_watched&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;. That is saying something.&lt;/p&gt;
+
+&lt;h2 id=&#34;4-documentation-038-learning-curve:8734792f84911970211704f8ad232296&#34;&gt;4. Documentation &amp;#038; Learning Curve&lt;/h2&gt;
+
+&lt;p&gt;Zend Framework has a pretty steep learning curve and the documentation does not support beginners very well (although I know they want to &lt;a href=&#34;http://framework.zend.com/wiki/display/ZFDEV2/Zend+Framework+2.0+Requirements#ZendFramework2.0Requirements-Easethelearningcurve&#34;&gt;remedy this&lt;/a&gt; for ZF2).Symfony, however, has a great getting started guide and a great online book to help you get going. It has been so easy to get started that it was hard not to smile.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;It has only been a week, but I am loving Symfony2. I keep running into new things that make me love SF2 more and more. I&amp;#8217;m sure the honeymoon won&amp;#8217;t last forever, though, so I&amp;#8217;ll of course be posting more on this as I run into issues, find out the negatives, and have more comments in general. Let me know if you like Symfony or prefer something else.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update: I found another great link that is helpful if you are looking to use Symfony2 for your next project&lt;/strong&gt; &amp;#8211; **&lt;a href=&#34;http://engineering.opensky.com/post/how-opensky-chose-symfony2-as-our-web-framework&#34; title=&#34;Sensio chooses symfony2&#34;&gt;How OpenSky chose Symfony as their framework&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;**&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>http://clintberry.github.io/blog/</link>
+      <pubDate>Sat, 05 Nov 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/blog/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

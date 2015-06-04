@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    Sublime Text 2 for PHP &amp; WordPress Development // Clint Berry
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="Clint Berry">
+
+  <meta property="og:title" content="Sublime Text 2 for PHP &amp; WordPress Development" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://clintberry.github.io/2012/sublime-text-2-php-symfony-development/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://clintberry.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Clint Berry" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+    <h1 class="brand-title">Clint Berry</h1>
+    <h2 class="brand-tagline">Full Stack Developer. Wannabe Entrepreneur.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/posts/">Blog</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        
+      
+        
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        
+      
+        
+        <a href="http://www.twitter.com/clinton_berry" target="_blank"><i class='fa fa-twitter-square'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#why-is-sublime-text-2-awesome:aa1d181a86cd4b3bc45fc04c4629024d">Why is Sublime Text 2 Awesome?</a></li>
+<li><a href="#setting-up-package-management:aa1d181a86cd4b3bc45fc04c4629024d">Setting Up Package Management</a></li>
+<li><a href="#packages-you-need:aa1d181a86cd4b3bc45fc04c4629024d">Packages you need</a>
+<ul>
+<li>
+<ul>
+<li><a href="#sublime-code-intel-1:aa1d181a86cd4b3bc45fc04c4629024d"><a href="https://github.com/Kronuz/SublimeCodeIntel" title="Sublime Code Intel">Sublime Code Intel</a></a></li>
+<li><a href="#sublime-linter-2:aa1d181a86cd4b3bc45fc04c4629024d">[Sublime Linter][2]</a></li>
+<li><a href="#zen-coding-3:aa1d181a86cd4b3bc45fc04c4629024d"><a href="https://bitbucket.org/sublimator/sublime-2-zencoding" title="Zen Coding">Zen Coding</a></a></li>
+<li><a href="#sublime-jsdocs-4:aa1d181a86cd4b3bc45fc04c4629024d"><a href="https://github.com/spadgos/sublime-jsdocs" title="PHP Doc Blocks">Sublime JsDocs</a></a></li>
+<li><a href="#wordpress-plugin-5:aa1d181a86cd4b3bc45fc04c4629024d">[WordPress Plugin][5]</a></li>
+<li><a href="#git-6-038-also-git-sidebar-7:aa1d181a86cd4b3bc45fc04c4629024d">[Git][6] &#038; also [Git Sidebar][7]</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#syntax-specific-settings:aa1d181a86cd4b3bc45fc04c4629024d">Syntax Specific Settings</a></li>
+<li><a href="#important-shortcut-keys:aa1d181a86cd4b3bc45fc04c4629024d">Important Shortcut Keys</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+		    </div>
+		    
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/2012/sublime-text-2-php-symfony-development/">Sublime Text 2 for PHP &amp; WordPress Development</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>2</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Feb</span> <span class="post-date-year">2012</span>
+            	</span>
+            	
+            
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">Clint Berry</a></span>
+            		
+
+
+
+
+            	
+            
+
+			
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-development-environment" href="http://clintberry.github.io/categories/development-environment">Development Environment</a>
+				
+					<a class="post-category post-category-php" href="http://clintberry.github.io/categories/php">PHP</a>
+				
+					<a class="post-category post-category-wordpress" href="http://clintberry.github.io/categories/wordpress">Wordpress</a>
+				
+				</div>
+			
+
+			
+
+			
+
+            
+
+<p>Sublime Text 2 is an amazing code editor that I started using on the recommendation of a friend. I fell in love and haven&#8217;t looked back. Here are some recomendations for setting up Sublime Text 2 for PHP and WordPress development.</p>
+
+<h3 id="why-is-sublime-text-2-awesome:aa1d181a86cd4b3bc45fc04c4629024d">Why is Sublime Text 2 Awesome?</h3>
+
+<p>Where do I start&#8230; Here are some of my favorite features:</p>
+
+<ul>
+<li>It is light weight. The download size is under 10 megs and it runs fast</li>
+<li>It is VERY customizable. Every key binding and setting imaginable is available to customize</li>
+<li>Plugins, plugins, plugins. ST2 has a built in python interpreter which allows web developers to create custom plugins. (The only thing that would make it better is if it had node.js bundled in for plugins, but I&#8217;ll take Python)</li>
+
+<li><p>vim key bindings. Yes, if you love vim, or want to love vim, then you will love sublime text 2, which comes bundled with &#8220;vintage mode&#8221;, which allows you to use vim keybindings.</p>
+
+<ul>
+<li><p>It runs on Windows, OSX, and Linux, so I can use ST2 on almost any computer. </ul>
+There are <strong>MANY</strong> more reasons. Check out this link for some good ones: <a href="http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/" title="Sublime Text Tips and Tricks" target="_blank">Sublime Text Tips and Tricks</a></p>
+
+<p>Now you should be fully convinced that Sublime Text is the greatest thing since sliced bread  <img src="http://clintberry.com/wp-includes/images/smilies/simple-smile.png" alt=":-)" class="wp-smiley" style="height: 1em; max-height: 1em;" />Let&#8217;s get it setup for developing PHP applications.</p>
+
+<h3 id="setting-up-package-management:aa1d181a86cd4b3bc45fc04c4629024d">Setting Up Package Management</h3>
+
+<p>One of the coolest plugins for ST2 is the package manager. This should be the first plugin you install because it is the gateway to a big list of other great plugins for you. Installation is easy, simply open ST2 and press command+` (on windows ctrl+`) and it will open up the ST2 console. Copy and paste this code into the terminal:</p>
+
+<pre class="wp-code-highlight prettyprint">import urllib2,os; pf=&#039;Package Control.sublime-package&#039;; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),&#039;wb&#039;).write(urllib2.urlopen(&#039;http://sublime.wbond.net/&#039;+pf.replace(&#039; &#039;,&#039;%20&#039;)).read()); print &#039;Please restart Sublime Text to finish installation&#039;
+</pre>
+
+<p>&nbsp;</p>
+
+<p>That&#8217;s it, you now have package control built into your editor. To access package control, press shift+command+p and start typing &#8220;package&#8221;. (shift+command+p opens the window of all commands in sublime text 2). You will see a list of commands related to package control. Sweet.</p>
+
+<h3 id="packages-you-need:aa1d181a86cd4b3bc45fc04c4629024d">Packages you need</h3>
+
+<p>Let&#8217;s get this puppy setup for some PHP development!</p>
+
+<p>To install a package, type shift+command+p and start typing &#8220;package install&#8221; and hit enter when it is highlighted. Wait a few seconds and it will bring up a list of available packages. Select the package you want to install and then hit enter. That&#8217;s it! Now follow those steps for the following packages:</p>
+
+<h5 id="sublime-code-intel-1:aa1d181a86cd4b3bc45fc04c4629024d"><a href="https://github.com/Kronuz/SublimeCodeIntel" title="Sublime Code Intel">Sublime Code Intel</a></h5>
+
+<p>What use would editing code be without some good autocompletion? CodeIntel provides a better code completion by parsing all the files in your project and creating a nice index of autocomplete options. It also provides click-to-definition functionality by clicking alt-click on a function or variable name. I have found that this plugin isn&#8217;t as consistent or as fast as full IDEs such as Eclipse, but in general is pretty good.</p>
+
+<h5 id="sublime-linter-2:aa1d181a86cd4b3bc45fc04c4629024d">[Sublime Linter][2]</h5>
+
+<p>This plugin gives you real-time error checking in your php code which is standard in most IDEs. Now it is standard in Sublime Text <img src="http://clintberry.com/wp-includes/images/smilies/simple-smile.png" alt=":-)" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+
+<h5 id="zen-coding-3:aa1d181a86cd4b3bc45fc04c4629024d"><a href="https://bitbucket.org/sublimator/sublime-2-zencoding" title="Zen Coding">Zen Coding</a></h5>
+
+<p>If you aren&#8217;t using Zen Coding to create your HTML, then you are missing out. This adds zen coding features into sublime text 2.</p>
+
+<h5 id="sublime-jsdocs-4:aa1d181a86cd4b3bc45fc04c4629024d"><a href="https://github.com/spadgos/sublime-jsdocs" title="PHP Doc Blocks">Sublime JsDocs</a></h5>
+
+<p>Don&#8217;t let the name fool you, this plugin is a smart Doc Block generator for PHP as well as JavaScript. It is the best one of any I have tried. To use it, simply type /** in front of the function/variable you want to generate the docs for and hit tab. You will get a nice block generated for you.</p>
+
+<h5 id="wordpress-plugin-5:aa1d181a86cd4b3bc45fc04c4629024d">[WordPress Plugin][5]</h5>
+
+<p>This plugin adds a bunch of good snippets to have in your snippet/auto-complete library for WordPress. This helps speed up development significantly if you do a lot of wordpress sites.</p>
+
+<h5 id="git-6-038-also-git-sidebar-7:aa1d181a86cd4b3bc45fc04c4629024d">[Git][6] &#038; also [Git Sidebar][7]</h5>
+
+<p>Git commands integrated into git hub for your favorite version control. As an added bonus, add git functionality to the sidebar context menu as well.</p>
+
+<h3 id="syntax-specific-settings:aa1d181a86cd4b3bc45fc04c4629024d">Syntax Specific Settings</h3>
+
+<p>One of the greatest things about ST2 is how easy it is to customize. All the settings are simply JSON documents that you can change to meet your needs. Go ahead and open up Preferences-&gt;Global Preferences and you will see all settings that are available. But don&#8217;t change this file, since it gets overwritten during upgrades. Open up the User preferences file and put in any changes that you need.</p>
+
+<p>But if you want to customize setting for only certain syntaxes (like PHP) you can do so by opening a PHP file in the editor and then going to Preferences-&gt;Syntax Specific and you will be able to change settings for only the PHP syntax. For instance I like it when I double click a variable in php for it to select the $ symbol as well, but by default ST2 doesn&#8217;t do this, so I change the PHP settings to not include $ in word separators.</p>
+
+<pre class="wp-code-highlight prettyprint">{
+"extensions":
+[
+"php"
+],
+"word_separators": "./\\()\"&#039;-:,.;&lt;&gt;~!@#%^&*|+=[]{}`~?"
+}</pre>
+
+<p>&nbsp;</p>
+
+<h3 id="important-shortcut-keys:aa1d181a86cd4b3bc45fc04c4629024d">Important Shortcut Keys</h3>
+
+<p>Lastly, I want to include a short list of some short cut keys you will likely enjoy:</p>
+
+<p><strong>Alt+[1-9]</strong> &#8211; Switch to a certain tab</p>
+
+<p><strong>Command+P</strong> &#8211; Fast file switching, Line Number, Jump to definition (within file)</p>
+
+<p><strong>Alt+.</strong> &#8211; Close a started HTML tag (although I suggest Zen Coding Plugin)</p>
+
+<p><strong>Esc</strong> &#8211; Enter Vintage Mode (if enabled)</p>
+
+<p><strong>Command+D</strong> &#8211; Multi-select same word. This is VERY COOL.</p>
+
+<p>Here are some other good <a href="http://www.sublimetext.com/forum/viewtopic.php?f=2&#038;t=4198" title="Sublime Text 2 Shortcut Keys" target="_blank">shortcut</a> <a href="http://www.sublimetext.com/docs/selection" title="Sublime Text 2 Shortcut Keys" target="_blank">keys</a></p>
+
+<p>I hope you enjoy Sublime Text as much as I have!</p></li>
+</ul></li>
+</ul>
+
+<p>[2]: <a href="https://github.com/Kronuz/SublimeLinter">https://github.com/Kronuz/SublimeLinter</a> &ldquo;&rdquo;</p>
+
+<p>[5]: <a href="https://github.com/purplefish32/sublime-text-2-wordpress">https://github.com/purplefish32/sublime-text-2-wordpress</a> &ldquo;&rdquo;
+ [6]: <a href="https://github.com/kemayo/sublime-text-2-git">https://github.com/kemayo/sublime-text-2-git</a> &ldquo;&rdquo;
+ [7]: <a href="https://github.com/SublimeText/SideBarGit">https://github.com/SublimeText/SideBarGit</a> &ldquo;&rdquo;</p>
+
+	
+			
+
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/2012/phing-php-deployment/">Phing For PHP Deployment</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/2011/custom-user-providers-symfony2/">Custom User Providers in Symfony2</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2015. All rights reserved. </p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>

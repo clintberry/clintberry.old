@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abouts on Clint Berry</title>
+    <link>http://clintberry.github.io/about/</link>
+    <description>Recent content in Abouts on Clint Berry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Apr 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://clintberry.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>About</title>
+      <link>http://clintberry.github.io/about/</link>
+      <pubDate>Sun, 28 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://clintberry.github.io/about/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/profile_photo.jpg&#34; alt=&#34;profile_photo&#34; width=&#34;128&#34; height=&#34;132&#34; class=&#34;alignleft size-full wp-image-656&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I am a full-stack web developer and wannabe entrepreneur. I am passionate about start-up companies and want to build my own successful business.&lt;/p&gt;
+
+&lt;p&gt;Some of the things I love (in no particular order, except the first):&lt;/p&gt;
+
+&lt;p&gt;I love my wife&lt;/p&gt;
+
+&lt;p&gt;I love wakeboarding&lt;/p&gt;
+
+&lt;p&gt;I love snow skiing&lt;/p&gt;
+
+&lt;p&gt;I love reading&lt;/p&gt;
+
+&lt;p&gt;I love ping-pong (if I don&amp;#8217;t call it table tennis it doesn&amp;#8217;t mean I suck)&lt;/p&gt;
+
+&lt;p&gt;I love start-up companies&lt;/p&gt;
+
+&lt;p&gt;I love e-commerce&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

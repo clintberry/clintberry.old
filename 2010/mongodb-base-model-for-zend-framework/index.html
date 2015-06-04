@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    MongoDB Base Model for Zend Framework // Clint Berry
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="Clint Berry">
+
+  <meta property="og:title" content="MongoDB Base Model for Zend Framework" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://clintberry.github.io/2010/mongodb-base-model-for-zend-framework/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://clintberry.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Clint Berry" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+    <h1 class="brand-title">Clint Berry</h1>
+    <h2 class="brand-tagline">Full Stack Developer. Wannabe Entrepreneur.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/posts/">Blog</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        
+      
+        
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        
+      
+        
+        <a href="http://www.twitter.com/clinton_berry" target="_blank"><i class='fa fa-twitter-square'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/2010/mongodb-base-model-for-zend-framework/">MongoDB Base Model for Zend Framework</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>11</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Nov</span> <span class="post-date-year">2010</span>
+            	</span>
+            	
+            
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">Clint Berry</a></span>
+            		
+
+
+
+
+            	
+            
+
+			
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-mongodb" href="http://clintberry.github.io/categories/mongodb">MongoDB</a>
+				
+					<a class="post-category post-category-zend-framework" href="http://clintberry.github.io/categories/zend-framework">Zend Framework</a>
+				
+				</div>
+			
+
+			
+
+			
+
+            <p>I came accross <a href="http://mongodb.org">MongoDB</a> a few months ago and it seemed like a perfect fit for many of the projects I am working. Extremely fast inserts, map-reduce for complex queries, and most importantly, scaling is a breeze.</p>
+
+<p>Since I am a Zend Framework guy I created a simple base model class for MongoDB. It is a very simple wrapper, but is effective for what I need. I usually create model classes for each &#8220;Collection&#8221; just like I would create models for each table in MySQL. Each model class extends from the new MongoDB base class and allows a low level &#8220;active directory&#8221; type access to MongoDB documents.</p>
+
+<p><strong><a href="https://github.com/clintberry/zf-mongo-base">Get The Source Code Here</a></strong></p>
+
+<p>Example: We want to create a new document for every visitor that comes into a website that we are tracking. We store those documents in the &#8220;visitor&#8221; collection.</p>
+
+<p>The first thing we do is create a model for the visitor collection.</p>
+
+<pre class="wp-code-highlight prettyprint">class Model_Visitor extends Mongodb_ModelBase {
+
+    // If you don&#039;t specify the collection name explicitly,
+    // it will default to the name of the class minus the "Model_" part.
+    protected static $_collectionName = "visitor";
+
+}</pre>
+
+<p>Then we can create new documents for that collection</p>
+
+<pre class="wp-code-highlight prettyprint">$newVisitor = new Model_Visitor();
+$newVisitor-&gt;ipAddress = &#039;5.5.5.5&#039;;
+$newVisitor-&gt;save();</pre>
+
+<p>You can also query for visitors using static methods:</p>
+
+<pre class="wp-code-highlight prettyprint">$oneVisitor = Model_Visitor::findOne();
+$allVisitors = Model_Visitor::find();
+$someVisitors = Model_Visitor::find(array(&#039;ipAddress&#039;=&gt;&#039;5.5.5.5&#039;));</pre>
+
+<p>Use dot notation for nested values. These two commands do the same thing:</p>
+
+<pre class="wp-code-highlight prettyprint">$myVisitor-&gt;{&#039;referrer.url&#039;} = &#039;google.com&#039;;
+$myVisitor-&gt;referrer = array(&#039;url&#039;=&gt;&#039;google.com&#039;);</pre>
+
+<p>I thought I would share this with the rest of the world in case someone needed it.</p>
+
+<p><strong><a href="https://github.com/clintberry/zf-mongo-base">Get The Source Code Here</a></strong></p>
+
+<p><strong>NOTE: The base class makes use of <a href="http://php.net/manual/en/language.oop5.late-static-bindings.php">late static binding</a>, which requires PHP 5.3</strong></p>
+
+	
+			
+
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/2011/zend-studio-and-github/">Zend Studio and Git(Hub)</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/contact/">Contact</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2015. All rights reserved. </p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>

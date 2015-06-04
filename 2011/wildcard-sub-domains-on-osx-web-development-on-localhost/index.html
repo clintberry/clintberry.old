@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title>
+    Wildcard Sub-Domains on OSX, Web Development on Localhost // Clint Berry
+  </title>
+
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="Clint Berry">
+
+  <meta property="og:title" content="Wildcard Sub-Domains on OSX, Web Development on Localhost" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="http://clintberry.github.io/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/" />
+
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/base-min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/pure-min.css">
+  
+  
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.5.0/grids-responsive-min.css">
+  
+  
+
+  <link rel="stylesheet" href="http://clintberry.github.io/css/redlounge.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,200,100,700,300,500,600,800' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Clint Berry" />
+
+    
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/tomorrow-night-bright.min.css">
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+
+  
+
+  
+</head>
+
+<body>
+	
+
+	<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+  <div class="header">
+    
+
+    <h1 class="brand-title">Clint Berry</h1>
+    <h2 class="brand-tagline">Full Stack Developer. Wannabe Entrepreneur.</h2>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.github.io">Home</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+        
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/posts/">Blog</a></li>
+        
+      </ul>
+    </nav>
+
+    
+    <div class="social-buttons">
+      
+        
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        
+      
+        
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        
+      
+        
+        <a href="http://www.twitter.com/clinton_berry" target="_blank"><i class='fa fa-twitter-square'></i></a>
+        
+      
+      
+    </div>
+    
+
+  </div>
+</div>
+
+	
+	
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+		<a name="top"></a>
+		
+
+		
+			
+		    <div id="toc" class="pure-u-1 pure-u-md-1-4">
+				<small class="toc-label">Contents</small>
+		   	 	<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#bind-dns-setup-osx-10-6:5de9d7fe43c8ec2357d8f1d55f4292a9"><strong>Bind DNS Setup (OSX 10.6+)</strong></a>
+<ul>
+<li><a href="#create-the-resolver:5de9d7fe43c8ec2357d8f1d55f4292a9">Create the resolver</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#apache-setup:5de9d7fe43c8ec2357d8f1d55f4292a9">Apache Setup</a></li>
+</ul></li>
+</ul>
+</nav>
+		    </div>
+		    
+	    
+  		<section class="post">
+            <h1 class="post-title">
+              <a href="/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/">Wildcard Sub-Domains on OSX, Web Development on Localhost</a>
+            </h1>
+            <h3 class="post-subtitle">
+            	
+            </h3>
+            
+            	<span class="post-date">
+                	<span class="post-date-day"><sup>30</sup></span><span class="post-date-separator">/</span><span class="post-date-month">May</span> <span class="post-date-year">2011</span>
+            	</span>
+            	
+            
+            	
+            		<span class="post-author-single">By <a class="post-author"  target="">Clint Berry</a></span>
+            		
+
+
+
+
+            	
+            
+
+			
+			
+				<div class="post-categories">
+				
+					<a class="post-category post-category-development-environment" href="http://clintberry.github.io/categories/development-environment">Development Environment</a>
+				
+				</div>
+			
+
+			
+
+			
+
+            
+
+<p>Today&#8217;s post will be on setting up wildcard subdomains in OSX. This allows you to map folders in your web root to sub-domains on your local box. Why would you want to do this? It is nice to be able to type use <em><a href="http://myproject.clint.dev">http://myproject.clint.dev</a></em> for the URL and have it map to the &#8216;myproject&#8217; folder on your local box. No need to add a line to the etc/hosts file, and no need to add a virtual host in apache for each sub-domain. The method I will be outlining here will allow you to map x.yourdevdomain.dev to any folder &#8216;x&#8217; using Bind and a wildcard virtual host in apache. This tutorial assumes you already have Apache setup on your local box.</p>
+
+<h3 id="bind-dns-setup-osx-10-6:5de9d7fe43c8ec2357d8f1d55f4292a9"><strong>Bind DNS Setup (OSX 10.6+)</strong></h3>
+
+<p>Bind comes pre-installed on OSx 10.6. All we have to do is configure it and run it. I took these Bind setup instructions from <a href="http://jessedearing.com/nodes/9-setting-up-wildcard-subdomains-on-os-x-10-6" target="_blank">Jesse Dearing&#8217;s blog</a>. I hope he doesn&#8217;t mind.</p>
+
+<p><a href="http://www.isc.org/software/bind" target="_blank">BIND</a> is the little piece of software the runs the internet. BIND is a DNS server and it works in a distributed fashion. It’s really fascinating <a href="http://www.howstuffworks.com/dns1.htm" target="_blank">how DNS works</a> but that’s outside the scope of this post. There are a few steps to get BIND set up to serve domains and they are crucial.</p>
+
+<ol>
+<li><p><code>sudo -s</code></p>
+
+<p>This will let you run a shell as root. I suggest doing this because most of the next commands you will execute need to be on privileged files and directories.</p></li>
+
+<li><p>Create the <code>rndc.conf</code> and <code>rndc.key</code></p>
+
+<p>You can easily do this by running the following commands:</p>
+
+<p><code>rndc-confgen &gt; /etc/rndc.conf</code></p>
+
+<p><code>head -n5 /etc/rndc.conf |tail -n4 &gt; /etc/rndc.key</code></p></li>
+
+<li><p>Add the zone to <code>/etc/named.conf</code> I am going to use .dev for all my examples. I have used .local on my machine but I have found that this can be troublesome with the OS X default Multicast being .local. You can make this whatever top level domain you would like (.dev, .rails, .php, etc.) In <code>/etc/named.conf </code>add: <pre class="wp-code-highlight prettyprint">&lt;code&gt; zone &ldquo;dev&rdquo; IN { type master; file &ldquo;dev.zone&rdquo;; allow-update { none; }; }; &lt;/code&gt;</pre></p></li>
+
+<li><p>Create <code>/var/named/dev.zone</code></p>
+
+<p>Use this template for your zone file:</p> <pre class="wp-code-highlight prettyprint">$TTL 60 $ORIGIN dev. @ 1D IN SOA localhost. root.localhost. ( 
+42 ; 
+serial (d. adams) 3H ;
+refresh 15M ;
+retry 1W ;
+expiry 1D ) ;
+minimum 1D IN NS localhost 1D IN A 127.0.0.1 localhost.dev. 60 IN A 127.0.0.1 *.dev. 60 IN A 127.0.0.1</pre></p>
+
+<p>The only thing you should have to change is the serial (42) to any random number and if you decided to go with something else other than .dev: everthing that has .dev in it. Note that the dots (.) after the dev entries are intentional and required.</li></p>
+
+<ul>
+<li><p><code>launchctl load -w /System/Library/LaunchDaemons/org.isc.named.plist</code></p>
+
+<p>This will cause named to load everytime the system restarts.</p></li>
+
+<li><p><code>named</code></p>
+
+<p>This loads named now. It doesn’t give you any input if it fails to load so I recommend running <code>named -g</code> first to make sure it parses you zones and configs. <code>-g</code> will tell named to run in the forground and write all logging to STDOUT. Once you’ve verified that it starts then Ctrl-c and run <code>named</code> as normal.</ol></p></li>
+</ul>
+
+<h4 id="create-the-resolver:5de9d7fe43c8ec2357d8f1d55f4292a9">Create the resolver</h4>
+
+<p>Next we have to create an entry in the /etc/resolver folder. This folder is checked every time a DNS entry is looked up. If a file exists here then it will use the special resolv configuration to look up DNS names. Here you can specify custom domains, search orders, and in this case nameservers. The resolver folder may not exist in the /etc directory. If it doesn&#8217;t, create it.</p>
+
+<p>Create a file with the root domain you want to use for your projects.. I.e. if your root domain is <code>clint.dev</code> then create the file <code>clint.dev</code> and inside it put:</p>
+
+<pre class="wp-code-highlight prettyprint">&lt;code&gt;nameserver 127.0.0.1 &lt;/code&gt;</pre>
+
+<p>Now when you go to <a href="http://clint.dev">http://clint.dev</a> your root web directory should load, but you can also go to <a href="http://www.clint.dev">http://www.clint.dev</a> or <a href="http://theskyisblue.clint.dev">http://theskyisblue.clint.dev</a> and it should still go to your root web directory.</p>
+
+<p>Log out of the root shell by typing exit.</p>
+
+<p>Your wildcard DNS settings are now ready to go.</p>
+
+<h2 id="apache-setup:5de9d7fe43c8ec2357d8f1d55f4292a9">Apache Setup</h2>
+
+<p>Now we need to get apache to route to the correct folder based on the sub-domain used. Using the example from before, we want <a href="http://myproject.clint.dev">http://myproject.clint.dev</a> to go to the folder &#8216;myproject&#8217; in my web root. To accomblish this we setup a vhost in the apache configuration file (httpd.conf). Depending on your Apache setup, the file can be in different locations. Because I use ZendServer community edition, I add a separate file in the <code>/usr/local/zend/apache2/conf.d</code> directory. I call my file dev.conf and add the following lines:</p>
+
+<pre class="wp-code-highlight prettyprint">NameVirtualHost *:80 
+ServerAdmin webmaster@local.web 
+DocumentRoot "/Users/clint/Sites" 
+ServerName clint.dev ServerAlias *.clint.dev 
+RewriteEngine on 
+RewriteCond %{HTTP_HOST} !^www.* [NC] 
+RewriteCond %{HTTP_HOST} ^([^\.]+)\.clint\.dev 
+RewriteCond /Users/clint/Sites/%1/public -d 
+RewriteRule ^(.*) /%1/public/$1 [L] 
+RewriteCond %{HTTP_HOST} !^www.* [NC] 
+RewriteCond %{HTTP_HOST} ^([^\.]+)\.clint\.dev 
+RewriteCond /Users/clint/Sites/%1 -d 
+RewriteRule ^(.*) /%1/$1 [L]</pre>
+
+<p>This virtual host checks to make sure the folder exists for that project, and checks to see if a public directory exists (Zend Framework apps). If the public directory exists, it uses that directory as the document root for that subdomain. If public doesn&#8217;t exist, it just uses the project folder as the document root. If niether exists, then it will just use the Sites directory as the document root (the default document root).</p>
+
+<p><strong>Note: Make sure to change any &#8216;/Users/clint/Sites&#8217; to whatever directory your document root is to be. Also change the .clint.dev to your custom development domain.</strong></p>
+
+<p>After that, all your subdomains will map to project folders in your document root. Let me know if you have any questions.</p></li>
+</ol>
+
+	
+			
+
+			
+
+			
+				<div class="paging">
+					<span class="paging-label">More Reading</span>
+					
+					<div class="paging-newer">
+						<span class="dark-red">Newer</span><span class="decorative-marker">//</span>
+						<a class="paging-link" href="/2011/speed-up-your-wordpress-development-cycle-with-git/">Speed Up Your WordPress Development Cycle With Git</a>
+		            </div>
+		            
+
+					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/2011/zend-studio-and-github/">Zend Studio and Git(Hub)</a>
+		            </div>
+		            
+	            </div>
+            
+          </section>
+          
+          	
+          
+        
+      <div class="footer">
+	<hr class="thin" />
+	<div class="pure-menu pure-menu-horizontal pure-menu-open">
+		<ul class="footer-menu">
+		
+		</ul>
+	</div>
+
+	<p>&copy; 2015. All rights reserved. </p>
+</div>
+    </div>
+  </div>
+	
+
+	
+
+  
+</body>
+</html>
