@@ -33,11 +33,6 @@
   </url>
   
   <url>
-    <loc>http://clintberry.github.io/experience/</loc>
-    <lastmod>2013-04-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://clintberry.github.io/2013/angular-js-websocket-service/</loc>
     <lastmod>2013-04-23T00:00:00+00:00</lastmod>
   </url>
@@ -49,11 +44,6 @@
   
   <url>
     <loc>http://clintberry.github.io/2012/why-plivo-cloud-is-better-than-twilio/</loc>
-    <lastmod>2012-07-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://clintberry.github.io/search-results/</loc>
     <lastmod>2012-07-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -75,16 +65,6 @@
   <url>
     <loc>http://clintberry.github.io/2011/switched-symfony-2-framework/</loc>
     <lastmod>2011-11-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://clintberry.github.io/blog/</loc>
-    <lastmod>2011-11-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://clintberry.github.io/home/</loc>
-    <lastmod>2011-11-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -118,12 +98,12 @@
   </url>
   
   <url>
-    <loc>http://clintberry.github.io/contact/</loc>
+    <loc>http://clintberry.github.io/2010/zend-framework-code-generator-with-scaffolding/</loc>
     <lastmod>2010-08-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://clintberry.github.io/2010/zend-framework-code-generator-with-scaffolding/</loc>
+    <loc>http://clintberry.github.io/contact/</loc>
     <lastmod>2010-08-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -138,18 +118,8 @@
   </url>
   
   <url>
-    <loc>http://clintberry.github.io/projects/</loc>
-    <lastmod>2010-07-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://clintberry.github.io/2010/installing-magento-on-os-x/</loc>
     <lastmod>2010-02-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://clintberry.github.io/about-2/</loc>
-    <lastmod>2010-02-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
