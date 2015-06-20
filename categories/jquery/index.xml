@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jquery on Clint Berry</title>
-    <link>http://clintberry.github.io/categories/jquery/</link>
+    <link>http://clintberry.com/categories/jquery/</link>
     <description>Recent content in Jquery on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 14 Jul 2010 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.github.io/categories/jquery/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://clintberry.com/categories/jquery/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Custom Fonts with Google WebFont Loader</title>
-      <link>http://clintberry.github.io/2010/custom-fonts-with-google-webfont-loader/</link>
+      <link>http://clintberry.com/2010/custom-fonts-with-google-webfont-loader/</link>
       <pubDate>Wed, 14 Jul 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2010/custom-fonts-with-google-webfont-loader/</guid>
+      <guid>http://clintberry.com/2010/custom-fonts-with-google-webfont-loader/</guid>
       <description>&lt;p&gt;I have recently been working on adding local fonts to my customized version of svg-edit. The idea is to have a font selector with several fonts from my local system. I have been using the recently released &lt;a href=&#34;http://code.google.com/apis/webfonts/docs/webfont_loader.html&#34;&gt;Google WebFont Loader API&lt;/a&gt; to load font files from my local server into the website. Google has made it easier than ever. (note: Google will collect stats from your website if you use this API, just like they do if you use any of their services.)&lt;/p&gt;
 
 &lt;p&gt;The first thing I needed was font files. Not all browsers are alike when using the css @font-face elements. Paul Irish &lt;a href=&#34;http://paulirish.com/2009/bulletproof-font-face-implementation-syntax/&#34;&gt;educated me&lt;/a&gt; on that one. So I needed different versions of the font file based on the browser. Luckily, Font Squirrel has a &lt;a href=&#34;http://www.fontsquirrel.com/fontface/generator&#34;&gt;Font Face Generator&lt;/a&gt; which generates all the necessary files and the style sheet to boot. I thought to myself: &amp;#8220;Dang, that was easier than I thought it would be. I think I&amp;#8217;ll donate some money to Font Squirrel for developing that awesome app.&amp;#8221; Then I didn&amp;#8217;t get around to it&amp;#8230; maybe tomorrow.&lt;/p&gt;

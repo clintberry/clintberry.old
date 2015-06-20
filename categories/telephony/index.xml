@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Telephony on Clint Berry</title>
-    <link>http://clintberry.github.io/categories/telephony/</link>
+    <link>http://clintberry.com/categories/telephony/</link>
     <description>Recent content in Telephony on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 19 Jul 2012 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.github.io/categories/telephony/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://clintberry.com/categories/telephony/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Why Plivo Cloud Is Better Than Twilio</title>
-      <link>http://clintberry.github.io/2012/why-plivo-cloud-is-better-than-twilio/</link>
+      <link>http://clintberry.com/2012/why-plivo-cloud-is-better-than-twilio/</link>
       <pubDate>Thu, 19 Jul 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2012/why-plivo-cloud-is-better-than-twilio/</guid>
+      <guid>http://clintberry.com/2012/why-plivo-cloud-is-better-than-twilio/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;http://plivo.com&#34; title=&#34;Plivo Cloud&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://clintberry.github.io/images/plivologo.png&#34; alt=&#34;&#34; title=&#34;plivo&#34; class=&#34;alignleft size-full wp-image-603&#34; style=&#34;margin:15px 10px 10px 10px&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://plivo.com&#34; title=&#34;Plivo Cloud&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://clintberry.com/images/plivologo.png&#34; alt=&#34;&#34; title=&#34;plivo&#34; class=&#34;alignleft size-full wp-image-603&#34; style=&#34;margin:15px 10px 10px 10px&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Last year around this time Plivo.org was announced to the public, allowing anyone to develop telephony applications with the web language of their choice on top of their &lt;em&gt;OWN&lt;/em&gt; FreeSWITCH based phone system. Plivo.org is an amazing project, and if you aren&amp;#8217;t familiar with it I suggest you read &lt;a href=&#34;http://clintberry.github.io/2011/getting-started-with-plivo/&#34; title=&#34;Getting started with Plivo&#34;&gt;my getting started post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Last year around this time Plivo.org was announced to the public, allowing anyone to develop telephony applications with the web language of their choice on top of their &lt;em&gt;OWN&lt;/em&gt; FreeSWITCH based phone system. Plivo.org is an amazing project, and if you aren&amp;#8217;t familiar with it I suggest you read &lt;a href=&#34;http://clintberry.com/2011/getting-started-with-plivo/&#34; title=&#34;Getting started with Plivo&#34;&gt;my getting started post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Now the founders of Plivo.org have built on that technology to create a new telephony platform, &lt;a href=&#34;http://plivo.com&#34; title=&#34;Plivo Cloud&#34; target=&#34;_blank&#34;&gt;Plivo Cloud&lt;/a&gt;. I know what you are thinking&amp;#8211; another Twilio. And while the general idea (building awesome telephony apps in any web language) is still the same, there are a few things that make Plivo Cloud much different, and much better.&lt;/p&gt;
 
@@ -63,10 +63,10 @@
     
     <item>
       <title>Getting Started With Plivo</title>
-      <link>http://clintberry.github.io/2011/getting-started-with-plivo/</link>
+      <link>http://clintberry.com/2011/getting-started-with-plivo/</link>
       <pubDate>Wed, 24 Aug 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/getting-started-with-plivo/</guid>
+      <guid>http://clintberry.com/2011/getting-started-with-plivo/</guid>
       <description>
 
 &lt;p&gt;The open-source telephony development world has been changing drastically over the last 2 years. Projects like FreeSWITCH allow you to create simple phone applications with XML files, but until recently, advanced applications required a solid knowledge of the Erlang language. Then enters &lt;a title=&#34;Twilio&#34; href=&#34;http://www.twilio.com/&#34; target=&#34;_blank&#34;&gt;Twilio&lt;/a&gt;&amp;#8212; which allows any web developer to make advanced telephony apps in the web language of their choice. But with Twilio&amp;#8217;s pricing structure, you are looking at anywhere from 2 to 4 cents per minute &lt;strong&gt;IN ADDITION&lt;/strong&gt; to your VOIP service while also being locked-in to their cloud. &lt;strong&gt;Must I learn Erlang if I want to make cool telephony apps for free?&lt;/strong&gt;&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zend Framework on Clint Berry</title>
-    <link>http://clintberry.github.io/categories/zend-framework/</link>
+    <link>http://clintberry.com/categories/zend-framework/</link>
     <description>Recent content in Zend Framework on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 11 Nov 2010 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.github.io/categories/zend-framework/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://clintberry.com/categories/zend-framework/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>MongoDB Base Model for Zend Framework</title>
-      <link>http://clintberry.github.io/2010/mongodb-base-model-for-zend-framework/</link>
+      <link>http://clintberry.com/2010/mongodb-base-model-for-zend-framework/</link>
       <pubDate>Thu, 11 Nov 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2010/mongodb-base-model-for-zend-framework/</guid>
+      <guid>http://clintberry.com/2010/mongodb-base-model-for-zend-framework/</guid>
       <description>&lt;p&gt;I came accross &lt;a href=&#34;http://mongodb.org&#34;&gt;MongoDB&lt;/a&gt; a few months ago and it seemed like a perfect fit for many of the projects I am working. Extremely fast inserts, map-reduce for complex queries, and most importantly, scaling is a breeze.&lt;/p&gt;
 
 &lt;p&gt;Since I am a Zend Framework guy I created a simple base model class for MongoDB. It is a very simple wrapper, but is effective for what I need. I usually create model classes for each &amp;#8220;Collection&amp;#8221; just like I would create models for each table in MySQL. Each model class extends from the new MongoDB base class and allows a low level &amp;#8220;active directory&amp;#8221; type access to MongoDB documents.&lt;/p&gt;
@@ -60,10 +60,10 @@ $myVisitor-&amp;gt;referrer = array(&amp;#039;url&amp;#039;=&amp;gt;&amp;#039;go
     
     <item>
       <title>Zend Framework Code Generator With Scaffolding: ZFcodo</title>
-      <link>http://clintberry.github.io/2010/zend-framework-code-generator-with-scaffolding/</link>
+      <link>http://clintberry.com/2010/zend-framework-code-generator-with-scaffolding/</link>
       <pubDate>Thu, 05 Aug 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2010/zend-framework-code-generator-with-scaffolding/</guid>
+      <guid>http://clintberry.com/2010/zend-framework-code-generator-with-scaffolding/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; This project is now hosted at my &lt;a href=&#34;https://github.com/clintberry/zf-codo&#34;&gt;GitHub account&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;While I am a huge fan of Zend Framework, I miss having the code generation that is bundled with other frameworks I use. Since my favorite codegen/ORM is from the Qcubed project, I decided to take the Qcubed code generator and customize it for Zend Framework.&lt;/p&gt;
@@ -158,10 +158,10 @@ application/views/scripts/customer/edit.phtml
     
     <item>
       <title>Custom Error Messages on Zend Form Validators</title>
-      <link>http://clintberry.github.io/2010/zend-form-email-validator-customizing-error-messages/</link>
+      <link>http://clintberry.com/2010/zend-form-email-validator-customizing-error-messages/</link>
       <pubDate>Thu, 08 Jul 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2010/zend-form-email-validator-customizing-error-messages/</guid>
+      <guid>http://clintberry.com/2010/zend-form-email-validator-customizing-error-messages/</guid>
       <description>&lt;p&gt;Zend Form is extremely powerful, and I love most of the built in validators. But some of the validators are overkill for many projects. Take the EmailAddress validator for instance. I have never worked on a web-form where I wanted 3 error messages to appear if the Email address entered was invalid. (To see what I mean, just type in &amp;#8220;a@a&amp;#8221; for your email address and see what Zend_Validate_EmailAddress displays). I have seen several questions and complaints about this problem (&lt;a href=&#34;http://framework.zend.com/issues/browse/ZF-2224&#34;&gt;Example 1&lt;/a&gt; or &lt;a href=&#34;http://www.zfforums.com/zend-framework-general-discussions-1/general-q-zend-framework-2/how-can-i-get-just-1-error-message-emailaddress-validator-instead-multiple-2582.html&#34;&gt;Example 2&lt;/a&gt;) and thought I would offer up my fix.&lt;/p&gt;
 
 &lt;p&gt;I have found that the quickest way to to control your error messages with the EmailAddress Validator is to create your own email validator that extends from Zend_Validate_EmailAddress, and then override the isValid function. Here is the shortest version I have come up with:&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Symfony on Clint Berry</title>
-    <link>http://clintberry.github.io/categories/symfony/</link>
+    <link>http://clintberry.com/categories/symfony/</link>
     <description>Recent content in Symfony on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 21 Dec 2011 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.github.io/categories/symfony/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://clintberry.com/categories/symfony/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Custom User Providers in Symfony2</title>
-      <link>http://clintberry.github.io/2011/custom-user-providers-symfony2/</link>
+      <link>http://clintberry.com/2011/custom-user-providers-symfony2/</link>
       <pubDate>Wed, 21 Dec 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/custom-user-providers-symfony2/</guid>
+      <guid>http://clintberry.com/2011/custom-user-providers-symfony2/</guid>
       <description>
 
 &lt;h4 id=&#34;why-custom-user-providers:0062a4ae26007760914834b2b096356a&#34;&gt;Why Custom User Providers?&lt;/h4&gt;
@@ -290,10 +290,10 @@ class Provider implements UserProviderInterface {
     
     <item>
       <title>Why I Switched to Symfony 2 Framework</title>
-      <link>http://clintberry.github.io/2011/switched-symfony-2-framework/</link>
+      <link>http://clintberry.com/2011/switched-symfony-2-framework/</link>
       <pubDate>Thu, 10 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/switched-symfony-2-framework/</guid>
+      <guid>http://clintberry.com/2011/switched-symfony-2-framework/</guid>
       <description>
 
 &lt;p&gt;I have been working with the Zend Framework for the last 3 years. I like it. It is flexible, heavily object oriented, and organized. However, one thing that has always bothered me is that modules in ZF have been &lt;a title=&#34;Zend Framework Modules&#34; href=&#34;http://weierophinney.net/matthew/archives/234-Module-Bootstraps-in-Zend-Framework-Dos-and-Donts.html&#34; target=&#34;_blank&#34;&gt;second-class citizens&lt;/a&gt;. Granted, in Zend Framework 2 this is not the case, but I needed to start a project right away, and since ZF2 is still in beta, I decided to go checkout some other frameworks again.&lt;/p&gt;

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Abouts on Clint Berry</title>
-    <link>http://clintberry.github.io/about/</link>
+    <link>http://clintberry.com/about/</link>
     <description>Recent content in Abouts on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Apr 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://clintberry.com/about/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>About</title>
-      <link>http://clintberry.github.io/about/</link>
+      <link>http://clintberry.com/about/</link>
       <pubDate>Sun, 28 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/about/</guid>
+      <guid>http://clintberry.com/about/</guid>
       <description>
 
-&lt;p&gt;&lt;img src=&#34;http://clintberry.github.io/images/profile_photo.jpg&#34; alt=&#34;profile_photo&#34; width=&#34;128&#34; height=&#34;132&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/profile_photo.jpg&#34; alt=&#34;profile_photo&#34; width=&#34;128&#34; height=&#34;132&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I am the co-founder and CTO of &lt;a href=&#34;http://getweave.com&#34;&gt;Weave&lt;/a&gt; and a winter 2014 &lt;a href=&#34;https://www.ycombinator.com/&#34;&gt;Y-combinator&lt;/a&gt; alumni.&lt;/p&gt;
 

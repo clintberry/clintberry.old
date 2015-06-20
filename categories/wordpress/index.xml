@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wordpress on Clint Berry</title>
-    <link>http://clintberry.github.io/categories/wordpress/</link>
+    <link>http://clintberry.com/categories/wordpress/</link>
     <description>Recent content in Wordpress on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Feb 2012 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.github.io/categories/wordpress/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://clintberry.com/categories/wordpress/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Sublime Text 2 for PHP &amp; WordPress Development</title>
-      <link>http://clintberry.github.io/2012/sublime-text-2-php-symfony-development/</link>
+      <link>http://clintberry.com/2012/sublime-text-2-php-symfony-development/</link>
       <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2012/sublime-text-2-php-symfony-development/</guid>
+      <guid>http://clintberry.com/2012/sublime-text-2-php-symfony-development/</guid>
       <description>
 
 &lt;p&gt;Sublime Text 2 is an amazing code editor that I started using on the recommendation of a friend. I fell in love and haven&amp;#8217;t looked back. Here are some recomendations for setting up Sublime Text 2 for PHP and WordPress development.&lt;/p&gt;
@@ -123,10 +123,10 @@ There are &lt;strong&gt;MANY&lt;/strong&gt; more reasons. Check out this link fo
     
     <item>
       <title>Speed Up Your WordPress Development Cycle With Git</title>
-      <link>http://clintberry.github.io/2011/speed-up-your-wordpress-development-cycle-with-git/</link>
+      <link>http://clintberry.com/2011/speed-up-your-wordpress-development-cycle-with-git/</link>
       <pubDate>Sat, 30 Jul 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/speed-up-your-wordpress-development-cycle-with-git/</guid>
+      <guid>http://clintberry.com/2011/speed-up-your-wordpress-development-cycle-with-git/</guid>
       <description>
 
 &lt;p&gt;If you have developed WordPress sites for clients this process might sound familiar to you:&lt;/p&gt;

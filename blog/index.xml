@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on Clint Berry</title>
-    <link>http://clintberry.github.io/blog/</link>
+    <link>http://clintberry.com/blog/</link>
     <description>Recent content in Blogs on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Jul 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://clintberry.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>JavaScript and the Brackets Shell Environment</title>
-      <link>http://clintberry.github.io/2013/native-desktop-javascript/</link>
+      <link>http://clintberry.com/2013/native-desktop-javascript/</link>
       <pubDate>Mon, 22 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/native-desktop-javascript/</guid>
+      <guid>http://clintberry.com/2013/native-desktop-javascript/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/brackets-js.png&#34; alt=&#34;brackets-js&#34; width=&#34;300&#34; height=&#34;120&#34; class=&#34;alignleft size-full wp-image-1058&#34; /&gt;This is the second post in my series on using the amazing &lt;a href=&#34;https://github.com/adobe/brackets-shell/&#34; title=&#34;Brackets Shell&#34; target=&#34;_blank&#34;&gt;bracket-shell&lt;/a&gt; project for building native desktop applications with HTML and JavaScript.&lt;/p&gt;
@@ -159,10 +159,10 @@ void MinimizeWindow(CefRefPtr&amp;lt;CefBrowser&amp;gt; browser);
     
     <item>
       <title>Build Desktop Apps With HTML Using Brackets Shell</title>
-      <link>http://clintberry.github.io/2013/html5-desktop-apps-with-brackets-shell/</link>
+      <link>http://clintberry.com/2013/html5-desktop-apps-with-brackets-shell/</link>
       <pubDate>Tue, 25 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/html5-desktop-apps-with-brackets-shell/</guid>
+      <guid>http://clintberry.com/2013/html5-desktop-apps-with-brackets-shell/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/branding_256.png&#34; alt=&#34;branding_256&#34; width=&#34;256&#34; height=&#34;256&#34; class=&#34;alignleft wp-image-959&#34; /&gt;I recently posted on the &lt;a href=&#34;http://clintberry.com/2013/html5-apps-desktop-2013/&#34; title=&#34;html5 apps on the desktop&#34;&gt;state of native desktop apps in HTML5&lt;/a&gt; and mentioned that at my company we chose to use &lt;a href=&#34;https://github.com/adobe/brackets-shell/&#34; title=&#34;Brackets Shell&#34; target=&#34;_blank&#34;&gt;Brackets-Shell&lt;/a&gt; as our native app solution. I want to go more in-depth into what brackets is and why we chose it as our solution. This will be the first of a series of posts dedicated to brackets-shell and customizing it for your native HTML desktop applications.&lt;/p&gt;
@@ -355,10 +355,10 @@ Done, without errors.
     
     <item>
       <title>HTML5 Apps on the Desktop in 2013</title>
-      <link>http://clintberry.github.io/2013/html5-apps-desktop-2013/</link>
+      <link>http://clintberry.com/2013/html5-apps-desktop-2013/</link>
       <pubDate>Sat, 11 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/html5-apps-desktop-2013/</guid>
+      <guid>http://clintberry.com/2013/html5-apps-desktop-2013/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://clintberry.com/images/html-apps-on-desktop.jpg&#34;&gt;&lt;img src=&#34;http://clintberry.com/images/html-apps-on-desktop.jpg&#34; alt=&#34;html-apps-on-desktop&#34; width=&#34;379&#34; height=&#34;286&#34; class=&#34;alignleft size-full wp-image-923&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
@@ -597,10 +597,10 @@ Done, without errors.
     
     <item>
       <title>Modular AngularJS App Design</title>
-      <link>http://clintberry.github.io/2013/modular-angularjs-application-design/</link>
+      <link>http://clintberry.com/2013/modular-angularjs-application-design/</link>
       <pubDate>Mon, 29 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/modular-angularjs-application-design/</guid>
+      <guid>http://clintberry.com/2013/modular-angularjs-application-design/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/angular-module1.png&#34; alt=&#34;angular module&#34; width=&#34;225&#34; height=&#34;200&#34; class=&#34;alignleft size-full wp-image-836&#34; /&gt;&lt;/p&gt;
@@ -714,10 +714,10 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
     
     <item>
       <title>AngularJS WebSocket Service Example</title>
-      <link>http://clintberry.github.io/2013/angular-js-websocket-service/</link>
+      <link>http://clintberry.com/2013/angular-js-websocket-service/</link>
       <pubDate>Tue, 23 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/angular-js-websocket-service/</guid>
+      <guid>http://clintberry.com/2013/angular-js-websocket-service/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/angular_logofull.png&#34; alt=&#34;angular_logofull&#34; title=&#34;angular_logofull&#34; width=&#34;382&#34; height=&#34;99&#34; class=&#34;alignnone size-full wp-image-787&#34; /&gt;&lt;/p&gt;
@@ -916,13 +916,13 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
     
     <item>
       <title>Backbone.js apps with Authentication Tutorial</title>
-      <link>http://clintberry.github.io/2012/backbone-js-apps-authentication-tutorial/</link>
+      <link>http://clintberry.com/2012/backbone-js-apps-authentication-tutorial/</link>
       <pubDate>Sat, 01 Sep 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2012/backbone-js-apps-authentication-tutorial/</guid>
+      <guid>http://clintberry.com/2012/backbone-js-apps-authentication-tutorial/</guid>
       <description>
 
-&lt;p&gt;&lt;img src=&#34;http://clintberry.github.io/images/backbonelocked.png&#34; alt=&#34;backbonelocked&#34; title=&#34;backbonelocked&#34; width=&#34;568&#34; height=&#34;111&#34; class=&#34;alignnone size-full wp-image-670&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/backbonelocked.png&#34; alt=&#34;backbonelocked&#34; title=&#34;backbonelocked&#34; width=&#34;568&#34; height=&#34;111&#34; class=&#34;alignnone size-full wp-image-670&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;At my current company I am working on my first large-scale production backbone.js app and I couldn&amp;#8217;t be happier. After using backbone.js for a few months I have caught the vision and I am becoming more and more proficient. But every once and a while I still run into problems I would consider basic, but I can&amp;#8217;t seem to find much help on the interwebs. Authentication with backbone.js apps was one of those problems. So I am posting the solution I came up with in hopes it will benefit someone else, and hopefully will garner some feedback or potentially better ways to solve authentication with Backbone.js.&lt;/p&gt;
 
@@ -1155,15 +1155,15 @@ window.Router = Backbone.Router.extend({
     
     <item>
       <title>Why Plivo Cloud Is Better Than Twilio</title>
-      <link>http://clintberry.github.io/2012/why-plivo-cloud-is-better-than-twilio/</link>
+      <link>http://clintberry.com/2012/why-plivo-cloud-is-better-than-twilio/</link>
       <pubDate>Thu, 19 Jul 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2012/why-plivo-cloud-is-better-than-twilio/</guid>
+      <guid>http://clintberry.com/2012/why-plivo-cloud-is-better-than-twilio/</guid>
       <description>
 
-&lt;p&gt;&lt;a href=&#34;http://plivo.com&#34; title=&#34;Plivo Cloud&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://clintberry.github.io/images/plivologo.png&#34; alt=&#34;&#34; title=&#34;plivo&#34; class=&#34;alignleft size-full wp-image-603&#34; style=&#34;margin:15px 10px 10px 10px&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://plivo.com&#34; title=&#34;Plivo Cloud&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://clintberry.com/images/plivologo.png&#34; alt=&#34;&#34; title=&#34;plivo&#34; class=&#34;alignleft size-full wp-image-603&#34; style=&#34;margin:15px 10px 10px 10px&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Last year around this time Plivo.org was announced to the public, allowing anyone to develop telephony applications with the web language of their choice on top of their &lt;em&gt;OWN&lt;/em&gt; FreeSWITCH based phone system. Plivo.org is an amazing project, and if you aren&amp;#8217;t familiar with it I suggest you read &lt;a href=&#34;http://clintberry.github.io/2011/getting-started-with-plivo/&#34; title=&#34;Getting started with Plivo&#34;&gt;my getting started post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Last year around this time Plivo.org was announced to the public, allowing anyone to develop telephony applications with the web language of their choice on top of their &lt;em&gt;OWN&lt;/em&gt; FreeSWITCH based phone system. Plivo.org is an amazing project, and if you aren&amp;#8217;t familiar with it I suggest you read &lt;a href=&#34;http://clintberry.com/2011/getting-started-with-plivo/&#34; title=&#34;Getting started with Plivo&#34;&gt;my getting started post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Now the founders of Plivo.org have built on that technology to create a new telephony platform, &lt;a href=&#34;http://plivo.com&#34; title=&#34;Plivo Cloud&#34; target=&#34;_blank&#34;&gt;Plivo Cloud&lt;/a&gt;. I know what you are thinking&amp;#8211; another Twilio. And while the general idea (building awesome telephony apps in any web language) is still the same, there are a few things that make Plivo Cloud much different, and much better.&lt;/p&gt;
 
@@ -1207,10 +1207,10 @@ window.Router = Backbone.Router.extend({
     
     <item>
       <title>Phing For PHP Deployment</title>
-      <link>http://clintberry.github.io/2012/phing-php-deployment/</link>
+      <link>http://clintberry.com/2012/phing-php-deployment/</link>
       <pubDate>Tue, 10 Apr 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2012/phing-php-deployment/</guid>
+      <guid>http://clintberry.com/2012/phing-php-deployment/</guid>
       <description>&lt;p&gt;I recently did a presentation at the Utah PHP Users group on Phing for deploying PHP applications. Here are the slides:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://clintberry.com/slides/phing&#34; title=&#34;Phing Slides&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://clintberry.com/slides/phing&#34;&gt;http://clintberry.com/slides/phing&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1219,10 +1219,10 @@ window.Router = Backbone.Router.extend({
     
     <item>
       <title>Sublime Text 2 for PHP &amp; WordPress Development</title>
-      <link>http://clintberry.github.io/2012/sublime-text-2-php-symfony-development/</link>
+      <link>http://clintberry.com/2012/sublime-text-2-php-symfony-development/</link>
       <pubDate>Thu, 02 Feb 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2012/sublime-text-2-php-symfony-development/</guid>
+      <guid>http://clintberry.com/2012/sublime-text-2-php-symfony-development/</guid>
       <description>
 
 &lt;p&gt;Sublime Text 2 is an amazing code editor that I started using on the recommendation of a friend. I fell in love and haven&amp;#8217;t looked back. Here are some recomendations for setting up Sublime Text 2 for PHP and WordPress development.&lt;/p&gt;
@@ -1331,10 +1331,10 @@ There are &lt;strong&gt;MANY&lt;/strong&gt; more reasons. Check out this link fo
     
     <item>
       <title>Custom User Providers in Symfony2</title>
-      <link>http://clintberry.github.io/2011/custom-user-providers-symfony2/</link>
+      <link>http://clintberry.com/2011/custom-user-providers-symfony2/</link>
       <pubDate>Wed, 21 Dec 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/custom-user-providers-symfony2/</guid>
+      <guid>http://clintberry.com/2011/custom-user-providers-symfony2/</guid>
       <description>
 
 &lt;h4 id=&#34;why-custom-user-providers:0062a4ae26007760914834b2b096356a&#34;&gt;Why Custom User Providers?&lt;/h4&gt;
@@ -1610,10 +1610,10 @@ class Provider implements UserProviderInterface {
     
     <item>
       <title>Why I Switched to Symfony 2 Framework</title>
-      <link>http://clintberry.github.io/2011/switched-symfony-2-framework/</link>
+      <link>http://clintberry.com/2011/switched-symfony-2-framework/</link>
       <pubDate>Thu, 10 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/switched-symfony-2-framework/</guid>
+      <guid>http://clintberry.com/2011/switched-symfony-2-framework/</guid>
       <description>
 
 &lt;p&gt;I have been working with the Zend Framework for the last 3 years. I like it. It is flexible, heavily object oriented, and organized. However, one thing that has always bothered me is that modules in ZF have been &lt;a title=&#34;Zend Framework Modules&#34; href=&#34;http://weierophinney.net/matthew/archives/234-Module-Bootstraps-in-Zend-Framework-Dos-and-Donts.html&#34; target=&#34;_blank&#34;&gt;second-class citizens&lt;/a&gt;. Granted, in Zend Framework 2 this is not the case, but I needed to start a project right away, and since ZF2 is still in beta, I decided to go checkout some other frameworks again.&lt;/p&gt;
@@ -1650,10 +1650,10 @@ class Provider implements UserProviderInterface {
     
     <item>
       <title>Siege Testing Your Site Behind a Login</title>
-      <link>http://clintberry.github.io/2011/siege-testing-site-login/</link>
+      <link>http://clintberry.com/2011/siege-testing-site-login/</link>
       <pubDate>Sat, 05 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/siege-testing-site-login/</guid>
+      <guid>http://clintberry.com/2011/siege-testing-site-login/</guid>
       <description>&lt;p&gt;I use &lt;a href=&#34;http://www.joedog.org/index/siege-home&#34; target=&#34;_blank&#34;&gt;Siege&lt;/a&gt; to test my web applications and get an idea of how much traffic they can sustain. It is a great tool and I suggest you read more about it &lt;a href=&#34;http://www.joedog.org/index/siege-home&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;A few days ago, I needed to test a part of my application that was behind a login. I hit up UPHPU user group on IRC, and &lt;a href=&#34;http://www.justincarmony.com/&#34; target=&#34;_blank&#34;&gt;Carmony&lt;/a&gt; (a master website optimizer) suggested logging in on my browser and then hijacking the session in siege by setting header values. That is a great idea, but seems overly difficult. I doubted that I was the only one that ever wanted to do this. Isn&amp;#8217;t there an easier way?&lt;/p&gt;
@@ -1674,10 +1674,10 @@ class Provider implements UserProviderInterface {
     
     <item>
       <title>Getting Started With Plivo</title>
-      <link>http://clintberry.github.io/2011/getting-started-with-plivo/</link>
+      <link>http://clintberry.com/2011/getting-started-with-plivo/</link>
       <pubDate>Wed, 24 Aug 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/getting-started-with-plivo/</guid>
+      <guid>http://clintberry.com/2011/getting-started-with-plivo/</guid>
       <description>
 
 &lt;p&gt;The open-source telephony development world has been changing drastically over the last 2 years. Projects like FreeSWITCH allow you to create simple phone applications with XML files, but until recently, advanced applications required a solid knowledge of the Erlang language. Then enters &lt;a title=&#34;Twilio&#34; href=&#34;http://www.twilio.com/&#34; target=&#34;_blank&#34;&gt;Twilio&lt;/a&gt;&amp;#8212; which allows any web developer to make advanced telephony apps in the web language of their choice. But with Twilio&amp;#8217;s pricing structure, you are looking at anywhere from 2 to 4 cents per minute &lt;strong&gt;IN ADDITION&lt;/strong&gt; to your VOIP service while also being locked-in to their cloud. &lt;strong&gt;Must I learn Erlang if I want to make cool telephony apps for free?&lt;/strong&gt;&lt;/p&gt;
@@ -1828,10 +1828,10 @@ DEFAULT_HANGUP_URL = http://127.0.0.1:3000/hangup/&lt;/pre&gt;
     
     <item>
       <title>Speed Up Your WordPress Development Cycle With Git</title>
-      <link>http://clintberry.github.io/2011/speed-up-your-wordpress-development-cycle-with-git/</link>
+      <link>http://clintberry.com/2011/speed-up-your-wordpress-development-cycle-with-git/</link>
       <pubDate>Sat, 30 Jul 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/speed-up-your-wordpress-development-cycle-with-git/</guid>
+      <guid>http://clintberry.com/2011/speed-up-your-wordpress-development-cycle-with-git/</guid>
       <description>
 
 &lt;p&gt;If you have developed WordPress sites for clients this process might sound familiar to you:&lt;/p&gt;
@@ -3115,10 +3115,10 @@ I hope this helps getting your WordPress sites off the ground quicker and easier
     
     <item>
       <title>Wildcard Sub-Domains on OSX, Web Development on Localhost</title>
-      <link>http://clintberry.github.io/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/</link>
+      <link>http://clintberry.com/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/</link>
       <pubDate>Mon, 30 May 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/</guid>
+      <guid>http://clintberry.com/2011/wildcard-sub-domains-on-osx-web-development-on-localhost/</guid>
       <description>
 
 &lt;p&gt;Today&amp;#8217;s post will be on setting up wildcard subdomains in OSX. This allows you to map folders in your web root to sub-domains on your local box. Why would you want to do this? It is nice to be able to type use &lt;em&gt;&lt;a href=&#34;http://myproject.clint.dev&#34;&gt;http://myproject.clint.dev&lt;/a&gt;&lt;/em&gt; for the URL and have it map to the &amp;#8216;myproject&amp;#8217; folder on your local box. No need to add a line to the etc/hosts file, and no need to add a virtual host in apache for each sub-domain. The method I will be outlining here will allow you to map x.yourdevdomain.dev to any folder &amp;#8216;x&amp;#8217; using Bind and a wildcard virtual host in apache. This tutorial assumes you already have Apache setup on your local box.&lt;/p&gt;

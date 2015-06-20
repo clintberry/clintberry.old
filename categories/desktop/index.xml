@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Desktop on Clint Berry</title>
-    <link>http://clintberry.github.io/categories/desktop/</link>
+    <link>http://clintberry.com/categories/desktop/</link>
     <description>Recent content in Desktop on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Jul 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.github.io/categories/desktop/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://clintberry.com/categories/desktop/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>JavaScript and the Brackets Shell Environment</title>
-      <link>http://clintberry.github.io/2013/native-desktop-javascript/</link>
+      <link>http://clintberry.com/2013/native-desktop-javascript/</link>
       <pubDate>Mon, 22 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/native-desktop-javascript/</guid>
+      <guid>http://clintberry.com/2013/native-desktop-javascript/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/brackets-js.png&#34; alt=&#34;brackets-js&#34; width=&#34;300&#34; height=&#34;120&#34; class=&#34;alignleft size-full wp-image-1058&#34; /&gt;This is the second post in my series on using the amazing &lt;a href=&#34;https://github.com/adobe/brackets-shell/&#34; title=&#34;Brackets Shell&#34; target=&#34;_blank&#34;&gt;bracket-shell&lt;/a&gt; project for building native desktop applications with HTML and JavaScript.&lt;/p&gt;
@@ -159,10 +159,10 @@ void MinimizeWindow(CefRefPtr&amp;lt;CefBrowser&amp;gt; browser);
     
     <item>
       <title>Build Desktop Apps With HTML Using Brackets Shell</title>
-      <link>http://clintberry.github.io/2013/html5-desktop-apps-with-brackets-shell/</link>
+      <link>http://clintberry.com/2013/html5-desktop-apps-with-brackets-shell/</link>
       <pubDate>Tue, 25 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/html5-desktop-apps-with-brackets-shell/</guid>
+      <guid>http://clintberry.com/2013/html5-desktop-apps-with-brackets-shell/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/branding_256.png&#34; alt=&#34;branding_256&#34; width=&#34;256&#34; height=&#34;256&#34; class=&#34;alignleft wp-image-959&#34; /&gt;I recently posted on the &lt;a href=&#34;http://clintberry.com/2013/html5-apps-desktop-2013/&#34; title=&#34;html5 apps on the desktop&#34;&gt;state of native desktop apps in HTML5&lt;/a&gt; and mentioned that at my company we chose to use &lt;a href=&#34;https://github.com/adobe/brackets-shell/&#34; title=&#34;Brackets Shell&#34; target=&#34;_blank&#34;&gt;Brackets-Shell&lt;/a&gt; as our native app solution. I want to go more in-depth into what brackets is and why we chose it as our solution. This will be the first of a series of posts dedicated to brackets-shell and customizing it for your native HTML desktop applications.&lt;/p&gt;
@@ -355,10 +355,10 @@ Done, without errors.
     
     <item>
       <title>HTML5 Apps on the Desktop in 2013</title>
-      <link>http://clintberry.github.io/2013/html5-apps-desktop-2013/</link>
+      <link>http://clintberry.com/2013/html5-apps-desktop-2013/</link>
       <pubDate>Sat, 11 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/html5-apps-desktop-2013/</guid>
+      <guid>http://clintberry.com/2013/html5-apps-desktop-2013/</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://clintberry.com/images/html-apps-on-desktop.jpg&#34;&gt;&lt;img src=&#34;http://clintberry.com/images/html-apps-on-desktop.jpg&#34; alt=&#34;html-apps-on-desktop&#34; width=&#34;379&#34; height=&#34;286&#34; class=&#34;alignleft size-full wp-image-923&#34; /&gt;&lt;/a&gt;&lt;/p&gt;

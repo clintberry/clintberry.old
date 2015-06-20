@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Angular on Clint Berry</title>
-    <link>http://clintberry.github.io/categories/angular/</link>
+    <link>http://clintberry.com/categories/angular/</link>
     <description>Recent content in Angular on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 29 Apr 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.github.io/categories/angular/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://clintberry.com/categories/angular/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Modular AngularJS App Design</title>
-      <link>http://clintberry.github.io/2013/modular-angularjs-application-design/</link>
+      <link>http://clintberry.com/2013/modular-angularjs-application-design/</link>
       <pubDate>Mon, 29 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/modular-angularjs-application-design/</guid>
+      <guid>http://clintberry.com/2013/modular-angularjs-application-design/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/angular-module1.png&#34; alt=&#34;angular module&#34; width=&#34;225&#34; height=&#34;200&#34; class=&#34;alignleft size-full wp-image-836&#34; /&gt;&lt;/p&gt;
@@ -128,10 +128,10 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
     
     <item>
       <title>AngularJS WebSocket Service Example</title>
-      <link>http://clintberry.github.io/2013/angular-js-websocket-service/</link>
+      <link>http://clintberry.com/2013/angular-js-websocket-service/</link>
       <pubDate>Tue, 23 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.github.io/2013/angular-js-websocket-service/</guid>
+      <guid>http://clintberry.com/2013/angular-js-websocket-service/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/angular_logofull.png&#34; alt=&#34;angular_logofull&#34; title=&#34;angular_logofull&#34; width=&#34;382&#34; height=&#34;99&#34; class=&#34;alignnone size-full wp-image-787&#34; /&gt;&lt;/p&gt;
