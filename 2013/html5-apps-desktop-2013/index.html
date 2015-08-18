@@ -137,6 +137,11 @@
 <li>
 <ul>
 <li><a href="#tidesdk:522579eb282b622ded22bcc5d66b8011">TideSDK</a></li>
+<li><a href="#appjs:522579eb282b622ded22bcc5d66b8011">AppJS</a></li>
+<li><a href="#node-webkit:522579eb282b622ded22bcc5d66b8011">Node-webkit</a></li>
+<li><a href="#sencha-desktop:522579eb282b622ded22bcc5d66b8011">Sencha Desktop</a></li>
+<li><a href="#brackets-shell:522579eb282b622ded22bcc5d66b8011">Brackets Shell</a></li>
+<li><a href="#other-solutions:522579eb282b622ded22bcc5d66b8011">Other Solutions</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -216,205 +221,95 @@
 
 <p><strong>The Good</strong></p>
 
-<ul class="list bullet">
-  </p> 
-  
-  <li>
-    Great Packaging Tools
-  </li>
-  <li>
-    Run PHP, Python, or Ruby code on the &#8220;backend&#8221; of your app (Awesome!)
-  </li>
-  <li>
-    Documentation is thorough with good getting started guides
-  </li>
-  <p>
-    </ul> 
-    
+<ul>
+<li>Great Packaging Tools</li>
+<li>Run PHP, Python, or Ruby code on the &#8220;backend&#8221; of your app (Awesome!)</li>
+<li>Documentation is thorough with good getting started guides</li>
+</ul>
 
-<pre><code>&lt;p&gt;
-  &lt;strong&gt;The Bad&lt;/strong&gt;
-&lt;/p&gt;
+<p><strong>The Bad</strong></p>
 
-&lt;ul class=&quot;list bullet&quot;&gt;
-  &lt;/p&gt; 
+<ul>
+<li>No version bumps in a long time</li>
+<li>The webkit version is OLD</li>
+<li>They need more money to keep going</li>
+</ul>
 
-  &lt;li&gt;
-    No version bumps in a long time
-  &lt;/li&gt;
-  &lt;li&gt;
-    The webkit version is OLD
-  &lt;/li&gt;
-  &lt;li&gt;
-    They need more money to keep going
-  &lt;/li&gt;
-  &lt;p&gt;
-    &lt;/ul&gt; 
+<h3 id="appjs:522579eb282b622ded22bcc5d66b8011">AppJS</h3>
 
-    &lt;h3&gt;
-      AppJS
-    &lt;/h3&gt;
+<p>If you are a nodeJS fan, <a href="http://appjs.com/" title="Desktop Apps with HTML" target="_blank">AppJS</a> is the start of something awesome. It runs allows you to interact with desktop windows via JavaScript in a nodeJS application. Great idea, but it has some bugs and debugging issues can be a pain. Also, the issue list keeps piling up in github and it seems no progress is being made.</p>
 
-    &lt;p&gt;
-      If you are a nodeJS fan, &lt;a href=&quot;http://appjs.com/&quot; title=&quot;Desktop Apps with HTML&quot; target=&quot;_blank&quot;&gt;AppJS&lt;/a&gt; is the start of something awesome. It runs allows you to interact with desktop windows via JavaScript in a nodeJS application. Great idea, but it has some bugs and debugging issues can be a pain. Also, the issue list keeps piling up in github and it seems no progress is being made.
-    &lt;/p&gt;
+<p><strong>The Good</strong></p>
 
-    &lt;p&gt;
-      &lt;strong&gt;The Good&lt;/strong&gt;
-    &lt;/p&gt;
+<ul>
+<li>NodeJS-based makes this pretty simple to get going</li>
+<li>Thousands of cool NodeJS libraries now available to run on the desktop</li>
+<li>Cool features like transparent windows, window dragging, and popups all built in</li>
+</ul>
 
-    &lt;ul class=&quot;list bullet&quot;&gt;
-      &lt;/p&gt; 
+<p><strong>The Bad</strong></p>
 
-      &lt;li&gt;
-        NodeJS-based makes this pretty simple to get going
-      &lt;/li&gt;
-      &lt;li&gt;
-        Thousands of cool NodeJS libraries now available to run on the desktop
-      &lt;/li&gt;
-      &lt;li&gt;
-        Cool features like transparent windows, window dragging, and popups all built in
-      &lt;/li&gt;
-      &lt;p&gt;
-        &lt;/ul&gt; 
+<ul>
+<li>No recent updates and appears abandoned</li>
+<li>Enough bugs to make this not production worthy</li>
+</ul>
 
-        &lt;p&gt;
-          &lt;strong&gt;The Bad&lt;/strong&gt;
-        &lt;/p&gt;
+<h3 id="node-webkit:522579eb282b622ded22bcc5d66b8011">Node-webkit</h3>
 
-        &lt;ul class=&quot;list bullet&quot;&gt;
-          &lt;/p&gt; 
+<p>Along the same lines as appjs, <a href="https://github.com/rogerwang/node-webkit" title="html apps on the desktop with node-webkit" target="_blank">node-webkit</a> is a desktop runtime that combines chromium with NodeJS. This project is also backed by Intel and has regular updates. Packaging apps into Exes is not trivial, however and we had some problems running our more advanced apps on windows (popup windows in particular).</p>
 
-          &lt;li&gt;
-            No recent updates and appears abandoned
-          &lt;/li&gt;
-          &lt;li&gt;
-            Enough bugs to make this not production worthy
-          &lt;/li&gt;
-          &lt;p&gt;
-            &lt;/ul&gt; 
+<p><strong>The Good</strong></p>
 
-            &lt;h3&gt;
-              &lt;a href=&quot;https://github.com/rogerwang/node-webkit&quot; title=&quot;node-webkit&quot; target=&quot;_blank&quot;&gt;Node-webkit&lt;/a&gt;
-            &lt;/h3&gt;
+<ul>
+<li>NodeJS based is awesome</li>
+<li>Backed by Intel, with regular updates</li>
+<li>Webkit and Node run in the same memory space which allows for some cool tricks</li>
+</ul>
 
-            &lt;p&gt;
-              Along the same lines as appjs, &lt;a href=&quot;https://github.com/rogerwang/node-webkit&quot; title=&quot;html apps on the desktop with node-webkit&quot; target=&quot;_blank&quot;&gt;node-webkit&lt;/a&gt; is a desktop runtime that combines chromium with NodeJS. This project is also backed by Intel and has regular updates. Packaging apps into Exes is not trivial, however and we had some problems running our more advanced apps on windows (popup windows in particular).
-            &lt;/p&gt;
+<p><strong>The Bad</strong></p>
 
-            &lt;p&gt;
-              &lt;strong&gt;The Good&lt;/strong&gt;
-            &lt;/p&gt;
+<ul>
+<li>Packaging apps isn&#8217;t simple</li>
+<li>Had trouble with popup windows on Windows</li>
+</ul>
 
-            &lt;ul class=&quot;list bullet&quot;&gt;
-              &lt;/p&gt; 
+<h3 id="sencha-desktop:522579eb282b622ded22bcc5d66b8011">Sencha Desktop</h3>
 
-              &lt;li&gt;
-                NodeJS based is awesome
-              &lt;/li&gt;
-              &lt;li&gt;
-                Backed by Intel, with regular updates
-              &lt;/li&gt;
-              &lt;li&gt;
-                Webkit and Node run in the same memory space which allows for some cool tricks
-              &lt;/li&gt;
-              &lt;p&gt;
-                &lt;/ul&gt; 
+<p>Sencha&#8217;s solution is not free at almsot $700. It&#8217;s webkit version is outdated and it has a very limited feature set for controlling the windows (no transparency, no removing the chrome frame, etc).</p>
 
-                &lt;p&gt;
-                  &lt;strong&gt;The Bad&lt;/strong&gt;
-                &lt;/p&gt;
+<ul>
+<li>No breakdown. This baby isn&#8217;t worth the price, hands down.</li>
+</ul>
 
-                &lt;ul class=&quot;list bullet&quot;&gt;
-                  &lt;/p&gt; 
+<h3 id="brackets-shell:522579eb282b622ded22bcc5d66b8011">Brackets Shell</h3>
 
-                  &lt;li&gt;
-                    Packaging apps isn&amp;#8217;t simple
-                  &lt;/li&gt;
-                  &lt;li&gt;
-                    Had trouble with popup windows on Windows
-                  &lt;/li&gt;
-                  &lt;p&gt;
-                    &lt;/ul&gt; 
+<p>The <a href="https://github.com/adobe/brackets-shell" title="Brackets Shell" target="_blank">Brackets Shell</a> is a customized version of Chromium Embedded Framework (CEF) that was created to run the <a href="http://brackets.io/" title="HTML JavaScript Editor" target="_blank">Brackets IDE</a> on the desktop. But this shell has some great features and is general enough to allow you to modify it and use it for your own project. Brackets Shell is backed by Adobe and is updated regularly, and they <a href="https://github.com/adobe/brackets-shell/pull/231" title="Pull Request for Drag capabilities" target="_blank">accept pull requests</a> for features that the Brackets IDE might not even use. Building the shell is easy thanks to the bundled Grunt file, and it is using CEF3 so the webkit version is up to date. We went with this solution at my current company and have been loving it. I intend to write a whole post on customizing and using the brackets shell soon.</p>
 
-                    &lt;h3&gt;
-                      Sencha Desktop
-                    &lt;/h3&gt;
+<p><strong>UPDATE:</strong> I wrote a full post on <a href="http://clintberry.com/2013/html5-desktop-apps-with-brackets-shell/" title="Native desktop apps in HTML with Brackets Shell">getting started with brackets-shell</a></p>
 
-                    &lt;p&gt;
-                      Sencha&amp;#8217;s solution is not free at almsot $700. It&amp;#8217;s webkit version is outdated and it has a very limited feature set for controlling the windows (no transparency, no removing the chrome frame, etc).
-                    &lt;/p&gt;
+<p><strong>The Good</strong></p>
 
-                    &lt;p&gt;
-                      No breakdown. This baby isn&amp;#8217;t worth the price, hands down.
-                    &lt;/p&gt;
+<ul>
+<li>Backed by Adobe, with regular updates and an updated webkit version</li>
+<li>NodeJS was recently integrated into the shell for some awesome new capabilities</li>
+<li>Building and packaging apps is amazingly easy using GruntJS and runs on Windows and Mac</li>
+</ul>
 
-                    &lt;h3&gt;
-                      Brackets Shell
-                    &lt;/h3&gt;
+<p><strong>The Bad</strong></p>
 
-                    &lt;p&gt;
-                      The &lt;a href=&quot;https://github.com/adobe/brackets-shell&quot; title=&quot;Brackets Shell&quot; target=&quot;_blank&quot;&gt;Brackets Shell&lt;/a&gt; is a customized version of Chromium Embedded Framework (CEF) that was created to run the &lt;a href=&quot;http://brackets.io/&quot; title=&quot;HTML JavaScript Editor&quot; target=&quot;_blank&quot;&gt;Brackets IDE&lt;/a&gt; on the desktop. But this shell has some great features and is general enough to allow you to modify it and use it for your own project. Brackets Shell is backed by Adobe and is updated regularly, and they &lt;a href=&quot;https://github.com/adobe/brackets-shell/pull/231&quot; title=&quot;Pull Request for Drag capabilities&quot; target=&quot;_blank&quot;&gt;accept pull requests&lt;/a&gt; for features that the Brackets IDE might not even use. Building the shell is easy thanks to the bundled Grunt file, and it is using CEF3 so the webkit version is up to date. We went with this solution at my current company and have been loving it. I intend to write a whole post on customizing and using the brackets shell soon.
-                    &lt;/p&gt;
+<ul>
+<li>Lacking some features for customizing the main window, like transparency</li>
+<li>No linux support (yet)</li>
+<li><a href="https://github.com/adobe/brackets/issues/2389 " title="no html5 audio in brackets shell" target="_blank">No HTML5 audio? (sad)</a></li>
+</ul>
 
-                    &lt;p&gt;
-                      &lt;strong&gt;UPDATE:&lt;/strong&gt; I wrote a full post on &lt;a href=&quot;http://clintberry.com/2013/html5-desktop-apps-with-brackets-shell/&quot; title=&quot;Native desktop apps in HTML with Brackets Shell&quot;&gt;getting started with brackets-shell&lt;/a&gt;
-                    &lt;/p&gt;
+<h3 id="other-solutions:522579eb282b622ded22bcc5d66b8011">Other Solutions</h3>
 
-                    &lt;p&gt;
-                      &lt;strong&gt;The Good&lt;/strong&gt;
-                    &lt;/p&gt;
+<p>Other solutions I haven&#8217;t looked into are Windows 8 which runs <a href="http://msdn.microsoft.com/en-us/library/windows/apps/br211385.aspx" title="Windows 8 web apps" target="_blank">HTML apps as first class citizens</a> directly on the desktop. Ubuntu desktop has a similar solution with <a href="http://developer.ubuntu.com/resources/technologies/webapps/" title="Ubuntu Web Apps" target="_blank">Ubuntu Web Apps</a>.</p>
 
-                    &lt;ul class=&quot;list bullet&quot;&gt;
-                      &lt;/p&gt; 
+<p>As I see Windows and Ubuntu embracing HTML on the desktop, I can&#8217;t help but think the future is bright for desktop apps, even in a mobile first economy.</p>
 
-                      &lt;li&gt;
-                        Backed by Adobe, with regular updates and an updated webkit version
-                      &lt;/li&gt;
-                      &lt;li&gt;
-                        NodeJS was recently integrated into the shell for some awesome new capabilities
-                      &lt;/li&gt;
-                      &lt;li&gt;
-                        Building and packaging apps is amazingly easy using GruntJS and runs on Windows and Mac
-                      &lt;/li&gt;
-                      &lt;p&gt;
-                        &lt;/ul&gt; 
-
-                        &lt;p&gt;
-                          &lt;strong&gt;The Bad&lt;/strong&gt;
-                        &lt;/p&gt;
-
-                        &lt;ul class=&quot;list bullet&quot;&gt;
-                          &lt;/p&gt; 
-
-                          &lt;li&gt;
-                            Lacking some features for customizing the main window, like transparency
-                          &lt;/li&gt;
-                          &lt;li&gt;
-                            No linux support (yet)
-                          &lt;/li&gt;
-                          &lt;li&gt;
-                            &lt;a href=&quot;https://github.com/adobe/brackets/issues/2389 &quot; title=&quot;no html5 audio in brackets shell&quot; target=&quot;_blank&quot;&gt;No HTML5 audio? (sad)&lt;/a&gt;
-                          &lt;/li&gt;
-                          &lt;p&gt;
-                            &lt;/ul&gt; 
-
-                            &lt;h3&gt;
-                              Other Solutions
-                            &lt;/h3&gt;
-
-                            &lt;p&gt;
-                              Other solutions I haven&amp;#8217;t looked into are Windows 8 which runs &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/windows/apps/br211385.aspx&quot; title=&quot;Windows 8 web apps&quot; target=&quot;_blank&quot;&gt;HTML apps as first class citizens&lt;/a&gt; directly on the desktop. Ubuntu desktop has a similar solution with &lt;a href=&quot;http://developer.ubuntu.com/resources/technologies/webapps/&quot; title=&quot;Ubuntu Web Apps&quot; target=&quot;_blank&quot;&gt;Ubuntu Web Apps&lt;/a&gt;.
-                            &lt;/p&gt;
-
-                            &lt;p&gt;
-                              As I see Windows and Ubuntu embracing HTML on the desktop, I can&amp;#8217;t help but think the future is bright for desktop apps, even in a mobile first economy.
-                            &lt;/p&gt;
-
-                            &lt;p&gt;
-                              As always, let me know if you have any comments, corrections, or criticisms.
-                            &lt;/p&gt;
-</code></pre>
+<p>As always, let me know if you have any comments, corrections, or criticisms.</p>
 
 	
 			
@@ -474,6 +369,15 @@
 
 	
 
-  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-7117674-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>
