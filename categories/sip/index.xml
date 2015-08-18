@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sip on Clint Berry</title>
+    <link>http://localhost:1313/categories/sip/</link>
+    <description>Recent content in Sip on Clint Berry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Jul 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/sip/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Easy SIP Capture With Flanders</title>
+      <link>http://localhost:1313/2015/easy-sip-capture-with-flanders/</link>
+      <pubDate>Mon, 20 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/2015/easy-sip-capture-with-flanders/</guid>
+      <description>
+
+&lt;p&gt;If you are working with open source telephony (Asterisk, FreeSWITCH, Kamailio, etc.), you are probably familiar with the Homer project. Homer is critical for dignosing SIP related issues by capturing all SIP signals on your platform and putting an interface over them to allow you to search and export them for analysis. Homer was instrumental in helping us at Weave as we scaled our phone platform, but we always struggled with a few of the things in Homer:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Installation was not trivial&lt;/li&gt;
+&lt;li&gt;A separate capture agent was required (usually Kamailio with certain settings turned on)&lt;/li&gt;
+&lt;li&gt;The user interface did not allow easy sharing of call data between co-workers&lt;/li&gt;
+&lt;li&gt;It used MySQL by default which may not be the best DB for this kind of data&lt;/li&gt;
+&lt;li&gt;We REALLY wanted real-time SIP capturing in the user interface.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So we set out to build the SIP capture tool we always wanted with those goals in mind&lt;/p&gt;
+
+&lt;h2 id=&#34;announcing-flanders:81c300d767325d542068170898c76c72&#34;&gt;Announcing &amp;ldquo;Flanders&amp;rdquo;&lt;/h2&gt;
+
+&lt;p&gt;Flanders is an easy-to-use sip capture utility and user interface that satisfies all our needs/wants at Weave.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
