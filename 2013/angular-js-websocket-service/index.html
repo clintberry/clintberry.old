@@ -90,9 +90,9 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.com">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about">About</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog">Blog</a></li>
         
       </ul>
     </nav>
@@ -105,11 +105,11 @@
         
       
         
-        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
         
       
         
-        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
         
       
       
@@ -140,21 +140,21 @@
 <ul>
 <li>
 <ul>
-<li><a href="#nbsp:52a8cb3531d70648da771569c58d3924">&nbsp;</a></li>
+<li><a href="#nbsp">&nbsp;</a></li>
 </ul></li>
-<li><a href="#the-details:52a8cb3531d70648da771569c58d3924">The Details</a>
+<li><a href="#the-details">The Details</a>
 <ul>
-<li><a href="#nbsp-1:52a8cb3531d70648da771569c58d3924">&nbsp;</a></li>
-<li><a href="#nbsp-2:52a8cb3531d70648da771569c58d3924">&nbsp;</a></li>
-<li><a href="#nbsp-3:52a8cb3531d70648da771569c58d3924">&nbsp;</a></li>
+<li><a href="#nbsp-1">&nbsp;</a></li>
+<li><a href="#nbsp-2">&nbsp;</a></li>
+<li><a href="#nbsp-3">&nbsp;</a></li>
 </ul></li>
-<li><a href="#so-why-have-a-callback-id-and-a-callbacks-object:52a8cb3531d70648da771569c58d3924">So why have a callback ID and a callbacks object?</a>
+<li><a href="#so-why-have-a-callback-id-and-a-callbacks-object">So why have a callback ID and a callbacks object?</a>
 <ul>
-<li><a href="#nbsp-4:52a8cb3531d70648da771569c58d3924">&nbsp;</a></li>
-<li><a href="#nbsp-5:52a8cb3531d70648da771569c58d3924">&nbsp;</a></li>
-<li><a href="#nbsp-6:52a8cb3531d70648da771569c58d3924">&nbsp;</a></li>
-<li><a href="#nbsp-7:52a8cb3531d70648da771569c58d3924">&nbsp;</a></li>
-<li><a href="#nbsp-8:52a8cb3531d70648da771569c58d3924">&nbsp;</a></li>
+<li><a href="#nbsp-4">&nbsp;</a></li>
+<li><a href="#nbsp-5">&nbsp;</a></li>
+<li><a href="#nbsp-6">&nbsp;</a></li>
+<li><a href="#nbsp-7">&nbsp;</a></li>
+<li><a href="#nbsp-8">&nbsp;</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -272,9 +272,9 @@
 }])
 </pre>
 
-<h5 id="nbsp:52a8cb3531d70648da771569c58d3924">&nbsp;</h5>
+<h5 id="nbsp">&nbsp;</h5>
 
-<h4 id="the-details:52a8cb3531d70648da771569c58d3924">The Details</h4>
+<h4 id="the-details">The Details</h4>
 
 <p>To explain this code in detail I will walk you through a usage scenario and step through each function and talk about what it does. Assume we have an angular controller called &#8220;customerList&#8221;. We need to access customer data in our new controller and our customer data comes from a websocket service somewhere in Canada. So you inject your new websocket service into the scope of your controller and you are able to call getCustomers(). Quick and dirty example for illustration purposes:</p>
 
@@ -284,7 +284,7 @@
   }]);
 </pre>
 
-<h5 id="nbsp-1:52a8cb3531d70648da771569c58d3924">&nbsp;</h5>
+<h5 id="nbsp-1">&nbsp;</h5>
 
 <p>So the getCustomers function is called and we see that the getCustomers function creates a request object literal and passes that to the sendRequest() function:</p>
 
@@ -299,7 +299,7 @@
     }
 </pre>
 
-<h5 id="nbsp-2:52a8cb3531d70648da771569c58d3924">&nbsp;</h5>
+<h5 id="nbsp-2">&nbsp;</h5>
 
 <p>You can see I am storing the response from sendRequest() in a variable called promise. I then return that promise. Let&#8217;s look at what sendRequest() actually does:</p>
 
@@ -317,11 +317,11 @@
     }
 </pre>
 
-<h5 id="nbsp-3:52a8cb3531d70648da771569c58d3924">&nbsp;</h5>
+<h5 id="nbsp-3">&nbsp;</h5>
 
 <p>The sendRequest function first creates a defer object from the <a href="https://github.com/kriskowal/q" title="Q Library" target="_blank">Q library</a> that is bundled with Angular. (For more information on deferred objects and promises in angular I highly recommend the <a href="http://www.egghead.io/video/o84ryzNp36Q" title="Promises in Angularjs" target="_blank">egghead.io video on promises</a>) After that it creates a new callbackId variable and then adds an object literal to the callbacks object using the new callbackId as the index.</p>
 
-<h4 id="so-why-have-a-callback-id-and-a-callbacks-object:52a8cb3531d70648da771569c58d3924">So why have a callback ID and a callbacks object?</h4>
+<h4 id="so-why-have-a-callback-id-and-a-callbacks-object">So why have a callback ID and a callbacks object?</h4>
 
 <p>The callbacks variable is where I will store all requests that haven&#8217;t received a response yet. Because services implemented on the websocket side can be asynchronous, you could potentially send several requests to the websocket and the websocket could return responses in a different order than it received requests. This is where callback Ids come into play. Usually websocket servers will have a way for you to map responses from the websocket server to requests that you sent to it. Sending a user-generated callback_id to the websocket is one way to do this. In my case, I start at 0 and work my way up to 10000 then start over. You can see this in my getCallback() function:</p>
 
@@ -335,14 +335,14 @@
     }
 </pre>
 
-<h5 id="nbsp-4:52a8cb3531d70648da771569c58d3924">&nbsp;</h5>
+<h5 id="nbsp-4">&nbsp;</h5>
 
 <p>Now back to sendRequest. After the callbackId is generated, and the deferred is stored in the callbacks variable, we add the new callbackId to the request message:</p>
 
 <pre class="wp-code-highlight prettyprint">request.callback_id = callbackId;
 </pre>
 
-<h5 id="nbsp-5:52a8cb3531d70648da771569c58d3924">&nbsp;</h5>
+<h5 id="nbsp-5">&nbsp;</h5>
 
 <p>Then we send the request object to the websocket and return a promise:</p>
 
@@ -350,7 +350,7 @@
     return defer.promise;
 </pre>
 
-<h5 id="nbsp-6:52a8cb3531d70648da771569c58d3924">&nbsp;</h5>
+<h5 id="nbsp-6">&nbsp;</h5>
 
 <p>Now out in Canada somewhere, our websocket server processes the request and sends back a list of customers to us through the websocket. When data comes in from the websocket we call the listener function:</p>
 
@@ -359,7 +359,7 @@
     };
 </pre>
 
-<h5 id="nbsp-7:52a8cb3531d70648da771569c58d3924">&nbsp;</h5>
+<h5 id="nbsp-7">&nbsp;</h5>
 
 <p>The listener looks at the message coming in and sees that it looks something like this:</p>
 
@@ -379,7 +379,7 @@
 }
 </pre>
 
-<h5 id="nbsp-8:52a8cb3531d70648da771569c58d3924">&nbsp;</h5>
+<h5 id="nbsp-8">&nbsp;</h5>
 
 <p>The listener() function sees the callback_id property and looks in our callbacks variable to see if we have a pending request waiting to be resolved. If there is one, it resolves the deferred object and deletes the callback object from the callbacks object-literal/dictionary/named-array:</p>
 
@@ -444,7 +444,7 @@
 		</ul>
 	</div>
 
-	<p>&copy; 2015. All rights reserved. </p>
+	<p>&copy; 2017. All rights reserved. </p>
 </div>
     </div>
   </div>

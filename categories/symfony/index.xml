@@ -17,7 +17,7 @@
       <guid>http://clintberry.com/2011/custom-user-providers-symfony2/</guid>
       <description>
 
-&lt;h4 id=&#34;why-custom-user-providers:0062a4ae26007760914834b2b096356a&#34;&gt;Why Custom User Providers?&lt;/h4&gt;
+&lt;h4 id=&#34;why-custom-user-providers&#34;&gt;Why Custom User Providers?&lt;/h4&gt;
 
 &lt;p&gt;At my current job all the database systems are managed by DB admins and the developers have to connect to the database via web services. We do not connect to the databases directly. This allows for better &lt;a title=&#34;Separation of Concerns&#34; href=&#34;http://en.wikipedia.org/wiki/Separation_of_concerns&#34; target=&#34;_blank&#34;&gt;separation of concerns&lt;/a&gt; and allows experts to focus on their respective specialties. But if you are programming a Symfony2 app, that means you don&amp;#8217;t get to use Doctrine or any other ORM, which in turn means you create your own models/entities.&lt;/p&gt;
 
@@ -25,7 +25,7 @@
 
 &lt;p&gt;So, after a few hours of googling-reading-tinkering I figured out how to use the Symfony authentication system  with my own custom models. Keep in mind I am still new to Symfony2, so many of these concepts will be beginner level.&lt;/p&gt;
 
-&lt;h4 id=&#34;your-user-entity:0062a4ae26007760914834b2b096356a&#34;&gt;Your User Entity&lt;/h4&gt;
+&lt;h4 id=&#34;your-user-entity&#34;&gt;Your User Entity&lt;/h4&gt;
 
 &lt;p&gt;For this example, I am assuming you are using custom entities for your project. I have created a custom User entity to manage users in my application. It extends a base class that handles most of the getting, setting and the calls to my database REST service, but that is optional depending on how you setup your own entities.&lt;/p&gt;
 
@@ -116,7 +116,7 @@ implements UserInterface
 
 &lt;p&gt;You will need to define all of these functions to correctly load your users from your web-service (or however you are doing it). Once you have all the required function defined, you are ready to move on to the User Provider Service.&lt;/p&gt;
 
-&lt;h4 id=&#34;the-user-provider:0062a4ae26007760914834b2b096356a&#34;&gt;The User Provider&lt;/h4&gt;
+&lt;h4 id=&#34;the-user-provider&#34;&gt;The User Provider&lt;/h4&gt;
 
 &lt;p&gt;To use your own custom entities in Symfony2 authentication, you will need to have a basic understanding of &lt;a href=&#34;http://symfony.com/doc/current/book/service_container.html&#34; title=&#34;Symfony Services&#34; target=&#34;_blank&#34;&gt;Symfony services&lt;/a&gt; and the &lt;a href=&#34;http://symfony.com/doc/current/book/security.html&#34; title=&#34;Symfony Authentication&#34; target=&#34;_blank&#34;&gt;Symfony authentication&lt;/a&gt; system. Read those links if you haven&amp;#8217;t yet. To reiterate what the user provider is, from the docs:&lt;/p&gt;
 
@@ -203,7 +203,7 @@ class Provider implements UserProviderInterface {
 
 &lt;p&gt;I also added a constructor that takes a UserInterface object and stores it in a property when initialized. This will be done as a symfony service.&lt;/p&gt;
 
-&lt;h4 id=&#34;configuration:0062a4ae26007760914834b2b096356a&#34;&gt;Configuration&lt;/h4&gt;
+&lt;h4 id=&#34;configuration&#34;&gt;Configuration&lt;/h4&gt;
 
 &lt;p&gt;The final step is to create the configuration for your newly build User Provider and User Entity. First, we must add our new entity and provider as a symfony service in our bundle&amp;#8217;s service configuration in YourBundle/Resources/config/services.xml :&lt;/p&gt;
 
@@ -300,19 +300,19 @@ class Provider implements UserProviderInterface {
 
 &lt;p&gt;It has been a while since I looked at different PHP frameworks and I was plesently surprised by the maturity of many of them. Ultimately, though, I was most impressed with &lt;a href=&#34;http://symfony.com/&#34; target=&#34;_blank&#34;&gt;Symfony 2&lt;/a&gt; (SF2). Here are some reasons why:&lt;/p&gt;
 
-&lt;h2 id=&#34;1-modules-bundles:8734792f84911970211704f8ad232296&#34;&gt;1. Modules (Bundles)&lt;/h2&gt;
+&lt;h2 id=&#34;1-modules-bundles&#34;&gt;1. Modules (Bundles)&lt;/h2&gt;
 
 &lt;p&gt;I am a sucker for modules. For some reason I like the idea of being able to create a small library of code, with all the corresponding models/views/controllers, and then being able to drop it any application and have it work (some say I should switch to Python, which inherently works this way). It would mean all sorts of portability for my code. Symfony2 has this ability in the form of &lt;a href=&#34;http://symfony.com/doc/current/book/page_creation.html#the-bundle-system&#34; target=&#34;_blank&#34;&gt;Bundles&lt;/a&gt;. I started using them this week, and I fell in love. Did I mention there is already a &lt;a href=&#34;http://symfony2bundles.org/&#34; target=&#34;_blank&#34;&gt;big library of bundles&lt;/a&gt; that you can drop in your application? This is the future of PHP development.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-defining-routing-using-annotations:8734792f84911970211704f8ad232296&#34;&gt;2. Defining Routing Using Annotations&lt;/h2&gt;
+&lt;h2 id=&#34;2-defining-routing-using-annotations&#34;&gt;2. Defining Routing Using Annotations&lt;/h2&gt;
 
 &lt;p&gt;Symfony2 allows you to add &lt;a href=&#34;http://symfony.com/doc/2.0/bundles/SensioFrameworkExtraBundle/annotations/routing.html&#34; target=&#34;_blank&#34;&gt;Annotations&lt;/a&gt; (doc blocks) to controller actions that tell the application when to route to this action. You can put any regular expression pattern to match the URL. For some reason this seems so much more elegant than creating a separate routing file.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-community:8734792f84911970211704f8ad232296&#34;&gt;3. Community&lt;/h2&gt;
+&lt;h2 id=&#34;3-community&#34;&gt;3. Community&lt;/h2&gt;
 
 &lt;p&gt;Some of my &lt;a title=&#34;SPF13&#34; href=&#34;http://spf13.com/post/symfony2&#34; target=&#34;_blank&#34;&gt;favorite developers&lt;/a&gt; are big contributors to the symfony project. Also, it is the number 1 watched PHP project on &lt;a href=&#34;http://github.com/languages/PHP/most_watched&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;. That is saying something.&lt;/p&gt;
 
-&lt;h2 id=&#34;4-documentation-038-learning-curve:8734792f84911970211704f8ad232296&#34;&gt;4. Documentation &amp;#038; Learning Curve&lt;/h2&gt;
+&lt;h2 id=&#34;4-documentation-038-learning-curve&#34;&gt;4. Documentation &amp;#038; Learning Curve&lt;/h2&gt;
 
 &lt;p&gt;Zend Framework has a pretty steep learning curve and the documentation does not support beginners very well (although I know they want to &lt;a href=&#34;http://framework.zend.com/wiki/display/ZFDEV2/Zend+Framework+2.0+Requirements#ZendFramework2.0Requirements-Easethelearningcurve&#34;&gt;remedy this&lt;/a&gt; for ZF2).Symfony, however, has a great getting started guide and a great online book to help you get going. It has been so easy to get started that it was hard not to smile.&lt;/p&gt;
 

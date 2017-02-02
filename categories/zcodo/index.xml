@@ -63,8 +63,7 @@ zq.controllerFolder = &#34;/controllers&#34;
 
 &lt;p&gt;Now I can run zf-codo.php from the command line and &lt;strong&gt;it generates my models (including base models), basic controllers, basic views, and basic forms.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/codegenscreenshot.png&#34; alt=&#34;ZFcodo Code Generation From Command Line&#34; /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/codegenscreenshot.png&#34; alt=&#34;ZFcodo Code Generation From Command Line&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;For my example, I created a simple &amp;#8220;customer&amp;#8221; table with &amp;#8220;first name&amp;#8221; and &amp;#8220;last name&amp;#8221;. The code generator added the following files for the table:&lt;/p&gt;
 

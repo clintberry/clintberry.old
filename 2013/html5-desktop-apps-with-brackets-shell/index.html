@@ -90,9 +90,9 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.com">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about">About</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog">Blog</a></li>
         
       </ul>
     </nav>
@@ -105,11 +105,11 @@
         
       
         
-        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
         
       
         
-        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
         
       
       
@@ -138,14 +138,14 @@
 <ul>
 <li>
 <ul>
-<li><a href="#what-is-brackets:c2332b0a7552c427942f1c8b0ea41ea0">What is Brackets?</a></li>
-<li><a href="#what-is-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0">What is Brackets Shell?</a></li>
-<li><a href="#why-use-brackets-shell-instead-of-other-solutions:c2332b0a7552c427942f1c8b0ea41ea0">Why Use Brackets Shell Instead of Other Solutions?</a></li>
-<li><a href="#test-your-application-in-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0">Test Your Application in Brackets Shell</a></li>
-<li><a href="#building-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0">Building Brackets Shell</a></li>
-<li><a href="#setup-for-your-app:c2332b0a7552c427942f1c8b0ea41ea0">Setup for Your App</a></li>
-<li><a href="#let-8217-s-customize:c2332b0a7552c427942f1c8b0ea41ea0">Let&#8217;s customize!</a></li>
-<li><a href="#what-8217-s-next:c2332b0a7552c427942f1c8b0ea41ea0">What&#8217;s Next?</a></li>
+<li><a href="#what-is-brackets">What is Brackets?</a></li>
+<li><a href="#what-is-brackets-shell">What is Brackets Shell?</a></li>
+<li><a href="#why-use-brackets-shell-instead-of-other-solutions">Why Use Brackets Shell Instead of Other Solutions?</a></li>
+<li><a href="#test-your-application-in-brackets-shell">Test Your Application in Brackets Shell</a></li>
+<li><a href="#building-brackets-shell">Building Brackets Shell</a></li>
+<li><a href="#setup-for-your-app">Setup for Your App</a></li>
+<li><a href="#let-8217-s-customize">Let&#8217;s customize!</a></li>
+<li><a href="#what-8217-s-next">What&#8217;s Next?</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -198,15 +198,15 @@
 
 <p><strong>UPDATE:</strong> I Posted part 2 of the series: <a href="http://clintberry.com/2013/native-desktop-javascript/" title="JavaScript and the Brackets Shell Environment">JavaScript and the Brackets Shell Environment</a></p>
 
-<h4 id="what-is-brackets:c2332b0a7552c427942f1c8b0ea41ea0">What is Brackets?</h4>
+<h4 id="what-is-brackets">What is Brackets?</h4>
 
 <p><a href="http://brackets.io/" title="Brackets" target="_blank">Brackets</a> is an open-source code editor created by Adobe. What makes brackets so cool, though, is that the entire editor is written in HTML and JavaScript. This puts Brackets in a unique opportunity that allows pretty much any developer that would use the editor (HTML and JavaScript guys) to add to and improve the editor with the very languages they use on a regular basis. And while I don&#8217;t use brackets myself just yet (hard to leave Sublime Text) it is definitely on my radar and I may make that switch soon.</p>
 
-<h4 id="what-is-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0">What is Brackets Shell?</h4>
+<h4 id="what-is-brackets-shell">What is Brackets Shell?</h4>
 
 <p>Brackets Shell is what allows Brackets to be run as a desktop application. It takes <a href="https://code.google.com/p/chromiumembedded/" title="Chromium Embedded Framework" target="_blank">Chromium Embedded Framework (CEF)</a> and adds some extras along with an excellent build tool. The brackets-shell app is so well done, it made it easy for a web-developer like me to get my first ever <a href="https://github.com/adobe/brackets-shell/commit/5e52d8647444d20838a2b01bfff92f463109f014" title="My first c++ pull request" target="_blank">C++ pull request accepted</a> (I took credit for that whole pull request, but the windows portion was done by my good friend, <a href="http://bigdevblog.com" title="Jordan C's Blog" target="_blank">Jordan</a>).</p>
 
-<h4 id="why-use-brackets-shell-instead-of-other-solutions:c2332b0a7552c427942f1c8b0ea41ea0">Why Use Brackets Shell Instead of Other Solutions?</h4>
+<h4 id="why-use-brackets-shell-instead-of-other-solutions">Why Use Brackets Shell Instead of Other Solutions?</h4>
 
 <p>I&#8217;m glad you asked:</p>
 
@@ -219,7 +219,7 @@
 
 <p>Now on to the good stuff.</p>
 
-<h4 id="test-your-application-in-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0">Test Your Application in Brackets Shell</h4>
+<h4 id="test-your-application-in-brackets-shell">Test Your Application in Brackets Shell</h4>
 
 <p>The first thing you will want to do is test the shell to see if your HTML application runs in it. The quickest route to doing this is to <a href="http://download.brackets.io/" title="Download Brackets" target="_blank">download the latest Brackets editor</a> and install it. The installer installs the brackets-shell along with the brackets HTML application. If you remove the HTML app then the when you run the brackets shell it will ask you for the location of your index.html file. If you choose your own index.html file from your own application, brackets shell will open that.</p>
 
@@ -227,11 +227,11 @@
 
 <p>On OSX, open the terminal and browse to your application directory. Applications in OSX are actually folders, and in terminal you can view their content. CD into the Brackets Sprint [sprint number].app folder and continue to the Contents directory. Inside there you will see the www folder. Delete or rename it and then run brackets. You will see the file dialog prompting you to select your own index.html file.</p>
 
-<h4 id="building-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0">Building Brackets Shell</h4>
+<h4 id="building-brackets-shell">Building Brackets Shell</h4>
 
 <p>If your app runs well in brackets-shell your next step is to setup your computer to build brackets-shell. This is where the shell really shines. They have an amazing Grunt setup that allows you to run the build in one command. Brackets provides some great instructions on <a href="https://github.com/adobe/brackets-shell/wiki/Building-brackets-shell" title="Brackets shell build instructions" target="_blank">setting up your box here</a>. Once you are setup, run `grunt build` from the command line and it should create a full build of brackets shell for you. So awesome.</p>
 
-<h4 id="setup-for-your-app:c2332b0a7552c427942f1c8b0ea41ea0">Setup for Your App</h4>
+<h4 id="setup-for-your-app">Setup for Your App</h4>
 
 <p>This is where things get fun. Let&#8217;s make the shell be a full-on desktop app for our own software. Make sure you have followed the instructions for getting setup to build brackets-shell and then take these next steps:</p>
 
@@ -341,7 +341,7 @@ Done, without errors.
 
 <p>Don&#8217;t worry about the warning, if you made it that far you made a full build! You can check out your newly-built app in the brackets-shell/installer/(mac or win, depending on your OS)/staging folder. Run it and make sure it loads your index.html file by default now. (it shouldn&#8217;t prompt you to locate an index.html file, it should just open and run the one from your html application)</p>
 
-<h4 id="let-8217-s-customize:c2332b0a7552c427942f1c8b0ea41ea0">Let&#8217;s customize!</h4>
+<h4 id="let-8217-s-customize">Let&#8217;s customize!</h4>
 
 <p>You probably noticed your new application&#8217;s name was &#8220;brackets&#8221; and that your icon for the app was the brackets logo. You don&#8217;t want that, so let&#8217;s change the name of your app to &#8220;Awesome&#8221;.</p>
 
@@ -367,7 +367,7 @@ Done, without errors.
 
 <p>Now just type `grunt full-build` at the terminal and it will create a build with your app and name the app &#8220;awesome&#8221;</p>
 
-<h4 id="what-8217-s-next:c2332b0a7552c427942f1c8b0ea41ea0">What&#8217;s Next?</h4>
+<h4 id="what-8217-s-next">What&#8217;s Next?</h4>
 
 <p>For basic HTML apps that you just need a shell for, this might be all you need. But this is only the beginning of what you can do with brackets-shell. Over the next few weeks I will be posting new tutorials showing how you can:</p>
 
@@ -430,7 +430,7 @@ Done, without errors.
 		</ul>
 	</div>
 
-	<p>&copy; 2015. All rights reserved. </p>
+	<p>&copy; 2017. All rights reserved. </p>
 </div>
     </div>
   </div>

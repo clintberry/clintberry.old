@@ -90,9 +90,9 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.com">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about">About</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog">Blog</a></li>
         
       </ul>
     </nav>
@@ -105,11 +105,11 @@
         
       
         
-        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
         
       
         
-        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
         
       
       
@@ -138,10 +138,10 @@
 <ul>
 <li>
 <ul>
-<li><a href="#why-custom-user-providers:0062a4ae26007760914834b2b096356a">Why Custom User Providers?</a></li>
-<li><a href="#your-user-entity:0062a4ae26007760914834b2b096356a">Your User Entity</a></li>
-<li><a href="#the-user-provider:0062a4ae26007760914834b2b096356a">The User Provider</a></li>
-<li><a href="#configuration:0062a4ae26007760914834b2b096356a">Configuration</a></li>
+<li><a href="#why-custom-user-providers">Why Custom User Providers?</a></li>
+<li><a href="#your-user-entity">Your User Entity</a></li>
+<li><a href="#the-user-provider">The User Provider</a></li>
+<li><a href="#configuration">Configuration</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -190,7 +190,7 @@
 
             
 
-<h4 id="why-custom-user-providers:0062a4ae26007760914834b2b096356a">Why Custom User Providers?</h4>
+<h4 id="why-custom-user-providers">Why Custom User Providers?</h4>
 
 <p>At my current job all the database systems are managed by DB admins and the developers have to connect to the database via web services. We do not connect to the databases directly. This allows for better <a title="Separation of Concerns" href="http://en.wikipedia.org/wiki/Separation_of_concerns" target="_blank">separation of concerns</a> and allows experts to focus on their respective specialties. But if you are programming a Symfony2 app, that means you don&#8217;t get to use Doctrine or any other ORM, which in turn means you create your own models/entities.</p>
 
@@ -198,7 +198,7 @@
 
 <p>So, after a few hours of googling-reading-tinkering I figured out how to use the Symfony authentication system  with my own custom models. Keep in mind I am still new to Symfony2, so many of these concepts will be beginner level.</p>
 
-<h4 id="your-user-entity:0062a4ae26007760914834b2b096356a">Your User Entity</h4>
+<h4 id="your-user-entity">Your User Entity</h4>
 
 <p>For this example, I am assuming you are using custom entities for your project. I have created a custom User entity to manage users in my application. It extends a base class that handles most of the getting, setting and the calls to my database REST service, but that is optional depending on how you setup your own entities.</p>
 
@@ -289,7 +289,7 @@ implements UserInterface
 
 <p>You will need to define all of these functions to correctly load your users from your web-service (or however you are doing it). Once you have all the required function defined, you are ready to move on to the User Provider Service.</p>
 
-<h4 id="the-user-provider:0062a4ae26007760914834b2b096356a">The User Provider</h4>
+<h4 id="the-user-provider">The User Provider</h4>
 
 <p>To use your own custom entities in Symfony2 authentication, you will need to have a basic understanding of <a href="http://symfony.com/doc/current/book/service_container.html" title="Symfony Services" target="_blank">Symfony services</a> and the <a href="http://symfony.com/doc/current/book/security.html" title="Symfony Authentication" target="_blank">Symfony authentication</a> system. Read those links if you haven&#8217;t yet. To reiterate what the user provider is, from the docs:</p>
 
@@ -376,7 +376,7 @@ class Provider implements UserProviderInterface {
 
 <p>I also added a constructor that takes a UserInterface object and stores it in a property when initialized. This will be done as a symfony service.</p>
 
-<h4 id="configuration:0062a4ae26007760914834b2b096356a">Configuration</h4>
+<h4 id="configuration">Configuration</h4>
 
 <p>The final step is to create the configuration for your newly build User Provider and User Entity. First, we must add our new entity and provider as a symfony service in our bundle&#8217;s service configuration in YourBundle/Resources/config/services.xml :</p>
 
@@ -509,7 +509,7 @@ class Provider implements UserProviderInterface {
 		</ul>
 	</div>
 
-	<p>&copy; 2015. All rights reserved. </p>
+	<p>&copy; 2017. All rights reserved. </p>
 </div>
     </div>
   </div>

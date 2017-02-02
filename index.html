@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
+	<meta name="generator" content="Hugo 0.16" />
   <title>
     Clint Berry
   </title>
@@ -88,9 +89,9 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.com">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about">About</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog">Blog</a></li>
         
       </ul>
     </nav>
@@ -103,11 +104,11 @@
         
       
         
-        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
         
       
         
-        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
         
       
       
@@ -384,50 +385,6 @@
                 <header class="post-header">
                     
                     <h1 class="post-title">
-                      <a href="/2012/why-plivo-cloud-is-better-than-twilio/">Why Plivo Cloud Is Better Than Twilio</a>
-                  </h1>
-              </header>
-              <p class="post-meta">
-                  
-                  <span class="post-date">
-                    <span class="post-date-day"><sup>19</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Jul</span> <span class="post-date-year">2012</span>
-                </span>
-                
-                
-                    By <a class="post-author" >Clint Berry</a>
-                
-                
-                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>4 min. read</em></span>
-                
-                
-                <div class="post-categories">
-                    
-                    <a class="post-category post-category-plivo" href="http://clintberry.com/categories/plivo">Plivo</a>
-                    
-                    <a class="post-category post-category-telephony" href="http://clintberry.com/categories/telephony">Telephony</a>
-                    
-                </div>
-                
-            </p>
-            <article class="post-summary">
-                  <p><a href="http://plivo.com" title="Plivo Cloud" target="_blank"><img src="/images/plivologo.png" alt="" title="plivo" class="alignleft size-full wp-image-603" style="margin:15px 10px 10px 10px" /></a></p>
-
-<p>Last year around this time Plivo.org was announced to the public, allowing anyone to develop telephony applications with the web language of their choice on top of their <em>OWN</em> FreeSWITCH based phone system. Plivo.org is an amazing project, and if you aren&#8217;t familiar with it I suggest you read [my getting started post][1].</p>
-
-<p>Now the founders of Plivo.org have built on that technology to create a new telephony platform, <a href="http://plivo.com" title="Plivo Cloud" target="_blank">Plivo Cloud</a>. I know what you are thinking&#8211; another Twilio. And while the general idea (building awesome telephony apps in any web language) is still the same, there are a few things that make Plivo Cloud much different, and much better.</p>
-
-              </article>
-              <div class="read-more-link">
-                  <a href="/2012/why-plivo-cloud-is-better-than-twilio/"><span class="read-more-slashes">//</span>Read More...</a>
-              </div>
-          </section>
-          
-          
-            
-            <section  class="post">
-                <header class="post-header">
-                    
-                    <h1 class="post-title">
                       <a href="/2012/phing-php-deployment/">Phing For PHP Deployment</a>
                   </h1>
               </header>
@@ -535,7 +492,7 @@
                 
             </p>
             <article class="post-summary">
-                  <h4 id="why-custom-user-providers:0062a4ae26007760914834b2b096356a">Why Custom User Providers?</h4>
+                  <h4 id="why-custom-user-providers">Why Custom User Providers?</h4>
 
 <p>At my current job all the database systems are managed by DB admins and the developers have to connect to the database via web services. We do not connect to the databases directly. This allows for better <a title="Separation of Concerns" href="http://en.wikipedia.org/wiki/Separation_of_concerns" target="_blank">separation of concerns</a> and allows experts to focus on their respective specialties. But if you are programming a Symfony2 app, that means you don&#8217;t get to use Doctrine or any other ORM, which in turn means you create your own models/entities.</p>
 
@@ -847,6 +804,8 @@
           
           
             
+          
+            
             <section  class="post">
                 <header class="post-header">
                     
@@ -887,8 +846,6 @@
               </div>
           </section>
           
-          
-            
           
             
             <section  class="post">
@@ -1043,6 +1000,37 @@
           </section>
           
           
+            
+            <section  class="post">
+                <header class="post-header">
+                    
+                    <h1 class="post-title">
+                      <a href="/blog/_Draft-scalable-phone-system-architecture/"></a>
+                  </h1>
+              </header>
+              <p class="post-meta">
+                  
+                  <span class="post-date">
+                    <span class="post-date-day"><sup>1</sup></span><span class="post-date-separator">/</span><span class="post-date-month">Jan</span> <span class="post-date-year">0001</span>
+                </span>
+                
+                
+                    
+                
+                
+                    <span class="post-reading-time"><i class="fa fa-clock-o"></i> <em>2 min. read</em></span>
+                
+                
+            </p>
+            <article class="post-summary">
+                  The Pieces First I will describe each piece in that architecture image. SIP Registar The SIP registrar is where are all endpoints will register to (duh). It is powered by Kamailio with the registartion module and the new and improved jannson-rpc module (which we tested heavily) for dynamic loading of users and other load balancer information. NOTE: Dynamic data loading in Kamailio proved to be problematic for us for a long time.
+              </article>
+              <div class="read-more-link">
+                  <a href="/blog/_Draft-scalable-phone-system-architecture/"><span class="read-more-slashes">//</span>Read More...</a>
+              </div>
+          </section>
+          
+          
         </div>
 
         <div class="footer">
@@ -1053,7 +1041,7 @@
 		</ul>
 	</div>
 
-	<p>&copy; 2015. All rights reserved. </p>
+	<p>&copy; 2017. All rights reserved. </p>
 </div>
         </div>
     </div>

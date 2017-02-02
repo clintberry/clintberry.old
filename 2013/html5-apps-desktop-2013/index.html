@@ -90,9 +90,9 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.com">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about">About</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog">Blog</a></li>
         
       </ul>
     </nav>
@@ -105,11 +105,11 @@
         
       
         
-        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
         
       
         
-        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
         
       
       
@@ -136,12 +136,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#tidesdk:522579eb282b622ded22bcc5d66b8011">TideSDK</a></li>
-<li><a href="#appjs:522579eb282b622ded22bcc5d66b8011">AppJS</a></li>
-<li><a href="#node-webkit:522579eb282b622ded22bcc5d66b8011">Node-webkit</a></li>
-<li><a href="#sencha-desktop:522579eb282b622ded22bcc5d66b8011">Sencha Desktop</a></li>
-<li><a href="#brackets-shell:522579eb282b622ded22bcc5d66b8011">Brackets Shell</a></li>
-<li><a href="#other-solutions:522579eb282b622ded22bcc5d66b8011">Other Solutions</a></li>
+<li><a href="#tidesdk">TideSDK</a></li>
+<li><a href="#appjs">AppJS</a></li>
+<li><a href="#node-webkit">Node-webkit</a></li>
+<li><a href="#sencha-desktop">Sencha Desktop</a></li>
+<li><a href="#brackets-shell">Brackets Shell</a></li>
+<li><a href="#other-solutions">Other Solutions</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -215,7 +215,7 @@
 
 <p>Here are all the different options I have researched for creating HTML/JS applications on the desktop, with their pros and cons. Please leave comments if you know of other solutions I should look at.</p>
 
-<h3 id="tidesdk:522579eb282b622ded22bcc5d66b8011">TideSDK</h3>
+<h3 id="tidesdk">TideSDK</h3>
 
 <p><a href="http://www.tidesdk.org/" title="TideSDK" target="_blank">TideSDK</a> has so much potential. They have a great looking website and a good set of tools. Of all the solutions I looked at, TideSDK has the easiest method for packaging your app. You open up the TideSDK builder and choose your HTML files, and click the package button. It runs basic web applications with ease. But then I tried running my first AngularJS app and&#8230; FAIL. So I checked the web inspector and saw a litany of errors that I knew didn&#8217;t exist when I ran my app in chrome. Turns out the webkit version used in TideSDK is over 3 years old and Angular doesn&#8217;t like it. They haven&#8217;t had a solid update for a while as well and are <a href="http://www.tidesdk.org/blog/2013/04/11/tidesdk-in-numbers/" title="TideSDK needs money" target="_blank">pleading for money</a> from the community.</p>
 
@@ -232,10 +232,12 @@
 <ul>
 <li>No version bumps in a long time</li>
 <li>The webkit version is OLD</li>
-<li>They need more money to keep going</li>
+<li>They need more money to keep going
+<br />
+<br /></li>
 </ul>
 
-<h3 id="appjs:522579eb282b622ded22bcc5d66b8011">AppJS</h3>
+<h3 id="appjs">AppJS</h3>
 
 <p>If you are a nodeJS fan, <a href="http://appjs.com/" title="Desktop Apps with HTML" target="_blank">AppJS</a> is the start of something awesome. It runs allows you to interact with desktop windows via JavaScript in a nodeJS application. Great idea, but it has some bugs and debugging issues can be a pain. Also, the issue list keeps piling up in github and it seems no progress is being made.</p>
 
@@ -254,7 +256,7 @@
 <li>Enough bugs to make this not production worthy</li>
 </ul>
 
-<h3 id="node-webkit:522579eb282b622ded22bcc5d66b8011">Node-webkit</h3>
+<h3 id="node-webkit">Node-webkit</h3>
 
 <p>Along the same lines as appjs, <a href="https://github.com/rogerwang/node-webkit" title="html apps on the desktop with node-webkit" target="_blank">node-webkit</a> is a desktop runtime that combines chromium with NodeJS. This project is also backed by Intel and has regular updates. Packaging apps into Exes is not trivial, however and we had some problems running our more advanced apps on windows (popup windows in particular).</p>
 
@@ -270,18 +272,22 @@
 
 <ul>
 <li>Packaging apps isn&#8217;t simple</li>
-<li>Had trouble with popup windows on Windows</li>
+<li>Had trouble with popup windows on Windows
+
+<br /></li>
 </ul>
 
-<h3 id="sencha-desktop:522579eb282b622ded22bcc5d66b8011">Sencha Desktop</h3>
+<h3 id="sencha-desktop">Sencha Desktop</h3>
 
 <p>Sencha&#8217;s solution is not free at almsot $700. It&#8217;s webkit version is outdated and it has a very limited feature set for controlling the windows (no transparency, no removing the chrome frame, etc).</p>
 
 <ul>
-<li>No breakdown. This baby isn&#8217;t worth the price, hands down.</li>
+<li>No breakdown. This baby isn&#8217;t worth the price, hands down.
+
+<br /></li>
 </ul>
 
-<h3 id="brackets-shell:522579eb282b622ded22bcc5d66b8011">Brackets Shell</h3>
+<h3 id="brackets-shell">Brackets Shell</h3>
 
 <p>The <a href="https://github.com/adobe/brackets-shell" title="Brackets Shell" target="_blank">Brackets Shell</a> is a customized version of Chromium Embedded Framework (CEF) that was created to run the <a href="http://brackets.io/" title="HTML JavaScript Editor" target="_blank">Brackets IDE</a> on the desktop. But this shell has some great features and is general enough to allow you to modify it and use it for your own project. Brackets Shell is backed by Adobe and is updated regularly, and they <a href="https://github.com/adobe/brackets-shell/pull/231" title="Pull Request for Drag capabilities" target="_blank">accept pull requests</a> for features that the Brackets IDE might not even use. Building the shell is easy thanks to the bundled Grunt file, and it is using CEF3 so the webkit version is up to date. We went with this solution at my current company and have been loving it. I intend to write a whole post on customizing and using the brackets shell soon.</p>
 
@@ -303,7 +309,7 @@
 <li><a href="https://github.com/adobe/brackets/issues/2389 " title="no html5 audio in brackets shell" target="_blank">No HTML5 audio? (sad)</a></li>
 </ul>
 
-<h3 id="other-solutions:522579eb282b622ded22bcc5d66b8011">Other Solutions</h3>
+<h3 id="other-solutions">Other Solutions</h3>
 
 <p>Other solutions I haven&#8217;t looked into are Windows 8 which runs <a href="http://msdn.microsoft.com/en-us/library/windows/apps/br211385.aspx" title="Windows 8 web apps" target="_blank">HTML apps as first class citizens</a> directly on the desktop. Ubuntu desktop has a similar solution with <a href="http://developer.ubuntu.com/resources/technologies/webapps/" title="Ubuntu Web Apps" target="_blank">Ubuntu Web Apps</a>.</p>
 
@@ -361,7 +367,7 @@
 		</ul>
 	</div>
 
-	<p>&copy; 2015. All rights reserved. </p>
+	<p>&copy; 2017. All rights reserved. </p>
 </div>
     </div>
   </div>

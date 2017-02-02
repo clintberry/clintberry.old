@@ -27,7 +27,7 @@
   Note: Credit for this structure design goes to my coworker and friend &lt;a href=&#34;https://twitter.com/tphalp&#34; title=&#34;Tyson&#34; target=&#34;_blank&#34;&gt;@tphalp&lt;/a&gt; who is rapidly becoming an angular expert and teaching me his ways.
 &lt;/div&gt;
 
-&lt;h4 id=&#34;directory-structure:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;Directory Structure&lt;/h4&gt;
+&lt;h4 id=&#34;directory-structure&#34;&gt;Directory Structure&lt;/h4&gt;
 
 &lt;p&gt;Here is the way we setup our directory structure:&lt;/p&gt;
 
@@ -43,7 +43,7 @@
 
 &lt;p&gt;We still maintain the scripts folder which houses app.js and our routes.js file for handling the routing.&lt;/p&gt;
 
-&lt;h4 id=&#34;defining-the-modules:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;Defining the Modules&lt;/h4&gt;
+&lt;h4 id=&#34;defining-the-modules&#34;&gt;Defining the Modules&lt;/h4&gt;
 
 &lt;p&gt;Let&amp;#8217;s have a look at the app.js file where we setup our modules and define dependencies.&lt;/p&gt;
 
@@ -74,7 +74,7 @@ angular.module(&amp;#039;MainApp&amp;#039;,
 
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;Creating a &amp;#8220;MainAppModule&amp;#8221; allows us to inject all our other modules which in turn allows each of our other modules to access each other. So if the Reports module needs to access something from the Patient module, it will be able to with this method without having to inject the Patient module directly into the Reports module.&lt;/p&gt;
 
@@ -88,7 +88,7 @@ angular.module(&amp;#039;MainApp&amp;#039;,
 &amp;lt;/html&amp;gt;
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-1:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-1&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;Then you define your routes on the MainApp module&lt;/p&gt;
 
@@ -106,7 +106,7 @@ angular.module(&amp;#039;MainApp&amp;#039;)
 
 &lt;/pre&gt;
 
-&lt;h4 id=&#34;implementing-your-modules:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;Implementing Your Modules&lt;/h4&gt;
+&lt;h4 id=&#34;implementing-your-modules&#34;&gt;Implementing Your Modules&lt;/h4&gt;
 
 &lt;p&gt;Now when we go to add a directive/service/filter/controller to a module, we open up the appropriate file within that module and simply use the appropriate module name when we define it.&lt;/p&gt;
 
@@ -116,7 +116,7 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
 });
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-2:4c97daa88433d2e6f1d0de762f76dbf5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-2&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;Since we inject all modules into a &amp;#8220;global&amp;#8221; module you will need to take care to namespace your angular elements appropriately so you don&amp;#8217;t run into name conflicts. Take a look at &lt;a href=&#34;https://github.com/angular-ui/bootstrap&#34; title=&#34;Angular Bootstrap Github&#34; target=&#34;_blank&#34;&gt;angular bootstrap code&lt;/a&gt; too see how they use multiple modules and namespace them.&lt;/p&gt;
 
@@ -204,9 +204,9 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
 }])
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
-&lt;h4 id=&#34;the-details:52a8cb3531d70648da771569c58d3924&#34;&gt;The Details&lt;/h4&gt;
+&lt;h4 id=&#34;the-details&#34;&gt;The Details&lt;/h4&gt;
 
 &lt;p&gt;To explain this code in detail I will walk you through a usage scenario and step through each function and talk about what it does. Assume we have an angular controller called &amp;#8220;customerList&amp;#8221;. We need to access customer data in our new controller and our customer data comes from a websocket service somewhere in Canada. So you inject your new websocket service into the scope of your controller and you are able to call getCustomers(). Quick and dirty example for illustration purposes:&lt;/p&gt;
 
@@ -216,7 +216,7 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
   }]);
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-1:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-1&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;So the getCustomers function is called and we see that the getCustomers function creates a request object literal and passes that to the sendRequest() function:&lt;/p&gt;
 
@@ -231,7 +231,7 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
     }
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-2:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-2&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;You can see I am storing the response from sendRequest() in a variable called promise. I then return that promise. Let&amp;#8217;s look at what sendRequest() actually does:&lt;/p&gt;
 
@@ -249,11 +249,11 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
     }
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-3:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-3&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;The sendRequest function first creates a defer object from the &lt;a href=&#34;https://github.com/kriskowal/q&#34; title=&#34;Q Library&#34; target=&#34;_blank&#34;&gt;Q library&lt;/a&gt; that is bundled with Angular. (For more information on deferred objects and promises in angular I highly recommend the &lt;a href=&#34;http://www.egghead.io/video/o84ryzNp36Q&#34; title=&#34;Promises in Angularjs&#34; target=&#34;_blank&#34;&gt;egghead.io video on promises&lt;/a&gt;) After that it creates a new callbackId variable and then adds an object literal to the callbacks object using the new callbackId as the index.&lt;/p&gt;
 
-&lt;h4 id=&#34;so-why-have-a-callback-id-and-a-callbacks-object:52a8cb3531d70648da771569c58d3924&#34;&gt;So why have a callback ID and a callbacks object?&lt;/h4&gt;
+&lt;h4 id=&#34;so-why-have-a-callback-id-and-a-callbacks-object&#34;&gt;So why have a callback ID and a callbacks object?&lt;/h4&gt;
 
 &lt;p&gt;The callbacks variable is where I will store all requests that haven&amp;#8217;t received a response yet. Because services implemented on the websocket side can be asynchronous, you could potentially send several requests to the websocket and the websocket could return responses in a different order than it received requests. This is where callback Ids come into play. Usually websocket servers will have a way for you to map responses from the websocket server to requests that you sent to it. Sending a user-generated callback_id to the websocket is one way to do this. In my case, I start at 0 and work my way up to 10000 then start over. You can see this in my getCallback() function:&lt;/p&gt;
 
@@ -267,14 +267,14 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
     }
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-4:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-4&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;Now back to sendRequest. After the callbackId is generated, and the deferred is stored in the callbacks variable, we add the new callbackId to the request message:&lt;/p&gt;
 
 &lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;request.callback_id = callbackId;
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-5:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-5&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;Then we send the request object to the websocket and return a promise:&lt;/p&gt;
 
@@ -282,7 +282,7 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
     return defer.promise;
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-6:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-6&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;Now out in Canada somewhere, our websocket server processes the request and sends back a list of customers to us through the websocket. When data comes in from the websocket we call the listener function:&lt;/p&gt;
 
@@ -291,7 +291,7 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
     };
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-7:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-7&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;The listener looks at the message coming in and sees that it looks something like this:&lt;/p&gt;
 
@@ -311,7 +311,7 @@ angular.module(&amp;#039;PatientApp&amp;#039;).controller(&amp;#039;PatientCtrl&
 }
 &lt;/pre&gt;
 
-&lt;h5 id=&#34;nbsp-8:52a8cb3531d70648da771569c58d3924&#34;&gt;&amp;nbsp;&lt;/h5&gt;
+&lt;h5 id=&#34;nbsp-8&#34;&gt;&amp;nbsp;&lt;/h5&gt;
 
 &lt;p&gt;The listener() function sees the callback_id property and looks in our callbacks variable to see if we have a pending request waiting to be resolved. If there is one, it resolves the deferred object and deletes the callback object from the callbacks object-literal/dictionary/named-array:&lt;/p&gt;
 

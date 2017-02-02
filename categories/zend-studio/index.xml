@@ -23,7 +23,7 @@
 
 &lt;p&gt;Thanks to eclipse plugins, you bet it will!&lt;/p&gt;
 
-&lt;h4 id=&#34;how-to-set-it-up:9633d36280c46f0b4eedc032928427fc&#34;&gt;How to set it up&lt;/h4&gt;
+&lt;h4 id=&#34;how-to-set-it-up&#34;&gt;How to set it up&lt;/h4&gt;
 
 &lt;p&gt;First you will need to install &lt;a href=&#34;http://www.eclipse.org/egit/&#34;&gt;EGit&lt;/a&gt;, the Git plugin for eclipse. The easiest way to do this is to add the EGit repository to Zend Studio. Open up Zend Studio and do the following:&lt;/p&gt;
 
@@ -34,7 +34,7 @@
 &lt;li&gt;Zend Studio will restart and you will have git support&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;adding-keys:9633d36280c46f0b4eedc032928427fc&#34;&gt;Adding Keys&lt;/h4&gt;
+&lt;h4 id=&#34;adding-keys&#34;&gt;Adding Keys&lt;/h4&gt;
 
 &lt;p&gt;To access git hub you need to use public and private SSH keys. If you have never done that before, here is how to create a key using Zend Studio:&lt;/p&gt;
 

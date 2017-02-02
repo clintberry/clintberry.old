@@ -90,9 +90,9 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.com">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about">About</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog">Blog</a></li>
         
       </ul>
     </nav>
@@ -105,11 +105,11 @@
         
       
         
-        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
         
       
         
-        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
         
       
       
@@ -138,12 +138,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#starting-code-base:73b85921beb05e353da557a09d786139">Starting Code Base</a></li>
-<li><a href="#project-overview:73b85921beb05e353da557a09d786139">Project Overview</a></li>
-<li><a href="#setting-up-very-basic-server-side-authentication:73b85921beb05e353da557a09d786139">Setting Up (Very) Basic Server Side Authentication</a></li>
-<li><a href="#setting-up-backbone-views:73b85921beb05e353da557a09d786139">Setting Up Backbone Views</a></li>
-<li><a href="#telling-backbone-how-to-handle-401-038-403-errors-ajaxsetup:73b85921beb05e353da557a09d786139">Telling Backbone How to Handle 401 &#038; 403 Errors (ajaxSetup)</a></li>
-<li><a href="#the-final-word-and-source-code:73b85921beb05e353da557a09d786139">The Final Word (and source code)</a></li>
+<li><a href="#starting-code-base">Starting Code Base</a></li>
+<li><a href="#project-overview">Project Overview</a></li>
+<li><a href="#setting-up-very-basic-server-side-authentication">Setting Up (Very) Basic Server Side Authentication</a></li>
+<li><a href="#setting-up-backbone-views">Setting Up Backbone Views</a></li>
+<li><a href="#telling-backbone-how-to-handle-401-038-403-errors-ajaxsetup">Telling Backbone How to Handle 401 &#038; 403 Errors (ajaxSetup)</a></li>
+<li><a href="#the-final-word-and-source-code">The Final Word (and source code)</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -198,15 +198,15 @@
 
 <p>At my current company I am working on my first large-scale production backbone.js app and I couldn&#8217;t be happier. After using backbone.js for a few months I have caught the vision and I am becoming more and more proficient. But every once and a while I still run into problems I would consider basic, but I can&#8217;t seem to find much help on the interwebs. Authentication with backbone.js apps was one of those problems. So I am posting the solution I came up with in hopes it will benefit someone else, and hopefully will garner some feedback or potentially better ways to solve authentication with Backbone.js.</p>
 
-<h4 id="starting-code-base:73b85921beb05e353da557a09d786139">Starting Code Base</h4>
+<h4 id="starting-code-base">Starting Code Base</h4>
 
 <p>To start this tutorial, I will be using an already created backbone.js application called <a href="https://github.com/ccoenraets/backbone-directory" title="Backbone Directory" target="_blank">Backbone Directory</a>, created by <a href="http://coenraets.org/blog/2012/02/sample-app-with-backbone-js-and-twitter-bootstrap/" title="Sample Backbone Bootstrap app" target="_blank">Christophe Coenraets</a> who has some great tutorials and information about backbone on his blog. He has some mobile versions of the app in the code base as well, but we will be working in the &#8220;web&#8221; directory.</p>
 
-<h4 id="project-overview:73b85921beb05e353da557a09d786139">Project Overview</h4>
+<h4 id="project-overview">Project Overview</h4>
 
 <p>Backbone Directory uses the Slim PHP framework on the server to communicate with backbone, but the principles we will be going over are language agnostic. In addition, Slim is based on the Sinatra (Ruby) methodology which in turn translates to Express.js framework for Node.js (JavaScript), and Tornado (Python).</p>
 
-<h4 id="setting-up-very-basic-server-side-authentication:73b85921beb05e353da557a09d786139">Setting Up (Very) Basic Server Side Authentication</h4>
+<h4 id="setting-up-very-basic-server-side-authentication">Setting Up (Very) Basic Server Side Authentication</h4>
 
 <p>To get this started, we need to setup the server side login functions, and also a way to protect API requests so no data goes to anyone that isn&#8217;t authenticated. First, let&#8217;s add a login function to the api/index.php in the web directory:</p>
 
@@ -292,7 +292,7 @@ $app-&gt;get(&#039;/employees/search/:query&#039;, authorize(&#039;user&#039;),&
 $app-&gt;get(&#039;/employees/modifiedsince/:timestamp&#039;, authorize(&#039;user&#039;), &#039;findByModifiedDate&#039;);
 </pre>
 
-<h4 id="setting-up-backbone-views:73b85921beb05e353da557a09d786139">Setting Up Backbone Views</h4>
+<h4 id="setting-up-backbone-views">Setting Up Backbone Views</h4>
 
 <p>Now let&#8217;s get to the good stuff: Setting up our backbone views. For authentication we will of course need a login view:</p>
 
@@ -372,7 +372,7 @@ window.LoginView = Backbone.View.extend({
 &lt;/form&gt;
 </pre>
 
-<h4 id="telling-backbone-how-to-handle-401-038-403-errors-ajaxsetup:73b85921beb05e353da557a09d786139">Telling Backbone How to Handle 401 &#038; 403 Errors (ajaxSetup)</h4>
+<h4 id="telling-backbone-how-to-handle-401-038-403-errors-ajaxsetup">Telling Backbone How to Handle 401 &#038; 403 Errors (ajaxSetup)</h4>
 
 <p>Now here comes the kicker. We need backbone/jquery to catch any requests that return a 401 or 403 error and handle those requests appropriately. The method I have used to do this is to call the jquery function ajaxSetup which allows us to watch for certain status codes and to handle them appropriately.</p>
 
@@ -415,7 +415,7 @@ window.Router = Backbone.Router.extend({
 }
 </pre>
 
-<h4 id="the-final-word-and-source-code:73b85921beb05e353da557a09d786139">The Final Word (and source code)</h4>
+<h4 id="the-final-word-and-source-code">The Final Word (and source code)</h4>
 
 <p>That is it! You should now have a password protected REST API for BackboneJS. I have posted the <a href="https://github.com/clintberry/backbone-directory-auth" title="Backbone Authentication" target="_blank">project to github (here)</a>, so feel free to check out the code and see it in action. Currently, you will need PHP/Apache with MySQL setup and the database imported. I am working on a Vagrant file for the project so you will be able to see it in action without setting up your own server.</p>
 
@@ -441,7 +441,7 @@ window.Router = Backbone.Router.extend({
 					
 					<div class="paging-older">
 						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
-			            <a class="paging-link" href="/2012/why-plivo-cloud-is-better-than-twilio/">Why Plivo Cloud Is Better Than Twilio</a>
+			            <a class="paging-link" href="/2012/phing-php-deployment/">Phing For PHP Deployment</a>
 		            </div>
 		            
 	            </div>
@@ -473,7 +473,7 @@ window.Router = Backbone.Router.extend({
 		</ul>
 	</div>
 
-	<p>&copy; 2015. All rights reserved. </p>
+	<p>&copy; 2017. All rights reserved. </p>
 </div>
     </div>
   </div>

@@ -4,7 +4,6 @@
   <url>
     <loc>http://clintberry.com/</loc>
     <lastmod>2013-07-22T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -40,11 +39,6 @@
   <url>
     <loc>http://clintberry.com/2012/backbone-js-apps-authentication-tutorial/</loc>
     <lastmod>2012-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://clintberry.com/2012/why-plivo-cloud-is-better-than-twilio/</loc>
-    <lastmod>2012-07-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -98,12 +92,12 @@
   </url>
   
   <url>
-    <loc>http://clintberry.com/2010/zend-framework-code-generator-with-scaffolding/</loc>
+    <loc>http://clintberry.com/contact/</loc>
     <lastmod>2010-08-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://clintberry.com/contact/</loc>
+    <loc>http://clintberry.com/2010/zend-framework-code-generator-with-scaffolding/</loc>
     <lastmod>2010-08-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -125,6 +119,10 @@
   <url>
     <loc>http://clintberry.com/2010/zend-server-ce/</loc>
     <lastmod>2010-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://clintberry.com/blog/_Draft-scalable-phone-system-architecture/</loc>
   </url>
   
 </urlset>

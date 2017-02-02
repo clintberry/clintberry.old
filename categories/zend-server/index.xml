@@ -21,7 +21,7 @@
 
 &lt;p&gt;The first thing I did was install Zend Server CE to develop and test locally on my machine. Here are my notes on the Zend Server CE installation for the OS X, which didn&amp;#8217;t seem as user friendly as it&amp;#8217;s Windows Installer counterpart. But I am such a noob with Macs it is probably just me. This is for all you windows developers making the switch.&lt;/p&gt;
 
-&lt;h3 id=&#34;zend-server-ce-configuration:c15244a876457d6d21501aee1988d658&#34;&gt;_Zend Server CE Configuration&lt;/h3&gt;
+&lt;h3 id=&#34;zend-server-ce-configuration&#34;&gt;_Zend Server CE Configuration&lt;/h3&gt;
 
 &lt;p&gt;_&lt;/p&gt;
 
@@ -40,7 +40,7 @@ killall Finder&lt;/pre&gt;
 
 &lt;p&gt;Then edit the apache config file in &lt;tt&gt;/usr/local/zend/apache2/conf/httpd.conf&lt;br /&gt; Change &amp;ldquo;Listen 10088&amp;rdquo; to Listen 80&amp;rdquo; on Line 43&lt;/tt&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;changing-the-web-root:c15244a876457d6d21501aee1988d658&#34;&gt;&lt;em&gt;Changing the Web Root&lt;/em&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;changing-the-web-root&#34;&gt;&lt;em&gt;Changing the Web Root&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;While you&amp;#8217;re in the httpd.conf file, you can change any of your directives just like any other apache server. I decided to change my web root to &amp;#8220;/Users/clint/sites&amp;#8221;. To change yours, just edit the line with the &amp;#8220;DocumentRoot&amp;#8221; directive.&lt;/p&gt;
 
@@ -50,7 +50,7 @@ killall Finder&lt;/pre&gt;
 
 &lt;p&gt;And you are done-zo!&lt;/p&gt;
 
-&lt;h3 id=&#34;mysql-configuration:c15244a876457d6d21501aee1988d658&#34;&gt;&lt;em&gt;MySQL Configuration&lt;/em&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;mysql-configuration&#34;&gt;&lt;em&gt;MySQL Configuration&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;When I install ZSCE on Windows machines, all my third party database applications would connect to the included MySQL installation right out of the box by using &amp;#8220;localhost&amp;#8221; as the domain. For some reason with ZSCE on OS X you cannot connect to mysql over TCP/IP, so you will have to configure your applications to connect using mysql sockets. By default the socket file is at &amp;#8216;/usr/local/zend/mysql/tmp/mysql.sock&amp;#8217;&lt;/p&gt;
 

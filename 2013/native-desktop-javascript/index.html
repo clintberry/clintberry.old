@@ -90,9 +90,9 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.com">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about">About</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog">Blog</a></li>
         
       </ul>
     </nav>
@@ -105,11 +105,11 @@
         
       
         
-        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
         
       
         
-        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
         
       
       
@@ -138,8 +138,8 @@
 <ul>
 <li>
 <ul>
-<li><a href="#the-brackets-javascript-object:2fe2dff6358944c81f4c24b8c22cec27">The Brackets JavaScript Object</a></li>
-<li><a href="#adding-custom-native-javascript-functions:2fe2dff6358944c81f4c24b8c22cec27">Adding Custom Native JavaScript Functions</a></li>
+<li><a href="#the-brackets-javascript-object">The Brackets JavaScript Object</a></li>
+<li><a href="#adding-custom-native-javascript-functions">Adding Custom Native JavaScript Functions</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -199,7 +199,7 @@
 
 <p>Brackets shell has two ways to interact with the native environment via JavaScript. The first is via a set of functions created in native C++/Objective-C and then exposed in <a href="Chromium Embedded Framework" title="CEF" target="_blank">Chromium Embedded Framework</a>. The second method is to communicate with the Node.js process via websocket protocol and tell it to run commands on the native environment. This post will take a look at the first method.</p>
 
-<h4 id="the-brackets-javascript-object:2fe2dff6358944c81f4c24b8c22cec27">The Brackets JavaScript Object</h4>
+<h4 id="the-brackets-javascript-object">The Brackets JavaScript Object</h4>
 
 <p>The brackets-shell team has already built several native functions and exposed them via JavaScript to your HTML application. To take a look, run your newly built brackets shell app and open the Chrome DevTools by right clicking anywhere in your app and selecting `Show DevTools`.</p>
 
@@ -263,7 +263,7 @@ $(function(){
 
 <p>Go ahead and play around with the other functions that brackets makes available to you. Especially the file system commands which really allow you to do some cool stuff. If you have trouble, make sure to check out the <a href="https://github.com/adobe/brackets-shell/blob/master/appshell/appshell_extensions.js" title="JavaScript functions for shell" target="_blank">detailed comments for each function in the source code</a>.</p>
 
-<h4 id="adding-custom-native-javascript-functions:2fe2dff6358944c81f4c24b8c22cec27">Adding Custom Native JavaScript Functions</h4>
+<h4 id="adding-custom-native-javascript-functions">Adding Custom Native JavaScript Functions</h4>
 
 <p>So you want to add your own native functions, eh? If you are brave enough to venture into the dark realms of C++/Objective-C then the world is your oyster with brackets-shell. You can do pretty much anything you want to do. To illustrate, let&#8217;s add a function that minimizes the window (overly simple, but a good starting point).</p>
 
@@ -371,7 +371,7 @@ void MinimizeWindow(CefRefPtr&lt;CefBrowser&gt; browser);
 		</ul>
 	</div>
 
-	<p>&copy; 2015. All rights reserved. </p>
+	<p>&copy; 2017. All rights reserved. </p>
 </div>
     </div>
   </div>

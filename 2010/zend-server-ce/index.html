@@ -90,9 +90,9 @@
       <ul class="nav-list">
         <li class="nav-item"><span class="nav-item-separator">//</span><a href="http://clintberry.com">Home</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about/">About</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/about">About</a></li>
         
-          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog/">Blog</a></li>
+          <li class="nav-item"><span class="nav-item-separator">//</span><a href="/blog">Blog</a></li>
         
       </ul>
     </nav>
@@ -105,11 +105,11 @@
         
       
         
-        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
+        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
         
       
         
-        <a href="https://plus.google.com/116690395418514703068/posts" target="_blank"><i class='fa fa-google-plus-square'></i></a>
+        <a href="http://www.linkedin.com/in/clintonberry" target="_blank"><i class='fa fa-linkedin-square'></i></a>
         
       
       
@@ -136,9 +136,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#zend-server-ce-configuration:c15244a876457d6d21501aee1988d658">_Zend Server CE Configuration</a></li>
-<li><a href="#changing-the-web-root:c15244a876457d6d21501aee1988d658"><em>Changing the Web Root</em></a></li>
-<li><a href="#mysql-configuration:c15244a876457d6d21501aee1988d658"><em>MySQL Configuration</em></a></li>
+<li><a href="#zend-server-ce-configuration">_Zend Server CE Configuration</a></li>
+<li><a href="#changing-the-web-root"><em>Changing the Web Root</em></a></li>
+<li><a href="#mysql-configuration"><em>MySQL Configuration</em></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -188,7 +188,7 @@
 
 <p>The first thing I did was install Zend Server CE to develop and test locally on my machine. Here are my notes on the Zend Server CE installation for the OS X, which didn&#8217;t seem as user friendly as it&#8217;s Windows Installer counterpart. But I am such a noob with Macs it is probably just me. This is for all you windows developers making the switch.</p>
 
-<h3 id="zend-server-ce-configuration:c15244a876457d6d21501aee1988d658">_Zend Server CE Configuration</h3>
+<h3 id="zend-server-ce-configuration">_Zend Server CE Configuration</h3>
 
 <p>_</p>
 
@@ -207,7 +207,7 @@ killall Finder</pre>
 
 <p>Then edit the apache config file in <tt>/usr/local/zend/apache2/conf/httpd.conf<br /> Change &ldquo;Listen 10088&rdquo; to Listen 80&rdquo; on Line 43</tt></p>
 
-<h3 id="changing-the-web-root:c15244a876457d6d21501aee1988d658"><em>Changing the Web Root</em></h3>
+<h3 id="changing-the-web-root"><em>Changing the Web Root</em></h3>
 
 <p>While you&#8217;re in the httpd.conf file, you can change any of your directives just like any other apache server. I decided to change my web root to &#8220;/Users/clint/sites&#8221;. To change yours, just edit the line with the &#8220;DocumentRoot&#8221; directive.</p>
 
@@ -217,7 +217,7 @@ killall Finder</pre>
 
 <p>And you are done-zo!</p>
 
-<h3 id="mysql-configuration:c15244a876457d6d21501aee1988d658"><em>MySQL Configuration</em></h3>
+<h3 id="mysql-configuration"><em>MySQL Configuration</em></h3>
 
 <p>When I install ZSCE on Windows machines, all my third party database applications would connect to the included MySQL installation right out of the box by using &#8220;localhost&#8221; as the domain. For some reason with ZSCE on OS X you cannot connect to mysql over TCP/IP, so you will have to configure your applications to connect using mysql sockets. By default the socket file is at &#8216;/usr/local/zend/mysql/tmp/mysql.sock&#8217;</p>
 
@@ -239,6 +239,11 @@ killall Finder</pre>
 		            
 
 					
+					<div class="paging-older">
+						<span class="dark-red">Older</span><span class="decorative-marker">//</span>
+			            <a class="paging-link" href="/blog/_Draft-scalable-phone-system-architecture/"></a>
+		            </div>
+		            
 	            </div>
             
           </section>
@@ -268,7 +273,7 @@ killall Finder</pre>
 		</ul>
 	</div>
 
-	<p>&copy; 2015. All rights reserved. </p>
+	<p>&copy; 2017. All rights reserved. </p>
 </div>
     </div>
   </div>

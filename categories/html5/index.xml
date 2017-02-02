@@ -28,7 +28,7 @@
 
 &lt;p&gt;Brackets shell has two ways to interact with the native environment via JavaScript. The first is via a set of functions created in native C++/Objective-C and then exposed in &lt;a href=&#34;Chromium Embedded Framework&#34; title=&#34;CEF&#34; target=&#34;_blank&#34;&gt;Chromium Embedded Framework&lt;/a&gt;. The second method is to communicate with the Node.js process via websocket protocol and tell it to run commands on the native environment. This post will take a look at the first method.&lt;/p&gt;
 
-&lt;h4 id=&#34;the-brackets-javascript-object:2fe2dff6358944c81f4c24b8c22cec27&#34;&gt;The Brackets JavaScript Object&lt;/h4&gt;
+&lt;h4 id=&#34;the-brackets-javascript-object&#34;&gt;The Brackets JavaScript Object&lt;/h4&gt;
 
 &lt;p&gt;The brackets-shell team has already built several native functions and exposed them via JavaScript to your HTML application. To take a look, run your newly built brackets shell app and open the Chrome DevTools by right clicking anywhere in your app and selecting `Show DevTools`.&lt;/p&gt;
 
@@ -92,7 +92,7 @@ $(function(){
 
 &lt;p&gt;Go ahead and play around with the other functions that brackets makes available to you. Especially the file system commands which really allow you to do some cool stuff. If you have trouble, make sure to check out the &lt;a href=&#34;https://github.com/adobe/brackets-shell/blob/master/appshell/appshell_extensions.js&#34; title=&#34;JavaScript functions for shell&#34; target=&#34;_blank&#34;&gt;detailed comments for each function in the source code&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h4 id=&#34;adding-custom-native-javascript-functions:2fe2dff6358944c81f4c24b8c22cec27&#34;&gt;Adding Custom Native JavaScript Functions&lt;/h4&gt;
+&lt;h4 id=&#34;adding-custom-native-javascript-functions&#34;&gt;Adding Custom Native JavaScript Functions&lt;/h4&gt;
 
 &lt;p&gt;So you want to add your own native functions, eh? If you are brave enough to venture into the dark realms of C++/Objective-C then the world is your oyster with brackets-shell. You can do pretty much anything you want to do. To illustrate, let&amp;#8217;s add a function that minimizes the window (overly simple, but a good starting point).&lt;/p&gt;
 
@@ -169,15 +169,15 @@ void MinimizeWindow(CefRefPtr&amp;lt;CefBrowser&amp;gt; browser);
 
 &lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I Posted part 2 of the series: &lt;a href=&#34;http://clintberry.com/2013/native-desktop-javascript/&#34; title=&#34;JavaScript and the Brackets Shell Environment&#34;&gt;JavaScript and the Brackets Shell Environment&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;what-is-brackets:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;What is Brackets?&lt;/h4&gt;
+&lt;h4 id=&#34;what-is-brackets&#34;&gt;What is Brackets?&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://brackets.io/&#34; title=&#34;Brackets&#34; target=&#34;_blank&#34;&gt;Brackets&lt;/a&gt; is an open-source code editor created by Adobe. What makes brackets so cool, though, is that the entire editor is written in HTML and JavaScript. This puts Brackets in a unique opportunity that allows pretty much any developer that would use the editor (HTML and JavaScript guys) to add to and improve the editor with the very languages they use on a regular basis. And while I don&amp;#8217;t use brackets myself just yet (hard to leave Sublime Text) it is definitely on my radar and I may make that switch soon.&lt;/p&gt;
 
-&lt;h4 id=&#34;what-is-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;What is Brackets Shell?&lt;/h4&gt;
+&lt;h4 id=&#34;what-is-brackets-shell&#34;&gt;What is Brackets Shell?&lt;/h4&gt;
 
 &lt;p&gt;Brackets Shell is what allows Brackets to be run as a desktop application. It takes &lt;a href=&#34;https://code.google.com/p/chromiumembedded/&#34; title=&#34;Chromium Embedded Framework&#34; target=&#34;_blank&#34;&gt;Chromium Embedded Framework (CEF)&lt;/a&gt; and adds some extras along with an excellent build tool. The brackets-shell app is so well done, it made it easy for a web-developer like me to get my first ever &lt;a href=&#34;https://github.com/adobe/brackets-shell/commit/5e52d8647444d20838a2b01bfff92f463109f014&#34; title=&#34;My first c++ pull request&#34; target=&#34;_blank&#34;&gt;C++ pull request accepted&lt;/a&gt; (I took credit for that whole pull request, but the windows portion was done by my good friend, &lt;a href=&#34;http://bigdevblog.com&#34; title=&#34;Jordan C&#39;s Blog&#34; target=&#34;_blank&#34;&gt;Jordan&lt;/a&gt;).&lt;/p&gt;
 
-&lt;h4 id=&#34;why-use-brackets-shell-instead-of-other-solutions:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Why Use Brackets Shell Instead of Other Solutions?&lt;/h4&gt;
+&lt;h4 id=&#34;why-use-brackets-shell-instead-of-other-solutions&#34;&gt;Why Use Brackets Shell Instead of Other Solutions?&lt;/h4&gt;
 
 &lt;p&gt;I&amp;#8217;m glad you asked:&lt;/p&gt;
 
@@ -190,7 +190,7 @@ void MinimizeWindow(CefRefPtr&amp;lt;CefBrowser&amp;gt; browser);
 
 &lt;p&gt;Now on to the good stuff.&lt;/p&gt;
 
-&lt;h4 id=&#34;test-your-application-in-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Test Your Application in Brackets Shell&lt;/h4&gt;
+&lt;h4 id=&#34;test-your-application-in-brackets-shell&#34;&gt;Test Your Application in Brackets Shell&lt;/h4&gt;
 
 &lt;p&gt;The first thing you will want to do is test the shell to see if your HTML application runs in it. The quickest route to doing this is to &lt;a href=&#34;http://download.brackets.io/&#34; title=&#34;Download Brackets&#34; target=&#34;_blank&#34;&gt;download the latest Brackets editor&lt;/a&gt; and install it. The installer installs the brackets-shell along with the brackets HTML application. If you remove the HTML app then the when you run the brackets shell it will ask you for the location of your index.html file. If you choose your own index.html file from your own application, brackets shell will open that.&lt;/p&gt;
 
@@ -198,11 +198,11 @@ void MinimizeWindow(CefRefPtr&amp;lt;CefBrowser&amp;gt; browser);
 
 &lt;p&gt;On OSX, open the terminal and browse to your application directory. Applications in OSX are actually folders, and in terminal you can view their content. CD into the Brackets Sprint [sprint number].app folder and continue to the Contents directory. Inside there you will see the www folder. Delete or rename it and then run brackets. You will see the file dialog prompting you to select your own index.html file.&lt;/p&gt;
 
-&lt;h4 id=&#34;building-brackets-shell:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Building Brackets Shell&lt;/h4&gt;
+&lt;h4 id=&#34;building-brackets-shell&#34;&gt;Building Brackets Shell&lt;/h4&gt;
 
 &lt;p&gt;If your app runs well in brackets-shell your next step is to setup your computer to build brackets-shell. This is where the shell really shines. They have an amazing Grunt setup that allows you to run the build in one command. Brackets provides some great instructions on &lt;a href=&#34;https://github.com/adobe/brackets-shell/wiki/Building-brackets-shell&#34; title=&#34;Brackets shell build instructions&#34; target=&#34;_blank&#34;&gt;setting up your box here&lt;/a&gt;. Once you are setup, run `grunt build` from the command line and it should create a full build of brackets shell for you. So awesome.&lt;/p&gt;
 
-&lt;h4 id=&#34;setup-for-your-app:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Setup for Your App&lt;/h4&gt;
+&lt;h4 id=&#34;setup-for-your-app&#34;&gt;Setup for Your App&lt;/h4&gt;
 
 &lt;p&gt;This is where things get fun. Let&amp;#8217;s make the shell be a full-on desktop app for our own software. Make sure you have followed the instructions for getting setup to build brackets-shell and then take these next steps:&lt;/p&gt;
 
@@ -312,7 +312,7 @@ Done, without errors.
 
 &lt;p&gt;Don&amp;#8217;t worry about the warning, if you made it that far you made a full build! You can check out your newly-built app in the brackets-shell/installer/(mac or win, depending on your OS)/staging folder. Run it and make sure it loads your index.html file by default now. (it shouldn&amp;#8217;t prompt you to locate an index.html file, it should just open and run the one from your html application)&lt;/p&gt;
 
-&lt;h4 id=&#34;let-8217-s-customize:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;Let&amp;#8217;s customize!&lt;/h4&gt;
+&lt;h4 id=&#34;let-8217-s-customize&#34;&gt;Let&amp;#8217;s customize!&lt;/h4&gt;
 
 &lt;p&gt;You probably noticed your new application&amp;#8217;s name was &amp;#8220;brackets&amp;#8221; and that your icon for the app was the brackets logo. You don&amp;#8217;t want that, so let&amp;#8217;s change the name of your app to &amp;#8220;Awesome&amp;#8221;.&lt;/p&gt;
 
@@ -338,7 +338,7 @@ Done, without errors.
 
 &lt;p&gt;Now just type `grunt full-build` at the terminal and it will create a build with your app and name the app &amp;#8220;awesome&amp;#8221;&lt;/p&gt;
 
-&lt;h4 id=&#34;what-8217-s-next:c2332b0a7552c427942f1c8b0ea41ea0&#34;&gt;What&amp;#8217;s Next?&lt;/h4&gt;
+&lt;h4 id=&#34;what-8217-s-next&#34;&gt;What&amp;#8217;s Next?&lt;/h4&gt;
 
 &lt;p&gt;For basic HTML apps that you just need a shell for, this might be all you need. But this is only the beginning of what you can do with brackets-shell. Over the next few weeks I will be posting new tutorials showing how you can:&lt;/p&gt;
 
@@ -387,7 +387,7 @@ Done, without errors.
 
 &lt;p&gt;Here are all the different options I have researched for creating HTML/JS applications on the desktop, with their pros and cons. Please leave comments if you know of other solutions I should look at.&lt;/p&gt;
 
-&lt;h3 id=&#34;tidesdk:522579eb282b622ded22bcc5d66b8011&#34;&gt;TideSDK&lt;/h3&gt;
+&lt;h3 id=&#34;tidesdk&#34;&gt;TideSDK&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.tidesdk.org/&#34; title=&#34;TideSDK&#34; target=&#34;_blank&#34;&gt;TideSDK&lt;/a&gt; has so much potential. They have a great looking website and a good set of tools. Of all the solutions I looked at, TideSDK has the easiest method for packaging your app. You open up the TideSDK builder and choose your HTML files, and click the package button. It runs basic web applications with ease. But then I tried running my first AngularJS app and&amp;#8230; FAIL. So I checked the web inspector and saw a litany of errors that I knew didn&amp;#8217;t exist when I ran my app in chrome. Turns out the webkit version used in TideSDK is over 3 years old and Angular doesn&amp;#8217;t like it. They haven&amp;#8217;t had a solid update for a while as well and are &lt;a href=&#34;http://www.tidesdk.org/blog/2013/04/11/tidesdk-in-numbers/&#34; title=&#34;TideSDK needs money&#34; target=&#34;_blank&#34;&gt;pleading for money&lt;/a&gt; from the community.&lt;/p&gt;
 
@@ -404,10 +404,12 @@ Done, without errors.
 &lt;ul&gt;
 &lt;li&gt;No version bumps in a long time&lt;/li&gt;
 &lt;li&gt;The webkit version is OLD&lt;/li&gt;
-&lt;li&gt;They need more money to keep going&lt;/li&gt;
+&lt;li&gt;They need more money to keep going
+&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;appjs:522579eb282b622ded22bcc5d66b8011&#34;&gt;AppJS&lt;/h3&gt;
+&lt;h3 id=&#34;appjs&#34;&gt;AppJS&lt;/h3&gt;
 
 &lt;p&gt;If you are a nodeJS fan, &lt;a href=&#34;http://appjs.com/&#34; title=&#34;Desktop Apps with HTML&#34; target=&#34;_blank&#34;&gt;AppJS&lt;/a&gt; is the start of something awesome. It runs allows you to interact with desktop windows via JavaScript in a nodeJS application. Great idea, but it has some bugs and debugging issues can be a pain. Also, the issue list keeps piling up in github and it seems no progress is being made.&lt;/p&gt;
 
@@ -426,7 +428,7 @@ Done, without errors.
 &lt;li&gt;Enough bugs to make this not production worthy&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;node-webkit:522579eb282b622ded22bcc5d66b8011&#34;&gt;Node-webkit&lt;/h3&gt;
+&lt;h3 id=&#34;node-webkit&#34;&gt;Node-webkit&lt;/h3&gt;
 
 &lt;p&gt;Along the same lines as appjs, &lt;a href=&#34;https://github.com/rogerwang/node-webkit&#34; title=&#34;html apps on the desktop with node-webkit&#34; target=&#34;_blank&#34;&gt;node-webkit&lt;/a&gt; is a desktop runtime that combines chromium with NodeJS. This project is also backed by Intel and has regular updates. Packaging apps into Exes is not trivial, however and we had some problems running our more advanced apps on windows (popup windows in particular).&lt;/p&gt;
 
@@ -442,18 +444,22 @@ Done, without errors.
 
 &lt;ul&gt;
 &lt;li&gt;Packaging apps isn&amp;#8217;t simple&lt;/li&gt;
-&lt;li&gt;Had trouble with popup windows on Windows&lt;/li&gt;
+&lt;li&gt;Had trouble with popup windows on Windows
+
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;sencha-desktop:522579eb282b622ded22bcc5d66b8011&#34;&gt;Sencha Desktop&lt;/h3&gt;
+&lt;h3 id=&#34;sencha-desktop&#34;&gt;Sencha Desktop&lt;/h3&gt;
 
 &lt;p&gt;Sencha&amp;#8217;s solution is not free at almsot $700. It&amp;#8217;s webkit version is outdated and it has a very limited feature set for controlling the windows (no transparency, no removing the chrome frame, etc).&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;No breakdown. This baby isn&amp;#8217;t worth the price, hands down.&lt;/li&gt;
+&lt;li&gt;No breakdown. This baby isn&amp;#8217;t worth the price, hands down.
+
+&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;brackets-shell:522579eb282b622ded22bcc5d66b8011&#34;&gt;Brackets Shell&lt;/h3&gt;
+&lt;h3 id=&#34;brackets-shell&#34;&gt;Brackets Shell&lt;/h3&gt;
 
 &lt;p&gt;The &lt;a href=&#34;https://github.com/adobe/brackets-shell&#34; title=&#34;Brackets Shell&#34; target=&#34;_blank&#34;&gt;Brackets Shell&lt;/a&gt; is a customized version of Chromium Embedded Framework (CEF) that was created to run the &lt;a href=&#34;http://brackets.io/&#34; title=&#34;HTML JavaScript Editor&#34; target=&#34;_blank&#34;&gt;Brackets IDE&lt;/a&gt; on the desktop. But this shell has some great features and is general enough to allow you to modify it and use it for your own project. Brackets Shell is backed by Adobe and is updated regularly, and they &lt;a href=&#34;https://github.com/adobe/brackets-shell/pull/231&#34; title=&#34;Pull Request for Drag capabilities&#34; target=&#34;_blank&#34;&gt;accept pull requests&lt;/a&gt; for features that the Brackets IDE might not even use. Building the shell is easy thanks to the bundled Grunt file, and it is using CEF3 so the webkit version is up to date. We went with this solution at my current company and have been loving it. I intend to write a whole post on customizing and using the brackets shell soon.&lt;/p&gt;
 
@@ -475,7 +481,7 @@ Done, without errors.
 &lt;li&gt;&lt;a href=&#34;https://github.com/adobe/brackets/issues/2389 &#34; title=&#34;no html5 audio in brackets shell&#34; target=&#34;_blank&#34;&gt;No HTML5 audio? (sad)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;other-solutions:522579eb282b622ded22bcc5d66b8011&#34;&gt;Other Solutions&lt;/h3&gt;
+&lt;h3 id=&#34;other-solutions&#34;&gt;Other Solutions&lt;/h3&gt;
 
 &lt;p&gt;Other solutions I haven&amp;#8217;t looked into are Windows 8 which runs &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/windows/apps/br211385.aspx&#34; title=&#34;Windows 8 web apps&#34; target=&#34;_blank&#34;&gt;HTML apps as first class citizens&lt;/a&gt; directly on the desktop. Ubuntu desktop has a similar solution with &lt;a href=&#34;http://developer.ubuntu.com/resources/technologies/webapps/&#34; title=&#34;Ubuntu Web Apps&#34; target=&#34;_blank&#34;&gt;Ubuntu Web Apps&lt;/a&gt;.&lt;/p&gt;
 

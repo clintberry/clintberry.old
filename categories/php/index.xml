@@ -21,15 +21,15 @@
 
 &lt;p&gt;At my current company I am working on my first large-scale production backbone.js app and I couldn&amp;#8217;t be happier. After using backbone.js for a few months I have caught the vision and I am becoming more and more proficient. But every once and a while I still run into problems I would consider basic, but I can&amp;#8217;t seem to find much help on the interwebs. Authentication with backbone.js apps was one of those problems. So I am posting the solution I came up with in hopes it will benefit someone else, and hopefully will garner some feedback or potentially better ways to solve authentication with Backbone.js.&lt;/p&gt;
 
-&lt;h4 id=&#34;starting-code-base:73b85921beb05e353da557a09d786139&#34;&gt;Starting Code Base&lt;/h4&gt;
+&lt;h4 id=&#34;starting-code-base&#34;&gt;Starting Code Base&lt;/h4&gt;
 
 &lt;p&gt;To start this tutorial, I will be using an already created backbone.js application called &lt;a href=&#34;https://github.com/ccoenraets/backbone-directory&#34; title=&#34;Backbone Directory&#34; target=&#34;_blank&#34;&gt;Backbone Directory&lt;/a&gt;, created by &lt;a href=&#34;http://coenraets.org/blog/2012/02/sample-app-with-backbone-js-and-twitter-bootstrap/&#34; title=&#34;Sample Backbone Bootstrap app&#34; target=&#34;_blank&#34;&gt;Christophe Coenraets&lt;/a&gt; who has some great tutorials and information about backbone on his blog. He has some mobile versions of the app in the code base as well, but we will be working in the &amp;#8220;web&amp;#8221; directory.&lt;/p&gt;
 
-&lt;h4 id=&#34;project-overview:73b85921beb05e353da557a09d786139&#34;&gt;Project Overview&lt;/h4&gt;
+&lt;h4 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h4&gt;
 
 &lt;p&gt;Backbone Directory uses the Slim PHP framework on the server to communicate with backbone, but the principles we will be going over are language agnostic. In addition, Slim is based on the Sinatra (Ruby) methodology which in turn translates to Express.js framework for Node.js (JavaScript), and Tornado (Python).&lt;/p&gt;
 
-&lt;h4 id=&#34;setting-up-very-basic-server-side-authentication:73b85921beb05e353da557a09d786139&#34;&gt;Setting Up (Very) Basic Server Side Authentication&lt;/h4&gt;
+&lt;h4 id=&#34;setting-up-very-basic-server-side-authentication&#34;&gt;Setting Up (Very) Basic Server Side Authentication&lt;/h4&gt;
 
 &lt;p&gt;To get this started, we need to setup the server side login functions, and also a way to protect API requests so no data goes to anyone that isn&amp;#8217;t authenticated. First, let&amp;#8217;s add a login function to the api/index.php in the web directory:&lt;/p&gt;
 
@@ -115,7 +115,7 @@ $app-&amp;gt;get(&amp;#039;/employees/search/:query&amp;#039;, authorize(&amp;#0
 $app-&amp;gt;get(&amp;#039;/employees/modifiedsince/:timestamp&amp;#039;, authorize(&amp;#039;user&amp;#039;), &amp;#039;findByModifiedDate&amp;#039;);
 &lt;/pre&gt;
 
-&lt;h4 id=&#34;setting-up-backbone-views:73b85921beb05e353da557a09d786139&#34;&gt;Setting Up Backbone Views&lt;/h4&gt;
+&lt;h4 id=&#34;setting-up-backbone-views&#34;&gt;Setting Up Backbone Views&lt;/h4&gt;
 
 &lt;p&gt;Now let&amp;#8217;s get to the good stuff: Setting up our backbone views. For authentication we will of course need a login view:&lt;/p&gt;
 
@@ -195,7 +195,7 @@ window.LoginView = Backbone.View.extend({
 &amp;lt;/form&amp;gt;
 &lt;/pre&gt;
 
-&lt;h4 id=&#34;telling-backbone-how-to-handle-401-038-403-errors-ajaxsetup:73b85921beb05e353da557a09d786139&#34;&gt;Telling Backbone How to Handle 401 &amp;#038; 403 Errors (ajaxSetup)&lt;/h4&gt;
+&lt;h4 id=&#34;telling-backbone-how-to-handle-401-038-403-errors-ajaxsetup&#34;&gt;Telling Backbone How to Handle 401 &amp;#038; 403 Errors (ajaxSetup)&lt;/h4&gt;
 
 &lt;p&gt;Now here comes the kicker. We need backbone/jquery to catch any requests that return a 401 or 403 error and handle those requests appropriately. The method I have used to do this is to call the jquery function ajaxSetup which allows us to watch for certain status codes and to handle them appropriately.&lt;/p&gt;
 
@@ -238,7 +238,7 @@ window.Router = Backbone.Router.extend({
 }
 &lt;/pre&gt;
 
-&lt;h4 id=&#34;the-final-word-and-source-code:73b85921beb05e353da557a09d786139&#34;&gt;The Final Word (and source code)&lt;/h4&gt;
+&lt;h4 id=&#34;the-final-word-and-source-code&#34;&gt;The Final Word (and source code)&lt;/h4&gt;
 
 &lt;p&gt;That is it! You should now have a password protected REST API for BackboneJS. I have posted the &lt;a href=&#34;https://github.com/clintberry/backbone-directory-auth&#34; title=&#34;Backbone Authentication&#34; target=&#34;_blank&#34;&gt;project to github (here)&lt;/a&gt;, so feel free to check out the code and see it in action. Currently, you will need PHP/Apache with MySQL setup and the database imported. I am working on a Vagrant file for the project so you will be able to see it in action without setting up your own server.&lt;/p&gt;
 
@@ -270,7 +270,7 @@ window.Router = Backbone.Router.extend({
 
 &lt;p&gt;Sublime Text 2 is an amazing code editor that I started using on the recommendation of a friend. I fell in love and haven&amp;#8217;t looked back. Here are some recomendations for setting up Sublime Text 2 for PHP and WordPress development.&lt;/p&gt;
 
-&lt;h3 id=&#34;why-is-sublime-text-2-awesome:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Why is Sublime Text 2 Awesome?&lt;/h3&gt;
+&lt;h3 id=&#34;why-is-sublime-text-2-awesome&#34;&gt;Why is Sublime Text 2 Awesome?&lt;/h3&gt;
 
 &lt;p&gt;Where do I start&amp;#8230; Here are some of my favorite features:&lt;/p&gt;
 
@@ -287,48 +287,49 @@ There are &lt;strong&gt;MANY&lt;/strong&gt; more reasons. Check out this link fo
 
 &lt;p&gt;Now you should be fully convinced that Sublime Text is the greatest thing since sliced bread  &lt;img src=&#34;http://clintberry.com/wp-includes/images/smilies/simple-smile.png&#34; alt=&#34;:-)&#34; class=&#34;wp-smiley&#34; style=&#34;height: 1em; max-height: 1em;&#34; /&gt;Let&amp;#8217;s get it setup for developing PHP applications.&lt;/p&gt;
 
-&lt;h3 id=&#34;setting-up-package-management:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Setting Up Package Management&lt;/h3&gt;
+&lt;h3 id=&#34;setting-up-package-management&#34;&gt;Setting Up Package Management&lt;/h3&gt;
 
 &lt;p&gt;One of the coolest plugins for ST2 is the package manager. This should be the first plugin you install because it is the gateway to a big list of other great plugins for you. Installation is easy, simply open ST2 and press command+` (on windows ctrl+`) and it will open up the ST2 console. Copy and paste this code into the terminal:&lt;/p&gt;
 
 &lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;import urllib2,os; pf=&amp;#039;Package Control.sublime-package&amp;#039;; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),&amp;#039;wb&amp;#039;).write(urllib2.urlopen(&amp;#039;http://sublime.wbond.net/&amp;#039;+pf.replace(&amp;#039; &amp;#039;,&amp;#039;%20&amp;#039;)).read()); print &amp;#039;Please restart Sublime Text to finish installation&amp;#039;
 &lt;/pre&gt;
+        
 
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 
 &lt;p&gt;That&amp;#8217;s it, you now have package control built into your editor. To access package control, press shift+command+p and start typing &amp;#8220;package&amp;#8221;. (shift+command+p opens the window of all commands in sublime text 2). You will see a list of commands related to package control. Sweet.&lt;/p&gt;
 
-&lt;h3 id=&#34;packages-you-need:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Packages you need&lt;/h3&gt;
+&lt;h3 id=&#34;packages-you-need&#34;&gt;Packages you need&lt;/h3&gt;
 
 &lt;p&gt;Let&amp;#8217;s get this puppy setup for some PHP development!&lt;/p&gt;
 
 &lt;p&gt;To install a package, type shift+command+p and start typing &amp;#8220;package install&amp;#8221; and hit enter when it is highlighted. Wait a few seconds and it will bring up a list of available packages. Select the package you want to install and then hit enter. That&amp;#8217;s it! Now follow those steps for the following packages:&lt;/p&gt;
 
-&lt;h5 id=&#34;sublime-code-intel-1:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;&lt;a href=&#34;https://github.com/Kronuz/SublimeCodeIntel&#34; title=&#34;Sublime Code Intel&#34;&gt;Sublime Code Intel&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&#34;sublime-code-intel-1&#34;&gt;&lt;a href=&#34;https://github.com/Kronuz/SublimeCodeIntel&#34; title=&#34;Sublime Code Intel&#34;&gt;Sublime Code Intel&lt;/a&gt;&lt;/h5&gt;
 
 &lt;p&gt;What use would editing code be without some good autocompletion? CodeIntel provides a better code completion by parsing all the files in your project and creating a nice index of autocomplete options. It also provides click-to-definition functionality by clicking alt-click on a function or variable name. I have found that this plugin isn&amp;#8217;t as consistent or as fast as full IDEs such as Eclipse, but in general is pretty good.&lt;/p&gt;
 
-&lt;h5 id=&#34;sublime-linter-2:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;[Sublime Linter][2]&lt;/h5&gt;
+&lt;h5 id=&#34;sublime-linter-2&#34;&gt;[Sublime Linter][2]&lt;/h5&gt;
 
 &lt;p&gt;This plugin gives you real-time error checking in your php code which is standard in most IDEs. Now it is standard in Sublime Text &lt;img src=&#34;http://clintberry.com/wp-includes/images/smilies/simple-smile.png&#34; alt=&#34;:-)&#34; class=&#34;wp-smiley&#34; style=&#34;height: 1em; max-height: 1em;&#34; /&gt;&lt;/p&gt;
 
-&lt;h5 id=&#34;zen-coding-3:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;&lt;a href=&#34;https://bitbucket.org/sublimator/sublime-2-zencoding&#34; title=&#34;Zen Coding&#34;&gt;Zen Coding&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&#34;zen-coding-3&#34;&gt;&lt;a href=&#34;https://bitbucket.org/sublimator/sublime-2-zencoding&#34; title=&#34;Zen Coding&#34;&gt;Zen Coding&lt;/a&gt;&lt;/h5&gt;
 
 &lt;p&gt;If you aren&amp;#8217;t using Zen Coding to create your HTML, then you are missing out. This adds zen coding features into sublime text 2.&lt;/p&gt;
 
-&lt;h5 id=&#34;sublime-jsdocs-4:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;&lt;a href=&#34;https://github.com/spadgos/sublime-jsdocs&#34; title=&#34;PHP Doc Blocks&#34;&gt;Sublime JsDocs&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id=&#34;sublime-jsdocs-4&#34;&gt;&lt;a href=&#34;https://github.com/spadgos/sublime-jsdocs&#34; title=&#34;PHP Doc Blocks&#34;&gt;Sublime JsDocs&lt;/a&gt;&lt;/h5&gt;
 
 &lt;p&gt;Don&amp;#8217;t let the name fool you, this plugin is a smart Doc Block generator for PHP as well as JavaScript. It is the best one of any I have tried. To use it, simply type /** in front of the function/variable you want to generate the docs for and hit tab. You will get a nice block generated for you.&lt;/p&gt;
 
-&lt;h5 id=&#34;wordpress-plugin-5:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;[WordPress Plugin][5]&lt;/h5&gt;
+&lt;h5 id=&#34;wordpress-plugin-5&#34;&gt;[WordPress Plugin][5]&lt;/h5&gt;
 
 &lt;p&gt;This plugin adds a bunch of good snippets to have in your snippet/auto-complete library for WordPress. This helps speed up development significantly if you do a lot of wordpress sites.&lt;/p&gt;
 
-&lt;h5 id=&#34;git-6-038-also-git-sidebar-7:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;[Git][6] &amp;#038; also [Git Sidebar][7]&lt;/h5&gt;
+&lt;h5 id=&#34;git-6-038-also-git-sidebar-7&#34;&gt;[Git][6] &amp;#038; also [Git Sidebar][7]&lt;/h5&gt;
 
 &lt;p&gt;Git commands integrated into git hub for your favorite version control. As an added bonus, add git functionality to the sidebar context menu as well.&lt;/p&gt;
 
-&lt;h3 id=&#34;syntax-specific-settings:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Syntax Specific Settings&lt;/h3&gt;
+&lt;h3 id=&#34;syntax-specific-settings&#34;&gt;Syntax Specific Settings&lt;/h3&gt;
 
 &lt;p&gt;One of the greatest things about ST2 is how easy it is to customize. All the settings are simply JSON documents that you can change to meet your needs. Go ahead and open up Preferences-&amp;gt;Global Preferences and you will see all settings that are available. But don&amp;#8217;t change this file, since it gets overwritten during upgrades. Open up the User preferences file and put in any changes that you need.&lt;/p&gt;
 
@@ -341,10 +342,11 @@ There are &lt;strong&gt;MANY&lt;/strong&gt; more reasons. Check out this link fo
 ],
 &#34;word_separators&#34;: &#34;./\\()\&#34;&amp;#039;-:,.;&amp;lt;&amp;gt;~!@#%^&amp;*|+=[]{}`~?&#34;
 }&lt;/pre&gt;
+        
 
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 
-&lt;h3 id=&#34;important-shortcut-keys:aa1d181a86cd4b3bc45fc04c4629024d&#34;&gt;Important Shortcut Keys&lt;/h3&gt;
+&lt;h3 id=&#34;important-shortcut-keys&#34;&gt;Important Shortcut Keys&lt;/h3&gt;
 
 &lt;p&gt;Lastly, I want to include a short list of some short cut keys you will likely enjoy:&lt;/p&gt;
 
@@ -380,7 +382,7 @@ There are &lt;strong&gt;MANY&lt;/strong&gt; more reasons. Check out this link fo
       <guid>http://clintberry.com/2011/custom-user-providers-symfony2/</guid>
       <description>
 
-&lt;h4 id=&#34;why-custom-user-providers:0062a4ae26007760914834b2b096356a&#34;&gt;Why Custom User Providers?&lt;/h4&gt;
+&lt;h4 id=&#34;why-custom-user-providers&#34;&gt;Why Custom User Providers?&lt;/h4&gt;
 
 &lt;p&gt;At my current job all the database systems are managed by DB admins and the developers have to connect to the database via web services. We do not connect to the databases directly. This allows for better &lt;a title=&#34;Separation of Concerns&#34; href=&#34;http://en.wikipedia.org/wiki/Separation_of_concerns&#34; target=&#34;_blank&#34;&gt;separation of concerns&lt;/a&gt; and allows experts to focus on their respective specialties. But if you are programming a Symfony2 app, that means you don&amp;#8217;t get to use Doctrine or any other ORM, which in turn means you create your own models/entities.&lt;/p&gt;
 
@@ -388,7 +390,7 @@ There are &lt;strong&gt;MANY&lt;/strong&gt; more reasons. Check out this link fo
 
 &lt;p&gt;So, after a few hours of googling-reading-tinkering I figured out how to use the Symfony authentication system  with my own custom models. Keep in mind I am still new to Symfony2, so many of these concepts will be beginner level.&lt;/p&gt;
 
-&lt;h4 id=&#34;your-user-entity:0062a4ae26007760914834b2b096356a&#34;&gt;Your User Entity&lt;/h4&gt;
+&lt;h4 id=&#34;your-user-entity&#34;&gt;Your User Entity&lt;/h4&gt;
 
 &lt;p&gt;For this example, I am assuming you are using custom entities for your project. I have created a custom User entity to manage users in my application. It extends a base class that handles most of the getting, setting and the calls to my database REST service, but that is optional depending on how you setup your own entities.&lt;/p&gt;
 
@@ -479,7 +481,7 @@ implements UserInterface
 
 &lt;p&gt;You will need to define all of these functions to correctly load your users from your web-service (or however you are doing it). Once you have all the required function defined, you are ready to move on to the User Provider Service.&lt;/p&gt;
 
-&lt;h4 id=&#34;the-user-provider:0062a4ae26007760914834b2b096356a&#34;&gt;The User Provider&lt;/h4&gt;
+&lt;h4 id=&#34;the-user-provider&#34;&gt;The User Provider&lt;/h4&gt;
 
 &lt;p&gt;To use your own custom entities in Symfony2 authentication, you will need to have a basic understanding of &lt;a href=&#34;http://symfony.com/doc/current/book/service_container.html&#34; title=&#34;Symfony Services&#34; target=&#34;_blank&#34;&gt;Symfony services&lt;/a&gt; and the &lt;a href=&#34;http://symfony.com/doc/current/book/security.html&#34; title=&#34;Symfony Authentication&#34; target=&#34;_blank&#34;&gt;Symfony authentication&lt;/a&gt; system. Read those links if you haven&amp;#8217;t yet. To reiterate what the user provider is, from the docs:&lt;/p&gt;
 
@@ -566,7 +568,7 @@ class Provider implements UserProviderInterface {
 
 &lt;p&gt;I also added a constructor that takes a UserInterface object and stores it in a property when initialized. This will be done as a symfony service.&lt;/p&gt;
 
-&lt;h4 id=&#34;configuration:0062a4ae26007760914834b2b096356a&#34;&gt;Configuration&lt;/h4&gt;
+&lt;h4 id=&#34;configuration&#34;&gt;Configuration&lt;/h4&gt;
 
 &lt;p&gt;The final step is to create the configuration for your newly build User Provider and User Entity. First, we must add our new entity and provider as a symfony service in our bundle&amp;#8217;s service configuration in YourBundle/Resources/config/services.xml :&lt;/p&gt;
 
@@ -663,19 +665,19 @@ class Provider implements UserProviderInterface {
 
 &lt;p&gt;It has been a while since I looked at different PHP frameworks and I was plesently surprised by the maturity of many of them. Ultimately, though, I was most impressed with &lt;a href=&#34;http://symfony.com/&#34; target=&#34;_blank&#34;&gt;Symfony 2&lt;/a&gt; (SF2). Here are some reasons why:&lt;/p&gt;
 
-&lt;h2 id=&#34;1-modules-bundles:8734792f84911970211704f8ad232296&#34;&gt;1. Modules (Bundles)&lt;/h2&gt;
+&lt;h2 id=&#34;1-modules-bundles&#34;&gt;1. Modules (Bundles)&lt;/h2&gt;
 
 &lt;p&gt;I am a sucker for modules. For some reason I like the idea of being able to create a small library of code, with all the corresponding models/views/controllers, and then being able to drop it any application and have it work (some say I should switch to Python, which inherently works this way). It would mean all sorts of portability for my code. Symfony2 has this ability in the form of &lt;a href=&#34;http://symfony.com/doc/current/book/page_creation.html#the-bundle-system&#34; target=&#34;_blank&#34;&gt;Bundles&lt;/a&gt;. I started using them this week, and I fell in love. Did I mention there is already a &lt;a href=&#34;http://symfony2bundles.org/&#34; target=&#34;_blank&#34;&gt;big library of bundles&lt;/a&gt; that you can drop in your application? This is the future of PHP development.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-defining-routing-using-annotations:8734792f84911970211704f8ad232296&#34;&gt;2. Defining Routing Using Annotations&lt;/h2&gt;
+&lt;h2 id=&#34;2-defining-routing-using-annotations&#34;&gt;2. Defining Routing Using Annotations&lt;/h2&gt;
 
 &lt;p&gt;Symfony2 allows you to add &lt;a href=&#34;http://symfony.com/doc/2.0/bundles/SensioFrameworkExtraBundle/annotations/routing.html&#34; target=&#34;_blank&#34;&gt;Annotations&lt;/a&gt; (doc blocks) to controller actions that tell the application when to route to this action. You can put any regular expression pattern to match the URL. For some reason this seems so much more elegant than creating a separate routing file.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-community:8734792f84911970211704f8ad232296&#34;&gt;3. Community&lt;/h2&gt;
+&lt;h2 id=&#34;3-community&#34;&gt;3. Community&lt;/h2&gt;
 
 &lt;p&gt;Some of my &lt;a title=&#34;SPF13&#34; href=&#34;http://spf13.com/post/symfony2&#34; target=&#34;_blank&#34;&gt;favorite developers&lt;/a&gt; are big contributors to the symfony project. Also, it is the number 1 watched PHP project on &lt;a href=&#34;http://github.com/languages/PHP/most_watched&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;. That is saying something.&lt;/p&gt;
 
-&lt;h2 id=&#34;4-documentation-038-learning-curve:8734792f84911970211704f8ad232296&#34;&gt;4. Documentation &amp;#038; Learning Curve&lt;/h2&gt;
+&lt;h2 id=&#34;4-documentation-038-learning-curve&#34;&gt;4. Documentation &amp;#038; Learning Curve&lt;/h2&gt;
 
 &lt;p&gt;Zend Framework has a pretty steep learning curve and the documentation does not support beginners very well (although I know they want to &lt;a href=&#34;http://framework.zend.com/wiki/display/ZFDEV2/Zend+Framework+2.0+Requirements#ZendFramework2.0Requirements-Easethelearningcurve&#34;&gt;remedy this&lt;/a&gt; for ZF2).Symfony, however, has a great getting started guide and a great online book to help you get going. It has been so easy to get started that it was hard not to smile.&lt;/p&gt;
 
@@ -715,7 +717,7 @@ class Provider implements UserProviderInterface {
 
 &lt;p&gt;For this rapid WordPress development cycle, you will need to have Git installed.&lt;/p&gt;
 
-&lt;h2 id=&#34;1-get-the-most-current-wordpress:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
+&lt;h2 id=&#34;1-get-the-most-current-wordpress&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
 
 &lt;p&gt;The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&#34;https://github.com/WordPress/WordPress&#34; target=&#34;_blank&#34;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.&lt;/p&gt;
 
@@ -726,7 +728,7 @@ git checkout origin/3.2-branch&lt;/pre&gt;
 
 &lt;p&gt;Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
+&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
 
 &lt;p&gt;To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&#34;Roots WordPress Theme&#34; href=&#34;http://www.rootstheme.com/&#34; target=&#34;_blank&#34;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:&lt;/p&gt;
 
@@ -739,7 +741,7 @@ git submodule update&lt;/pre&gt;
 
 &lt;p&gt;Now you have a quality blank theme installed into your git repo as a sub-module.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
+&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
 
 &lt;p&gt;Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.&lt;/p&gt;
 
@@ -789,7 +791,7 @@ Yes, you could update WordPress in the admin panel, but you want to do it in a m
 
 &lt;p&gt;For this rapid WordPress development cycle, you will need to have Git installed.&lt;/p&gt;
 
-&lt;h2 id=&#34;1-get-the-most-current-wordpress-1:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
+&lt;h2 id=&#34;1-get-the-most-current-wordpress-1&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
 
 &lt;p&gt;The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&#34;https://github.com/WordPress/WordPress&#34; target=&#34;_blank&#34;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.&lt;/p&gt;
 
@@ -800,7 +802,7 @@ git checkout origin/3.2-branch&lt;/pre&gt;
 
 &lt;p&gt;Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-1:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
+&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-1&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
 
 &lt;p&gt;To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&#34;Roots WordPress Theme&#34; href=&#34;http://www.rootstheme.com/&#34; target=&#34;_blank&#34;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:&lt;/p&gt;
 
@@ -813,7 +815,7 @@ git submodule update&lt;/pre&gt;
 
 &lt;p&gt;Now you have a quality blank theme installed into your git repo as a sub-module.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-1:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
+&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-1&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
 
 &lt;p&gt;Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.&lt;/p&gt;
 
@@ -868,7 +870,7 @@ Yes, you could update WordPress in the admin panel, but you want to do it in a m
 
 &lt;p&gt;For this rapid WordPress development cycle, you will need to have Git installed.&lt;/p&gt;
 
-&lt;h2 id=&#34;1-get-the-most-current-wordpress-2:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
+&lt;h2 id=&#34;1-get-the-most-current-wordpress-2&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
 
 &lt;p&gt;The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&#34;https://github.com/WordPress/WordPress&#34; target=&#34;_blank&#34;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.&lt;/p&gt;
 
@@ -879,7 +881,7 @@ git checkout origin/3.2-branch&lt;/pre&gt;
 
 &lt;p&gt;Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-2:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
+&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-2&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
 
 &lt;p&gt;To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&#34;Roots WordPress Theme&#34; href=&#34;http://www.rootstheme.com/&#34; target=&#34;_blank&#34;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:&lt;/p&gt;
 
@@ -892,7 +894,7 @@ git submodule update&lt;/pre&gt;
 
 &lt;p&gt;Now you have a quality blank theme installed into your git repo as a sub-module.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-2:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
+&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-2&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
 
 &lt;p&gt;Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.&lt;/p&gt;
 
@@ -942,7 +944,7 @@ Yes, you could update WordPress in the admin panel, but you want to do it in a m
 
 &lt;p&gt;For this rapid WordPress development cycle, you will need to have Git installed.&lt;/p&gt;
 
-&lt;h2 id=&#34;1-get-the-most-current-wordpress-3:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
+&lt;h2 id=&#34;1-get-the-most-current-wordpress-3&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
 
 &lt;p&gt;The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&#34;https://github.com/WordPress/WordPress&#34; target=&#34;_blank&#34;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.&lt;/p&gt;
 
@@ -953,7 +955,7 @@ git checkout origin/3.2-branch&lt;/pre&gt;
 
 &lt;p&gt;Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-3:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
+&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-3&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
 
 &lt;p&gt;To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&#34;Roots WordPress Theme&#34; href=&#34;http://www.rootstheme.com/&#34; target=&#34;_blank&#34;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:&lt;/p&gt;
 
@@ -966,7 +968,7 @@ git submodule update&lt;/pre&gt;
 
 &lt;p&gt;Now you have a quality blank theme installed into your git repo as a sub-module.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-3:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
+&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-3&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
 
 &lt;p&gt;Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.&lt;/p&gt;
 
@@ -1028,7 +1030,7 @@ Don&amp;amp;#8217;t worry! If it breaks something, it is easy to go back. First 
 
 &lt;p&gt;For this rapid WordPress development cycle, you will need to have Git installed.&lt;/p&gt;
 
-&lt;h2 id=&#34;1-get-the-most-current-wordpress-4:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
+&lt;h2 id=&#34;1-get-the-most-current-wordpress-4&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
 
 &lt;p&gt;The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&#34;https://github.com/WordPress/WordPress&#34; target=&#34;_blank&#34;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.&lt;/p&gt;
 
@@ -1039,7 +1041,7 @@ git checkout origin/3.2-branch&lt;/pre&gt;
 
 &lt;p&gt;Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-4:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
+&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-4&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
 
 &lt;p&gt;To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&#34;Roots WordPress Theme&#34; href=&#34;http://www.rootstheme.com/&#34; target=&#34;_blank&#34;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:&lt;/p&gt;
 
@@ -1052,7 +1054,7 @@ git submodule update&lt;/pre&gt;
 
 &lt;p&gt;Now you have a quality blank theme installed into your git repo as a sub-module.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-4:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
+&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-4&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
 
 &lt;p&gt;Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.&lt;/p&gt;
 
@@ -1102,7 +1104,7 @@ Yes, you could update WordPress in the admin panel, but you want to do it in a m
 
 &lt;p&gt;For this rapid WordPress development cycle, you will need to have Git installed.&lt;/p&gt;
 
-&lt;h2 id=&#34;1-get-the-most-current-wordpress-5:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
+&lt;h2 id=&#34;1-get-the-most-current-wordpress-5&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
 
 &lt;p&gt;The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&#34;https://github.com/WordPress/WordPress&#34; target=&#34;_blank&#34;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.&lt;/p&gt;
 
@@ -1113,7 +1115,7 @@ git checkout origin/3.2-branch&lt;/pre&gt;
 
 &lt;p&gt;Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-5:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
+&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-5&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
 
 &lt;p&gt;To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&#34;Roots WordPress Theme&#34; href=&#34;http://www.rootstheme.com/&#34; target=&#34;_blank&#34;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:&lt;/p&gt;
 
@@ -1126,7 +1128,7 @@ git submodule update&lt;/pre&gt;
 
 &lt;p&gt;Now you have a quality blank theme installed into your git repo as a sub-module.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-5:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
+&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-5&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
 
 &lt;p&gt;Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.&lt;/p&gt;
 
@@ -1181,7 +1183,7 @@ Yes, you could update WordPress in the admin panel, but you want to do it in a m
 
 &lt;p&gt;For this rapid WordPress development cycle, you will need to have Git installed.&lt;/p&gt;
 
-&lt;h2 id=&#34;1-get-the-most-current-wordpress-6:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
+&lt;h2 id=&#34;1-get-the-most-current-wordpress-6&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
 
 &lt;p&gt;The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&#34;https://github.com/WordPress/WordPress&#34; target=&#34;_blank&#34;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.&lt;/p&gt;
 
@@ -1192,7 +1194,7 @@ git checkout origin/3.2-branch&lt;/pre&gt;
 
 &lt;p&gt;Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-6:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
+&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-6&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
 
 &lt;p&gt;To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&#34;Roots WordPress Theme&#34; href=&#34;http://www.rootstheme.com/&#34; target=&#34;_blank&#34;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:&lt;/p&gt;
 
@@ -1205,7 +1207,7 @@ git submodule update&lt;/pre&gt;
 
 &lt;p&gt;Now you have a quality blank theme installed into your git repo as a sub-module.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-6:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
+&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-6&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
 
 &lt;p&gt;Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.&lt;/p&gt;
 
@@ -1255,7 +1257,7 @@ Yes, you could update WordPress in the admin panel, but you want to do it in a m
 
 &lt;p&gt;For this rapid WordPress development cycle, you will need to have Git installed.&lt;/p&gt;
 
-&lt;h2 id=&#34;1-get-the-most-current-wordpress-7:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
+&lt;h2 id=&#34;1-get-the-most-current-wordpress-7&#34;&gt;1. Get the Most Current WordPress&lt;/h2&gt;
 
 &lt;p&gt;The wordpress core dev team uses SVN to manage wordpress development. But I want to use Git for speed and easy branching. Fortunately there is a &lt;a href=&#34;https://github.com/WordPress/WordPress&#34; target=&#34;_blank&#34;&gt;great WordPress git clone&lt;/a&gt; that is updated every fifteen minutes. To get the most recent version of WordPress, simply clone that repo to your project directory.&lt;/p&gt;
 
@@ -1266,7 +1268,7 @@ git checkout origin/3.2-branch&lt;/pre&gt;
 
 &lt;p&gt;Now you have the most recent version of wordpress, and it will be easier than ever to upgrade wordpress and revert if something goes wrong. But we will get into the upgrade process later.&lt;/p&gt;
 
-&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-7:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
+&lt;h2 id=&#34;2-starting-with-a-quality-blank-theme-7&#34;&gt;2. Starting with a Quality Blank Theme&lt;/h2&gt;
 
 &lt;p&gt;To help get your new WordPress project off the ground, let&amp;#8217;s get a quality blank theme that updates regularly. I usually use the &lt;a title=&#34;Roots WordPress Theme&#34; href=&#34;http://www.rootstheme.com/&#34; target=&#34;_blank&#34;&gt;Roots theme&lt;/a&gt;, which is a quality HTML5 wordpress theme that updates regularly. To make sure our theme stays up to date with the latest wordpress updates, we will add the Roots theme as a Git Submodule. This allows us to essentially add a git repository inside of another repository. Why do this? Because we can update our theme code to the latest release with a simple Git command, instead of downloading and merging on our own. To add the sub-module, change to your project directory and add the sub-module to the themes folder then initialize it:&lt;/p&gt;
 
@@ -1279,7 +1281,7 @@ git submodule update&lt;/pre&gt;
 
 &lt;p&gt;Now you have a quality blank theme installed into your git repo as a sub-module.&lt;/p&gt;
 
-&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-7:ec46d592ccce457d292aec0b82cf84d7&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
+&lt;h2 id=&#34;3-adding-your-custom-design-wordpress-child-theme-7&#34;&gt;3. Adding Your Custom Design (WordPress Child Theme)&lt;/h2&gt;
 
 &lt;p&gt;Since we have added the new blank theme as a git submodule, we don&amp;#8217;t want to edit that theme directly. This could cause problems when/if we want to update our code base for the theme. To better avoid update problems, we can use the often-under-utilized-wordpress feature called child themes. Child themes allow you essentially &amp;#8220;inherit&amp;#8221; all the functionality of a &amp;#8220;base&amp;#8221; theme. In this case, we will create a child theme &amp;#8220;MyTheme&amp;#8221; that will have access to all the functionality of our base theme &amp;#8220;Roots&amp;#8221;.&lt;/p&gt;
 

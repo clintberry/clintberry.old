@@ -21,15 +21,15 @@
 
 &lt;p&gt;At my current company I am working on my first large-scale production backbone.js app and I couldn&amp;#8217;t be happier. After using backbone.js for a few months I have caught the vision and I am becoming more and more proficient. But every once and a while I still run into problems I would consider basic, but I can&amp;#8217;t seem to find much help on the interwebs. Authentication with backbone.js apps was one of those problems. So I am posting the solution I came up with in hopes it will benefit someone else, and hopefully will garner some feedback or potentially better ways to solve authentication with Backbone.js.&lt;/p&gt;
 
-&lt;h4 id=&#34;starting-code-base:73b85921beb05e353da557a09d786139&#34;&gt;Starting Code Base&lt;/h4&gt;
+&lt;h4 id=&#34;starting-code-base&#34;&gt;Starting Code Base&lt;/h4&gt;
 
 &lt;p&gt;To start this tutorial, I will be using an already created backbone.js application called &lt;a href=&#34;https://github.com/ccoenraets/backbone-directory&#34; title=&#34;Backbone Directory&#34; target=&#34;_blank&#34;&gt;Backbone Directory&lt;/a&gt;, created by &lt;a href=&#34;http://coenraets.org/blog/2012/02/sample-app-with-backbone-js-and-twitter-bootstrap/&#34; title=&#34;Sample Backbone Bootstrap app&#34; target=&#34;_blank&#34;&gt;Christophe Coenraets&lt;/a&gt; who has some great tutorials and information about backbone on his blog. He has some mobile versions of the app in the code base as well, but we will be working in the &amp;#8220;web&amp;#8221; directory.&lt;/p&gt;
 
-&lt;h4 id=&#34;project-overview:73b85921beb05e353da557a09d786139&#34;&gt;Project Overview&lt;/h4&gt;
+&lt;h4 id=&#34;project-overview&#34;&gt;Project Overview&lt;/h4&gt;
 
 &lt;p&gt;Backbone Directory uses the Slim PHP framework on the server to communicate with backbone, but the principles we will be going over are language agnostic. In addition, Slim is based on the Sinatra (Ruby) methodology which in turn translates to Express.js framework for Node.js (JavaScript), and Tornado (Python).&lt;/p&gt;
 
-&lt;h4 id=&#34;setting-up-very-basic-server-side-authentication:73b85921beb05e353da557a09d786139&#34;&gt;Setting Up (Very) Basic Server Side Authentication&lt;/h4&gt;
+&lt;h4 id=&#34;setting-up-very-basic-server-side-authentication&#34;&gt;Setting Up (Very) Basic Server Side Authentication&lt;/h4&gt;
 
 &lt;p&gt;To get this started, we need to setup the server side login functions, and also a way to protect API requests so no data goes to anyone that isn&amp;#8217;t authenticated. First, let&amp;#8217;s add a login function to the api/index.php in the web directory:&lt;/p&gt;
 
@@ -115,7 +115,7 @@ $app-&amp;gt;get(&amp;#039;/employees/search/:query&amp;#039;, authorize(&amp;#0
 $app-&amp;gt;get(&amp;#039;/employees/modifiedsince/:timestamp&amp;#039;, authorize(&amp;#039;user&amp;#039;), &amp;#039;findByModifiedDate&amp;#039;);
 &lt;/pre&gt;
 
-&lt;h4 id=&#34;setting-up-backbone-views:73b85921beb05e353da557a09d786139&#34;&gt;Setting Up Backbone Views&lt;/h4&gt;
+&lt;h4 id=&#34;setting-up-backbone-views&#34;&gt;Setting Up Backbone Views&lt;/h4&gt;
 
 &lt;p&gt;Now let&amp;#8217;s get to the good stuff: Setting up our backbone views. For authentication we will of course need a login view:&lt;/p&gt;
 
@@ -195,7 +195,7 @@ window.LoginView = Backbone.View.extend({
 &amp;lt;/form&amp;gt;
 &lt;/pre&gt;
 
-&lt;h4 id=&#34;telling-backbone-how-to-handle-401-038-403-errors-ajaxsetup:73b85921beb05e353da557a09d786139&#34;&gt;Telling Backbone How to Handle 401 &amp;#038; 403 Errors (ajaxSetup)&lt;/h4&gt;
+&lt;h4 id=&#34;telling-backbone-how-to-handle-401-038-403-errors-ajaxsetup&#34;&gt;Telling Backbone How to Handle 401 &amp;#038; 403 Errors (ajaxSetup)&lt;/h4&gt;
 
 &lt;p&gt;Now here comes the kicker. We need backbone/jquery to catch any requests that return a 401 or 403 error and handle those requests appropriately. The method I have used to do this is to call the jquery function ajaxSetup which allows us to watch for certain status codes and to handle them appropriately.&lt;/p&gt;
 
@@ -238,7 +238,7 @@ window.Router = Backbone.Router.extend({
 }
 &lt;/pre&gt;
 
-&lt;h4 id=&#34;the-final-word-and-source-code:73b85921beb05e353da557a09d786139&#34;&gt;The Final Word (and source code)&lt;/h4&gt;
+&lt;h4 id=&#34;the-final-word-and-source-code&#34;&gt;The Final Word (and source code)&lt;/h4&gt;
 
 &lt;p&gt;That is it! You should now have a password protected REST API for BackboneJS. I have posted the &lt;a href=&#34;https://github.com/clintberry/backbone-directory-auth&#34; title=&#34;Backbone Authentication&#34; target=&#34;_blank&#34;&gt;project to github (here)&lt;/a&gt;, so feel free to check out the code and see it in action. Currently, you will need PHP/Apache with MySQL setup and the database imported. I am working on a Vagrant file for the project so you will be able to see it in action without setting up your own server.&lt;/p&gt;
 
