@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='
+
+Last year around this time Plivo.org was announced to the public, allowing anyone to develop telephony applications with the web language of their choice on top of their OWN FreeSWITCH based phone system. Plivo.org is an amazing project, and if you aren&#8217;t familiar with it I suggest you read my getting started post.
+
+Now the founders of Plivo.org have built on that technology to create a new telephony platform, Plivo Cloud. I know what you are thinking&#8211; another Twilio. And while the general idea (building awesome telephony apps in any web language) is still the same, there are a few things that make Plivo Cloud much different, and much better.'>
+<meta name='theme-color' content='#ffcd00'>
+
+<meta property='og:title' content='Why Plivo Cloud Is Better Than Twilio • Clint Berry'>
+<meta property='og:description' content='
+
+Last year around this time Plivo.org was announced to the public, allowing anyone to develop telephony applications with the web language of their choice on top of their OWN FreeSWITCH based phone system. Plivo.org is an amazing project, and if you aren&#8217;t familiar with it I suggest you read my getting started post.
+
+Now the founders of Plivo.org have built on that technology to create a new telephony platform, Plivo Cloud. I know what you are thinking&#8211; another Twilio. And while the general idea (building awesome telephony apps in any web language) is still the same, there are a few things that make Plivo Cloud much different, and much better.'>
+<meta property='og:url' content='https://clintberry.com/2012/why-plivo-cloud-is-better-than-twilio/'>
+<meta property='og:site_name' content='Clint Berry'>
+<meta property='og:type' content='article'><meta property='article:section' content='blog'><meta property='article:published_time' content='2012-07-19T00:00:00Z'/><meta property='article:modified_time' content='2012-07-19T00:00:00Z'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.54.0" />
+
+  <title>Why Plivo Cloud Is Better Than Twilio • Clint Berry</title>
+  <link rel='canonical' href='https://clintberry.com/2012/why-plivo-cloud-is-better-than-twilio/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.4a10984a.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#ffcd00;}
+</style>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-7117674-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  
+
+</head>
+<body class='page type-blog layout-post has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <a href='/'>
+      <h2 class='title site-title '>
+      Clint Berry
+      </h2>
+    </a>
+    <div class='desc'>
+    Rookie CTO at Weave
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-search sep-after'>
+  <header>
+    <h4 class='title widget-title'>Search</h4>
+  </header>
+
+  <form action='/search' id='search-form' class='search-form'>
+    <label>
+      <span class='screen-reader-text'>Search</span>
+      <input id='search-term' class='search-term' type='search' name='q' placeholder='Search&hellip;'>
+    </label></form>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud'><span>Not a single Tag!</span></ul>
+</div>
+
+
+</section>
+<section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/clintberry' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/clinton_berry' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:clint@beingberry.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/clintonberry' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section></div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+  <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+</button><div class='header-widgets'>
+        <div class='container'></div>
+      </div><header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Clint Berry</p><p class='desc site-desc'>Rookie CTO at Weave</p>
+          </div>
+        </div>
+      </header><main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Why Plivo Cloud Is Better Than Twilio</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2012-07-19T00:00:00Z'>Jul 19, 2012</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+4 mins read
+</span>
+
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  <p><a href="http://plivo.com" title="Plivo Cloud" target="_blank"><img src="/images/plivologo.png" alt="" title="plivo" class="alignleft size-full wp-image-603" style="margin:15px 10px 10px 10px" /></a></p>
+
+<p>Last year around this time Plivo.org was announced to the public, allowing anyone to develop telephony applications with the web language of their choice on top of their <em>OWN</em> FreeSWITCH based phone system. Plivo.org is an amazing project, and if you aren&#8217;t familiar with it I suggest you read <a href="/2011/getting-started-with-plivo/" title="Getting started with Plivo">my getting started post</a>.</p>
+
+<p>Now the founders of Plivo.org have built on that technology to create a new telephony platform, <a href="http://plivo.com" title="Plivo Cloud" target="_blank">Plivo Cloud</a>. I know what you are thinking&#8211; another Twilio. And while the general idea (building awesome telephony apps in any web language) is still the same, there are a few things that make Plivo Cloud much different, and much better.</p>
+
+<div class="alert alert-info">
+  <strong>Disclaimer:</strong> I know the founders of Plivo and I am big fan of the open source version, so much so that I wrote the NodeJS helper library. I am hardly un-biased, but that is simply because I think the idea is awesome.
+</div>
+
+<p>When I first learned about Twilio I was blown away. &#8220;You mean I can create awesome telephone applications in PHP? Sweet!&#8221; Having ties to entrepreneurs in the call center industry, I immediately pitched to them how easy it would be to create amazing call center applications with phone functions built right in. They were impressed, but I couldn&#8217;t get any of them to bite the bullet. The same issues came up again and again. Plivo Cloud is a game-changer because it addresses some of these issues. Here are some of the biggest differences:</p>
+
+<h3 id="direct-endpoint-integration">Direct Endpoint Integration</h3>
+
+<p>One of the biggest pain points for companies thinking about switching to a Twilio-based solution is cost. Conversations with customers would go something like this:</p>
+
+<p><strong>Customer:</strong> &#8220;So you mean I pay 2 cents per minute on top of my internal VOIP system costs?&#8221;</p>
+
+<p><strong>Me:</strong> &#8220;Well, yes&#8230;&#8221;</p>
+
+<p><strong>Customer:</strong> &#8220;No thanks&#8230;&#8221;</p>
+
+<p>Plivo Cloud allows you to connect SIP-based phones directly to the cloud, meaning you can use Plivo as your phone system! This means you don&#8217;t pay for VOIP in your office on top of platform costs. You simply pay per minute for the platform, and it acts as your VOIP service as well. Amazing!</p>
+
+<p>This also means getting a new office setup with a phone system is relatively painless. Buy SIP phones, point them to your Plivo account, and you are off to the races.</p>
+
+<h3 id="carrier-choice">Carrier Choice</h3>
+
+<p>Another pain point of services like Twilio/Voxeo is that you are locked-in to whatever carriers they are using for their cloud. If your business is under contract with a different carrier, it can be a pain to migrate. But what if you could tie your new, shiny platform with your current carrier? That would be awesome. Well, Plivo Cloud is awesome. They will help you tie in your current carrier to their FreeSWITCH based system and then charge a flat rate of 0.4 cents per minute for platform usage. This provides a level of freedom unheard of for this type of company.</p>
+
+<h3 id="self-hosted-cloud">Self-Hosted Cloud</h3>
+
+<p>The last key difference with Plivo Cloud is the ability to host your own cloud. While this hasn&#8217;t been announced or priced yet, I have spoken to Venky about it and this is a key part of the Plivo strategy. Imagine not being held hostage by a third party platform with all their Amazon Cloud outages and anything else they choose to inflict on your application. For mission critical telephony applications, it is crucial to have redundancy, and Plivo Cloud will offer a level of control that competitors won&#8217;t.</p>
+
+<h3 id="i-8217-m-not-a-hater">I&#8217;m Not a Hater</h3>
+
+<p>To be clear, I love Twilio. I think it has changed the web by making phone system integration into web apps easier than ever. But Plivo Cloud offers many freedoms and pricing advantages that separate it from the competition.</p>
+
+<p>In an upcoming post I will give tips and tricks on how to migrate your app to Plivo Cloud.</p>
+
+<p>Also, read more about Plivo on the <a href="http://techcrunch.com/2012/07/09/yc-backed-plivo-launches-its-scalable-api-platform-for-voice-sms-apps/" title="Plivo Cloud Rocks!">TechCrunch announcement</a></p>
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='categories'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/plivo/'>Plivo</a>, <a class='category' href='/categories/telephony/'>Telephony</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/2012/phing-php-deployment/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Phing For PHP Deployment</a>
+    </div><div class='next-entry sep-before'>
+      <a href='/2012/backbone-js-apps-authentication-tutorial/'>
+        <span class='screen-reader-text'>Next post: </span>Backbone.js apps with Authentication Tutorial<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><div class='copyright'>
+  <p> &copy; 2010-2019 Clint Berry </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__public_path__='\/assets\/js\/'</script>
+
+<script src='/assets/js/main.fae8ed32.js'></script><script src='/js/custom.js'></script>
+
+</body>
+
+</html>
+

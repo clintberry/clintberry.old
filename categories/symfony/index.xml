@@ -2,330 +2,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Symfony on Clint Berry</title>
-    <link>http://clintberry.com/categories/symfony/</link>
+    <link>https://clintberry.com/categories/symfony/</link>
     <description>Recent content in Symfony on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
     <lastBuildDate>Wed, 21 Dec 2011 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.com/categories/symfony/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://clintberry.com/categories/symfony/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Custom User Providers in Symfony2</title>
-      <link>http://clintberry.com/2011/custom-user-providers-symfony2/</link>
+      <link>https://clintberry.com/2011/custom-user-providers-symfony2/</link>
       <pubDate>Wed, 21 Dec 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.com/2011/custom-user-providers-symfony2/</guid>
-      <description>
-
-&lt;h4 id=&#34;why-custom-user-providers&#34;&gt;Why Custom User Providers?&lt;/h4&gt;
+      <guid>https://clintberry.com/2011/custom-user-providers-symfony2/</guid>
+      <description>&lt;h4 id=&#34;why-custom-user-providers&#34;&gt;Why Custom User Providers?&lt;/h4&gt;
 
 &lt;p&gt;At my current job all the database systems are managed by DB admins and the developers have to connect to the database via web services. We do not connect to the databases directly. This allows for better &lt;a title=&#34;Separation of Concerns&#34; href=&#34;http://en.wikipedia.org/wiki/Separation_of_concerns&#34; target=&#34;_blank&#34;&gt;separation of concerns&lt;/a&gt; and allows experts to focus on their respective specialties. But if you are programming a Symfony2 app, that means you don&amp;#8217;t get to use Doctrine or any other ORM, which in turn means you create your own models/entities.&lt;/p&gt;
 
-&lt;p&gt;When you want to develop the authentication parts of your new app you will quickly find that there is plenty of documentation for Doctrine/ORM based apps, but if you are using your own custom models then you run into pages &lt;del datetime=&#34;2012-01-20T21:30:13+00:00&#34;&gt;&lt;a href=&#34;http://symfony.com/doc/current/cookbook/security/custom_provider.html&#34; target=&#34;_blank&#34;&gt;like this one&lt;/a&gt;&lt;/del&gt;.  &lt;del datetime=&#34;2012-01-20T21:30:13+00:00&#34;&gt;(when I finish this post I will submit an article to the docs and see if they approve it)&lt;/del&gt; &lt;strong&gt;UPDATE: Someone beat me to it, there is now a good tutorial in the Symfony docs for custom user providers.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;So, after a few hours of googling-reading-tinkering I figured out how to use the Symfony authentication system  with my own custom models. Keep in mind I am still new to Symfony2, so many of these concepts will be beginner level.&lt;/p&gt;
-
-&lt;h4 id=&#34;your-user-entity&#34;&gt;Your User Entity&lt;/h4&gt;
-
-&lt;p&gt;For this example, I am assuming you are using custom entities for your project. I have created a custom User entity to manage users in my application. It extends a base class that handles most of the getting, setting and the calls to my database REST service, but that is optional depending on how you setup your own entities.&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;namespace CB\WebsiteBundle\Entity;
-
-use Clint\Model\Base;
-use Symfony\Component\Security\Core\User\UserInterface;
-
-class User extends Base
-implements UserInterface
-{
-
-    public static $modelName = &amp;#039;User&amp;#039;;
-    public static $modelUrl = &amp;#039;/user&amp;#039;;
-
-    /**
-     * Returns the roles granted to the user.
-     *
-     * @return Role[] The user roles
-     */
-    public function getRoles(){
-        return array(&amp;#039;ROLE_USER&amp;#039;);
-    }
-
-    /**
-     * Returns the password used to authenticate the user.
-     *
-     * @return string The password
-     */
-    public function getPassword(){
-        return $this-&amp;gt;password;
-    }
-
-    /**
-     * Returns the salt.
-     *
-     * @return string The salt
-     */
-    public function getSalt(){
-        return null;
-    }
-
-    /**
-     * Returns the username used to authenticate the user.
-     *
-     * @return string The username
-     */
-    public function getUsername(){
-        return $this-&amp;gt;username;
-    }
-
-    /**
-     * Removes sensitive data from the user.
-     *
-     * @return void
-     */
-    public function eraseCredentials(){
-        $this-&amp;gt;password = null;
-    }
-
-    /**
-     * The equality comparison should neither be done by referential equality
-     * nor by comparing identities (i.e. getId() === getId()).
-     *
-     * However, you do not need to compare every attribute, but only those that
-     * are relevant for assessing whether re-authentication is required.
-     *
-     * @param UserInterface $user
-     * @return Boolean
-     */
-    public function equals(UserInterface $user){
-        return ($this-&amp;gt;getUsername() === $user-&amp;gt;getUsername());
-    }
-}&lt;/pre&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;The key to making your User entity compatible with Symfony2 authentication, is to implement the User Interface as you can see in above class. These are the functions required by that interface:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;getRoles() &amp;#8211; for now I am simply returning a hard-coded role, but you could implement to get from the user object&lt;/li&gt;
-&lt;li&gt;getPassword() &amp;#8211; Retrieve the password from the user object&lt;/li&gt;
-&lt;li&gt;getSalt() returns the &lt;a title=&#34;Salt&#34; href=&#34;http://en.wikipedia.org/wiki/Salt_(cryptography)&#34; target=&#34;_blank&#34;&gt;salt for your password encryption&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;getUsername()&lt;/li&gt;
-&lt;li&gt;eraseCredentials() which is used to erase sensitive data from the session object&lt;/li&gt;
-&lt;li&gt;equals(UserInterface $user) which is used to make sure the right user is authenticated&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You will need to define all of these functions to correctly load your users from your web-service (or however you are doing it). Once you have all the required function defined, you are ready to move on to the User Provider Service.&lt;/p&gt;
-
-&lt;h4 id=&#34;the-user-provider&#34;&gt;The User Provider&lt;/h4&gt;
-
-&lt;p&gt;To use your own custom entities in Symfony2 authentication, you will need to have a basic understanding of &lt;a href=&#34;http://symfony.com/doc/current/book/service_container.html&#34; title=&#34;Symfony Services&#34; target=&#34;_blank&#34;&gt;Symfony services&lt;/a&gt; and the &lt;a href=&#34;http://symfony.com/doc/current/book/security.html&#34; title=&#34;Symfony Authentication&#34; target=&#34;_blank&#34;&gt;Symfony authentication&lt;/a&gt; system. Read those links if you haven&amp;#8217;t yet. To reiterate what the user provider is, from the docs:&lt;/p&gt;
-
-&lt;blockquote cite=&#34;http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers&#34;&gt;
-  &lt;p&gt;
-    In Symfony2, users can come from anywhere &amp;#8211; a configuration file, a database table, a web service, or anything else you can dream up. Anything that provides one or more users to the authentication system is known as a &amp;#8220;user provider&amp;#8221;. Symfony2 comes standard with the two most common user providers: one that loads users from a configuration file and one that loads users from a database table.
-  &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Again, since we are NOT using doctrine, we will create our own User Provider as a service in Symfony. Based on the documentation, it seems that the best place to put this is in YourBundle/Security folder.&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;namespace CB\WebsiteBundle\Security;
-
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-
-use CB\WebsiteBundle\Entity\User;
-
-class Provider implements UserProviderInterface {
-
-    protected $user;
-    public function __contsruct (UserInterface $user) {
-        $this-&amp;gt;user = $user;
-    }
-
-    /**
-     * Loads the user for the given username.
-     *
-     * This method must throw UsernameNotFoundException if the user is not
-     * found.
-     *
-     * @throws UsernameNotFoundException if the user is not found
-     * @param string $username The username
-     *
-     * @return UserInterface
-     */
-    function loadUserByUsername($username) {
-        $user = User::find(array(&amp;#039;username&amp;#039;=&amp;gt;$username));
-        if(empty($user)){
-            throw new UsernameNotFoundException(&amp;#039;Could not find user. Sorry!&amp;#039;);
-        }
-        $this-&amp;gt;user = $user;
-        return $user;
-    }
-
-    /**
-     * Refreshes the user for the account interface.
-     *
-     * It is up to the implementation if it decides to reload the user data
-     * from the database, or if it simply merges the passed User into the
-     * identity map of an entity manager.
-     *
-     * @throws UnsupportedUserException if the account is not supported
-     * @param UserInterface $user
-     *
-     * @return UserInterface
-     */
-    function refreshUser(UserInterface $user) {
-        return $user;
-    }
-
-    /**
-     * Whether this provider supports the given user class
-     *
-     * @param string $class
-     *
-     * @return Boolean
-     */
-    function supportsClass($class) {
-        return $class === &amp;#039;CB\WebsiteBundle\Entity\User&amp;#039;;
-    }
-}&lt;/pre&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;The important thing to note about this class is that it implements the Symfony User Provider Interface. Note the three functions I implemented from the interface definition:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;loadUserByUsername() &amp;#8211; Make sure to implement this with however your custom user entity loads users by username&lt;/li&gt;
-&lt;li&gt;refreshUser() &amp;#8211; I don&amp;#8217;t completely understand the purpose of this function yet. I will update when I do.&lt;/li&gt;
-&lt;li&gt;supportsClass() &amp;#8211; A check to see if a certain type of user class is supported, in our case we use our custom user class definition&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I also added a constructor that takes a UserInterface object and stores it in a property when initialized. This will be done as a symfony service.&lt;/p&gt;
-
-&lt;h4 id=&#34;configuration&#34;&gt;Configuration&lt;/h4&gt;
-
-&lt;p&gt;The final step is to create the configuration for your newly build User Provider and User Entity. First, we must add our new entity and provider as a symfony service in our bundle&amp;#8217;s service configuration in YourBundle/Resources/config/services.xml :&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;&amp;lt;container xmlns=&#34;http://symfony.com/schema/dic/services&#34;
-    xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34;
-    xsi:schemaLocation=&#34;http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd&#34;&amp;gt;
-
-    
-    &amp;lt;parameters&amp;gt;
-        &amp;lt;parameter key=&#34;cb_security_user.class&#34;&amp;gt;CB\WebsiteBundle\Entity\User&amp;lt;/parameter&amp;gt;
-        &amp;lt;parameter key=&#34;cb_security_provider.class&#34;&amp;gt;CB\WebsiteBundle\Security\Provider&amp;lt;/parameter&amp;gt;
-    &amp;lt;/parameters&amp;gt;
-
-    &amp;lt;services&amp;gt;
-        &amp;lt;service id=&#34;cb_security_user&#34; class=&#34;%cb_security_user.class%&#34; /&amp;gt;
-        &amp;lt;service id=&#34;cb_security_provider&#34; class=&#34;%cb_security_provider.class%&#34;&amp;gt;
-            &amp;lt;argument type=&#34;service&#34; id=&#34;cb_security_user&#34; /&amp;gt;
-        &amp;lt;/service&amp;gt;
-    &amp;lt;/services&amp;gt;
-    
-&amp;lt;/container&amp;gt;
-
-&lt;/pre&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;I define two parameters with the name of my custom user class and my custom provider class. I then add two services, one for the user entity, and the other for the user provider class. One thing to note is that I actually pass the user entity service as an argument to the provider service when initialized.&lt;/p&gt;
-
-&lt;p&gt;And lastly, you need to update your security configuration for your application. Here is my configuration with form-based validation:&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;security:
-    encoders:
-        CB\WebsiteBundle\Entity\User:
-            algorithm: sha1
-            iterations: 1
-            encode_as_base64: false
-
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
-    providers:
-        main:
-            id: cb_security_provider
-
-    firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        login:
-            pattern:  ^/login$
-            security: false
-
-        secured_area:
-            pattern:    ^/secure/
-            form_login: ~
-            logout: ~
-            #anonymous: ~
-            #http_basic:
-            #    realm: &#34;Secured Demo Area&#34;
-
-    access_control:
-        - { path: ^/secure, roles: ROLE_USER }
-        #- { path: ^/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }&lt;/pre&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;Key things to note are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The encoders section is configured to use your custom user entity&lt;/li&gt;
-&lt;li&gt;The providers section is configured to use your user provider service (we used the ID from the services xml)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Now you just need to make sure your login routes and forms are all setup and you have a newly created User Provider using custom entities!&lt;/p&gt;
-
-&lt;p&gt;Let me know if you have any questions.&lt;/p&gt;
-</description>
+&lt;p&gt;When you want to develop the authentication parts of your new app you will quickly find that there is plenty of documentation for Doctrine/ORM based apps, but if you are using your own custom models then you run into pages &lt;del datetime=&#34;2012-01-20T21:30:13+00:00&#34;&gt;&lt;a href=&#34;http://symfony.com/doc/current/cookbook/security/custom_provider.html&#34; target=&#34;_blank&#34;&gt;like this one&lt;/a&gt;&lt;/del&gt;.  &lt;del datetime=&#34;2012-01-20T21:30:13+00:00&#34;&gt;(when I finish this post I will submit an article to the docs and see if they approve it)&lt;/del&gt; &lt;strong&gt;UPDATE: Someone beat me to it, there is now a good tutorial in the Symfony docs for custom user providers.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Why I Switched to Symfony 2 Framework</title>
-      <link>http://clintberry.com/2011/switched-symfony-2-framework/</link>
+      <link>https://clintberry.com/2011/switched-symfony-2-framework/</link>
       <pubDate>Thu, 10 Nov 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.com/2011/switched-symfony-2-framework/</guid>
-      <description>
-
-&lt;p&gt;I have been working with the Zend Framework for the last 3 years. I like it. It is flexible, heavily object oriented, and organized. However, one thing that has always bothered me is that modules in ZF have been &lt;a title=&#34;Zend Framework Modules&#34; href=&#34;http://weierophinney.net/matthew/archives/234-Module-Bootstraps-in-Zend-Framework-Dos-and-Donts.html&#34; target=&#34;_blank&#34;&gt;second-class citizens&lt;/a&gt;. Granted, in Zend Framework 2 this is not the case, but I needed to start a project right away, and since ZF2 is still in beta, I decided to go checkout some other frameworks again.&lt;/p&gt;
-
-&lt;p&gt;It has been a while since I looked at different PHP frameworks and I was plesently surprised by the maturity of many of them. Ultimately, though, I was most impressed with &lt;a href=&#34;http://symfony.com/&#34; target=&#34;_blank&#34;&gt;Symfony 2&lt;/a&gt; (SF2). Here are some reasons why:&lt;/p&gt;
-
-&lt;h2 id=&#34;1-modules-bundles&#34;&gt;1. Modules (Bundles)&lt;/h2&gt;
-
-&lt;p&gt;I am a sucker for modules. For some reason I like the idea of being able to create a small library of code, with all the corresponding models/views/controllers, and then being able to drop it any application and have it work (some say I should switch to Python, which inherently works this way). It would mean all sorts of portability for my code. Symfony2 has this ability in the form of &lt;a href=&#34;http://symfony.com/doc/current/book/page_creation.html#the-bundle-system&#34; target=&#34;_blank&#34;&gt;Bundles&lt;/a&gt;. I started using them this week, and I fell in love. Did I mention there is already a &lt;a href=&#34;http://symfony2bundles.org/&#34; target=&#34;_blank&#34;&gt;big library of bundles&lt;/a&gt; that you can drop in your application? This is the future of PHP development.&lt;/p&gt;
-
-&lt;h2 id=&#34;2-defining-routing-using-annotations&#34;&gt;2. Defining Routing Using Annotations&lt;/h2&gt;
-
-&lt;p&gt;Symfony2 allows you to add &lt;a href=&#34;http://symfony.com/doc/2.0/bundles/SensioFrameworkExtraBundle/annotations/routing.html&#34; target=&#34;_blank&#34;&gt;Annotations&lt;/a&gt; (doc blocks) to controller actions that tell the application when to route to this action. You can put any regular expression pattern to match the URL. For some reason this seems so much more elegant than creating a separate routing file.&lt;/p&gt;
-
-&lt;h2 id=&#34;3-community&#34;&gt;3. Community&lt;/h2&gt;
-
-&lt;p&gt;Some of my &lt;a title=&#34;SPF13&#34; href=&#34;http://spf13.com/post/symfony2&#34; target=&#34;_blank&#34;&gt;favorite developers&lt;/a&gt; are big contributors to the symfony project. Also, it is the number 1 watched PHP project on &lt;a href=&#34;http://github.com/languages/PHP/most_watched&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;. That is saying something.&lt;/p&gt;
-
-&lt;h2 id=&#34;4-documentation-038-learning-curve&#34;&gt;4. Documentation &amp;#038; Learning Curve&lt;/h2&gt;
-
-&lt;p&gt;Zend Framework has a pretty steep learning curve and the documentation does not support beginners very well (although I know they want to &lt;a href=&#34;http://framework.zend.com/wiki/display/ZFDEV2/Zend+Framework+2.0+Requirements#ZendFramework2.0Requirements-Easethelearningcurve&#34;&gt;remedy this&lt;/a&gt; for ZF2).Symfony, however, has a great getting started guide and a great online book to help you get going. It has been so easy to get started that it was hard not to smile.&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-
-&lt;p&gt;It has only been a week, but I am loving Symfony2. I keep running into new things that make me love SF2 more and more. I&amp;#8217;m sure the honeymoon won&amp;#8217;t last forever, though, so I&amp;#8217;ll of course be posting more on this as I run into issues, find out the negatives, and have more comments in general. Let me know if you like Symfony or prefer something else.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Update: I found another great link that is helpful if you are looking to use Symfony2 for your next project&lt;/strong&gt; &amp;#8211; **&lt;a href=&#34;http://engineering.opensky.com/post/how-opensky-chose-symfony2-as-our-web-framework&#34; title=&#34;Sensio chooses symfony2&#34;&gt;How OpenSky chose Symfony as their framework&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;**&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;
-</description>
+      <guid>https://clintberry.com/2011/switched-symfony-2-framework/</guid>
+      <description>&lt;p&gt;I have been working with the Zend Framework for the last 3 years. I like it. It is flexible, heavily object oriented, and organized. However, one thing that has always bothered me is that modules in ZF have been &lt;a title=&#34;Zend Framework Modules&#34; href=&#34;http://weierophinney.net/matthew/archives/234-Module-Bootstraps-in-Zend-Framework-Dos-and-Donts.html&#34; target=&#34;_blank&#34;&gt;second-class citizens&lt;/a&gt;. Granted, in Zend Framework 2 this is not the case, but I needed to start a project right away, and since ZF2 is still in beta, I decided to go checkout some other frameworks again.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -2,184 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zend Framework on Clint Berry</title>
-    <link>http://clintberry.com/categories/zend-framework/</link>
+    <link>https://clintberry.com/categories/zend-framework/</link>
     <description>Recent content in Zend Framework on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
     <lastBuildDate>Thu, 11 Nov 2010 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.com/categories/zend-framework/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://clintberry.com/categories/zend-framework/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>MongoDB Base Model for Zend Framework</title>
-      <link>http://clintberry.com/2010/mongodb-base-model-for-zend-framework/</link>
+      <link>https://clintberry.com/2010/mongodb-base-model-for-zend-framework/</link>
       <pubDate>Thu, 11 Nov 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.com/2010/mongodb-base-model-for-zend-framework/</guid>
+      <guid>https://clintberry.com/2010/mongodb-base-model-for-zend-framework/</guid>
       <description>&lt;p&gt;I came accross &lt;a href=&#34;http://mongodb.org&#34;&gt;MongoDB&lt;/a&gt; a few months ago and it seemed like a perfect fit for many of the projects I am working. Extremely fast inserts, map-reduce for complex queries, and most importantly, scaling is a breeze.&lt;/p&gt;
 
-&lt;p&gt;Since I am a Zend Framework guy I created a simple base model class for MongoDB. It is a very simple wrapper, but is effective for what I need. I usually create model classes for each &amp;#8220;Collection&amp;#8221; just like I would create models for each table in MySQL. Each model class extends from the new MongoDB base class and allows a low level &amp;#8220;active directory&amp;#8221; type access to MongoDB documents.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/clintberry/zf-mongo-base&#34;&gt;Get The Source Code Here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Example: We want to create a new document for every visitor that comes into a website that we are tracking. We store those documents in the &amp;#8220;visitor&amp;#8221; collection.&lt;/p&gt;
-
-&lt;p&gt;The first thing we do is create a model for the visitor collection.&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;class Model_Visitor extends Mongodb_ModelBase {
-
-    // If you don&amp;#039;t specify the collection name explicitly,
-    // it will default to the name of the class minus the &#34;Model_&#34; part.
-    protected static $_collectionName = &#34;visitor&#34;;
-
-}&lt;/pre&gt;
-
-&lt;p&gt;Then we can create new documents for that collection&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;$newVisitor = new Model_Visitor();
-$newVisitor-&amp;gt;ipAddress = &amp;#039;5.5.5.5&amp;#039;;
-$newVisitor-&amp;gt;save();&lt;/pre&gt;
-
-&lt;p&gt;You can also query for visitors using static methods:&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;$oneVisitor = Model_Visitor::findOne();
-$allVisitors = Model_Visitor::find();
-$someVisitors = Model_Visitor::find(array(&amp;#039;ipAddress&amp;#039;=&amp;gt;&amp;#039;5.5.5.5&amp;#039;));&lt;/pre&gt;
-
-&lt;p&gt;Use dot notation for nested values. These two commands do the same thing:&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;$myVisitor-&amp;gt;{&amp;#039;referrer.url&amp;#039;} = &amp;#039;google.com&amp;#039;;
-$myVisitor-&amp;gt;referrer = array(&amp;#039;url&amp;#039;=&amp;gt;&amp;#039;google.com&amp;#039;);&lt;/pre&gt;
-
-&lt;p&gt;I thought I would share this with the rest of the world in case someone needed it.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/clintberry/zf-mongo-base&#34;&gt;Get The Source Code Here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;NOTE: The base class makes use of &lt;a href=&#34;http://php.net/manual/en/language.oop5.late-static-bindings.php&#34;&gt;late static binding&lt;/a&gt;, which requires PHP 5.3&lt;/strong&gt;&lt;/p&gt;
-</description>
+&lt;p&gt;Since I am a Zend Framework guy I created a simple base model class for MongoDB. It is a very simple wrapper, but is effective for what I need. I usually create model classes for each &amp;#8220;Collection&amp;#8221; just like I would create models for each table in MySQL. Each model class extends from the new MongoDB base class and allows a low level &amp;#8220;active directory&amp;#8221; type access to MongoDB documents.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Zend Framework Code Generator With Scaffolding: ZFcodo</title>
-      <link>http://clintberry.com/2010/zend-framework-code-generator-with-scaffolding/</link>
+      <link>https://clintberry.com/2010/zend-framework-code-generator-with-scaffolding/</link>
       <pubDate>Thu, 05 Aug 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.com/2010/zend-framework-code-generator-with-scaffolding/</guid>
+      <guid>https://clintberry.com/2010/zend-framework-code-generator-with-scaffolding/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; This project is now hosted at my &lt;a href=&#34;https://github.com/clintberry/zf-codo&#34;&gt;GitHub account&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;While I am a huge fan of Zend Framework, I miss having the code generation that is bundled with other frameworks I use. Since my favorite codegen/ORM is from the Qcubed project, I decided to take the Qcubed code generator and customize it for Zend Framework.&lt;/p&gt;
-
-&lt;p&gt;A little background on Qcubed: &lt;a href=&#34;http://qcu.be/&#34;&gt;Qcubed&lt;/a&gt; is a framework branched off of the &lt;a href=&#34;http://www.qcodo.com/&#34;&gt;Qcodo&lt;/a&gt; project. Qcubed code generation connects to your already built database and generates your models, views, and controllers based on your database schema. Qcubed has a built-in ORM that uses the Active Record model and also a custom querying language similar to Doctrine ORM. &lt;a href=&#34;http://qcu.be/&#34;&gt;(Go here for more information on the Qcubed project)&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The advantage to using Qcubed over Doctrine is that I have it generating not only my models, but also basic forms, controllers, and views. I will also be running some benchmark tests because I think that out of the box, Qcubed ORM performs better than Doctrine. I have dubbed this project &amp;ldquo;ZFcodo&amp;rdquo;, which references the origins of the Qcubed project: Qcodo. So far I have a hacked together proof of concept that I think is interesting. Here is what I have with some example code so you can see why this will save you time setting up your Zend Framework Projects.&lt;/p&gt;
-
-&lt;p&gt;To get this going, I started with a basic Zend Framework application structure. Then I copied the entire Qcubed project into my custom library folder ZFcodo. I stripped out anything I could see from Qcubed that was specifically for the framework, and not related to the ORM or code generation and altered some files a little to match a Zend Framework application. I then created a ZFcodo manager file that would set all the constants needed and added the following to /application/configs/application.ini:&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;; ---
-; Database and ZFcodo settings
-; ---
-
-zq.db.host = &#34;localhost&#34;
-zq.db.username = &#34;sample&#34;
-zq.db.password = &#34;sample&#34;
-zq.db.name = &#34;sample&#34;
-
-; ZFcodo Model Settins
-zq.modelFolder = &#34;/models&#34;
-zq.modelBaseFolder = &#34;/Base&#34;
-
-; ZFcodo Form Settings
-zq.generateForms = 0
-zq.formFolder = &#34;/forms&#34;
-
-; ZFcodo Controller Settings
-zq.generateControllers = 0
-zq.controllerFolder = &#34;/controllers&#34;
-&lt;/pre&gt;
-
-&lt;p&gt;My next step was to add an init function to my /application/Bootstrap.php file that initialized the ZFcodo ORM:&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;protected function _initQcubed()
-{
-    require APPLICATION_PATH . &amp;#039;/../library/ZFcodo/Codegen/Manager.php&amp;#039;;
-
-    $zqConfig = $this-&amp;gt;getOption(&amp;#039;zq&amp;#039;);
-    $manager = new Zcodo_Manager($zqConfig);
-    $manager-&amp;gt;loadOrm();
-}
-&lt;/pre&gt;
-
-&lt;p&gt;And finally, I modified the Qcubed code generation PHP script to work from a CLI and put it into /application/scripts/zf-codo.php.&lt;/p&gt;
-
-&lt;p&gt;Now I can run zf-codo.php from the command line and &lt;strong&gt;it generates my models (including base models), basic controllers, basic views, and basic forms.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/codegenscreenshot.png&#34; alt=&#34;ZFcodo Code Generation From Command Line&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;For my example, I created a simple &amp;#8220;customer&amp;#8221; table with &amp;#8220;first name&amp;#8221; and &amp;#8220;last name&amp;#8221;. The code generator added the following files for the table:&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;application/controllers/CustomerController.php
-application/forms/Customer.php
-application/models/Customer.php
-application/models/Base/Customer.php
-application/views/scripts/customer/list.phtml
-application/views/scripts/customer/create.phtml
-application/views/scripts/customer/edit.phtml
-&lt;/pre&gt;
-
-&lt;p&gt;Then to list the customers, all I do is go to &lt;a href=&#34;http://projectlocation/customer/list&#34;&gt;http://projectlocation/customer/list&lt;/a&gt; and I see this page:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://clintberry.com/images/screenshot1.png&#34; alt=&#34;Zend Framework Code Generator&#34; style=&#34;border:1px solid gray;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The codegen alone can get you off to a great start on your next ZF project, but with the built-in ORM, you can save hours on your project. ZFcodo will turn the &lt;sup&gt;80&lt;/sup&gt;&amp;frasl;&lt;sub&gt;20&lt;/sub&gt; rule into the &lt;sup&gt;90&lt;/sup&gt;&amp;frasl;&lt;sub&gt;10&lt;/sub&gt; rule&amp;#8230; &lt;img src=&#34;http://clintberry.com/wp-includes/images/smilies/simple-smile.png&#34; alt=&#34;:-)&#34; class=&#34;wp-smiley&#34; style=&#34;height: 1em; max-height: 1em;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Right now this is more of a proof of concept (a nice way of saying it is a hack job) but I will continue to work on this, and if there seems to be a demand for this, I will work on it even more. I have implemented the ORM into a few live projects already and it seems to be working great.&lt;/p&gt;
-
-&lt;p&gt;You can get the entire project source code here: &lt;a href=&#34;https://github.com/clintberry/zf-codo&#34;&gt;Zend Framework ORM&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; This project is now hosted at my &lt;a href=&#34;https://github.com/clintberry/zf-codo&#34;&gt;GitHub account&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;To use it, just edit the application.ini file with your database info, and then run the script application/scripts/zcodo.php from the CLI.&lt;/p&gt;
-
-&lt;p&gt;That easy&amp;#8230;&lt;/p&gt;
-
-&lt;p&gt;The future plans for this project are to:&lt;/p&gt;
-
-&lt;p&gt;&amp;#8211; organize the directory structure the Zend way&lt;/p&gt;
-
-&lt;p&gt;&amp;#8211; add Zend_Paginator ability to the ORM&lt;/p&gt;
-
-&lt;p&gt;&amp;#8211; style the generated forms&lt;/p&gt;
-
-&lt;p&gt;&amp;#8211; and allow module based codegen&lt;/p&gt;
-
-&lt;p&gt;Let me know if you have any questions.&lt;/p&gt;
-</description>
+&lt;p&gt;While I am a huge fan of Zend Framework, I miss having the code generation that is bundled with other frameworks I use. Since my favorite codegen/ORM is from the Qcubed project, I decided to take the Qcubed code generator and customize it for Zend Framework.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Custom Error Messages on Zend Form Validators</title>
-      <link>http://clintberry.com/2010/zend-form-email-validator-customizing-error-messages/</link>
+      <link>https://clintberry.com/2010/zend-form-email-validator-customizing-error-messages/</link>
       <pubDate>Thu, 08 Jul 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.com/2010/zend-form-email-validator-customizing-error-messages/</guid>
-      <description>&lt;p&gt;Zend Form is extremely powerful, and I love most of the built in validators. But some of the validators are overkill for many projects. Take the EmailAddress validator for instance. I have never worked on a web-form where I wanted 3 error messages to appear if the Email address entered was invalid. (To see what I mean, just type in &amp;#8220;a@a&amp;#8221; for your email address and see what Zend_Validate_EmailAddress displays). I have seen several questions and complaints about this problem (&lt;a href=&#34;http://framework.zend.com/issues/browse/ZF-2224&#34;&gt;Example 1&lt;/a&gt; or &lt;a href=&#34;http://www.zfforums.com/zend-framework-general-discussions-1/general-q-zend-framework-2/how-can-i-get-just-1-error-message-emailaddress-validator-instead-multiple-2582.html&#34;&gt;Example 2&lt;/a&gt;) and thought I would offer up my fix.&lt;/p&gt;
-
-&lt;p&gt;I have found that the quickest way to to control your error messages with the EmailAddress Validator is to create your own email validator that extends from Zend_Validate_EmailAddress, and then override the isValid function. Here is the shortest version I have come up with:&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;class Clint_Validate_EmailAddress extends Zend_Validate_EmailAddress
-{
-    public function isValid($value)
-    {
-       $response = parent::isValid($value);
-       if(!$response){
-           $this-&amp;gt;_messages =
-                array(self::INVALID =&amp;gt; &#34;Please enter a valid email address&#34;);
-       }
-       return $response;
-    }
-}&lt;/pre&gt;
-
-&lt;p&gt;This class simply calls the parent function isValid(), and if it returns false, it sets the _messages array to have only one error message of your choice. Call it a hack if you want, but it works, and it works without putting logic in the controller which means I can re-use this form wherever I want. As always, let me know if you have a different and/or better way of doing this.&lt;/p&gt;
-</description>
+      <guid>https://clintberry.com/2010/zend-form-email-validator-customizing-error-messages/</guid>
+      <description>&lt;p&gt;Zend Form is extremely powerful, and I love most of the built in validators. But some of the validators are overkill for many projects. Take the EmailAddress validator for instance. I have never worked on a web-form where I wanted 3 error messages to appear if the Email address entered was invalid. (To see what I mean, just type in &amp;#8220;a@a&amp;#8221; for your email address and see what Zend_Validate_EmailAddress displays). I have seen several questions and complaints about this problem (&lt;a href=&#34;http://framework.zend.com/issues/browse/ZF-2224&#34;&gt;Example 1&lt;/a&gt; or &lt;a href=&#34;http://www.zfforums.com/zend-framework-general-discussions-1/general-q-zend-framework-2/how-can-i-get-just-1-error-message-emailaddress-validator-instead-multiple-2582.html&#34;&gt;Example 2&lt;/a&gt;) and thought I would offer up my fix.&lt;/p&gt;</description>
     </item>
     
   </channel>

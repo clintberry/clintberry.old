@@ -1,61 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mongodb on Clint Berry</title>
-    <link>http://clintberry.com/categories/mongodb/</link>
-    <description>Recent content in Mongodb on Clint Berry</description>
+    <title>MongoDB on Clint Berry</title>
+    <link>https://clintberry.com/categories/mongodb/</link>
+    <description>Recent content in MongoDB on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
     <lastBuildDate>Thu, 11 Nov 2010 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.com/categories/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://clintberry.com/categories/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>MongoDB Base Model for Zend Framework</title>
-      <link>http://clintberry.com/2010/mongodb-base-model-for-zend-framework/</link>
+      <link>https://clintberry.com/2010/mongodb-base-model-for-zend-framework/</link>
       <pubDate>Thu, 11 Nov 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.com/2010/mongodb-base-model-for-zend-framework/</guid>
+      <guid>https://clintberry.com/2010/mongodb-base-model-for-zend-framework/</guid>
       <description>&lt;p&gt;I came accross &lt;a href=&#34;http://mongodb.org&#34;&gt;MongoDB&lt;/a&gt; a few months ago and it seemed like a perfect fit for many of the projects I am working. Extremely fast inserts, map-reduce for complex queries, and most importantly, scaling is a breeze.&lt;/p&gt;
 
-&lt;p&gt;Since I am a Zend Framework guy I created a simple base model class for MongoDB. It is a very simple wrapper, but is effective for what I need. I usually create model classes for each &amp;#8220;Collection&amp;#8221; just like I would create models for each table in MySQL. Each model class extends from the new MongoDB base class and allows a low level &amp;#8220;active directory&amp;#8221; type access to MongoDB documents.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/clintberry/zf-mongo-base&#34;&gt;Get The Source Code Here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Example: We want to create a new document for every visitor that comes into a website that we are tracking. We store those documents in the &amp;#8220;visitor&amp;#8221; collection.&lt;/p&gt;
-
-&lt;p&gt;The first thing we do is create a model for the visitor collection.&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;class Model_Visitor extends Mongodb_ModelBase {
-
-    // If you don&amp;#039;t specify the collection name explicitly,
-    // it will default to the name of the class minus the &#34;Model_&#34; part.
-    protected static $_collectionName = &#34;visitor&#34;;
-
-}&lt;/pre&gt;
-
-&lt;p&gt;Then we can create new documents for that collection&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;$newVisitor = new Model_Visitor();
-$newVisitor-&amp;gt;ipAddress = &amp;#039;5.5.5.5&amp;#039;;
-$newVisitor-&amp;gt;save();&lt;/pre&gt;
-
-&lt;p&gt;You can also query for visitors using static methods:&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;$oneVisitor = Model_Visitor::findOne();
-$allVisitors = Model_Visitor::find();
-$someVisitors = Model_Visitor::find(array(&amp;#039;ipAddress&amp;#039;=&amp;gt;&amp;#039;5.5.5.5&amp;#039;));&lt;/pre&gt;
-
-&lt;p&gt;Use dot notation for nested values. These two commands do the same thing:&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;$myVisitor-&amp;gt;{&amp;#039;referrer.url&amp;#039;} = &amp;#039;google.com&amp;#039;;
-$myVisitor-&amp;gt;referrer = array(&amp;#039;url&amp;#039;=&amp;gt;&amp;#039;google.com&amp;#039;);&lt;/pre&gt;
-
-&lt;p&gt;I thought I would share this with the rest of the world in case someone needed it.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/clintberry/zf-mongo-base&#34;&gt;Get The Source Code Here&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;NOTE: The base class makes use of &lt;a href=&#34;http://php.net/manual/en/language.oop5.late-static-bindings.php&#34;&gt;late static binding&lt;/a&gt;, which requires PHP 5.3&lt;/strong&gt;&lt;/p&gt;
-</description>
+&lt;p&gt;Since I am a Zend Framework guy I created a simple base model class for MongoDB. It is a very simple wrapper, but is effective for what I need. I usually create model classes for each &amp;#8220;Collection&amp;#8221; just like I would create models for each table in MySQL. Each model class extends from the new MongoDB base class and allows a low level &amp;#8220;active directory&amp;#8221; type access to MongoDB documents.&lt;/p&gt;</description>
     </item>
     
   </channel>

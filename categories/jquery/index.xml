@@ -1,81 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jquery on Clint Berry</title>
-    <link>http://clintberry.com/categories/jquery/</link>
-    <description>Recent content in Jquery on Clint Berry</description>
+    <title>jQuery on Clint Berry</title>
+    <link>https://clintberry.com/categories/jquery/</link>
+    <description>Recent content in jQuery on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
     <lastBuildDate>Wed, 14 Jul 2010 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://clintberry.com/categories/jquery/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://clintberry.com/categories/jquery/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Custom Fonts with Google WebFont Loader</title>
-      <link>http://clintberry.com/2010/custom-fonts-with-google-webfont-loader/</link>
+      <link>https://clintberry.com/2010/custom-fonts-with-google-webfont-loader/</link>
       <pubDate>Wed, 14 Jul 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://clintberry.com/2010/custom-fonts-with-google-webfont-loader/</guid>
-      <description>&lt;p&gt;I have recently been working on adding local fonts to my customized version of svg-edit. The idea is to have a font selector with several fonts from my local system. I have been using the recently released &lt;a href=&#34;http://code.google.com/apis/webfonts/docs/webfont_loader.html&#34;&gt;Google WebFont Loader API&lt;/a&gt; to load font files from my local server into the website. Google has made it easier than ever. (note: Google will collect stats from your website if you use this API, just like they do if you use any of their services.)&lt;/p&gt;
-
-&lt;p&gt;The first thing I needed was font files. Not all browsers are alike when using the css @font-face elements. Paul Irish &lt;a href=&#34;http://paulirish.com/2009/bulletproof-font-face-implementation-syntax/&#34;&gt;educated me&lt;/a&gt; on that one. So I needed different versions of the font file based on the browser. Luckily, Font Squirrel has a &lt;a href=&#34;http://www.fontsquirrel.com/fontface/generator&#34;&gt;Font Face Generator&lt;/a&gt; which generates all the necessary files and the style sheet to boot. I thought to myself: &amp;#8220;Dang, that was easier than I thought it would be. I think I&amp;#8217;ll donate some money to Font Squirrel for developing that awesome app.&amp;#8221; Then I didn&amp;#8217;t get around to it&amp;#8230; maybe tomorrow.&lt;/p&gt;
-
-&lt;p&gt;Once you have all the font files and style sheet up on your server, you can instantiate them with the Google WebFont Loader. Why not just include the style sheet? For a couple of reasons: 1) You can&amp;#8217;t get rid of &lt;a href=&#34;http://paulirish.com/2009/fighting-the-font-face-fout/&#34;&gt;FOUT&lt;/a&gt; 2) If you are loading multiple fonts (like in a font selector) it would take a long time to load them all up-front (Some of the files are 50k+). For my font selector, I want to be able to load the fonts when the font is selected, then it will be cached on the user&amp;#8217;s computer for all future requests.&lt;/p&gt;
-
-&lt;p&gt;To keep track of which fonts were loaded (so as not to load them again with WebFont) I created an array with all the font definitions for my selector (Only three to start). I then created the Smm.loadFont function to load the font. The function takes 3 arguments: 1) The font to load 2) [optional] The callback for when the font has finished loading, and 3) [optional] the callback for WHILE the font is loading.&lt;/p&gt;
-
-&lt;pre class=&#34;wp-code-highlight prettyprint&#34;&gt;var Smm = {
-    fontDirectory: &amp;#039;css/fonts/&amp;#039;,
-    imageDirectory: &amp;#039;css/fonts/font-images/&amp;#039;    
-};
-
-Smm.Fonts = {
-    BrushScript: {
-        cssFile: &amp;#039;BrushScript.css&amp;#039;,
-        imageFile: &amp;#039;brush-script.png&amp;#039;,
-        loadType: &amp;#039;custom&amp;#039;,
-        loaded: false
-    },
-    CloisterBlackLight: {
-        cssFile: &amp;#039;CloisterBlackLight.css&amp;#039;,
-        imageFile: &amp;#039;cloister.png&amp;#039;,
-        loadType: &amp;#039;custom&amp;#039;,
-        loaded: false
-    },
-    Cooper: {
-        cssFile: &amp;#039;Cooper.css&amp;#039;,
-        imageFile: &amp;#039;cooper.png&amp;#039;,
-        loadType: &amp;#039;custom&amp;#039;,
-        loaded: false
-    }
-};
-
-
-Smm.loadFont = function(fontFace, active, loading){
-    console.log(&amp;#039;Loading font: &amp;#039; + fontFace);
-    if(Smm.Fonts[fontFace][&amp;#039;loaded&amp;#039;] === false){
-        Smm.Fonts[fontFace][&amp;#039;loaded&amp;#039;] = true;
-        
-        WebFont.load({
-            custom: { 
-                families: [fontFace],
-                urls: [Smm.fontDirectory+Smm.Fonts[fontFace][&amp;#039;cssFile&amp;#039;]] 
-            },
-            loading: loading,
-            active: active
-        });
-    }
-    else {
-        active();
-    }
-};
-&lt;/pre&gt;
-
-&lt;p&gt;I added the imageFile setting to each font so that a picture would be used instead of text. This allows the user to see a preview of the font without downloading it. The last thing I did, was create the HTML for the font loader.&lt;/p&gt;
-
-&lt;p&gt;UPDATE: I integrated the drop-down into svg-edit. Check out a demo here: &lt;a href=&#34;http://clintberry.com/demos/svg-edit-with-fonts/&#34;&gt;&lt;strong&gt;svg-edit with custom font selector&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;UPDATE: Get the source code with installation details from my &lt;a href=&#34;https://github.com/clintberry/svg-font-loader&#34;&gt;&lt;strong&gt;github repository&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-</description>
+      <guid>https://clintberry.com/2010/custom-fonts-with-google-webfont-loader/</guid>
+      <description>&lt;p&gt;I have recently been working on adding local fonts to my customized version of svg-edit. The idea is to have a font selector with several fonts from my local system. I have been using the recently released &lt;a href=&#34;http://code.google.com/apis/webfonts/docs/webfont_loader.html&#34;&gt;Google WebFont Loader API&lt;/a&gt; to load font files from my local server into the website. Google has made it easier than ever. (note: Google will collect stats from your website if you use this API, just like they do if you use any of their services.)&lt;/p&gt;</description>
     </item>
     
   </channel>
