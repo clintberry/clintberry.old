@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://clintberry.com/measuring-your-engineering-culture/</loc>
+    <lastmod>2019-03-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://clintberry.com/engineering-compensation-fair/</loc>
     <lastmod>2019-02-03T00:00:00+00:00</lastmod>
   </url>
@@ -24,7 +29,7 @@
   
   <url>
     <loc>https://clintberry.com/blog/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -41,13 +46,19 @@
   
   <url>
     <loc>https://clintberry.com/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://clintberry.com/tags/culture/</loc>
-    <lastmod>2019-02-03T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://clintberry.com/tags/devops/</loc>
+    <lastmod>2019-03-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

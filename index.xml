@@ -5,10 +5,20 @@
     <link>https://clintberry.com/</link>
     <description>Recent content on Clint Berry</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://clintberry.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Measuring your Engineering Culture</title>
+      <link>https://clintberry.com/measuring-your-engineering-culture/</link>
+      <pubDate>Tue, 19 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://clintberry.com/measuring-your-engineering-culture/</guid>
+      <description>Creating the right operational culture for your engineering team is critical to having a high performing team. More than ever building the right products and having a very fast time-to-market is what will separate winners from losers. Without a good culture, your teams will never perform well enough to keep up.
+But how do you measure your culture? Let me share with you three methods we use at Weave to make sure we have a healthy and happy engineering culture:</description>
+    </item>
     
     <item>
       <title>Engineering Compensation - The Pursuit of Fairness</title>
@@ -21,7 +31,7 @@ One of the ways we have improved over the last couple of years is how we determi
     </item>
     
     <item>
-      <title>What does a CTO do?</title>
+      <title>What Does a CTO Do?</title>
       <link>https://clintberry.com/what-does-a-cto-do/</link>
       <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
       
